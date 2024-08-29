@@ -166,7 +166,7 @@ export function SignupForm() {
             <FormItem>
               <FormLabel className="font-medium text-base ">Company Website</FormLabel>
               <FormControl>
-                <Input type="text" placeholder="Enter comapny website" {...field} />
+                <Input type="text" placeholder="Enter company website" {...field} />
               </FormControl>
 
               <FormMessage />
