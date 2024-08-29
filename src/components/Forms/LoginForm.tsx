@@ -55,7 +55,7 @@ export function LoginForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="font-medium text-xl ">Email</FormLabel>
+              <FormLabel className="font-medium text-base">Email</FormLabel>
 
               <FormControl>
                 <Input type="email" placeholder="Enter your email" className="h-12 " {...field} />
@@ -69,7 +69,7 @@ export function LoginForm() {
           name="password"
           render={({ field }) => (
             <FormItem className="my-4">
-              <FormLabel className="font-medium text-xl ">Password</FormLabel>
+              <FormLabel className="font-medium text-base ">Password</FormLabel>
               <FormControl>
                 <div className="flex border justify-between items-center pr-4 rounded-xl overflow-hidden">
                   <Input
@@ -93,9 +93,9 @@ export function LoginForm() {
           )}
         />
         <div className="flex justify-end my-3 text-primary">
-          <Link to="/forgot-password">Forgot Password</Link>
+          <Link to="/forgot-password " className='text-sm'>Forgot Password</Link>
         </div>
-        <Button type="submit" className="w-full h-14 font-normal text-base">
+        <Button type="submit" className="w-full font-normal text-base">
           Login
         </Button>
       </form>
