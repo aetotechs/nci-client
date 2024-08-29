@@ -1,5 +1,7 @@
+import tailwindcssAnimate from 'tailwindcss-animate';
+
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   darkMode: ["class"],
   content: [
     './pages/**/*.{ts,tsx}',
@@ -17,11 +19,20 @@ module.exports = {
       },
     },
     extend: {
+      backgroundImage: {
+        logo: "url('src/assets/logo.png')",
+        brand: "url('src/assets/brand.png')",
+        hero: "url('src/assets/hero-image.png')",
+        about: "url('src/assets/about-image.jpg')",
+        footer:"url('src/assets/footer-background.png')",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
+        icon:"rgba(var(--icon-color))",
+        tab:"rgba(var(--tab-background))",
         foreground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
