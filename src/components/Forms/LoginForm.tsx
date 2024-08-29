@@ -93,7 +93,9 @@ export function LoginForm() {
           )}
         />
         <div className="flex justify-end my-3 text-primary">
-          <Link to="/forgot-password " className='text-sm'>Forgot Password</Link>
+          <Link to="/forgot-password " className="text-sm">
+            Forgot Password
+          </Link>
         </div>
         <Button type="submit" className="w-full font-normal text-base">
           Login

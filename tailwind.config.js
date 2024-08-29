@@ -20,11 +20,11 @@ export default {
     },
     extend: {
       backgroundImage: {
-        logo: "url('src/assets/logo.png')",
-        brand: "url('src/assets/brand.png')",
-        hero: "url('src/assets/hero-image.png')",
-        about: "url('src/assets/about-image.jpg')",
-        footer:"url('src/assets/footer-background.png')",
+        logo: "url('/logos/logo.png')",
+        brand: "url('/logos/brand.png')",
+        hero: "url('/images/hero-image.png')",
+        about: "url('/images/about-image.jpg')",
+        footer:"url('/images/footer-background.png')",
       },
       colors: {
         border: "hsl(var(--border))",

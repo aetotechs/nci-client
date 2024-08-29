@@ -36,7 +36,7 @@ export function AddressForm() {
 
   return (
     <Form {...form}>
-      <form className="w-full grid grid-cols-2 gap-5 ">
+      <form className="w-full flex flex-col md:grid  md:grid-cols-2 gap-5 ">
         <FormField
           control={form.control}
           name="country"
