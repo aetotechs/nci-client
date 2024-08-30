@@ -7,7 +7,8 @@ export function CheckboxDemo() {
       <Checkbox id="terms" />
       <label
         htmlFor="terms"
-        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+      >
         I have read and agree to the <span className="text-primary ">Privacy Policy</span> and{' '}
         <span className="text-primary">Terms of Use</span>
       </label>

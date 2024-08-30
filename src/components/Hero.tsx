@@ -17,7 +17,8 @@ function Hero() {
         <div className="my-10 w-[169px]  ">
           <Link
             className="flex justify-center gap-2 bg-primary py-3 rounded-sm text-white font-semibold text-[16px] leading-5"
-            to="/shop">
+            to="/shop"
+          >
             Shop Now{' '}
             <span>
               <ChevronRight />

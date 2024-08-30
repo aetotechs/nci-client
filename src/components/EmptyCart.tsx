@@ -5,8 +5,8 @@ import { ChevronRight } from 'lucide-react';
 
 function EmptyCart() {
   return (
-    <div className='w-[400px]'>
-      <div className='flex justify-center flex-col items-center'>
+    <div className="w-[400px]">
+      <div className="flex justify-center flex-col items-center">
         <div className="w-[100px] h-[100px]">
           <img src="./icons/shoppingtrolley.svg" alt="ShoppingTrolley" />
         </div>
@@ -17,7 +17,8 @@ function EmptyCart() {
         <div className="my-10 w-[197px]  ">
           <Link
             className="flex justify-center gap-2 bg-primary py-3 rounded-xl text-white font-semibold text-[16px] leading-5"
-            to="/shop">
+            to="/shop"
+          >
             Shop Now{' '}
             <span>
               <ChevronRight />

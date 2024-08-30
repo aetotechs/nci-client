@@ -1,12 +1,12 @@
-import React from 'react'
-import ShoppingCart from './ShoppingCart'
+import React from 'react';
+import ShoppingCart from './ShoppingCart';
 
 function CartWithItems() {
   return (
     <div>
-        <ShoppingCart/>
+      <ShoppingCart />
     </div>
-  )
+  );
 }
 
-export default CartWithItems
+export default CartWithItems;
