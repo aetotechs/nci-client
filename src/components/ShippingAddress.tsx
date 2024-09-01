@@ -57,21 +57,25 @@ function ShippingAddress() {
         <div></div>
         <div>
           <div className="flex justify-between mt-4">
-            <Button className="flex gap-2 rounded-[10px] w-[109px] h-[43px]" variant="outline">
-              <span>
-                <ChevronLeft className="w-4 h-4" />
-              </span>
-              Back
-            </Button>
-            <Button
-              className="flex gap-2 bg-primary rounded-[10px] w-[109px] h-[43px] text-white px-3"
-              variant="outline"
-            >
-              <span>
-                <ChevronRight className="w-4 h-4" />
-              </span>
-              <Link to="/shop-payment">Next</Link>
-            </Button>
+            <Link to="/shop-items">
+              <Button className="flex gap-2 rounded-[10px] w-[109px] h-[43px]" variant="outline">
+                <span>
+                  <ChevronLeft className="w-4 h-4" />
+                </span>
+                Back
+              </Button>
+            </Link>
+            <Link to="/shop-payment">
+              <Button
+                className="flex gap-2 bg-primary rounded-[10px] w-[109px] h-[43px] text-white px-3"
+                variant="outline"
+              >
+                <span>
+                  <ChevronRight className="w-4 h-4" />
+                </span>
+                Next
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

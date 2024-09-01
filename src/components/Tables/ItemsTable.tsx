@@ -31,7 +31,7 @@ export function ItemsTable({ items }: ITableProps) {
       <TableHeader>
         <TableRow className="grid grid-cols-6 text-center pt-3 px-4 border-none w-full ">
           <TableHead className="col-span-3 flex items-center">Item</TableHead>
-          <TableHead className="col-span-1   flex justify-center items-center">Bags</TableHead>
+          <TableHead className="col-span-1   flex justify-center items-center">Quantity</TableHead>
           <TableHead className="col-span-1 flex justify-center items-center ">SubTotal</TableHead>
           <TableHead className="col-span-1"></TableHead>
         </TableRow>

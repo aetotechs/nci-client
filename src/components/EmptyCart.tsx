@@ -10,14 +10,14 @@ function EmptyCart() {
         <div className="w-[100px] h-[100px]">
           <img src="./icons/shoppingtrolley.svg" alt="ShoppingTrolley" />
         </div>
-        <h3 className="font-semibold my-2">Your shopping cart is empty</h3>
-        <p className="font-normal text-base">
+        <h3 className="font-semibold my-2 text-2xl">Your shopping cart is empty</h3>
+        <p className="font-normal text-base text-textmuted">
           Add items to your cart and order to enjoy great coffee at the best prices.
         </p>
         <div className="my-10 w-[197px]  ">
           <Link
             className="flex justify-center gap-2 bg-primary py-3 rounded-xl text-white font-semibold text-[16px] leading-5"
-            to="/shop"
+            to="/shop-items"
           >
             Shop Now{' '}
             <span>

@@ -3,6 +3,7 @@ import { IItems, ItemsTable } from './Tables/ItemsTable';
 import { Button } from './ui/button';
 import { ChevronLeft, Trash2 } from 'lucide-react';
 import { Checkbox } from './ui/checkbox';
+import { Link } from 'react-router-dom';
 
 const myitems = [
   {
@@ -48,12 +49,14 @@ function ShoppingCart() {
         <ItemsTable items={items} />
       </div>
       <div className="flex justify-between mt-4">
-        <Button className="flex gap-2 rounded-[10px] w-[109px] h-[43px]" variant="outline">
-          <span>
-            <ChevronLeft className="w-4 h-4" />
-          </span>
-          Back
-        </Button>
+        <Link to="/shop">
+          <Button className="flex gap-2 rounded-[10px] w-[109px] h-[43px]" variant="outline">
+            <span>
+              <ChevronLeft className="w-4 h-4" />
+            </span>
+            Back
+          </Button>
+        </Link>
         <Button
           className="flex gap-2 bg-red-500 rounded-[10px] w-[109px] h-[43px] text-white px-3"
           variant="outline"

@@ -27,11 +27,17 @@ export default {
         footer: "url('/images/footer-background.png')"
       },
       colors: {
-        border: 'hsl(var(--border))',
+        border: 'hsla(var(--border))',
         input: 'hsl(var(--input))',
+        inactive: 'rgba(var(--progress-color))',
+        textsecondary: 'rgba(var(--text-secondary))',
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
+        texthighlight: 'rgba(var(--text-highlight))',
+        textmuted: 'rgba(var(--text-muted))',
         icon: 'rgba(var(--icon-color))',
+        iconbackground: 'rgba(var(--icon-background))',
+        footerbackground: 'rgba(var(--footer-background))',
         tab: 'rgba(var(--tab-background))',
         foreground: 'hsl(var(--foreground))',
         primary: {

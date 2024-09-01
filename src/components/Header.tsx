@@ -31,7 +31,9 @@ function Header() {
           </Link>
         </div>
         <Button className="h-[45px] w-[80px] rounded-xl">
-          <Link to={pathname}>{pathname === '/' ? 'Login' : 'Profile'}</Link>
+          <Link to={pathname === '/' ? '/login' : '/profile'}>
+            {pathname === '/' ? 'Login' : 'Profile'}
+          </Link>
         </Button>
       </div>
     </div>

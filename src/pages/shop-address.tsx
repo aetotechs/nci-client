@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 import BreadCrumb from '@/components/BreadCrumb';
 import Header from '@/components/Header';
 
-import Coupon from '@/components/Coupon';
 import OrderSummary from '@/components/OrderSummary';
 import ShippingAddress from '@/components/ShippingAddress';
+import Progress from '@/components/Progress';
+import Footer from '@/components/Footer';
 
 function ShopAddress() {
   const breadcrumbItems = [{ href: '/shop', label: 'Cart' }];
@@ -20,17 +21,21 @@ function ShopAddress() {
           <BreadCrumb items={breadcrumbItems} />
         </div>
         <div>
+          <div className=" flex justify-center mt-5  ">
+            <Progress />
+          </div>
           <div className="h-screen grid grid-cols-5 gap-5 place-content-center">
             <div className="col-span-3">
               {' '}
               <ShippingAddress />
             </div>
-            <div className="col-span-2">
+            <div className="col-span-2 bg-white">
               <OrderSummary />
             </div>
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

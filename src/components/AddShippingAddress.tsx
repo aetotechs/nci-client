@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { ShippingAddressForm } from './Forms/AddShippingAddressForm';
 
 export function DialogDemo() {
   return (
@@ -17,30 +18,14 @@ export function DialogDemo() {
       <DialogTrigger asChild>
         <p className="text-primary cursor-pointer text-base font-medium">Change Shipping Address</p>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="w-[90%] md:w-[700px] ">
         <DialogHeader>
-          <DialogTitle>Edit profile</DialogTitle>
-          <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
+          <DialogTitle className="font-bold text-base">Add Shipping Address</DialogTitle>
+          <DialogDescription className="font-normal text-[13px]">
+            Ensure accurate and timely delivery by providing a complete address.
           </DialogDescription>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Name
-            </Label>
-            <Input id="name" defaultValue="Pedro Duarte" className="col-span-3" />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
-              Username
-            </Label>
-            <Input id="username" defaultValue="@peduarte" className="col-span-3" />
-          </div>
-        </div>
-        <DialogFooter>
-          <Button type="submit">Save changes</Button>
-        </DialogFooter>
+        <ShippingAddressForm />
       </DialogContent>
     </Dialog>
   );

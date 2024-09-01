@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-
+import EmptyCart from '@/components/EmptyCart';
 import BreadCrumb from '@/components/BreadCrumb';
 import Header from '@/components/Header';
-
+import CartWithItems from '@/components/CartWithItems';
+import Coupon from '@/components/Coupon';
 import OrderSummary from '@/components/OrderSummary';
-
-import MakePayment from '@/components/MakePayment';
 import Progress from '@/components/Progress';
 import Footer from '@/components/Footer';
 
-function ShopPayment() {
-  const breadcrumbItems = [{ href: '/shop', label: 'Cart' }];
+function ShopItems() {
+  const breadcrumbItems = [{ href: '/ShopItems', label: 'Cart' }];
 
   return (
     <>
@@ -22,15 +21,15 @@ function ShopPayment() {
           <BreadCrumb items={breadcrumbItems} />
         </div>
         <div>
-          <div className=" flex justify-center mt-5  ">
+          <div className=" flex justify-center  mt-5 ">
             <Progress />
           </div>
           <div className="h-screen grid grid-cols-5 gap-5 place-content-center">
             <div className="col-span-3">
-              {' '}
-              <MakePayment />
+              <CartWithItems />
             </div>
-            <div className="col-span-2 bg-white ">
+            <div className="col-span-2">
+              <Coupon />
               <OrderSummary />
             </div>
           </div>
@@ -41,4 +40,4 @@ function ShopPayment() {
   );
 }
 
-export default ShopPayment;
+export default ShopItems;

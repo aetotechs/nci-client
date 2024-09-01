@@ -5,6 +5,8 @@ import Header from '@/components/Header';
 import OrderSummary from '@/components/OrderSummary';
 import { Button } from '@/components/ui/button';
 import { Check } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import Footer from '@/components/Footer';
 
 const Address = {
   name: 'Rahmah Nanyonga',
@@ -28,13 +30,13 @@ function ClosedOrder() {
             <div className="col-span-3">
               <div className="w-[528px] h-[345px]">
                 <div className="flex items-center gap-2 mb-4">
-                  <div className="rounded-full w-[40px] h-[40px] bg-green-500 flex items-center justify-center">
+                  <div className="rounded-full w-[40px] h-[40px] bg-iconbackground flex items-center justify-center">
                     <Check className="text-white h-10 w-8" />
                   </div>
                   <h3 className="font-semibold text-2xl leading-10">Thank you for your order!</h3>
                 </div>
                 <div>
-                  <p className="text-sm pr-7 w-[436px] mb-4">
+                  <p className="text-sm pr-7 w-[436px] mb-4 text-textmuted">
                     Your order has been received. We will notify you by email once your order has
                     been shipped
                   </p>
@@ -66,22 +68,25 @@ function ClosedOrder() {
                     </div>
                   </div>
                   <div>
-                    <Button
-                      variant="outline"
-                      className="border border-primary bg-white h-[44px] w-[207px] my-6"
-                    >
-                      Continue Shpping
-                    </Button>
+                    <Link to="/shop">
+                      <Button
+                        variant="outline"
+                        className="border border-primary bg-white h-[44px] w-[207px] my-6"
+                      >
+                        Continue Shopping
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="col-span-2">
+            <div className="col-span-2 bg-white h-[557px]">
               <OrderSummary />
             </div>
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

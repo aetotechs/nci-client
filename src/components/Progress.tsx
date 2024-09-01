@@ -1,7 +1,50 @@
 import React from 'react';
+import { Separator } from './ui/separator';
+import { Link, useLocation } from 'react-router-dom';
+import clsx from 'clsx';
 
 function Progress() {
-  return <div>Progress</div>;
+  const location = useLocation();
+
+  // Define steps with possible multiple paths for each step
+  const steps = [
+    { paths: ['/shop', '/shop-items'], label: 'Cart' },
+    { paths: ['/shipping-address'], label: 'Address' },
+    { paths: ['/shop-payment'], label: 'Payment' }
+  ];
+
+  const getStepIndex = () => {
+    return steps.findIndex((step) => step.paths.includes(location.pathname));
+  };
+
+  const currentStepIndex = getStepIndex();
+
+  return (
+    <div className="flex items-center gap-2">
+      {steps.map((step, index) => (
+        <React.Fragment key={step.label}>
+          <div>
+            <Link
+              to={step.paths[0]} // Use the first path as the main link
+              className={clsx('font-semi-bold text-xl', {
+                'text-primary underline': index <= currentStepIndex,
+                'text-inactive': index > currentStepIndex
+              })}
+            >
+              {step.label}
+            </Link>
+          </div>
+          {index < steps.length - 1 && (
+            <Separator
+              className={clsx('w-44', {
+                'bg-primary': index < currentStepIndex
+              })}
+            />
+          )}
+        </React.Fragment>
+      ))}
+    </div>
+  );
 }
 
 export default Progress;
