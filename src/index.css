@@ -5,13 +5,15 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --text-color:76, 43, 31, 1;
+    --text-color: 76, 43, 31, 1;
+    --benefits-background: 57, 23, 22, 1;
+    --tab-background: 245, 245, 245, 1;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary:39 55% 41%;
+    --primary: 39 55% 41%;
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -23,6 +25,7 @@
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
+    --icon-color: 76, 43, 31, 1;
     --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
     --chart-1: 12 76% 61%;
@@ -65,8 +68,13 @@
     @apply border-border;
   }
   body {
-  background-color: hsla(60, 100%, 97%, 1);
-  margin: 40px;
-  font-family: "Work Sans", sans-serif;
+    background-color: hsla(60, 100%, 97%, 1);
+
+    font-family: 'Work Sans', sans-serif;
+    scroll-behavior: smooth;
+
+    max-width: 100vw;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 }
