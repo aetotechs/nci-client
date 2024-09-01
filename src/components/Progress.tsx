@@ -6,7 +6,6 @@ import clsx from 'clsx';
 function Progress() {
   const location = useLocation();
 
-  // Define steps with possible multiple paths for each step
   const steps = [
     { paths: ['/shop', '/shop-items'], label: 'Cart' },
     { paths: ['/shipping-address'], label: 'Address' },
@@ -25,12 +24,11 @@ function Progress() {
         <React.Fragment key={step.label}>
           <div>
             <Link
-              to={step.paths[0]} // Use the first path as the main link
+              to={step.paths[0]}
               className={clsx('font-semi-bold text-xl', {
                 'text-primary underline': index <= currentStepIndex,
                 'text-inactive': index > currentStepIndex
-              })}
-            >
+              })}>
               {step.label}
             </Link>
           </div>
