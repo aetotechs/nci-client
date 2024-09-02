@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { ShippingAddressForm } from './Forms/AddShippingAddressForm';
+import { ShippingAddressForm } from './forms/AddShippingAddressForm';
 
 export function DialogDemo() {
   return (

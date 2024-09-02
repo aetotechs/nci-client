@@ -1,4 +1,4 @@
-import { PaymentForm } from './Forms/PaymentForm';
+import { PaymentForm } from './forms/PaymentForm';
 
 function MakePayment() {
   return (

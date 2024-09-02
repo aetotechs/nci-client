@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { IItems, ItemsTable } from './Tables/ItemsTable';
+import { IItems, ItemsTable } from './tables/ItemsTable';
 import { Button } from './ui/button';
 import { ChevronLeft, Trash2 } from 'lucide-react';
 import { Checkbox } from './ui/checkbox';
@@ -31,7 +31,6 @@ function ShoppingCart() {
 
   useEffect(() => {
     const fetchedItems = myitems;
-    console.log('--->', fetchedItems);
 
     setItems(myitems);
   }, [items]);

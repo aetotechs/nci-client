@@ -4,7 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger
 } from '@/components/ui/accordion';
-import { AddressForm } from '@/components/Forms/AddressForm';
+import { AddressForm } from '@/components/forms/AddressForm';
 
 function Address() {
   return (
