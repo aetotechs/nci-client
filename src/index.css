@@ -6,9 +6,15 @@
   :root {
     --background: 0 0% 100%;
     --text-color: 76, 43, 31, 1;
+    --progress-color: 88, 89, 98, 1;
     --benefits-background: 57, 23, 22, 1;
+    --icon-background: 13, 206, 145, 1;
+    --text-highlight: 192, 151, 76, 1;
+    --footer-background: 57, 23, 22, 1;
+    --text-muted: 88, 89, 98, 1;
     --tab-background: 245, 245, 245, 1;
     --foreground: 222.2 84% 4.9%;
+    --text-secondary: 97, 97, 97, 1;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
@@ -23,7 +29,7 @@
     --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
+    --border: 234, 11%, 82%, 1;
     --input: 214.3 31.8% 91.4%;
     --icon-color: 76, 43, 31, 1;
     --ring: 222.2 84% 4.9%;

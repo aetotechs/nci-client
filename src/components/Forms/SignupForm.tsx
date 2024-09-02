@@ -74,7 +74,8 @@ export function SignupForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="w-full flex flex-col md:grid md:grid-cols-2 gap-5 ">
+        className="w-full flex flex-col md:grid md:grid-cols-2 gap-5 "
+      >
         <FormField
           control={form.control}
           name="firstName"
@@ -110,7 +111,7 @@ export function SignupForm() {
             <FormItem>
               <FormLabel className="font-medium text-base ">Work Phone</FormLabel>
               <FormControl>
-                <Input type="text" placeholder="Enter your  phone number" {...field} />
+                <Input type="text" placeholder="Enter your contact" {...field} />
               </FormControl>
 
               <FormMessage />
@@ -166,7 +167,7 @@ export function SignupForm() {
             <FormItem>
               <FormLabel className="font-medium text-base ">Company Website</FormLabel>
               <FormControl>
-                <Input type="text" placeholder="Enter comapny website" {...field} />
+                <Input type="text" placeholder="Enter company website" {...field} />
               </FormControl>
 
               <FormMessage />
