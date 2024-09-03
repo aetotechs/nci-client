@@ -10,7 +10,7 @@ import Footer from '@/components/Footer';
 import { IStatus } from '@/App';
 
 function Shop({ status }: IStatus) {
-  const [CartItems, setCartItems] = useState(false);
+  const [CartItems] = useState(false);
   const breadcrumbItems = [{ href: '/shop', label: 'Cart' }];
 
   return (
