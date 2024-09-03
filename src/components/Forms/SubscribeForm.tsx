@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
-
 const FormSchema = z.object({
   email: z.string().min(2, {
     message: 'Field is Required.'
@@ -22,9 +21,7 @@ export function SubscribeForm() {
     }
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-  
-  }
+  function onSubmit(data: z.infer<typeof FormSchema>) {}
 
   return (
     <Form {...form}>
