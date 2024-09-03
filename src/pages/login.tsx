@@ -1,6 +1,6 @@
 import React from 'react';
-import { LoginForm } from '@/components/Forms/LoginForm';
-import { SignupForm } from '@/components/Forms/SignupForm';
+import { LoginForm } from '@/components/forms/LoginForm';
+import { SignupForm } from '@/components/forms/SignupForm';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 function LoginPage() {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { CouponForm } from './Forms/CouponForm';
+import { CouponForm } from './forms/CouponForm';
 
 function Coupon() {
   return (

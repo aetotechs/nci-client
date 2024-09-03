@@ -7,15 +7,16 @@ import Coupon from '@/components/Coupon';
 import OrderSummary from '@/components/OrderSummary';
 import Progress from '@/components/Progress';
 import Footer from '@/components/Footer';
+import { IStatus } from '@/App';
 
-function Shop() {
+function Shop({ status }: IStatus) {
   const [CartItems, setCartItems] = useState(false);
   const breadcrumbItems = [{ href: '/shop', label: 'Cart' }];
 
   return (
     <>
-      <div className="my-[40px] mx-10 md:mx-[104px]   ">
-        <Header />
+      <div className="my-[40px] mx-10 md:mx-[130px]   ">
+        <Header status={status} />
 
         <div className="mt-36">
           {' '}

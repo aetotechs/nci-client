@@ -28,7 +28,8 @@ function Progress() {
               className={clsx('font-semi-bold text-xl', {
                 'text-primary underline': index <= currentStepIndex,
                 'text-inactive': index > currentStepIndex
-              })}>
+              })}
+            >
               {step.label}
             </Link>
           </div>

@@ -1,4 +1,4 @@
-import { SubscribeForm } from '@/components/Forms/SubscribeForm';
+import { SubscribeForm } from '@/components/forms/SubscribeForm';
 import {
   Facebook,
   InstagramIcon,

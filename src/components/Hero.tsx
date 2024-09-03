@@ -8,7 +8,7 @@ function Hero() {
     <div className=" grid grid-rows-2 my-40 md:flex   md:h-[500px] md:justify-between  md:my-54 rounded-r-3xl id='home ">
       <div className="my-5 md:w-[568px] md:pr-20  ">
         <h3 className="font-bold text-[48px] leading-[64px]">
-          Experience the Rich Taste of <span className="text-primary">Premium </span> Coffee
+          Experience the Rich Taste of <span className="text-textcolor">Premium </span> Coffee
         </h3>
         <p className="leading-[30px] font-normal text-[20px] my-4">
           Discover our diverse range of ethically sourced coffee beans from around the world.Elevate

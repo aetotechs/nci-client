@@ -18,18 +18,28 @@ export default {
         '2xl': '1400px'
       }
     },
+
     extend: {
       backgroundImage: {
         logo: "url('/logos/logo.png')",
         brand: "url('/logos/brand.png')",
         hero: "url('/images/hero-image.png')",
         about: "url('/images/about-image.jpg')",
-        footer: "url('/images/footer-background.png')"
+        footer: "url('/images/footer-background.png')",
+        slide1: "url('/images/slide1.png')",
+        slide2: "url('/images/slide2.png')",
+        slide3: "url('/images/slide3.png')",
+        slide4: "url('/images/slide4.png')",
+        slide5: "url('/images/slide5.png')",
+        slide6: "url('/images/slide6.png')",
+        slide7: "url('/images/slide7.png')"
       },
       colors: {
         border: 'hsla(var(--border))',
+        benefits: 'rgba(var(--benefits-background))',
         input: 'hsl(var(--input))',
         inactive: 'rgba(var(--progress-color))',
+        textcolor: 'rgba(var(--text-color))',
         textsecondary: 'rgba(var(--text-secondary))',
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
@@ -37,6 +47,7 @@ export default {
         textmuted: 'rgba(var(--text-muted))',
         icon: 'rgba(var(--icon-color))',
         iconbackground: 'rgba(var(--icon-background))',
+        badgebackground: 'rgba(var(--badge-background))',
         footerbackground: 'rgba(var(--footer-background))',
         tab: 'rgba(var(--tab-background))',
         foreground: 'hsl(var(--foreground))',
@@ -49,7 +60,7 @@ export default {
           foreground: 'hsl(var(--secondary-foreground))'
         },
         destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
+          DEFAULT: 'rgba(var(--destructive))',
           foreground: 'hsl(var(--destructive-foreground))'
         },
         muted: {

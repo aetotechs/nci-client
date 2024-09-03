@@ -25,7 +25,6 @@ interface ITableProps {
   items: IItems[];
 }
 export function ItemsTable({ items }: ITableProps) {
-  console.log(items);
   return (
     <Table className="w-[600px] overflow-hidden">
       <TableHeader>
