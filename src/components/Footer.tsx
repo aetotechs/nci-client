@@ -1,12 +1,6 @@
+import React from 'react';
 import { SubscribeForm } from '@/components/forms/SubscribeForm';
-import {
-  Facebook,
-  InstagramIcon,
-  LucidePhoneCall,
-  Mail,
-  PhoneCall,
-  TwitterIcon
-} from 'lucide-react';
+
 import { Link } from 'react-router-dom';
 
 function Footer() {

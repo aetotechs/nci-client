@@ -2,13 +2,12 @@ import React from 'react';
 import { SearchIcon, ShoppingCart } from 'lucide-react';
 import NavItems from '@/components/NavItems';
 import { Button } from '@/components/ui/button';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AccountPopover } from '@/components/Account';
 import { IStatus } from '@/App';
 
 function Header({ status }: IStatus) {
-  const location = useLocation();
-  const { pathname } = location;
+ 
 
   return (
     <div className="bg-white flex justify-between p-5 rounded-[30px] z-10 drop-shadow-lg fixed top-5 w-[90%] md:w-[1238px] ">

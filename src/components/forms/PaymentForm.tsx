@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -17,7 +17,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Link } from 'react-router-dom';
 
-import { toast } from 'sonner';
+
 import { Checkbox } from '../ui/checkbox';
 
 const FormSchema = z.object({
@@ -44,7 +44,7 @@ export function PaymentForm() {
     // toast('Order Placed Successfully...', {
     //   className: 'border border-primary text-center text-base flex justify-center rounded-lg mb-2'
     // });
-    // console.log('values submitted', values);
+     console.log('values submitted', values);
   }
 
   return (
