@@ -8,8 +8,8 @@ import { Toaster } from '@/components/ui/sonner';
 import Shop from '@/pages/shop';
 import ShopAddress from '@/pages/shop-address';
 import ShopPayment from '@/pages/shop-payment';
-import ClosedOrder from './pages/close-shop';
-import ShopItems from './pages/shop-items';
+import ClosedOrder from '@/pages/close-shop';
+import ShopItems from '@/pages/shop-items';
 import { useState } from 'react';
 export interface IStatus {
   status: boolean;

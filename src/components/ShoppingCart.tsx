@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { IItems, ItemsTable } from './tables/ItemsTable';
-import { Button } from './ui/button';
+import { IItems, ItemsTable } from '@/components/tables/ItemsTable';
+import { Button } from '@/components/ui/button';
 import { ChevronLeft, Trash2 } from 'lucide-react';
-import { Checkbox } from './ui/checkbox';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Link } from 'react-router-dom';
 
 const myitems = [

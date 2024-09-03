@@ -1,5 +1,5 @@
 import React from 'react';
-import { PaymentForm } from './forms/PaymentForm';
+import { PaymentForm } from '@/components/forms/PaymentForm';
 
 function MakePayment() {
   return (

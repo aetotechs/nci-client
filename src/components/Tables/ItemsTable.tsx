@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/table';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Trash2 } from 'lucide-react';
-import Counter from '../Counter';
+import Counter from '@/components/Counter';
 
 export interface IItems {
   name: string;

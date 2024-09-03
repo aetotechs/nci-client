@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import { Separator } from './ui/separator';
+import { Separator } from '@/components/ui/separator';
 type State = {
   count: number;
 };
