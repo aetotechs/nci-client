@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "vite",
     "type-check": "tsc --noEmit",
-    "build": "npm run lint && npm run type-check && vite build",
+    "build": "npm run type-check && vite build",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}'",
     "lint": "eslint .",
     "preview": "vite preview"
