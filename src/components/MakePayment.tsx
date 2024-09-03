@@ -1,3 +1,4 @@
+import React from 'react';
 import { PaymentForm } from './forms/PaymentForm';
 
 function MakePayment() {

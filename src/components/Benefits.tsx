@@ -1,3 +1,4 @@
+import React from 'react';
 import { Separator } from '@/components/ui/separator';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
@@ -30,15 +31,14 @@ function Benefits() {
             Add Credit Cards or sign up for Credit Key financing
           </h4>
           <p className="text-[18px] text-white py-2">
-            Pay with credit card or get instantly approved for third-party financing
+            Pay with credit card or get instantly approved for third-party financing
           </p>
         </div>
       </div>
       <div className="flex justify-center -mt-4">
         <Link
           className="flex bg-primary justify-between items-center p-3 gap-2 border border-primary  rounded-xl text-white font-semibold text-[16px] leading-5"
-          to="/login"
-        >
+          to="/login">
           Sign Up Now{' '}
           <span>
             <ChevronRight />

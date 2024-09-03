@@ -27,7 +27,9 @@ export function ForgotPassword() {
     }
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {}
+  function onSubmit(data: z.infer<typeof FormSchema>) {
+    console.log(data);
+  }
 
   return (
     <Form {...form}>

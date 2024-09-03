@@ -32,7 +32,7 @@ function ShoppingCart() {
   useEffect(() => {
     const fetchedItems = myitems;
 
-    setItems(myitems);
+    setItems(fetchedItems);
   }, [items]);
 
   return (
