@@ -25,7 +25,7 @@ const FormSchema = z.object({
   password: z.string().min(2, { message: 'password must be at least 2 characters.' })
 });
 
-export function LoginForm() {
+export function Login() {
   const [visible, setVisible] = useState(false);
 
   const togglePassword = () => {

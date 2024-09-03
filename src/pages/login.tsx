@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoginForm } from '@/components/forms/LoginForm';
+import { Login} from '@/components/forms/LoginForm';
 import { SignupForm } from '@/components/forms/SignupForm';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
@@ -26,7 +26,7 @@ function LoginPage() {
                 </TabsTrigger>
               </TabsList>
               <TabsContent value="login">
-                <LoginForm />
+                <Login />
               </TabsContent>
               <TabsContent value="signup">
                 <SignupForm />
