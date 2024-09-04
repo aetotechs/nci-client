@@ -1,16 +1,13 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
   DialogDescription,
- 
   DialogHeader,
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog';
 
-import { ShippingAddressForm } from './forms/AddShippingAddressForm';
+import { ShippingAddressForm } from '@/components/forms/AddShippingAddressForm';
 
 export function DialogDemo() {
   return (

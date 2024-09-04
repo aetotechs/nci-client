@@ -1,5 +1,4 @@
-import React from 'react';
-import { ForgotPassword } from '@/components/forms/ForgotPasswordForm';
+import { ForgotPasswordForm } from '@/components/forms/ForgotPasswordForm';
 import { Link } from 'react-router-dom';
 
 function ForgotPasswordPage() {
@@ -15,7 +14,7 @@ function ForgotPasswordPage() {
             </p>
           </div>
           <div className="w-full px-10">
-            <ForgotPassword />
+            <ForgotPasswordForm />
           </div>
           <div className="my-2">
             <h4>

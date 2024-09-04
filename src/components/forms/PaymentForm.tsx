@@ -1,6 +1,3 @@
-import React from 'react';
-
-
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -17,8 +14,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Link } from 'react-router-dom';
 
-
-import { Checkbox } from '../ui/checkbox';
+import { Checkbox } from '@/components/ui/checkbox';
 
 const FormSchema = z.object({
   name: z.string().min(2, {
@@ -44,7 +40,7 @@ export function PaymentForm() {
     // toast('Order Placed Successfully...', {
     //   className: 'border border-primary text-center text-base flex justify-center rounded-lg mb-2'
     // });
-     console.log('values submitted', values);
+    console.log('values submitted', values);
   }
 
   return (

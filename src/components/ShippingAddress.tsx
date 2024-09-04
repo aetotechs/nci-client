@@ -1,8 +1,8 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import React from 'react';
-import { Button } from './ui/button';
+
+import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { DialogDemo } from './AddShippingAddress';
+import { DialogDemo } from '@/components/AddShippingAddress';
 import { Link } from 'react-router-dom';
 const Address = {
   name: 'Rahmah Nanyonga',

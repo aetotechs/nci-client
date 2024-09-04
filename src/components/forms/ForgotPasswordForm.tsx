@@ -19,7 +19,7 @@ const FormSchema = z.object({
   })
 });
 
-export function ForgotPassword() {
+export function ForgotPasswordForm() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Separator } from './ui/separator';
+import { Separator } from '@/components/ui/separator';
 import { Link, useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -17,7 +16,6 @@ import {
 import { Input } from '@/components/ui/input';
 import { Link } from 'react-router-dom';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
-import { toast } from 'sonner';
 
 const FormSchema = z.object({
   email: z.string().min(2, {
@@ -41,10 +39,7 @@ export function LoginForm() {
   });
 
   function onSubmit(values: z.infer<typeof FormSchema>) {
-    toast('Login Successful Redirecting...', {
-      className: 'border border-primary text-center text-base flex justify-center rounded-lg mb-2'
-    });
-    console.log('values submitted', values);
+    console.log(values);
   }
 
   return (

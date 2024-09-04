@@ -1,4 +1,3 @@
-import React from 'react';
 import { Separator } from '@/components/ui/separator';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
@@ -38,7 +37,8 @@ function Benefits() {
       <div className="flex justify-center -mt-4">
         <Link
           className="flex bg-primary justify-between items-center p-3 gap-2 border border-primary  rounded-xl text-white font-semibold text-[16px] leading-5"
-          to="/login">
+          to="/login"
+        >
           Sign Up Now{' '}
           <span>
             <ChevronRight />

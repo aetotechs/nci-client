@@ -1,5 +1,4 @@
-import React from 'react';
-import ShoppingCart from './ShoppingCart';
+import ShoppingCart from '@/components/ShoppingCart';
 
 function CartWithItems() {
   return (

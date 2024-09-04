@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Header from '@/components/Header';
 
 import OrderSummary from '@/components/OrderSummary';
