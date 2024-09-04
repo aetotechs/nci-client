@@ -6,9 +6,8 @@
   "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
   "scripts": {
     "dev": "vite",
-    "type-check": "tsc --noEmit",
-    "build": " vite build",
-    "lint": "eslint . --fix",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}'",
     "preview": "vite preview"
   },

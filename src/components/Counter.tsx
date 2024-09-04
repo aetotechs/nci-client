@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import { useReducer } from 'react';
 import { Separator } from '@/components/ui/separator';
 type State = {
   count: number;

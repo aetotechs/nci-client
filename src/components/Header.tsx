@@ -1,4 +1,3 @@
-import React from 'react';
 import { SearchIcon, ShoppingCart } from 'lucide-react';
 import NavItems from '@/components/NavItems';
 import { Button } from '@/components/ui/button';

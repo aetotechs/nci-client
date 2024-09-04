@@ -1,4 +1,3 @@
-import React from 'react';
 import { PaymentForm } from '@/components/forms/PaymentForm';
 
 function MakePayment() {

@@ -1,4 +1,3 @@
-import React from 'react';
 import { SubscribeForm } from '@/components/forms/SubscribeForm';
 
 import { Link } from 'react-router-dom';

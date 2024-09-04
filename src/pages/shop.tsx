@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import EmptyCart from '@/components/EmptyCart';
 import BreadCrumb from '@/components/BreadCrumb';
 import Header from '@/components/Header';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { CouponForm } from '@/components/forms/CouponForm';
 
 function Coupon() {

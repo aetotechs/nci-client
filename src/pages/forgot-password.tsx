@@ -1,4 +1,3 @@
-import React from 'react';
 import { ForgotPasswordForm } from '@/components/forms/ForgotPasswordForm';
 import { Link } from 'react-router-dom';
 
