@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
-    <div className="bottom-0 bg-white ">
-      <div className="bg-footer bg-contain bg-no-repeat bg-center bg-white/60 bg-blend-overlay mt-24 px-32 pt-20 mb-20">
-        <div className="grid grid-cols-2  p-10 rounded-2xl shadow drop-shadow-xl border h-[120px]">
+    <div className="bottom-0 bg-white mx-auto  ">
+      <div className="bg-footer bg-contain bg-no-repeat bg-center bg-white/60 bg-blend-overlay mt-24  pt-20 mb-20">
+        <div className="grid grid-cols-2  p-10 rounded-2xl shadow drop-shadow-xl border h-[120px] w-[1232px] mx-auto">
           <div>
             <h3 className="font-bold text-[18px]">Subscribe to Our NewsLetter</h3>
             <p>Stay updated on news, arrivals and all things green coffee</p>
@@ -15,8 +15,8 @@ function Footer() {
             <SubscribeForm />
           </div>
         </div>
-        <div className="grid grid-cols-4 gap-40 mt-14">
-          <div className="flex flex-col w-[316px] pr-12 ">
+        <div className=" flex  gap-40 mt-14 ">
+          <div className="flex flex-col w-[316px] pr-12 pl-24 ">
             <div className="bg-brand bg-contain bg-center bg-no-repeat w-[113px] h-[90px] mt-2 mb-6"></div>
             <div className="font-normal text-sm leading-6">
               We are dedicated to delivering the finest, ethically sourced coffee beans from around
@@ -68,7 +68,7 @@ function Footer() {
               Talk to support
             </div>
           </div>
-          <div className="flex flex-col gap-3 w-[174px]">
+          <div className="flex flex-col gap-3 w-[174px] pr-12">
             <h3 className="font-semibold text-base">Legal Infomamtion</h3>
             <Link to="/terms-and-conditions">Terms and Conditions</Link>
             <Link to="/privacy-policy">Privacy Policy</Link>
