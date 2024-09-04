@@ -28,7 +28,7 @@ function OrderSummary() {
         </div>
       )}
       {pathname === '/close-shop' && <OrderItems />}
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 bg-white ">
         <div className="flex justify-between">
           <p className="font-normal text-base text-textmuted">Cart Subtotal</p>
           <h3 className="font-medium text-base">$120</h3>
