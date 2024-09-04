@@ -25,7 +25,7 @@ function ClosedOrder({ status }: IStatus) {
         <Header status={status} />
 
         <div>
-          <div className="h-screen grid grid-cols-5 gap-5 place-content-center mt-24">
+          <div className="h-screen grid grid-cols-5 gap-5 place-content-center my-5">
             <div className="col-span-3">
               <div className="w-[528px] h-[345px]">
                 <div className="flex items-center gap-2 mb-4">
@@ -70,8 +70,7 @@ function ClosedOrder({ status }: IStatus) {
                     <Link to="/shop">
                       <Button
                         variant="outline"
-                        className="border border-primary bg-white h-[44px] w-[207px] my-6"
-                      >
+                        className="border border-primary bg-white h-[44px] w-[207px] my-6">
                         Continue Shopping
                       </Button>
                     </Link>
