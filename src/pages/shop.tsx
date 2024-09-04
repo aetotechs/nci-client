@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import EmptyCart from '@/components/EmptyCart';
 import BreadCrumb from '@/components/BreadCrumb';
 import Header from '@/components/Header';
@@ -8,10 +8,16 @@ import OrderSummary from '@/components/OrderSummary';
 import Progress from '@/components/Progress';
 import Footer from '@/components/Footer';
 import { IStatus } from '@/App';
+import { useLocation } from 'react-router-dom';
 
 function Shop({ status }: IStatus) {
   const [CartItems] = useState(false);
   const breadcrumbItems = [{ href: '/shop', label: 'Cart' }];
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <>

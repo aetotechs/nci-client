@@ -6,7 +6,9 @@ function OrderSummary() {
   const location = useLocation();
   const { pathname } = location;
   return (
-    <div className={`bg-white w-[491px] rounded-[8px] flex flex-col mb-4 px-10 ${pathname=='/shop-items' ||pathname === '/shop'?'h-[300px]':' h-[400px] '}`}>
+    <div
+      className={`bg-white w-[491px] rounded-[8px] flex flex-col mb-4 px-10 ${pathname == '/shop-items' || pathname === '/shop' ? 'h-[300px]' : ' h-[400px] '}`}
+    >
       <h3 className="font-bold text-xl my-5">Order Summary</h3>
 
       {pathname == '/close-shop' && (
@@ -28,7 +30,7 @@ function OrderSummary() {
         </div>
       )}
       {pathname === '/close-shop' && <OrderItems />}
-      <div className="flex flex-col gap-3 bg-white ">
+      <div className="flex flex-col gap-3 bg-white w-full ">
         <div className="flex justify-between">
           <p className="font-normal text-base text-textmuted">Cart Subtotal</p>
           <h3 className="font-medium text-base">$120</h3>

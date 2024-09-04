@@ -7,9 +7,16 @@ import MakePayment from '@/components/MakePayment';
 import Progress from '@/components/Progress';
 import Footer from '@/components/Footer';
 import { IStatus } from '@/App';
+import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function ShopPayment({ status }: IStatus) {
   const breadcrumbItems = [{ href: '/shop', label: 'Cart' }];
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <>

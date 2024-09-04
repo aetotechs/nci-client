@@ -18,7 +18,7 @@ const Address = {
 function ShippingAddress() {
   return (
     <div className="">
-      <div className="w-[714px] bg-white h-[560px] rounded-[8px] px-10 py-5">
+      <div className="w-[714px] bg-white h-[560px] rounded-[8px] px-10 pt-5 pb-10">
         <h3 className="mb-5 font-semibold text-[22px] leading-6">Shipping Address</h3>
         <div className="border border-primary w-[622px] h-[150px] rounded-[8px] flex justify-between px-10 py-5">
           <div>

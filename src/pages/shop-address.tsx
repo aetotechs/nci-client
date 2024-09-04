@@ -6,9 +6,15 @@ import ShippingAddress from '@/components/ShippingAddress';
 import Progress from '@/components/Progress';
 import Footer from '@/components/Footer';
 import { IStatus } from '@/App';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 function ShopAddress({ status }: IStatus) {
+  const { pathname } = useLocation();
   const breadcrumbItems = [{ href: '/shop', label: 'Cart' }];
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <>

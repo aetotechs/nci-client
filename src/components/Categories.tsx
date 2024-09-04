@@ -54,17 +54,6 @@ function Categories() {
             </div>
           ))}
         </div>
-        <div className="flex justify-center">
-          <Link
-            className="flex justify-between items-center p-3 gap-2 border border-primary  rounded-md text-primary font-semibold text-[16px] leading-5"
-            to="/"
-          >
-            View All{' '}
-            <span>
-              <ChevronRight />
-            </span>
-          </Link>
-        </div>
       </div>
     </>
   );
