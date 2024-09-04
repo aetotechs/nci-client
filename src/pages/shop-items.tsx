@@ -20,10 +20,10 @@ function ShopItems({ status }: IStatus) {
           <BreadCrumb items={breadcrumbItems} />
         </div>
         <div>
-          <div className=" flex justify-center  mt-5 ">
+          <div className=" flex justify-center  my-10 ">
             <Progress />
           </div>
-          <div className="h-screen grid grid-cols-5 gap-5 place-content-center">
+          <div className="grid grid-cols-5 gap-10 w-[1232px]">
             <div className="col-span-3">
               <CartWithItems />
             </div>
