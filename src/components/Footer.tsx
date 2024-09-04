@@ -17,7 +17,7 @@ function Footer() {
         </div>
         <div className=" flex  gap-40 mt-14 ">
           <div className="flex flex-col w-[316px] pr-12 pl-24 ">
-            <div className="bg-brand bg-contain bg-center bg-no-repeat w-[113px] h-[90px] mt-2 mb-6"></div>
+            <div className="bg-brand bg-contain bg-center bg-no-repeat w-[113px] h-[90px]  mb-6"></div>
             <div className="font-normal text-sm leading-6">
               We are dedicated to delivering the finest, ethically sourced coffee beans from around
               the globe. Experience the rich flavors and aromas.

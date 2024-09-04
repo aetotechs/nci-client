@@ -24,7 +24,7 @@ function Categories() {
       <div className="flex flex-col h-[574px] " id="categories">
         <div className="mb-4 flex justify-between">
           <div>
-            <h3 className="font-bold leading-[30px] text-2xl">Categories</h3>
+            <h3 className="font-bold leading-[30px] text-[32px]">Categories</h3>
             <p className="text-sm">Available Coffee Brands</p>
           </div>
           <div className="flex gap-2">

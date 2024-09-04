@@ -99,12 +99,12 @@ function Explore({ status }: IStatus) {
             return (
               <div
                 key={index}
-                className={`  border rounded-[20px] flex flex-col px-10 py-5 bg-white ${
+                className={`  border rounded-[20px] flex flex-col  bg-white ${
                   isDisabled ? 'border-gray-300 bg-gray-100 text-gray-500' : 'border-primary/30'
                 } ${
                   pathname === '/coffee-shop'
                     ? 'h-[270px] w-[280px] px-4 py-2'
-                    : 'h-[308px] w-[390px] px-10 py-5'
+                    : 'h-[308px] w-[390px] px-8 py-5'
                 }`}
                 style={{ pointerEvents: isDisabled ? 'none' : 'auto' }}
               >
