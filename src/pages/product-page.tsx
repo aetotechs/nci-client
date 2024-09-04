@@ -1,5 +1,9 @@
 import { IStatus } from '@/App';
+import AboutCoffee from '@/components/AboutCoffee';
 import BreadCrumb from '@/components/BreadCrumb';
+import CoffeeGrowth from '@/components/CoffeeGrowth';
+import CoffeeGuide from '@/components/CoffeeGuide';
+import CoffeeHistory from '@/components/CoffeeHistory';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import ProductDetails from '@/components/ProductDetails';
@@ -45,6 +49,18 @@ function ProductPage({ status }: IStatus) {
             <div className="col-span-2">
               <ProductDetails />
             </div>
+          </div>
+          <div className="my-20">
+            <AboutCoffee />
+          </div>
+          <div>
+            <CoffeeHistory />
+          </div>
+          <div>
+            <CoffeeGrowth />
+          </div>
+          <div>
+            <CoffeeGuide />
           </div>
         </div>
       </div>

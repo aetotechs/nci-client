@@ -33,7 +33,10 @@ export default {
         slide5: "url('/images/slide5.png')",
         slide6: "url('/images/slide6.png')",
         slide7: "url('/images/slide7.png')",
-        map: "url('/images/map.png')"
+        map: "url('/images/map.png')",
+        aboutcoffee: "url('/images/about-coffee.png')",
+        coffeegrowth: "url('/images/coffee-growth.png')",
+        coffeehistory: "url('/images/coffe-history.png')"
       },
       colors: {
         border: 'hsla(var(--border))',
