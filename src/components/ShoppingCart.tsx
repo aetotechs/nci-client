@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { IItems, ItemsTable } from '@/components/Tables/ItemsTable';
+import { IItems, ItemsTable } from '@/components/tables/ItemsTable';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, Trash2 } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
