@@ -6,7 +6,7 @@ function OrderSummary() {
   const location = useLocation();
   const { pathname } = location;
   return (
-    <div className="bg-white w-[491px] h-[400px]  rounded-[8px] flex flex-col mb-4 px-10">
+    <div className={`bg-white w-[491px] rounded-[8px] flex flex-col mb-4 px-10 ${pathname=='/shop-items' ||pathname === '/shop'?'h-[300px]':' h-[400px] '}`}>
       <h3 className="font-bold text-xl my-5">Order Summary</h3>
 
       {pathname == '/close-shop' && (
@@ -50,7 +50,7 @@ function OrderSummary() {
         {pathname === '/shop' || pathname === '/shop-items' ? (
           <div>
             <Link to="/shipping-address">
-              <Button className="tet-white w-full h-[56px] rounded-xl font-normal text-base mb-6">
+              <Button className="tet-white w-full h-[56px] rounded-xl font-normal text-base ">
                 Proceed to Checkout
               </Button>
             </Link>
