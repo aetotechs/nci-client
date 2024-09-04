@@ -8,7 +8,7 @@ function CoffeeJourney() {
   return (
     <div>
       <Swiper
-        className=" h-[380px] rounded-[20px] my-10 "
+        className=" h-[380px] rounded-[20px] mb-5 "
         modules={[EffectFade, Autoplay]}
         effect="fade"
         slidesPerView={1}

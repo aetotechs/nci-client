@@ -3,9 +3,16 @@ import BreadCrumb from '@/components/BreadCrumb';
 import Explore from '@/components/Explore';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 function CoffeeShop({ status }: IStatus) {
   const breadcrumbItems = [{ href: '/coffee-shop', label: 'Shop' }];
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
   return (
     <>
       <div className="my-10 mx-auto w-[1232px] ">
