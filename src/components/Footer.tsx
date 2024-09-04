@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 function Footer() {
   return (
     <div className="bottom-0 bg-white ">
-      <div className="bg-footer bg-contain bg-no-repeat bg-center bg-white/60 bg-blend-overlay mt-24 px-52 pt-20 mb-20">
-        <div className="grid grid-cols-2  p-10 rounded-2xl shadow drop-shadow-xl border">
+      <div className="bg-footer bg-contain bg-no-repeat bg-center bg-white/60 bg-blend-overlay mt-24 px-28 pt-20 mb-20">
+        <div className="grid grid-cols-2  p-10 rounded-2xl shadow drop-shadow-xl border w-[1232px]">
           <div>
             <h3 className="font-bold text-[18px]">Subscribe to Our NewsLetter</h3>
             <p>Stay updated on news, arrivals and all things green coffee</p>
