@@ -1,5 +1,7 @@
-import { LoginForm } from '@/components/forms/LoginForm';
-import { SignupForm } from '@/components/forms/SignupForm';
+
+import { SignupForm } from '../components/forms/SignupForm';
+import { LoginForm } from '../components/forms/LoginForm';
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 function LoginPage() {
