@@ -9,7 +9,7 @@ function CoffeeShop({ status }: IStatus) {
   const breadcrumbItems = [{ href: '/coffee-shop', label: 'Shop' }];
   return (
     <>
-      <div className="my-[40px] mx-10 md:mx-[130px] ">
+      <div className="my-10 mx-auto w-[1232px] ">
         <Header status={status} />
 
         <div className="mt-10">

@@ -88,7 +88,7 @@ function Explore({ status }: IStatus) {
           </p>
         </div>
       )}
-      <div className={`${pathname === '/coffee-shop' ? 'py-0' : 'py-10'}`}>
+      <div className={`${pathname === '/coffee-shop' ? 'py-0 ' : 'py-10'}`}>
         <div className={'flex flex-col md:grid grid-cols-3 gap-5'}>
           {cards.map((card, index) => {
             const isDisabled =
