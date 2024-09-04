@@ -6,13 +6,13 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 
 function CoffeeShop({ status }: IStatus) {
-  const breadcrumbItems = [{ href: '/shop-page', label: 'Shop' }];
+  const breadcrumbItems = [{ href: '/coffee-shop', label: 'Shop' }];
   return (
     <>
       <div className="my-[40px] mx-10 md:mx-[130px] ">
         <Header status={status} />
 
-        <div className="mt-36">
+        <div className="mt-10">
           {' '}
           <BreadCrumb items={breadcrumbItems} />
         </div>
