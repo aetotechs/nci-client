@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-
+import { Link } from 'react-router-dom';
 
 function NavItems() {
   return (
@@ -10,24 +9,16 @@ function NavItems() {
         </Link>
       </li>
       <li className="cursor-pointer text-textcolor  active:text-primary ">
-        <Link to="/origins">
-          Origins
-        </Link>
+        <Link to="/origins">Origins</Link>
       </li>
       <li className="cursor-pointer text-textcolor  active:text-primary ">
-        <Link to="/categories">
-          Categories
-        </Link>
+        <Link to="/categories">Categories</Link>
       </li>
       <li className="cursor-pointer  text-textcolor active:text-primary ">
-        <Link to="/coffee-shop">
-          Shop
-        </Link>
+        <Link to="/coffee-shop">Shop</Link>
       </li>
       <li className="cursor-pointer text-textcolor  active:text-primary ">
-        <Link to="/contact">
-          Contact Us
-        </Link>
+        <Link to="/contact">Contact Us</Link>
       </li>
     </nav>
   );

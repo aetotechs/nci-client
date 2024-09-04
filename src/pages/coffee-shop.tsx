@@ -1,4 +1,3 @@
-
 import { IStatus } from '@/App';
 import BreadCrumb from '@/components/BreadCrumb';
 import Explore from '@/components/Explore';

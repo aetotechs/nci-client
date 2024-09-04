@@ -106,7 +106,8 @@ function Explore({ status }: IStatus) {
                     ? 'h-[270px] w-[280px] px-4 py-2'
                     : 'h-[308px] w-[390px] px-10 py-5'
                 }`}
-                style={{ pointerEvents: isDisabled ? 'none' : 'auto' }}>
+                style={{ pointerEvents: isDisabled ? 'none' : 'auto' }}
+              >
                 <div className="font-medium text-[18px] mb-3">{card.name}</div>
                 <div className="font-normal text-[15px] mb-3 flex gap-1 items-center">
                   <span>
@@ -122,7 +123,8 @@ function Explore({ status }: IStatus) {
                         {card.sampleStatus !== 'Available' && (
                           <Badge
                             variant="outline"
-                            className="bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px]">
+                            className="bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px]"
+                          >
                             <div className="h-[5px] w-[5px] rounded-full bg-destructive"></div>
                             <p className="text-destructive">{card.sampleStatus}</p>
                           </Badge>
@@ -133,7 +135,8 @@ function Explore({ status }: IStatus) {
                         {card.bagStatus !== 'Available' && (
                           <Badge
                             variant="outline"
-                            className="bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px]">
+                            className="bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px]"
+                          >
                             <div className="h-[5px] w-[5px] rounded-full bg-destructive"></div>
                             <p className="text-destructive">{card.bagStatus}</p>
                           </Badge>
@@ -148,15 +151,18 @@ function Explore({ status }: IStatus) {
                 </div>
                 {status ? (
                   <div
-                    className={`  ${pathname == '/coffee-shop' ? ' w-[234px]  flex gap-2 ' : 'flex justify-between w-[333px] gap-3'}`}>
+                    className={`  ${pathname == '/coffee-shop' ? ' w-[234px]  flex gap-2 ' : 'flex justify-between w-[333px] gap-3'}`}
+                  >
                     <Button
                       className={`rounded-[10px] bg-primary  text-white font-normal text-[15px] w-[168px] h-[45px] ${pathname == '/coffee-shop' && 'h-[30px] w-[160px]'}`}
-                      disabled={isDisabled}>
+                      disabled={isDisabled}
+                    >
                       Add To Cart
                     </Button>
                     <Button
                       className={`rounded-[10px] w-[168px] h-[45px] text-primary font-normal text-[15px] bg-white border border-primary  ${pathname == '/coffee-shop' && 'h-[30px] w-[121px]  px-4 text-sm'}`}
-                      disabled={isDisabled}>
+                      disabled={isDisabled}
+                    >
                       Request Sample
                     </Button>
                   </div>
@@ -174,7 +180,8 @@ function Explore({ status }: IStatus) {
         <div className="flex justify-center">
           <Link
             className="flex justify-between items-center p-3 gap-2 border border-primary rounded-md text-primary font-semibold text-[16px] leading-5"
-            to="/">
+            to="/"
+          >
             View More
             <span>
               <ChevronRight />
