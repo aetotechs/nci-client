@@ -11,6 +11,7 @@ import ClosedOrder from '@/pages/close-shop';
 import ShopItems from '@/pages/shop-items';
 import { useState } from 'react';
 import CoffeeShop from '@/pages/coffee-shop';
+import ProductPage from '@/pages/product-page';
 export interface IStatus {
   status: boolean;
 }
@@ -31,6 +32,7 @@ function App() {
           <Route path="/shipping-address" element={<ShopAddress status={loggedIn} />} />
           <Route path="/shop-payment" element={<ShopPayment status={loggedIn} />} />
           <Route path="/close-shop" element={<ClosedOrder status={loggedIn} />} />
+          <Route path="/product/:productId" element={<ProductPage status={loggedIn} />} />
         </Routes>
       </BrowserRouter>
     </>
