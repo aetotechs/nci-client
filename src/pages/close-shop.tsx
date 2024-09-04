@@ -3,9 +3,10 @@ import Header from '@/components/Header';
 import OrderSummary from '@/components/OrderSummary';
 import { Button } from '@/components/ui/button';
 import { Check } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Footer from '@/components/Footer';
 import { IStatus } from '@/App';
+import { useEffect } from 'react';
 
 const Address = {
   name: 'Rahmah Nanyonga',
@@ -19,13 +20,18 @@ const Address = {
 };
 
 function ClosedOrder({ status }: IStatus) {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
   return (
     <>
       <div className="my-[40px] mx-10 md:mx-[130px]   ">
         <Header status={status} />
 
         <div>
-          <div className="h-screen grid grid-cols-5 gap-5 place-content-center mt-24">
+          <div className="h-screen grid grid-cols-5 gap-5 place-content-center my-5">
             <div className="col-span-3">
               <div className="w-[528px] h-[345px]">
                 <div className="flex items-center gap-2 mb-4">

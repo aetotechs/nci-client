@@ -7,7 +7,7 @@ import { IStatus } from '@/App';
 
 function Header({ status }: IStatus) {
   return (
-    <div className="bg-white flex justify-between p-5 rounded-[30px] z-10 drop-shadow-lg fixed top-5 w-[90%] md:w-[1238px] ">
+    <div className="bg-white flex justify-between p-5 rounded-[30px] sticky top-5  shadow-md  drop-shadow-lg z-40 w-[90%] md:w-full ">
       <div className="w-52 h-12 ">
         <img src="./logos/logo.png" alt="coffee logo" />
       </div>

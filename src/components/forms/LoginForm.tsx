@@ -44,7 +44,7 @@ export function LoginForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-4">
         <FormField
           control={form.control}
           name="email"
@@ -87,7 +87,7 @@ export function LoginForm() {
             </FormItem>
           )}
         />
-        <div className="flex justify-end my-3 text-primary">
+        <div className="flex justify-end  text-primary">
           <Link to="/forgot-password " className="text-sm">
             Forgot Password
           </Link>

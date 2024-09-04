@@ -1,8 +1,9 @@
 import { Separator } from '@/components/ui/separator';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
+import { IStatus } from '@/App';
 
-function Benefits() {
+function Benefits({ status }: IStatus) {
   return (
     <div className="rounded-2xl h-[430px] flex flex-col  items-center bg-benefits pt-10  mt-28">
       <div className="">
@@ -34,17 +35,19 @@ function Benefits() {
           </p>
         </div>
       </div>
-      <div className="flex justify-center -mt-4">
-        <Link
-          className="flex bg-primary justify-between items-center p-3 gap-2 border border-primary  rounded-xl text-white font-semibold text-[16px] leading-5"
-          to="/login"
-        >
-          Sign Up Now{' '}
-          <span>
-            <ChevronRight />
-          </span>
-        </Link>
-      </div>
+      {!status && (
+        <div className="flex justify-center my-4">
+          <Link
+            className="flex bg-primary justify-between items-center p-3 gap-2 border border-primary  rounded-xl text-white font-semibold text-[16px] leading-5"
+            to="/login"
+          >
+            Sign Up Now{' '}
+            <span>
+              <ChevronRight />
+            </span>
+          </Link>
+        </div>
+      )}
     </div>
   );
 }
