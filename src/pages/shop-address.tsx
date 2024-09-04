@@ -12,7 +12,7 @@ function ShopAddress({ status }: IStatus) {
 
   return (
     <>
-      <div className="my-[40px] mx-10 md:mx-[130px]   ">
+      <div className="my-[40px] mx-auto w-[1232px]   ">
         <Header status={status} />
 
         <div className="mt-10">
@@ -20,10 +20,10 @@ function ShopAddress({ status }: IStatus) {
           <BreadCrumb items={breadcrumbItems} />
         </div>
         <div>
-          <div className=" flex justify-center mt-5  ">
+          <div className=" flex justify-center my-10  ">
             <Progress />
           </div>
-          <div className="h-screen grid grid-cols-5 gap-5 place-content-center">
+          <div className="grid grid-cols-5 gap-3 ">
             <div className="col-span-3">
               {' '}
               <ShippingAddress />
