@@ -1,5 +1,7 @@
 import { useReducer } from 'react';
 import { Separator } from '@/components/ui/separator';
+import clsx from 'clsx';
+
 type State = {
   count: number;
 };
@@ -17,11 +19,20 @@ const reducer = (state: State, action: Action): State => {
   }
 };
 
-function Counter() {
+type CounterProps = {
+  className?: string;
+};
+
+function Counter({ className }: CounterProps) {
   const [state, dispatch] = useReducer(reducer, { count: 0 });
 
   return (
-    <div className="flex w-[78px] h-[24px] rounded-xl bg-slate-400 items-center justify-around drop-shadow">
+    <div
+      className={clsx(
+        'flex rounded-xl bg-slate-400 items-center justify-around drop-shadow',
+        
+        className
+      )}>
       <div onClick={() => dispatch({ type: 'decrement' })} className="cursor-pointer">
         -
       </div>

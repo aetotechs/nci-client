@@ -52,7 +52,7 @@ export function ItemsTable({ items }: ITableProps) {
                   </div>
                 </TableCell>
                 <TableCell className="col-span-1 flex  items-center -ml-5 ">
-                  <Counter />
+                  <Counter className='w-[78px] h-[24px]' />
                 </TableCell>
                 <TableCell className="col-span-1 flex items-center font-semibold text-base">
                   {item.subtotal}
