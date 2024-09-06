@@ -36,11 +36,8 @@ function CoffeeShop({ status }: IStatus) {
             <div className="font-medium text-base">Sort by:</div>
             <div>
               <Select>
-                <SelectTrigger className=" border border-rgba(244, 244, 230, 1) outline-none rounded-[5px] w-[126px] h-[33px] ">
-                  <SelectValue
-                    placeholder="Featured"
-                    className="p-5 bg-rgba(245, 239, 229, 1) text-base font-bold "
-                  />
+                <SelectTrigger className=" bg-selectbackground border border-selectborder outline-none rounded-[5px] w-[126px] h-[33px] ">
+                  <SelectValue placeholder="Featured" className="p-5 text-base font-bold " />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="featured">Featured</SelectItem>
