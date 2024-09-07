@@ -31,7 +31,7 @@ function Profile({ status }: IStatus) {
       case 'My Orders':
         return <MyOrders />;
       case 'Wishlist':
-        return <Wishlist />;
+        return <Wishlist status={status}/>;
       case 'Addresses':
         return <Addresses />;
       case 'Payment Methods':
