@@ -23,7 +23,7 @@ function VerifyEmail() {
             <h4 className="text-inactive">
               Didn&apos;t get verification code?
               <span className="text-primary">
-                <Link to="/signup">Resend</Link>
+                <Link to="/login">Resend</Link>
               </span>
             </h4>
           </div>
