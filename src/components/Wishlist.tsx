@@ -103,7 +103,7 @@ function Wishlist({ status }: IStatus) {
               
                   <div className=" w-[333px] ">
                     <Button
-                      className="rounded-[10px] bg-primary  text-white font-normal text-[15px] w-[250px] h-[30px] "
+                      className="rounded-[10px] bg-primary  text-white font-normal text-[15px] w-[316px] md:w-[250px] h-[30px] "
                       disabled={isDisabled}>
                       Add To Cart
                     </Button>
