@@ -1,6 +1,5 @@
-import { Button } from '@/components/ui/button';
-import { Edit } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
+import { EditDialog } from '@/components/EditContactInformation';
 function MyAccount() {
   return (
     <div className=" px-3 ">
@@ -16,12 +15,7 @@ function MyAccount() {
             <p>John Doe</p>
             <p>johndoe@gmail.com</p>
           </div>
-          <Button className="flex tems-center gap-3 w-[89px] h-[34px] rounded-[8px] bg-primary text-white p-5">
-            <span>
-              <Edit className="h-[18px] w-[18px]" />
-            </span>{' '}
-            Edit
-          </Button>
+          <EditDialog />
         </div>
         <div className="w-[300px] md:w-[407px] h-[180px] rounded-[8px] border flex flex-col py-5 px-5 border-cardborder">
           <div>

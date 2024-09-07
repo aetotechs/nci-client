@@ -92,6 +92,7 @@ export default {
           foreground: 'hsl(var(--card-foreground))'
         }
       },
+      borderWidth: ['first'],
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
