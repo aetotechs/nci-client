@@ -19,6 +19,7 @@ import { CheckboxDemo } from '@/components/TermsCheckBox';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { toast } from 'sonner';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const FormSchema = z.object({
   firstName: z.string().min(2, {
@@ -236,7 +237,7 @@ export function SignupForm() {
           <CheckboxDemo />
         </div>
         <Button type="submit" className="col-span-2">
-          Sign Up
+          <Link to="/verify-email">Sign Up</Link>
         </Button>
       </form>
     </Form>

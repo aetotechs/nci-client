@@ -12,6 +12,9 @@ import ShopItems from '@/pages/shop-items';
 import { useState } from 'react';
 import CoffeeShop from '@/pages/coffee-shop';
 import ProductPage from '@/pages/product-page';
+import Profile from '@/pages/profile';
+import ResetPasswordPage from '@/pages/reset-password';
+import VerifyEmail from '@/pages/verify-email';
 export interface IStatus {
   status: boolean;
 }
@@ -25,7 +28,9 @@ function App() {
         <Routes>
           <Route index element={<LandingPage status={loggedIn} />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/verify-email" element={<VerifyEmail />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
           <Route path="/shop" element={<Shop status={loggedIn} />} />
           <Route path="/coffee-shop" element={<CoffeeShop status={loggedIn} />} />
           <Route path="/shop-items" element={<ShopItems status={loggedIn} />} />
@@ -33,6 +38,7 @@ function App() {
           <Route path="/shop-payment" element={<ShopPayment status={loggedIn} />} />
           <Route path="/close-shop" element={<ClosedOrder status={loggedIn} />} />
           <Route path="/product/:productId" element={<ProductPage status={loggedIn} />} />
+          <Route path="/profile" element={<Profile status={loggedIn} />} />
         </Routes>
       </BrowserRouter>
     </>

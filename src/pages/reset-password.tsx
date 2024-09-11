@@ -1,22 +1,20 @@
-import { ForgotPasswordForm } from '@/components/forms/ForgotPasswordForm';
+import { ResetPasswordForm } from '@/components/forms/ResetPasswordForm';
 import { Link } from 'react-router-dom';
 
-function ForgotPasswordPage() {
+function ResetPasswordPage() {
   return (
     <>
       <div className="flex justify-center items-center h-screen">
-        <div className="flex flex-col items-center w-[90%] border rounded-lg bg-white justify-center py-5 md:w-[500px]">
+        <div className="flex flex-col items-center w-[90vw] border rounded-lg bg-white justify-center py-5 md:w-[500px]">
           <div className="bg-brand bg-contain bg-center bg-no-repeat w-[200px] h-[100px]"></div>
           <div className="mt-3 mb-4 px-10">
-            <h3 className="text-center font-bold text-2xl">Forgot Password</h3>
-            <p className="font-normal text-[16px]">
-              Enter your email so we can send you a link to reset your password
-            </p>
+            <h3 className="text-center font-bold text-2xl">Set New Password</h3>
+            <p className="font-normal text-[16px]">Must atleast be 8 characters long</p>
           </div>
           <div className="w-full px-10">
-            <ForgotPasswordForm />
+            <ResetPasswordForm />
           </div>
-          <div className="my-2">
+          <div className="my-3">
             <h4>
               Remember password?
               <span className="text-primary">
@@ -30,4 +28,4 @@ function ForgotPasswordPage() {
   );
 }
 
-export default ForgotPasswordPage;
+export default ResetPasswordPage;

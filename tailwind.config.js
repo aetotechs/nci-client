@@ -1,4 +1,5 @@
 import tailwindcssAnimate from 'tailwindcss-animate';
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -15,7 +16,8 @@ export default {
       center: true,
       padding: '2rem',
       screens: {
-        '2xl': '1400px'
+        xs: '375px',
+        ...defaultTheme.screens
       }
     },
 
@@ -54,7 +56,13 @@ export default {
         badgebackground: 'rgba(var(--badge-background))',
         footerbackground: 'rgba(var(--footer-background))',
         tab: 'rgba(var(--tab-background))',
+        selectbackground: 'rgba(var(--select-background))',
+        selectborder: 'rgba(var(--select-border))',
+        cardborder: 'rgba(var(--card-border))',
+        textdark: 'rgba(var(--text-dark))',
         foreground: 'hsl(var(--foreground))',
+        outline: 'rgba(var(--outline-background))',
+
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))'
@@ -84,6 +92,7 @@ export default {
           foreground: 'hsl(var(--card-foreground))'
         }
       },
+      borderWidth: ['first'],
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
@@ -97,11 +106,16 @@ export default {
         'accordion-up': {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' }
+        },
+        'caret-blink': {
+          '0%,70%,100%': { opacity: '1' },
+          '20%,50%': { opacity: '0' }
         }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out'
+        'accordion-up': 'accordion-up 0.2s ease-out',
+        'caret-blink': 'caret-blink 1.25s ease-out infinite'
       }
     }
   },

@@ -6,24 +6,26 @@ function Footer() {
   return (
     <div className="bottom-0 bg-white mx-auto  ">
       <div className="bg-footer bg-contain bg-no-repeat bg-center bg-white/60 bg-blend-overlay mt-24  pt-20 mb-20">
-        <div className="grid grid-cols-2  p-10 rounded-2xl shadow drop-shadow-xl border h-[120px] w-[1232px] mx-auto">
+        <div className="w-[90%] h-[181px] md:grid grid-cols-2  p-5 md:p-10 rounded-2xl shadow drop-shadow-xl border md:h-[120px] md:w-[1232px] mx-auto">
           <div>
-            <h3 className="font-bold text-[18px]">Subscribe to Our NewsLetter</h3>
-            <p>Stay updated on news, arrivals and all things green coffee</p>
+            <h3 className="font-bold text-[18px] ">Subscribe to Our NewsLetter</h3>
+            <p className="my-3 md:py-0">
+              Stay updated on news, arrivals and all things green coffee
+            </p>
           </div>
           <div>
             <SubscribeForm />
           </div>
         </div>
-        <div className=" flex  gap-40 mt-14 ">
-          <div className="flex flex-col w-[316px] pr-12 pl-24 ">
-            <div className="bg-brand bg-contain bg-center bg-no-repeat w-[113px] h-[90px]  mb-6"></div>
+        <div className=" flex flex-col md:flex-row px-5 mt-10 gap-5  md:gap-40 md:mt-14 ">
+          <div className="flex flex-col md:w-[326px] md:ml-10  ">
+            <div className="bg-brand bg-contain bg-center  bg-no-repeat w-[113px] h-[90px]  mb-6"></div>
             <div className="font-normal text-sm leading-6">
               We are dedicated to delivering the finest, ethically sourced coffee beans from around
               the globe. Experience the rich flavors and aromas.
             </div>
           </div>
-          <div className="flex flex-col w-[116px] gap-3 ml-24">
+          <div className="flex flex-col w-[116px] gap-3 md:ml-24">
             <h3 className="font-semibold text-base">Quick Links</h3>
             <Link to="home" className="font-normal text-[15px]">
               Home
@@ -76,7 +78,7 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div className="flex bg-footerbackground h-[54px] bottom-0 items-center justify-between px-20">
+      <div className="flex bg-footerbackground h-[54px] bottom-0 items-center justify-between px-2 md:px-20">
         <div className="text-white font-normal text-[15px] ">
           &copy;Nile Coffee Imports, Inc. 2024
         </div>

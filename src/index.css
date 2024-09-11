@@ -15,9 +15,14 @@
     --tab-background: 245, 245, 245, 1;
     --foreground: 222.2 84% 4.9%;
     --text-secondary: 97, 97, 97, 1;
+    --text-dark: 34, 34, 34, 1;
     --badge-background: 244, 67, 54, 0.12;
+    --select-background: 245, 239, 229, 1;
+    --select-border: 244, 244, 230, 1;
+    --card-border: 185, 187, 198, 1;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
+    --outline-background: 161, 121, 47, 0.1;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
     --primary: 39 55% 41%;
@@ -80,7 +85,6 @@
     font-family: 'Work Sans', sans-serif;
     scroll-behavior: smooth;
 
-    max-width: 100vw;
     overflow-x: hidden;
     overflow-y: auto;
   }

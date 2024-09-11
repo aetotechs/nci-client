@@ -12,6 +12,7 @@ import {
   FormMessage
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { Link } from 'react-router-dom';
 
 const FormSchema = z.object({
   email: z.string().min(2, {
@@ -48,9 +49,11 @@ export function ForgotPasswordForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full my-4 text-white">
-          Reset Password
-        </Button>
+        <Link to="/reset-password">
+          <Button type="submit" className="w-full my-4 text-white">
+            Reset Password
+          </Button>
+        </Link>
       </form>
     </Form>
   );

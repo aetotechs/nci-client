@@ -30,9 +30,10 @@ function Counter({ className }: CounterProps) {
     <div
       className={clsx(
         'flex rounded-xl bg-slate-400 items-center justify-around drop-shadow',
-        
+
         className
-      )}>
+      )}
+    >
       <div onClick={() => dispatch({ type: 'decrement' })} className="cursor-pointer">
         -
       </div>
