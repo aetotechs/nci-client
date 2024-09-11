@@ -79,16 +79,16 @@ function Explore({ status }: IStatus) {
   ];
 
   return (
-    <div className="h-[934px]">
+    <div className="md:h-[934px]   ">
       {pathname !== '/coffee-shop' && (
-        <div className="flex justify-center flex-col items-center mb-2">
-          <h3 className="font-bold text-[36px] mt-4">Explore Nile Coffee</h3>
-          <p className="font-normal text-sm">
+        <div className="flex justify-center flex-col items-center md:mb-2">
+          <h3 className="font-semibold text-xl md:text-[26px] mt-4 md:mt-0">Explore Nile Coffee</h3>
+          <p className="font-normal text-sm md:my-4">
             Discover the rich flavors and unique origins of Nile Coffee
           </p>
         </div>
       )}
-      <div className={`${pathname === '/coffee-shop' ? 'py-0 ' : 'py-10'}`}>
+      <div className={`${pathname === '/coffee-shop' ? 'py-0 ' : 'py-5 md:py-10'}`}>
         <div className={'flex flex-col md:grid grid-cols-3 gap-5'}>
           {cards.map((card, index) => {
             const isDisabled =
@@ -104,8 +104,8 @@ function Explore({ status }: IStatus) {
                   } ${
                     pathname === '/coffee-shop'
                       ? 'h-[270px] w-[280px] px-4 py-2'
-                      : 'h-[308px] w-[390px] px-8 py-5'
-                  }`}
+                      : 'md:h-[309px] w-[339px] md:w-[390px] px-5 md:px-8 py-2 md:py-5'
+                  } `}
                   style={{ pointerEvents: isDisabled ? 'none' : 'auto' }}
                 >
                   <div className="font-medium text-[18px] mb-3">{card.name}</div>
@@ -151,24 +151,24 @@ function Explore({ status }: IStatus) {
                   </div>
                   {status ? (
                     <div
-                      className={`  ${pathname == '/coffee-shop' ? ' w-[234px]  flex gap-2 ' : 'flex justify-between w-[333px] gap-3'}`}
+                      className={`  ${pathname == '/coffee-shop' ? ' w-[234px]  flex flex-col md:flex-row gap-2 ' : 'flex flex-col md:flex-row justify-between w-[333px] gap-3'}`}
                     >
                       <Button
-                        className={`rounded-[10px] bg-primary  text-white font-normal text-[15px] w-[168px] h-[45px] ${pathname == '/coffee-shop' && 'h-[30px] w-[160px]'}`}
+                        className={`rounded-[10px] bg-primary  text-white font-normal text-[15px] w-[293px] h-10 md:w-[168px] md:h-[45px] ${pathname == '/coffee-shop' && 'h-[30px] w-[160px]'}`}
                         disabled={isDisabled}
                       >
                         Add To Cart
                       </Button>
                       <Button
-                        className={`rounded-[10px] w-[168px] h-[45px] text-primary font-normal text-[15px] bg-white border border-primary  ${pathname == '/coffee-shop' && 'h-[30px] w-[121px]  px-4 text-sm'}`}
+                        className={`rounded-[10px] w-[293px] h-10 md:w-[168px] md:h-[45px] text-primary font-normal text-[15px] bg-white border border-primary  ${pathname == '/coffee-shop' && 'h-[30px] w-[121px]  px-4 text-sm'}`}
                         disabled={isDisabled}
                       >
                         Request Sample
                       </Button>
                     </div>
                   ) : (
-                    <Button className="py-5 h-[55px] w-[328px] rounded-[10px] my-6 ">
-                      Log In To Buy/Sample
+                    <Button className="py-5 h-10 md:h-10 md:w-full rounded-[10px] my-10 ">
+                     <Link to='/login'> Log In To Buy/Sample</Link>
                     </Button>
                   )}
                 </div>
@@ -178,7 +178,7 @@ function Explore({ status }: IStatus) {
         </div>
       </div>
       {pathname !== '/coffee-shop' && (
-        <div className="flex justify-center">
+        <div className="flex justify-center my-5 md:my-0">
           <Link
             className="flex justify-between items-center p-3 gap-2 border border-primary rounded-md text-primary font-semibold text-[16px] leading-5"
             to="/"

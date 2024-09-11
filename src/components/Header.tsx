@@ -1,4 +1,4 @@
-import { SearchIcon, ShoppingCart, Menu } from 'lucide-react'; // Import the Menu icon
+import { SearchIcon, ShoppingCart } from 'lucide-react';
 import NavItems from '@/components/NavItems';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -9,7 +9,7 @@ import { MobileNav } from './MobileNav';
 
 function Header({ status }: IStatus) {
   return (
-    <div className="bg-white flex justify-between p-5 md:rounded-[30px] top-0  md:sticky md:top-5 shadow-md z-40 w-[100%] md:w-full">
+    <div className="bg-white flex justify-between p-5 md:rounded-[30px] top-0  md:sticky md:top-2 shadow-md z-40 w-[100%] md:w-full">
       <div className="w-[130px] h-12 md:w-52 md:h-12">
         <img src="/logos/logo.png" alt="coffee logo" width="200" height={38} />
       </div>

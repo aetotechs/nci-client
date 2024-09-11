@@ -17,7 +17,7 @@ function Footer() {
             <SubscribeForm />
           </div>
         </div>
-        <div className=" flex flex-col md:flex-row px-5 mt-10 gap-5  md:gap-40 md:mt-14 ">
+        <div className=" flex flex-col md:flex-row px-5 mt-10 gap-5  md:gap-20 md:mt-14 ">
           <div className="flex flex-col md:w-[326px] md:ml-10  ">
             <div className="bg-brand bg-contain bg-center  bg-no-repeat w-[113px] h-[90px]  mb-6"></div>
             <div className="font-normal text-sm leading-6">
@@ -25,7 +25,7 @@ function Footer() {
               the globe. Experience the rich flavors and aromas.
             </div>
           </div>
-          <div className="flex flex-col w-[116px] gap-3 md:ml-24">
+          <div className="flex flex-col w-[200px]  gap-3 ">
             <h3 className="font-semibold text-base">Quick Links</h3>
             <Link to="home" className="font-normal text-[15px]">
               Home
@@ -46,7 +46,7 @@ function Footer() {
               Contact Us
             </Link>
           </div>
-          <div className="w-[286px] flex flex-col gap-3">
+          <div className=" flex flex-col gap-3 md:w-[300px] ">
             <h3 className="font-semibold text-base">Contact Information</h3>
             <div className="flex items-center gap-2">
               {' '}
@@ -60,7 +60,7 @@ function Footer() {
               <span>
                 <img src="/icons/mail.svg" alt="mailIcon" />
               </span>
-              support@nilecoffeeimports.com
+              <span > support@nilecoffeeimports.com</span>
             </div>
             <div className="flex items-center gap-2">
               {' '}
@@ -70,7 +70,7 @@ function Footer() {
               Talk to support
             </div>
           </div>
-          <div className="flex flex-col gap-3 w-[174px] pr-12">
+          <div className="flex flex-col gap-3  ">
             <h3 className="font-semibold text-base">Legal Infomamtion</h3>
             <Link to="/terms-and-conditions">Terms and Conditions</Link>
             <Link to="/privacy-policy">Privacy Policy</Link>

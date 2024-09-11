@@ -7,14 +7,12 @@ export function AccountPopover() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button className="h-[45px] w-[80px] rounded-xl">
-          <Link to="/profile">Profile</Link>
-        </Button>
+        <Button className="h-[45px] w-[80px] rounded-xl">Profile</Button>
       </PopoverTrigger>
       <PopoverContent className="w-[232px] h-[130px] rouded-[10px] border-none mt-5 ">
         <div className="flex flex-col gap-3 px-2">
-          <Link to="/my-account">My Account</Link>
-          <Link to="/my-wishlist">Wishlist</Link>
+          <Link to="/profile">My Account</Link>
+          <Link to="/profile">Wishlist</Link>
           <Link to="/login">Log Out</Link>
         </div>
       </PopoverContent>
