@@ -42,7 +42,7 @@ function ShopPayment({ status }: IStatus) {
           </div>
         </div>
       </div>
-      <Footer />
+      
     </>
   );
 }

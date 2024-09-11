@@ -4,7 +4,7 @@ import Header from '@/components/Header';
 import OrderSummary from '@/components/OrderSummary';
 import ShippingAddress from '@/components/ShippingAddress';
 import Progress from '@/components/Progress';
-import Footer from '@/components/Footer';
+
 import { IStatus } from '@/App';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -40,7 +40,7 @@ function ShopAddress({ status }: IStatus) {
           </div>
         </div>
       </div>
-      <Footer />
+    
     </>
   );
 }

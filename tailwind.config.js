@@ -38,7 +38,9 @@ export default {
         map: "url('/images/map.png')",
         aboutcoffee: "url('/images/about-coffee.png')",
         coffeegrowth: "url('/images/coffee-growth.png')",
-        coffeehistory: "url('/images/coffe-history.png')"
+        coffeehistory: "url('/images/coffe-history.png')",
+        aboutimage: "url('/images/about.png')",
+        mobileabout: "url('/images/mobile-about.png')",
       },
       colors: {
         border: 'hsla(var(--border))',

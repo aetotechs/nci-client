@@ -21,7 +21,7 @@ function Shop({ status }: IStatus) {
 
   return (
     <>
-      <div className="my-[40px] mx-10 md:mx-[130px]   ">
+     <div className="md:my-5 mx-auto md:w-[1232px] ">
         <Header status={status} />
 
         <div className="mt-10">
@@ -52,7 +52,7 @@ function Shop({ status }: IStatus) {
           )}
         </div>
       </div>
-      <Footer />
+     
     </>
   );
 }

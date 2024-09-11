@@ -4,7 +4,7 @@ function NavItems() {
   return (
     <nav className="flex flex-col md:flex-row items-center list-none gap-10 text-[16px] text-text">
       <li className="cursor-pointer text-textcolor active:text-primary  ">
-        <Link to="about-us" className="cursor-pointer">
+        <Link to="/about" className="cursor-pointer">
           About Us
         </Link>
       </li>
