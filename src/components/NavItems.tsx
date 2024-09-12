@@ -18,7 +18,7 @@ function NavItems() {
         <Link to="/coffee-shop">Shop</Link>
       </li>
       <li className="cursor-pointer text-textcolor  active:text-primary ">
-        <Link to="/contact">Contact Us</Link>
+        <Link to="/contact-us">Contact Us</Link>
       </li>
     </nav>
   );
