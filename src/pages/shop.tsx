@@ -24,14 +24,14 @@ function Shop({ status }: IStatus) {
      <div className="md:my-5 mx-auto md:w-[1232px] ">
         <Header status={status} />
 
-        <div className="mt-10">
+        <div className="mt-10 px-5 md:px-0 ">
           {' '}
           <BreadCrumb items={breadcrumbItems} />
         </div>
-        <div>
+        <div className='px-5 md:px-0'>
           {CartItems === false ? (
             <div className="flex justify-center items-center  ">
-              <EmptyCart />
+              <EmptyCart status={status} />
             </div>
           ) : (
             <>

@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
+import { Button } from './ui/button';
+import { IStatus } from '@/App';
 
-function EmptyCart() {
+function EmptyCart({ status }: IStatus) {
   return (
     <div className="w-[400px]">
       <div className="flex justify-center flex-col items-center">
@@ -12,17 +14,33 @@ function EmptyCart() {
         <p className="font-normal text-base text-textmuted">
           Add items to your cart and order to enjoy great coffee at the best prices.
         </p>
-        <div className="my-10 w-[197px]  ">
-          <Link
-            className="flex justify-center gap-2 bg-primary py-3 rounded-xl text-white font-semibold text-[16px] leading-5"
-            to="/shop-items"
-          >
-            Shop Now{' '}
-            <span>
-              <ChevronRight />
-            </span>{' '}
-          </Link>
-        </div>
+        {!status ? (
+          <div className="flex gap-2 items-center py-5 justify-center">
+            <Link to="/login">
+              {' '}
+              <Button
+                variant="outline"
+                className="bg-white border-primary text-primary md:w-[111px]">
+                Login
+              </Button>
+            </Link>
+            <Link to="/login">
+              {' '}
+              <Button className="md:w-[111px]"> Sign Up</Button>
+            </Link>
+          </div>
+        ) : (
+          <div className="my-10 w-[197px]  ">
+            <Link
+              className="flex justify-center gap-2 bg-primary py-3 rounded-xl text-white font-semibold text-[16px] leading-5"
+              to="/shop-items">
+              Shop Now{' '}
+              <span>
+                <ChevronRight />
+              </span>{' '}
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );
