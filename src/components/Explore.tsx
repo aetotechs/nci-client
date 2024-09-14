@@ -80,7 +80,7 @@ function Explore({ status }: IStatus) {
 
   return (
     <div className="md:h-[934px]   ">
-      {pathname !== '/coffee-shop' && (
+      {pathname === '/' && (
         <div className="flex justify-center flex-col items-center md:mb-2">
           <h3 className="font-semibold text-xl md:text-[26px] mt-4 md:mt-0">Explore Nile Coffee</h3>
           <p className="font-normal text-sm md:my-4">
@@ -106,8 +106,7 @@ function Explore({ status }: IStatus) {
                       ? 'h-[270px] w-[280px] px-4 py-2'
                       : 'md:h-[309px] w-[339px] md:w-[390px] px-5 md:px-8 py-2 md:py-5'
                   } `}
-                  style={{ pointerEvents: isDisabled ? 'none' : 'auto' }}
-                >
+                  style={{ pointerEvents: isDisabled ? 'none' : 'auto' }}>
                   <div className="font-medium text-[18px] mb-3">{card.name}</div>
                   <div className="font-normal text-[15px] mb-3 flex gap-1 items-center">
                     <span>
@@ -123,8 +122,7 @@ function Explore({ status }: IStatus) {
                           {card.sampleStatus !== 'Available' && (
                             <Badge
                               variant="outline"
-                              className="bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px]"
-                            >
+                              className="bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px]">
                               <div className="h-[5px] w-[5px] rounded-full bg-destructive"></div>
                               <p className="text-destructive">{card.sampleStatus}</p>
                             </Badge>
@@ -135,8 +133,7 @@ function Explore({ status }: IStatus) {
                           {card.bagStatus !== 'Available' && (
                             <Badge
                               variant="outline"
-                              className="bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px]"
-                            >
+                              className="bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px]">
                               <div className="h-[5px] w-[5px] rounded-full bg-destructive"></div>
                               <p className="text-destructive">{card.bagStatus}</p>
                             </Badge>
@@ -151,24 +148,21 @@ function Explore({ status }: IStatus) {
                   </div>
                   {status ? (
                     <div
-                      className={`  ${pathname == '/coffee-shop' ? ' w-[234px]  flex flex-col md:flex-row gap-2 ' : 'flex flex-col md:flex-row justify-between w-[333px] gap-3'}`}
-                    >
+                      className={`  ${pathname == '/coffee-shop' ? ' w-[234px]  flex flex-col md:flex-row gap-2 ' : 'flex flex-col md:flex-row justify-between w-[333px] gap-3'}`}>
                       <Button
                         className={`rounded-[10px] bg-primary  text-white font-normal text-[15px] w-[293px] h-10 md:w-[168px] md:h-[45px] ${pathname == '/coffee-shop' && 'h-[30px] w-[160px]'}`}
-                        disabled={isDisabled}
-                      >
+                        disabled={isDisabled}>
                         Add To Cart
                       </Button>
                       <Button
                         className={`rounded-[10px] w-[293px] h-10 md:w-[168px] md:h-[45px] text-primary font-normal text-[15px] bg-white border border-primary  ${pathname == '/coffee-shop' && 'h-[30px] w-[121px]  px-4 text-sm'}`}
-                        disabled={isDisabled}
-                      >
+                        disabled={isDisabled}>
                         Request Sample
                       </Button>
                     </div>
                   ) : (
                     <Button className="py-5 h-10 md:h-10 md:w-full rounded-[10px] my-10 ">
-                     <Link to='/login'> Log In To Buy/Sample</Link>
+                      <Link to="/login"> Log In To Buy/Sample</Link>
                     </Button>
                   )}
                 </div>
@@ -177,12 +171,11 @@ function Explore({ status }: IStatus) {
           })}
         </div>
       </div>
-      {pathname !== '/coffee-shop' && (
+      {pathname === '/' && (
         <div className="flex justify-center my-5 md:my-0">
           <Link
             className="flex justify-between items-center p-3 gap-2 border border-primary rounded-md text-primary font-semibold text-[16px] leading-5"
-            to="/"
-          >
+            to="/">
             View More
             <span>
               <ChevronRight />

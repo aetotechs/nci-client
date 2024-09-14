@@ -15,8 +15,9 @@ import ProductPage from '@/pages/product-page';
 import Profile from '@/pages/profile';
 import ResetPasswordPage from '@/pages/reset-password';
 import VerifyEmail from '@/pages/verify-email';
-import About from './pages/about-us';
-import ContactUs from './pages/contact-us';
+import About from '@/pages/about-us';
+import ContactUs from '@/pages/contact-us';
+import OriginsPage from '@/pages/origins';
 export interface IStatus {
   status: boolean;
 }
@@ -41,8 +42,9 @@ function App() {
           <Route path="/close-shop" element={<ClosedOrder status={loggedIn} />} />
           <Route path="/product/:productId" element={<ProductPage status={loggedIn} />} />
           <Route path="/profile" element={<Profile status={loggedIn} />} />
-          <Route path="/about" element={<About status={loggedIn}/>} />
-          <Route path="/contact-us" element={<ContactUs status={loggedIn}/>}/>
+          <Route path="/about" element={<About status={loggedIn} />} />
+          <Route path="/contact-us" element={<ContactUs status={loggedIn} />} />
+          <Route path="/origins" element={<OriginsPage status={loggedIn} />} />
         </Routes>
       </BrowserRouter>
     </>

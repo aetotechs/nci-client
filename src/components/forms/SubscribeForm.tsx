@@ -31,7 +31,7 @@ export function SubscribeForm() {
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem className="w-[190px]md:w-[350px]">
+            <FormItem className="w-[190px] md:w-[350px]">
               <FormControl>
                 <Input placeholder="Enter your email" {...field} />
               </FormControl>
