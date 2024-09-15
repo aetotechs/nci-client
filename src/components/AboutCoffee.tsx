@@ -1,8 +1,6 @@
-import React from 'react';
-
 function AboutCoffee() {
   return (
-    <div className="w-[full] flex flex-col px-5  md:px-0 md:flex-row gap-10 my-24">
+    <div className="w-[full] flex flex-col px-5  md:px-0 md:flex-row gap-10 my-24 md:my-6">
       <div className="md:w-[579px]">
         <h3 className="font-semibold text-[26px]">About This Coffee</h3>
         <p className="my-2 font-normal text-black">

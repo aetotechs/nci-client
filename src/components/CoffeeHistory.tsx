@@ -1,6 +1,6 @@
 function CoffeeHistory() {
   return (
-    <div className="grid grid-rows-2  rounded-[20px] px-5 mx-5   md:flex md:justify-between md:items-center md:gap-12   md:h-[428px]  py-10 md:px-20 my-20 ">
+    <div className="grid grid-rows-2  rounded-[20px] px-5 mx-5   md:flex md:justify-between md:items-center md:gap-12 md:bg-white  md:h-[428px]  py-10 md:px-20 my-20 ">
       <div className="md:w-[509px]  bg-coffeehistory h-[357px] bg-cover bg-center rounded-3xl"></div>
       <div className="md:w-[538px] h-[331px]    ">
         <h3 className="font-semibold text-[26px] md:leading-[50px] my-5 md:my-0 md:-mt-2  ">

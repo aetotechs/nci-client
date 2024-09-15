@@ -39,8 +39,8 @@ function ProductPage({ status }: IStatus) {
               <p className="font-normal text-[17px]"> Caramel,Berry,Choclate</p>
             </div>
           </div>
-          <div className="grid grid-rows-2 w-900vw] md:grid-cols-5 gap-3 ">
-            <div className="col-span-3 bg-map mx-5 md:mx-0  bg-contain bg-no-repeat bg-center relative flex items-center justify-center">
+          <div className="grid grid-rows-2 md:grid-cols-5 gap-3 md:h-[484px]  ">
+            <div className="col-span-3 bg-map md:h-[437px] mx-5 bg-contain bg-no-repeat bg-center relative flex items-center justify-center">
               <div className=" flex items-center justify-center">
                 <img src="/icons/location.svg" alt="location" className=" z-0" />
                 <span className="font-normal">Nakuru</span>
@@ -50,7 +50,7 @@ function ProductPage({ status }: IStatus) {
               <ProductDetails />
             </div>
           </div>
-          <div className="my-20 ">
+          <div className="">
             <AboutCoffee />
           </div>
           <div className="">
