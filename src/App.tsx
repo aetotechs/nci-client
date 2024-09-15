@@ -18,6 +18,7 @@ import VerifyEmail from '@/pages/verify-email';
 import About from '@/pages/about-us';
 import ContactUs from '@/pages/contact-us';
 import OriginsPage from '@/pages/origins';
+import Admin from '@/pages/admin-dashboard';
 export interface IStatus {
   status: boolean;
 }
@@ -45,6 +46,7 @@ function App() {
           <Route path="/about" element={<About status={loggedIn} />} />
           <Route path="/contact-us" element={<ContactUs status={loggedIn} />} />
           <Route path="/origins" element={<OriginsPage status={loggedIn} />} />
+          <Route path='/admin' element={<Admin status={loggedIn} />} />
         </Routes>
       </BrowserRouter>
     </>
