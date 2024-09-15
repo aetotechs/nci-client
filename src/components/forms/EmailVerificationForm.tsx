@@ -36,7 +36,7 @@ export function EmailOtpForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className=" w-full px-4 md:w-full flex flex-col justify-center items-center space-y-6"
+        className=" w-full px-4 md:w-full flex flex-col justify-center items-center space-y-6 "
       >
         <FormField
           control={form.control}
@@ -46,11 +46,11 @@ export function EmailOtpForm() {
               <FormControl>
                 <InputOTP maxLength={5} {...field}>
                   <InputOTPGroup className=" ">
-                    <InputOTPSlot index={0} />
-                    <InputOTPSlot index={1} />
-                    <InputOTPSlot index={2} />
-                    <InputOTPSlot index={3} />
-                    <InputOTPSlot index={4} />
+                    <InputOTPSlot index={0} className='w-10 h-10'  />
+                    <InputOTPSlot index={1} className='w-10 h-10' />
+                    <InputOTPSlot index={2} className='w-10 h-10' />
+                    <InputOTPSlot index={3} className='w-10 h-10'  />
+                    <InputOTPSlot index={4} className='w-10 h-10' />
                   </InputOTPGroup>
                 </InputOTP>
               </FormControl>

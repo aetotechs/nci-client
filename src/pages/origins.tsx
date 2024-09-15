@@ -46,12 +46,12 @@ function OriginsPage({ status }: IStatus) {
               Africa was also one of the last places to grow coffee commercially. Coffee plantings
               were not successful in Kenya until the 20th century.
             </p>
-            <div className="md:hidden">
+            <div className="md:hidden my-5">
               <FilterSheet />
             </div>
          
           </div>
-          <div className="flex justify-end items-center gap-3">
+          <div className="flex md:justify-end items-center gap-3">
               <div className="font-medium text-base">Sort by:</div>
               <div>
                 <Select>
@@ -68,7 +68,7 @@ function OriginsPage({ status }: IStatus) {
               </div>
             </div>
           <div className="md:flex   gap-3">
-            <div className="w-[372px] bg-white px-10 hidden md:flex md:flex-col">
+            <div className="w-[372px] bg-white h-max px-10 hidden md:flex md:flex-col">
               <h5 className="font-bold my-5">Filter</h5>
               <div>
                 <CoffeeListings />

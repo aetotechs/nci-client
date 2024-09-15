@@ -31,7 +31,7 @@ export function CouponForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="w-[404px] flex justify-between items-center"
+        className="md:w-[404px] flex gap-2 md:justify-between items-center"
       >
         <FormField
           control={form.control}
@@ -42,7 +42,7 @@ export function CouponForm() {
                 <Input
                   type="text"
                   placeholder="Enter your discount code"
-                  className="h-12 w-[303px] "
+                  className="h-12 md:w-[303px] w-[220px] "
                   {...field}
                 />
               </FormControl>
@@ -53,7 +53,7 @@ export function CouponForm() {
 
         <Button
           type="submit"
-          className=" font-normal text-base border border-primary text-primary w-[82px] h-[44px]"
+          className=" font-normal text-base border border-primary text-primary md:w-[82px] h-[44px]"
           variant="outline"
         >
           Apply

@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { OriginsSheet } from './OriginsSheet';
+import { CategoriesSheet } from './CategoriesSheet';
 
 function NavItems() {
   return (
@@ -9,11 +11,9 @@ function NavItems() {
         </Link>
       </li>
       <li className="cursor-pointer text-textcolor  active:text-primary ">
-        <Link to="/origins">Origins</Link>
+        <OriginsSheet />
       </li>
-      <li className="cursor-pointer text-textcolor  active:text-primary ">
-        <Link to="/categories">Categories</Link>
-      </li>
+      <li className="cursor-pointer text-textcolor  active:text-primary "><CategoriesSheet/></li>
       <li className="cursor-pointer  text-textcolor active:text-primary ">
         <Link to="/coffee-shop">Shop</Link>
       </li>

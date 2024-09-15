@@ -36,9 +36,9 @@ function ShoppingCart() {
   }, [items]);
 
   return (
-    <div className="w-[714px] h-[560px] bg-white p-10  flex flex-col rounded-[8px]">
+    <div className="md:w-[714px] w-[90vw] mx-5 h-[560px] bg-white p-10  flex flex-col rounded-[8px]">
       <div className="flex justify-between">
-        <h3 className="font-bold text-2xl">Shopping Cart</h3>
+        <h3 className="font-bold md:text-2xl">Shopping Cart</h3>
         <div className="flex items-center gap-2">
           <Checkbox />
           <p className="text-base font-medium">Select All</p>

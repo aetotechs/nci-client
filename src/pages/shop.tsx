@@ -6,7 +6,7 @@ import CartWithItems from '@/components/CartWithItems';
 import Coupon from '@/components/Coupon';
 import OrderSummary from '@/components/OrderSummary';
 import Progress from '@/components/Progress';
-import Footer from '@/components/Footer';
+
 import { IStatus } from '@/App';
 import { useLocation } from 'react-router-dom';
 

@@ -7,7 +7,7 @@ function OrderSummary() {
   const { pathname } = location;
   return (
     <div
-      className={`bg-white w-[491px] rounded-[8px] flex flex-col mb-4 px-10 ${pathname == '/shop-items' || pathname === '/shop' ? 'h-[300px]' : ' h-[400px] '}`}
+      className={`bg-white md:w-[491px] w-[90vw] mx-5 rounded-[8px] flex flex-col mb-4 px-10 ${pathname == '/shop-items' || pathname === '/shop' ? 'h-[300px]' : ' h-[400px] '}`}
     >
       <h3 className="font-bold text-xl my-5">Order Summary</h3>
 

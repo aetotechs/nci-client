@@ -23,7 +23,7 @@ export interface IStatus {
 }
 
 function App() {
-  const [loggedIn] = useState(false);
+  const [loggedIn] = useState(true);
   return (
     <>
       <Toaster />

@@ -55,7 +55,7 @@ function CoffeeShop({ status }: IStatus) {
             </div>
           </div>
           <div className="md:flex   gap-3">
-            <div className="w-[372px] bg-white px-10 hidden md:flex md:flex-col">
+            <div className="w-[372px] h-max  bg-white px-10 hidden md:flex md:flex-col">
               <h5 className="font-bold my-5">Filter</h5>
               <div>
                 <CoffeeListings />
