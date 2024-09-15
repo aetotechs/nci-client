@@ -7,7 +7,7 @@ export function OriginsSheet() {
         <p>Origins</p>
       </PopoverTrigger>
       <PopoverContent className="md:w-[1232px] md:mx-14 md:mt-9 p-0 overflow-hidden">
-        <div className="flex flex-col gap-2  md:justify-around mt-5 mb-10">
+        <div className="flex flex-col gap-2 md:flex-row md:justify-around mt-5 mb-10">
           <div className="text-textcolor flex flex-col gap-1">
             <h3 className="font-semibold text-base">Latin Caribean and America</h3>
             <p>Brazil</p>

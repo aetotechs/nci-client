@@ -6,8 +6,8 @@ export function CategoriesSheet() {
       <PopoverTrigger asChild>
         <p>Categories</p>
       </PopoverTrigger>
-      <PopoverContent className="md:w-[1232px] md:mx-14 md:mt-9 p-0 overflow-hidden">
-        <div className="flex flex-col gap-2  md:justify-around mt-5 mb-10 overflow-scroll">
+      <PopoverContent className="md:w-[1232px] md:mx-14 md:mt-9 p-0 overflow-auto">
+        <div className="flex flex-col gap-2 md:flex-row md:justify-around mt-5 mb-10 overflow-auto">
           <div className="text-textcolor flex flex-col gap-1">
             <h3 className="font-semibold text-base">Curated Categories</h3>
             <p>Top Lots</p>
