@@ -100,22 +100,26 @@ function ContactUs({ status }: IStatus) {
                 <TabsList className="md:mx-80 md:my-5 border-none bg-background w-[400px] md:w-[560px] overflow-x-auto">
                   <TabsTrigger
                     value="shipping"
-                    className="data-[state=active]:text-primary data-[state=active]:border border-primary data-[state=active]:bg-primary/30">
+                    className="data-[state=active]:text-primary data-[state=active]:border border-primary data-[state=active]:bg-primary/30"
+                  >
                     Shipping & Tracking
                   </TabsTrigger>
                   <TabsTrigger
                     value="buying"
-                    className="data-[state=active]:text-primary data-[state=active]:border border-primary data-[state=active]:bg-primary/30">
+                    className="data-[state=active]:text-primary data-[state=active]:border border-primary data-[state=active]:bg-primary/30"
+                  >
                     Buying Online
                   </TabsTrigger>
                   <TabsTrigger
                     value="origin"
-                    className="data-[state=active]:text-primary data-[state=active]:border border-primary data-[state=active]:bg-primary/30">
+                    className="data-[state=active]:text-primary data-[state=active]:border border-primary data-[state=active]:bg-primary/30"
+                  >
                     Origin Insights
                   </TabsTrigger>
                   <TabsTrigger
                     value="quality"
-                    className="data-[state=active]:text-primary data-[state=active]:border border-primary data-[state=active]:bg-primary/30">
+                    className="data-[state=active]:text-primary data-[state=active]:border border-primary data-[state=active]:bg-primary/30"
+                  >
                     Quality Control
                   </TabsTrigger>
                 </TabsList>
@@ -123,7 +127,7 @@ function ContactUs({ status }: IStatus) {
                   <Accordion type="single" collapsible className="w-full">
                     <AccordionItem value="item-1">
                       <AccordionTrigger className="md:font-medium md:text-[17px]">
-                      How do I track my green coffee shipment?
+                        How do I track my green coffee shipment?
                       </AccordionTrigger>
                       <AccordionContent>
                         Track your coffee shipment using the provided tracking number, whether

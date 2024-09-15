@@ -39,7 +39,8 @@ function About({ status }: IStatus) {
               </p>
               <Button
                 variant="outline"
-                className="border border-primary my-4 bg-white text-primary">
+                className="border border-primary my-4 bg-white text-primary"
+              >
                 Contact us
               </Button>
             </div>

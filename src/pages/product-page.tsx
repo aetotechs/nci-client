@@ -22,16 +22,16 @@ function ProductPage({ status }: IStatus) {
 
   return (
     <>
-      <div className="my-[40px] mx-auto w-[1232px]  ">
+      <div className="md:my-5 w-[100vw ] overflow-x-hidden mx-auto md:w-[1232px]  ">
         <Header status={status} />
 
-        <div className="mt-10">
+        <div className="mt-10 hidden md:flex">
           {' '}
           <BreadCrumb items={breadcrumbItems} />
         </div>
         <div>
-          <div className=" flex flex-col  my-10 ">
-            <div className="font font-semibold text-[26px]">{productId}</div>
+          <div className=" flex flex-col px-5 md:px-0  my-10 ">
+            <div className="font font-semibold md:text-[26px]">{productId}</div>
             <div className="font-normal text-[15px] my-3 flex gap-1 items-center">
               <span>
                 <img src="/icons/coffee-bean.svg" alt="Coffee Bean" />
@@ -39,8 +39,8 @@ function ProductPage({ status }: IStatus) {
               <p className="font-normal text-[17px]"> Caramel,Berry,Choclate</p>
             </div>
           </div>
-          <div className="grid grid-cols-5 gap-3 ">
-            <div className="col-span-3 bg-map  bg-contain bg-no-repeat bg-center relative flex items-center justify-center">
+          <div className="grid grid-rows-2 w-900vw] md:grid-cols-5 gap-3 ">
+            <div className="col-span-3 bg-map mx-5 md:mx-0  bg-contain bg-no-repeat bg-center relative flex items-center justify-center">
               <div className=" flex items-center justify-center">
                 <img src="/icons/location.svg" alt="location" className=" z-0" />
                 <span className="font-normal">Nakuru</span>
@@ -50,10 +50,10 @@ function ProductPage({ status }: IStatus) {
               <ProductDetails />
             </div>
           </div>
-          <div className="my-20">
+          <div className="my-20 ">
             <AboutCoffee />
           </div>
-          <div>
+          <div className="">
             <CoffeeHistory />
           </div>
           <div>

@@ -65,7 +65,8 @@ export function AddAddressForm() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="w-full flex flex-col md:grid md:grid-cols-2 gap-5  ">
+          className="w-full flex flex-col md:grid md:grid-cols-2 gap-5  "
+        >
           <FormField
             control={form.control}
             name="firstName"
@@ -208,38 +209,38 @@ export function AddAddressForm() {
               </FormItem>
             )}
           />
-          <div className='col-span-2'>
-          <FormField
-          control={form.control}
-          name="shipping"
-          render={({ field }) => (
-            <FormItem className="  flex flex-row items-center space-x-3 space-y-0 rounded-md  py-4">
-              <FormControl>
-                <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-              </FormControl>
-              <div className="space-y-1 leading-none">
-                <FormDescription>Set as Shipping Address</FormDescription>
-              </div>
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="billing"
-          render={({ field }) => (
-            <FormItem className="  flex flex-row items-center space-x-3 space-y-0 rounded-md  py-4">
-              <FormControl>
-                <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-              </FormControl>
-              <div className="space-y-1 leading-none">
-                <FormDescription>Set as Billing Address</FormDescription>
-              </div>
-            </FormItem>
-          )}
-        />
-</div>
+          <div className="col-span-2">
+            <FormField
+              control={form.control}
+              name="shipping"
+              render={({ field }) => (
+                <FormItem className="  flex flex-row items-center space-x-3 space-y-0 rounded-md  py-4">
+                  <FormControl>
+                    <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormDescription>Set as Shipping Address</FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="billing"
+              render={({ field }) => (
+                <FormItem className="  flex flex-row items-center space-x-3 space-y-0 rounded-md  py-4">
+                  <FormControl>
+                    <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormDescription>Set as Billing Address</FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            />
+          </div>
           <Button type="submit" className="col-span-2">
-            Save 
+            Save
           </Button>
         </form>
       </Form>

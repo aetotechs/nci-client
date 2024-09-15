@@ -35,7 +35,7 @@ function CoffeeShop({ status }: IStatus) {
           <div className="flex flex-col gap-5 mb-10 md:mb-0 md:flex-row md:justify-between md:my-5 md:py-5">
             <h3 className="text-[26px] font-semibold">Coffee Shop</h3>
             <div className="md:hidden">
-             <FilterSheet/>
+              <FilterSheet />
             </div>
             <div className="flex items-center gap-3">
               <div className="font-medium text-base">Sort by:</div>

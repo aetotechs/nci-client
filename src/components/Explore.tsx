@@ -90,7 +90,8 @@ function Explore({ status }: IStatus) {
       )}
       <div className={`${pathname === '/coffee-shop' ? 'py-0 ' : 'py-5 md:py-10'}`}>
         <div
-          className={` ${pathname === '/origins' ? 'md:grid md:grid-cols-2 gap-7 flex flex-col' : 'flex flex-col md:grid grid-cols-3 gap-5 '}`}>
+          className={` ${pathname === '/origins' ? 'md:grid md:grid-cols-2 gap-7 flex flex-col' : 'flex flex-col md:grid grid-cols-3 gap-5 '}`}
+        >
           {cards.map((card, index) => {
             const isDisabled =
               card.bagStatus === 'Not Available' &&
@@ -109,7 +110,8 @@ function Explore({ status }: IStatus) {
                   }
                   
                   `}
-                  style={{ pointerEvents: isDisabled ? 'none' : 'auto' }}>
+                  style={{ pointerEvents: isDisabled ? 'none' : 'auto' }}
+                >
                   <div className="font-medium text-[18px] mb-3">{card.name}</div>
                   <div className="font-normal text-[15px] mb-3 flex gap-1 items-center">
                     <span>
@@ -125,7 +127,8 @@ function Explore({ status }: IStatus) {
                           {card.sampleStatus !== 'Available' && (
                             <Badge
                               variant="outline"
-                              className="bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px]">
+                              className="bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px]"
+                            >
                               <div className="h-[5px] w-[5px] rounded-full bg-destructive"></div>
                               <p className="text-destructive">{card.sampleStatus}</p>
                             </Badge>
@@ -136,7 +139,8 @@ function Explore({ status }: IStatus) {
                           {card.bagStatus !== 'Available' && (
                             <Badge
                               variant="outline"
-                              className="bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px]">
+                              className="bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px]"
+                            >
                               <div className="h-[5px] w-[5px] rounded-full bg-destructive"></div>
                               <p className="text-destructive">{card.bagStatus}</p>
                             </Badge>
@@ -151,15 +155,18 @@ function Explore({ status }: IStatus) {
                   </div>
                   {status ? (
                     <div
-                      className={`  ${pathname == '/coffee-shop' ? ' w-[234px]  flex flex-col gap-3   md:flex-row md:gap-2 ' : 'flex flex-col md:flex-row justify-between w-[333px] gap-3'}`}>
+                      className={`  ${pathname == '/coffee-shop' ? ' w-[234px]  flex flex-col gap-3   md:flex-row md:gap-2 ' : 'flex flex-col md:flex-row justify-between w-[333px] gap-3'}`}
+                    >
                       <Button
                         className={`rounded-[10px] bg-primary  text-white font-normal text-[15px] h-10 md:w-[168px] md:h-[40px] ${pathname == '/coffee-shop' && 'h-[45px] w-[293px]  md:w-[168px]'}`}
-                        disabled={isDisabled}>
+                        disabled={isDisabled}
+                      >
                         Add To Cart
                       </Button>
                       <Button
                         className={`rounded-[10px] w-[293px] h-10  md:h-[40px] text-primary font-normal text-[15px] bg-white border border-primary  ${pathname === '/origins' || (pathname === '/' && 'md:w-[168px]')}  ${pathname == '/coffee-shop' && 'h-[45px] w-[293px]   md:w-[121px] px-4 text-sm'}`}
-                        disabled={isDisabled}>
+                        disabled={isDisabled}
+                      >
                         Request Sample
                       </Button>
                     </div>
@@ -178,7 +185,8 @@ function Explore({ status }: IStatus) {
         <div className="flex justify-center my-5 md:my-0">
           <Link
             className="flex justify-between items-center p-3 gap-2 border border-primary rounded-md text-primary font-semibold text-[16px] leading-5"
-            to="/">
+            to="/"
+          >
             View More
             <span>
               <ChevronRight />

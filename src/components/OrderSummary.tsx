@@ -7,7 +7,7 @@ function OrderSummary() {
   const { pathname } = location;
   return (
     <div
-      className={`bg-white md:w-[491px] w-[90vw] mx-5 rounded-[8px] flex flex-col mb-4 px-10 ${pathname == '/shop-items' || pathname === '/shop' ? 'h-[300px]' : ' h-[400px] '}`}
+      className={` md:w-[491px] w-[90vw] mx-5 md:mx-0 rounded-[8px] flex flex-col mb-4 py-2 pl-5 pr-10 ${pathname == '/shop-items' || pathname === '/shop' ? 'h-[300px]' : ' h-[400px] '}`}
     >
       <h3 className="font-bold text-xl my-5">Order Summary</h3>
 
@@ -30,7 +30,7 @@ function OrderSummary() {
         </div>
       )}
       {pathname === '/close-shop' && <OrderItems />}
-      <div className="flex flex-col gap-3 bg-white w-full ">
+      <div className="flex flex-col gap-3 md:px-4 ">
         <div className="flex justify-between">
           <p className="font-normal text-base text-textmuted">Cart Subtotal</p>
           <h3 className="font-medium text-base">$120</h3>

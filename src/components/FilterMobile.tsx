@@ -15,7 +15,7 @@ import CoffeeListings from './CoffeeListings';
 
 export function FilterSheet() {
   return (
-    <Sheet >
+    <Sheet>
       <SheetTrigger asChild>
         <Button variant="outline" className="text-primary border-primary w-[111px] gap-2">
           <span>
@@ -26,13 +26,13 @@ export function FilterSheet() {
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
-          <SheetTitle className='border-b-white shadow-md w-[100%] mb-1 text-left flex items-center py-5 '>Filter</SheetTitle>
-        
+          <SheetTitle className="border-b-white shadow-md w-[100%] mb-1 text-left flex items-center py-5 ">
+            Filter
+          </SheetTitle>
         </SheetHeader>
         <div className="grid gap-4 p-4">
-        <CoffeeListings />
+          <CoffeeListings />
         </div>
-      
       </SheetContent>
     </Sheet>
   );

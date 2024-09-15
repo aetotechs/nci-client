@@ -60,7 +60,7 @@ function Footer() {
               <span>
                 <img src="/icons/mail.svg" alt="mailIcon" />
               </span>
-              <span > support@nilecoffeeimports.com</span>
+              <span> support@nilecoffeeimports.com</span>
             </div>
             <div className="flex items-center gap-2">
               {' '}

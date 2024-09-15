@@ -40,7 +40,7 @@ export default {
         coffeegrowth: "url('/images/coffee-growth.png')",
         coffeehistory: "url('/images/coffe-history.png')",
         aboutimage: "url('/images/about.png')",
-        mobileabout: "url('/images/mobile-about.png')",
+        mobileabout: "url('/images/mobile-about.png')"
       },
       colors: {
         border: 'hsla(var(--border))',

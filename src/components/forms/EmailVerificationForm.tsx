@@ -46,11 +46,11 @@ export function EmailOtpForm() {
               <FormControl>
                 <InputOTP maxLength={5} {...field}>
                   <InputOTPGroup className=" ">
-                    <InputOTPSlot index={0} className='w-10 h-10'  />
-                    <InputOTPSlot index={1} className='w-10 h-10' />
-                    <InputOTPSlot index={2} className='w-10 h-10' />
-                    <InputOTPSlot index={3} className='w-10 h-10'  />
-                    <InputOTPSlot index={4} className='w-10 h-10' />
+                    <InputOTPSlot index={0} className="w-10 h-10" />
+                    <InputOTPSlot index={1} className="w-10 h-10" />
+                    <InputOTPSlot index={2} className="w-10 h-10" />
+                    <InputOTPSlot index={3} className="w-10 h-10" />
+                    <InputOTPSlot index={4} className="w-10 h-10" />
                   </InputOTPGroup>
                 </InputOTP>
               </FormControl>

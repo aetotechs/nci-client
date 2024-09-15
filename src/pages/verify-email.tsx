@@ -3,10 +3,10 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function VerifyEmail() {
-  const [VerificationMethod,setVerificationMethod] =useState('Email')
-  const HandleClick=()=>{
-    setVerificationMethod("Phone")
-  }
+  const [VerificationMethod, setVerificationMethod] = useState('Email');
+  const HandleClick = () => {
+    setVerificationMethod('Phone');
+  };
   return (
     <>
       <div className=" justify-center flex items-center min-h-screen ">
@@ -20,7 +20,9 @@ function VerifyEmail() {
           </div>
           <div className=" w-full">
             <div className="my-2 px-5 md:px-10">
-              <p className="text-primary text-[18px] font-normal" onClick={HandleClick}>Send code to phone</p>
+              <p className="text-primary text-[18px] font-normal" onClick={HandleClick}>
+                Send code to phone
+              </p>
             </div>
             <EmailOtpForm />
           </div>

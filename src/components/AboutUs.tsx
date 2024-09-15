@@ -4,7 +4,8 @@ function AboutUs() {
   return (
     <div
       className="my-20 md:my-40 py-5 rounded-[20px] px-5  md:flex md:justify-between md:py-14  md:gap-12 h-[596px]  md:h-[436px]   md:px-20  bg-white"
-      id="about">
+      id="about"
+    >
       <div className=" w-[300px] h-[229px] mb-6 md:w-[509px] md:h-[311px]  bg-about  bg-cover bg-center rounded-3xl"></div>
       <div className="md:w-[538px] h-[229px] md:h-[269px]">
         <h3 className="font-bold text-xl leading-9 md:text-[26px] md:leading-[30px] ">About Us</h3>
@@ -17,7 +18,8 @@ function AboutUs() {
         <div className="my-2  w-[169px]  ">
           <Link
             className="flex justify-center gap-2 bg-primary py-3 rounded-sm text-white font-semibold text-[16px] leading-5"
-            to="/shop">
+            to="/shop"
+          >
             Read More{' '}
           </Link>
         </div>

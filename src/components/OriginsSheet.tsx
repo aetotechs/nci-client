@@ -1,6 +1,4 @@
-
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-
 
 export function OriginsSheet() {
   return (
@@ -39,7 +37,8 @@ export function OriginsSheet() {
           </div>
         </div>
         <div className="py-1 fixed bottom-0 bg-muted w-[1230px] rounded-bl-md rounded-br-md text-center  text-textcolor  ">
-          <span className="font-semibold">C-Market:$2.43 USD </span> <span className='font-normal'>as of 03/05/2024</span>
+          <span className="font-semibold">C-Market:$2.43 USD </span>{' '}
+          <span className="font-normal">as of 03/05/2024</span>
         </div>
       </PopoverContent>
     </Popover>

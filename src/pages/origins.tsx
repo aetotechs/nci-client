@@ -49,24 +49,23 @@ function OriginsPage({ status }: IStatus) {
             <div className="md:hidden my-5">
               <FilterSheet />
             </div>
-         
           </div>
           <div className="flex md:justify-end items-center gap-3">
-              <div className="font-medium text-base">Sort by:</div>
-              <div>
-                <Select>
-                  <SelectTrigger className=" bg-selectbackground border border-selectborder outline-none rounded-[5px] w-[126px] h-[33px] ">
-                    <SelectValue placeholder="Featured" className="p-5 text-base font-bold " />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="featured">Featured</SelectItem>
-                    <SelectItem value="latest">Latest</SelectItem>
-                    <SelectItem value="lowestPrice">Lowest Price</SelectItem>
-                    <SelectItem value="highestPrice">Highest Price</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+            <div className="font-medium text-base">Sort by:</div>
+            <div>
+              <Select>
+                <SelectTrigger className=" bg-selectbackground border border-selectborder outline-none rounded-[5px] w-[126px] h-[33px] ">
+                  <SelectValue placeholder="Featured" className="p-5 text-base font-bold " />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="featured">Featured</SelectItem>
+                  <SelectItem value="latest">Latest</SelectItem>
+                  <SelectItem value="lowestPrice">Lowest Price</SelectItem>
+                  <SelectItem value="highestPrice">Highest Price</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
+          </div>
           <div className="md:flex   gap-3">
             <div className="w-[372px] bg-white h-max px-10 hidden md:flex md:flex-col">
               <h5 className="font-bold my-5">Filter</h5>

@@ -41,7 +41,6 @@ function ShopItems({ status }: IStatus) {
           </div>
         </div>
       </div>
-    
     </>
   );
 }

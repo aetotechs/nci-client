@@ -13,7 +13,9 @@ function NavItems() {
       <li className="cursor-pointer text-textcolor  active:text-primary ">
         <OriginsSheet />
       </li>
-      <li className="cursor-pointer text-textcolor  active:text-primary "><CategoriesSheet/></li>
+      <li className="cursor-pointer text-textcolor  active:text-primary ">
+        <CategoriesSheet />
+      </li>
       <li className="cursor-pointer  text-textcolor active:text-primary ">
         <Link to="/coffee-shop">Shop</Link>
       </li>

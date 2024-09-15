@@ -20,7 +20,8 @@ function EmptyCart({ status }: IStatus) {
               {' '}
               <Button
                 variant="outline"
-                className="bg-white border-primary text-primary md:w-[111px]">
+                className="bg-white border-primary text-primary md:w-[111px]"
+              >
                 Login
               </Button>
             </Link>
@@ -33,7 +34,8 @@ function EmptyCart({ status }: IStatus) {
           <div className="my-10 w-[197px]  ">
             <Link
               className="flex justify-center gap-2 bg-primary py-3 rounded-xl text-white font-semibold text-[16px] leading-5"
-              to="/shop-items">
+              to="/shop-items"
+            >
               Shop Now{' '}
               <span>
                 <ChevronRight />

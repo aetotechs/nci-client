@@ -31,7 +31,7 @@ function Profile({ status }: IStatus) {
       case 'My Orders':
         return <MyOrders />;
       case 'Wishlist':
-        return <Wishlist status={status}/>;
+        return <Wishlist status={status} />;
       case 'Addresses':
         return <Addresses />;
       case 'Payment Methods':
@@ -61,37 +61,44 @@ function Profile({ status }: IStatus) {
               <div className="flex md:flex-col md:px-4 gap-6">
                 <div
                   onClick={() => setActiveLink('My Account')}
-                  className={`${activeLink === 'My Account' ? 'text-primary w-[275px] h-[38px] border-l-4 px-5 py-2 border-primary bg-outline font-medium ' : 'font-normal'} text-base cursor-pointer `}>
+                  className={`${activeLink === 'My Account' ? 'text-primary w-[275px] h-[38px] border-l-4 px-5 py-2 border-primary bg-outline font-medium ' : 'font-normal'} text-base cursor-pointer `}
+                >
                   My Account
                 </div>
                 <div
                   onClick={() => setActiveLink('Password and Security')}
-                  className={`${activeLink === 'Password and Security' ? 'text-primary w-[295px] md:w-[275px] h-[38px] border-l-4 px-2 py-2 border-primary bg-outline font-medium ' : 'font-normal py-3 md:py-0'} text-base cursor-pointer`}>
+                  className={`${activeLink === 'Password and Security' ? 'text-primary w-[295px] md:w-[275px] h-[38px] border-l-4 px-2 py-2 border-primary bg-outline font-medium ' : 'font-normal py-3 md:py-0'} text-base cursor-pointer`}
+                >
                   <span className="hidden md:inline-flex">Password &</span> <span>Security</span>
                 </div>
                 <div
                   onClick={() => setActiveLink('My Orders')}
-                  className={`${activeLink === 'My Orders' ? 'text-primary w-[275px] h-[38px] border-l-4 px-5 py-2 border-primary bg-outline font-medium ' : 'font-normal'} text-base cursor-pointer`}>
+                  className={`${activeLink === 'My Orders' ? 'text-primary w-[275px] h-[38px] border-l-4 px-5 py-2 border-primary bg-outline font-medium ' : 'font-normal'} text-base cursor-pointer`}
+                >
                   My Orders
                 </div>
                 <div
                   onClick={() => setActiveLink('Wishlist')}
-                  className={`${activeLink === 'Wishlist' ? 'text-primary w-[275px] h-[38px] border-l-4 px-5 py-2 border-primary bg-outline font-medium ' : 'font-normal'} text-base cursor-pointer`}>
+                  className={`${activeLink === 'Wishlist' ? 'text-primary w-[275px] h-[38px] border-l-4 px-5 py-2 border-primary bg-outline font-medium ' : 'font-normal'} text-base cursor-pointer`}
+                >
                   My Wishlist
                 </div>
                 <div
                   onClick={() => setActiveLink('Addresses')}
-                  className={`${activeLink === 'Addresses' ? 'text-primary w-[275px] h-[38px] border-l-4  py-2 px-5 border-primary bg-outline font-medium ' : 'font-normal md:px-0 '} text-base cursor-pointer px-5 py-2 `}>
+                  className={`${activeLink === 'Addresses' ? 'text-primary w-[275px] h-[38px] border-l-4  py-2 px-5 border-primary bg-outline font-medium ' : 'font-normal md:px-0 '} text-base cursor-pointer px-5 py-2 `}
+                >
                   Addresses
                 </div>
                 <div
                   onClick={() => setActiveLink('Payment Methods')}
-                  className={`${activeLink === 'Payment Methods' ? 'text-primary w-[275px] h-[38px] border-l-4 px-5 py-2 border-primary bg-outline font-medium ' : 'font-normal'} text-base cursor-pointer `}>
+                  className={`${activeLink === 'Payment Methods' ? 'text-primary w-[275px] h-[38px] border-l-4 px-5 py-2 border-primary bg-outline font-medium ' : 'font-normal'} text-base cursor-pointer `}
+                >
                   Payment Methods
                 </div>
                 <div
                   onClick={() => setActiveLink('Privacy')}
-                  className={`${activeLink === 'Privacy' ? 'text-primary w-[275px] h-[38px] border-l-4 px-5 py-2 border-primary bg-outline font-medium ' : 'font-normal'} text-base cursor-pointer`}>
+                  className={`${activeLink === 'Privacy' ? 'text-primary w-[275px] h-[38px] border-l-4 px-5 py-2 border-primary bg-outline font-medium ' : 'font-normal'} text-base cursor-pointer`}
+                >
                   Privacy
                 </div>
                 <div className="cursor-pointer font-normal text-base">

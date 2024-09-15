@@ -29,13 +29,16 @@ const MyAddresses = [
 
 function Addresses() {
   return (
-    <div className='px-5 my-5 md:px-0 md:my-0'>
+    <div className="px-5 my-5 md:px-0 md:my-0">
       <div className="mb-4">
         <h3 className="font-medium text-xl">Addresses</h3>
       </div>
       <div className="flex flex-col md:grid grid-cols-2 gap-10">
         {MyAddresses.map((address, index) => (
-          <div key={index} className="md:w-[407px] h-[290px] border border-border rounded-[8px] pt-4 px-5 ">
+          <div
+            key={index}
+            className="md:w-[407px] h-[290px] border border-border rounded-[8px] pt-4 px-5 "
+          >
             <div className="font-semibold text-[17px] ">Default {address.title}</div>
 
             <div className="flex flex-col gap-2 my-2">
