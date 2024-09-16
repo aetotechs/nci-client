@@ -1,9 +1,7 @@
-import React from 'react';
-
 function AboutCoffee() {
   return (
-    <div className="w-[full] flex gap-10 my-24">
-      <div className="w-[579px]">
+    <div className="w-[full] flex flex-col px-5  md:px-0 md:flex-row gap-10 my-24 md:my-6">
+      <div className="md:w-[579px]">
         <h3 className="font-semibold text-[26px]">About This Coffee</h3>
         <p className="my-2 font-normal text-black">
           The Olam Coffee Estate Company in Kenya was started in 2012. It is both the largest coffee
@@ -52,7 +50,7 @@ function AboutCoffee() {
           </div>
         </div>
       </div>
-      <div className="bg-aboutcoffee bg-cover bg-center w-[606px] h-[484px] rounded-[8px]"></div>
+      <div className="bg-aboutcoffee bg-cover bg-center h-[300px] md:w-[606px] md:h-[484px] rounded-[8px]"></div>
     </div>
   );
 }

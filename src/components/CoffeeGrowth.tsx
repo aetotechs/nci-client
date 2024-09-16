@@ -1,8 +1,8 @@
 function CoffeeGrowth() {
   return (
-    <div className="grid grid-cols-2 rounded-[20px]   md:flex md:justify-between md:items-center gap-12   h-[398px]   my-20 ">
-      <div className="w-[509px] order-last  bg-coffeegrowth h-[311px] bg-cover bg-center rounded-3xl"></div>
-      <div className="w-[656px]">
+    <div className="grid grid-rows-2 rounded-[20px] px-5 mt-80    md:flex md:justify-between md:items-center gap-12   md:h-[398px]   md:my-20 ">
+      <div className="md:w-[509px] order-last  bg-coffeegrowth h-[311px] bg-cover bg-center rounded-3xl"></div>
+      <div className="md:w-[656px]">
         <h3 className="font-semibold text-[26px] leading-[22px] text-black mb-4">
           {' '}
           Coffee Growth In Kenya

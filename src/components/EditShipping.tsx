@@ -12,7 +12,7 @@ import { EditShippingAddressForm } from './forms/EditShippingAddressForm';
 
 export function EditAddressDialog() {
   return (
-    <Dialog >
+    <Dialog>
       <DialogTrigger asChild>
         <Button className="flex tems-center gap-3 w-[89px] h-[20px] mb-4 rounded-[8px] bg-primary text-white p-5">
           <span>

@@ -2,12 +2,10 @@ import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
-
   DialogHeader,
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog';
-
 
 import { AddAddressForm } from './forms/AddAddressForm';
 
@@ -21,7 +19,7 @@ export function AddAdressDialog() {
       </DialogTrigger>
       <DialogContent className="rounded-md w-[90%]">
         <DialogHeader>
-          <DialogTitle className='font-medium text-base'>Add New Address</DialogTitle>
+          <DialogTitle className="font-medium text-base">Add New Address</DialogTitle>
         </DialogHeader>
 
         <AddAddressForm />

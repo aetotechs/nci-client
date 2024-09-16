@@ -39,7 +39,7 @@ function OrderItems() {
     <div>
       {pathname === '/close-shop' ? null : <h3 className="font-medium text-xl">Order Items(2)</h3>}
       {pathname === '/shop-payment' ? (
-        <div className="mt-7  w-[403px] h-[186px] rounded-[8px] border px-10 py-3 flex justify-between ">
+        <div className="mt-7  md:w-[380px] h-[186px] rounded-[8px] border px-10 py-3 flex justify-between ">
           <div>
             {' '}
             <div className="font-semibold text-base">{Address.name}</div>
@@ -68,7 +68,7 @@ function OrderItems() {
           {myitems.map((item, index) => (
             <div
               key={index}
-              className="border flex w-[403px] h-[94px] rounded-[8px] px-10 py-5 items-center"
+              className="border flex md:w-[400px] h-[94px] rounded-[8px] px-10 py-5 items-center"
             >
               <div>
                 <h4 className="font-medium text-base">{item.name}</h4>

@@ -6,7 +6,7 @@ import 'swiper/css/effect-fade';
 
 function CoffeeJourney() {
   return (
-    <div>
+    <div className="hidden md:flex">
       <Swiper
         className=" h-[380px] rounded-[20px] mb-20 "
         modules={[EffectFade, Autoplay]}

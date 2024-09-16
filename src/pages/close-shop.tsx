@@ -27,13 +27,13 @@ function ClosedOrder({ status }: IStatus) {
   }, [pathname]);
   return (
     <>
-      <div className="my-[40px] mx-10 md:mx-[130px]   ">
+      <div className="md:my-5 mx-auto md:w-[1232px] w-[100vw] overflow-x-hidden  ">
         <Header status={status} />
 
         <div>
-          <div className="h-screen grid grid-cols-5 gap-5 place-content-center my-5">
+          <div className="md:h-screen  md:my-7 px-4 flex flex-col gap-20 md:grid md:grid-cols-5 md:gap-5 md:place-content-center my-5">
             <div className="col-span-3">
-              <div className="w-[528px] h-[345px]">
+              <div className="md:w-[528px] h-[345px]">
                 <div className="flex items-center gap-2 mb-4">
                   <div className="rounded-full w-[40px] h-[40px] bg-iconbackground flex items-center justify-center">
                     <Check className="text-white h-10 w-8" />
@@ -41,7 +41,7 @@ function ClosedOrder({ status }: IStatus) {
                   <h3 className="font-semibold text-2xl leading-10">Thank you for your order!</h3>
                 </div>
                 <div>
-                  <p className="text-sm pr-7 w-[436px] mb-4 text-textmuted">
+                  <p className="text-sm md:pr-7 md:w-[436px] mb-4 text-textmuted">
                     Your order has been received. We will notify you by email once your order has
                     been shipped
                   </p>
@@ -85,7 +85,7 @@ function ClosedOrder({ status }: IStatus) {
                 </div>
               </div>
             </div>
-            <div className="col-span-2 bg-white h-[557px]">
+            <div className="md:col-span-2 bg-white h-[630px]   md:h-[557px]">
               <OrderSummary />
             </div>
           </div>

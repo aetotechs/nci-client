@@ -59,7 +59,8 @@ export function EditShippingAddressForm() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="w-full flex flex-col md:grid md:grid-cols-2 gap-5  ">
+          className="w-full flex flex-col md:grid md:grid-cols-2 gap-5  "
+        >
           <FormField
             control={form.control}
             name="firstName"

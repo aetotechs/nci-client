@@ -5,7 +5,7 @@ import { Bookmark } from 'lucide-react';
 
 function ProductDetails() {
   return (
-    <div className="bg-white rounded-[8px]">
+    <div className="bg-white rounded-[8px] mx-5 md:mx-0 w-[90vw] md:w-full">
       <div className="bg-white px-5">
         <div className="flex items-center pt-4 ">
           <h3 className="font-semibold text-xl">$2.83/lb</h3>
@@ -47,12 +47,12 @@ function ProductDetails() {
           </div>
 
           <div>
-            <div className="flex  justify-between ">
-              <Counter className="h-[43px] w-[104px] rounded-[6px] text-textcolor" />
-              <Button className="h-[43px ] w-[157px] bg-primary text-white font-medium text-[17px]">
+            <div className="flex flex-col gap-3 md:flex-row    md:justify-between ">
+              <Counter className="h-[43px] md:w-[104px] rounded-[6px] text-textcolor" />
+              <Button className="h-[43px ] md:w-[157px] bg-primary text-white font-medium text-[17px]">
                 Add to Cart
               </Button>
-              <Button className="h-[43px ] w-[157px] bg-white text-primary font-medium text-[17px] border border-primary">
+              <Button className="h-[43px ] md:w-[157px] bg-white text-primary font-medium text-[17px] border border-primary">
                 Request Sample
               </Button>
             </div>
