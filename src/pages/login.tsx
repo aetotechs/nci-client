@@ -6,7 +6,7 @@ function LoginPage() {
   return (
     <>
       <div className=" justify-center flex items-center min-h-screen ">
-        <div className="w-[90vw] flex flex-col items-center my-1  border rounded-xl  justify-center py-5 md:w-[500px]  ">
+        <div className="w-[90vw] flex flex-col items-center my-1 bg-white  border rounded-xl  justify-center py-5 md:w-[500px]  ">
           <div className="bg-brand bg-contain bg-center bg-no-repeat w-[113px] h-[90px] mt-2 mb-6"></div>
           <div className="mb-4">
             <h3 className="text-center font-bold text-2xl mb-2">Get Started Today</h3>

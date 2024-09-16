@@ -6,13 +6,13 @@ import {
 } from '@/components/ui/accordion';
 import { AddressForm } from '@/components/forms/AddressForm';
 
-function Address() {
+function Address({ control }: { control: any }) {
   return (
     <Accordion type="single" collapsible>
       <AccordionItem value="item-1">
         <AccordionTrigger>Address</AccordionTrigger>
         <AccordionContent>
-          <AddressForm />
+          <AddressForm control={control}/>
         </AccordionContent>
       </AccordionItem>
     </Accordion>

@@ -1,7 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger
+} from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -13,13 +18,13 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
-import Address from '@/components/Address';
 import { CheckboxDemo } from '@/components/TermsCheckBox';
 
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { toast } from 'sonner';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+
+import { Register } from '@/lib/api-routes';
 
 const FormSchema = z.object({
   firstName: z.string().min(2, {
@@ -30,9 +35,16 @@ const FormSchema = z.object({
   workPhone: z.string().min(2, { message: 'Field is required' }),
   position: z.string().min(2, { message: 'Field is required' }),
   companyName: z.string().min(2, { message: 'Field is required' }),
-  companyWebsite: z.string().min(2, { message: 'Field is required' }),
+  companyWebsiteUrl: z.string().min(2, { message: 'Field is required' }),
   password: z.string().min(2, { message: 'Field is required' }),
-  confirmPassword: z.string().min(2, { message: 'Field is required' })
+  confirmPassword: z.string().min(2, { message: 'Field is required' }),
+  address: z.object({
+    country: z.string().min(2, { message: 'Country is required' }),
+    state: z.string().min(2, { message: 'State is required' }),
+    street: z.string().min(2, { message: 'Street is required' }),
+    zipcode: z.string().min(2, { message: 'Zip Code is required' }),
+    city: z.string().min(2, { message: 'City is required' })
+  })
 });
 
 export function SignupForm() {
@@ -55,26 +67,48 @@ export function SignupForm() {
       workEmail: '',
       workPhone: '',
       companyName: '',
-      companyWebsite: '',
+      companyWebsiteUrl: '',
       position: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      address: {
+        country: '',
+        city: '',
+        state: '',
+        street: '',
+        zipcode: ''
+      }
     }
   });
+  console.log(Register);
 
-  function onSubmit(values: z.infer<typeof FormSchema>) {
-    toast('Signup  Successful Redirecting...', {
-      className: 'border border-primary text-center text-base flex justify-center rounded-lg mb-2'
+  const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+    const response = await fetch(Register, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(values)
     });
+
+    console.log('response-->', response);
+    const data = await response.json();
+    console.log('hi');
+
+    console.log('---->', data);
+
+    // toast('Signup  Successful Redirecting...', {
+    //   className: 'border border-primary text-center text-base flex justify-center rounded-lg mb-2'
+    // });
+
     console.log('values submitted', values);
-  }
+  };
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="w-full flex flex-col md:grid md:grid-cols-2 gap-5 "
-      >
+        className="w-full flex flex-col md:grid md:grid-cols-2 gap-5 ">
         <FormField
           control={form.control}
           name="firstName"
@@ -161,7 +195,7 @@ export function SignupForm() {
         />
         <FormField
           control={form.control}
-          name="companyWebsite"
+          name="companyWebsiteUrl"
           render={({ field }) => (
             <FormItem>
               <FormLabel className="font-medium text-base ">Company Website</FormLabel>
@@ -174,8 +208,85 @@ export function SignupForm() {
           )}
         />
         <div className="col-span-2">
-          <Address />
+          <Accordion type="single" collapsible>
+            <AccordionItem value="item-1">
+              <AccordionTrigger>Address</AccordionTrigger>
+              <AccordionContent className="grid grid-cols-2 gap-2">
+                <FormField
+                  control={form.control}
+                  name="address.country"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Country</FormLabel>
+                      <FormControl>
+                        <Input type="text" placeholder="Enter your country" {...field} />
+                      </FormControl>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="address.city"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>City</FormLabel>
+                      <FormControl>
+                        <Input type="text" placeholder="Enter your city" {...field} />
+                      </FormControl>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="address.state"
+                  render={({ field }) => (
+                    <FormItem className="col-span-2">
+                      <FormLabel>State</FormLabel>
+                      <FormControl>
+                        <Input type="text" placeholder="Enter your   state" {...field} />
+                      </FormControl>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="address.street"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Street</FormLabel>
+                      <FormControl>
+                        <Input type="text" placeholder="Enter your street" {...field} />
+                      </FormControl>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="address.zipcode"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Zip Code</FormLabel>
+                      <FormControl>
+                        <Input type="text" placeholder="Enter your zipcode" {...field} />
+                      </FormControl>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
+
         <FormField
           control={form.control}
           name="password"
@@ -237,7 +348,7 @@ export function SignupForm() {
           <CheckboxDemo />
         </div>
         <Button type="submit" className="col-span-2">
-          <Link to="/verify-email">Sign Up</Link>
+          Sign Up
         </Button>
       </form>
     </Form>
