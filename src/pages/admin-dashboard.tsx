@@ -6,7 +6,7 @@ import Dashboard from "@/components/Dashboard";
 function Admin({status}:IStatus) {
   return (
     <div className="grid grid-cols-7 md:h-screen">
-      <div className="col-span-1 bg-white border-r border-primary">
+      <div className="col-span-1 bg-white border-r border-primary/30 sticky top-0">
         <AdminSideBarDesktop/>
       </div>
       <div className="col-span-6 ">

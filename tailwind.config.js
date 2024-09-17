@@ -58,10 +58,13 @@ export default {
         badgebackground: 'rgba(var(--badge-background))',
         footerbackground: 'rgba(var(--footer-background))',
         tab: 'rgba(var(--tab-background))',
+        progressbackground:'hsla(var(--progress-color))',
         selectbackground: 'rgba(var(--select-background))',
         selectborder: 'rgba(var(--select-border))',
         cardborder: 'rgba(var(--card-border))',
         textdark: 'rgba(var(--text-dark))',
+        Availablebackground:'rgba(var(--available-background))',
+        Availabletext: 'rgba(var( --available-textcolor))',
         foreground: 'hsl(var(--foreground))',
         outline: 'rgba(var(--outline-background))',
 

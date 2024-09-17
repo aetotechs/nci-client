@@ -26,19 +26,19 @@ const chartConfig = {
 
 export function GraphComponent() {
   return (
-    <ChartContainer config={chartConfig} className="md:h-[191px] w-full">
+    <ChartContainer config={chartConfig} className="md:h-[191px]  w-full">
       <BarChart accessibilityLayer data={chartData}>
-        <CartesianGrid vertical={false} />
+       
         <XAxis
           dataKey="month"
           tickLine={false}
           tickMargin={10}
-          axisLine={false}
-          tickFormatter={(value) => value.slice(0, 3)}
+          
+         
         />
         <YAxis />
         <ChartTooltip content={<ChartTooltipContent />} />
-        
+       
         <Bar dataKey="orders" fill="var(--color-orders)" radius={5} />
       </BarChart>
     </ChartContainer>

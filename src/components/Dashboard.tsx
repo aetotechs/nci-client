@@ -1,6 +1,16 @@
 import { GraphComponent } from './BarGraph';
+import CoffeeBrands from './CoffeeBrands';
+import RecentCustomers from './RecentCustomers';
+import { StockTable } from './tables/StockTable';
 import { Badge } from './ui/badge';
 import { Input } from './ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@/components/ui/select';
 const items = [
   {
     title: 'Total Coffee Listings',
@@ -18,7 +28,7 @@ const items = [
     title: 'TOTAL users',
     numberofusers: 1540,
     date: '98 morethan last month',
-    percentage: +15
+    percentage: 15
   },
   {
     title: 'orders',
@@ -27,10 +37,31 @@ const items = [
     percentage: -10
   }
 ];
-
+const coffeebrands = [
+  {
+    name: 'Ethiopian Yirgacheffe',
+    samples: 10,
+    bags: 0
+  },
+  {
+    name: 'Colombian Supremo',
+    samples: 20,
+    bags: 10
+  },
+  {
+    name: 'Guatemalan Antigua',
+    samples: 0,
+    bags: 10
+  },
+  {
+    name: 'Kenyan AA',
+    samples: 0,
+    bags: 0
+  }
+];
 function Dashboard() {
   return (
-    <div>
+    <div className="md:mt-14">
       <div className="flex justify-between ">
         <h3 className="font-semibold text-[23px]">Dashboard</h3>
         <div>
@@ -46,8 +77,14 @@ function Dashboard() {
             <div className="flex justify-between items-center">
               <div className="font-bold">{item.numberofusers}</div>
               <div>
-                <Badge variant="outline" className="w-[46px] h-[21px] rounded-[7px] justify-center">
-                  {item.percentage}
+                <Badge
+                  variant="outline"
+                  className={`border-none w-[46px] h-[21px] rounded-[7px] justify-center ${
+                    item.percentage < 0
+                      ? 'bg-destructive text-red-400'
+                      : 'bg-Availablebackground text-Availabletext'
+                  }`}>
+                  {item.percentage}%
                 </Badge>
               </div>
             </div>
@@ -56,23 +93,43 @@ function Dashboard() {
         ))}
       </div>
       <div className="flex gap-10 my-6">
-        <div className="border border-primary/30 bg-white px-10  md:w-[714px] rounded-[10px]">
-          <div className="flex justify-between">
+        <div className="border border-primary/30 bg-white   md:w-[714px] rounded-[10px]">
+          <div className="flex justify-between px-10 py-3">
+            <div className=''>
+              <h3 className="font-semibold text-base">Orders Over Time</h3>
+              <p className="font-bold text-xl">120</p>
+            </div>
             <div>
-              <h3>Orders Over Time</h3>
-              <p>120</p>
+              <Select>
+                <SelectTrigger className="  border border-selectborder outline-none rounded-[5px] w-[100px] h-[33px] ">
+                  <SelectValue placeholder="7 days" className="p-5 text-base font-bold " />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="7 days">7 days </SelectItem>
+                  <SelectItem value="30 days">30 days</SelectItem>
+                  <SelectItem value="6 months">6 months</SelectItem>
+                  <SelectItem value="12 months">12 months</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
-          <GraphComponent />
+          <div className="py-10 pr-10">
+            <GraphComponent />
+          </div>
         </div>
-        <div className="border border-primary/30 bg-white  md:w-[416px] rounded-[10px]">
-          <div className="flex justify-between">
-            <div>
-              <h3>Orders Over Time</h3>
-              <p>120</p>
-            </div>
+        <div className="border border-primary/30 bg-white overflow-hidden md:w-[416px] rounded-[10px]">
+          <CoffeeBrands />
+        </div>
+      </div>
+      <div className="flex gap-10 my-6">
+        <div className="border border-primary/30 bg-white px-10 py-4  md:w-[714px] rounded-[10px]">
+          <div>
+            <h3 className="font-semibold text-base my-2">Stock Threshold</h3>
           </div>
-          <GraphComponent />
+          <StockTable coffeebrands={coffeebrands} />
+        </div>
+        <div className="border border-primary/30 bg-white overflow-hidden md:w-[416px] rounded-[10px] p-4">
+          <RecentCustomers />
         </div>
       </div>
     </div>

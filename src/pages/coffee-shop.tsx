@@ -13,7 +13,7 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select';
-import { Button } from '@/components/ui/button';
+
 import { FilterSheet } from '@/components/FilterMobile';
 
 function CoffeeShop({ status }: IStatus) {
