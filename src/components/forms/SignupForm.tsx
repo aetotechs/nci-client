@@ -26,26 +26,31 @@ import { useState } from 'react';
 
 import { Register } from '@/lib/api-routes';
 
-const FormSchema = z.object({
-  firstName: z.string().min(2, {
-    message: 'Field is required.'
-  }),
-  lastName: z.string().min(2, { message: 'Field is required' }),
-  workEmail: z.string().min(2, { message: 'Field is required.' }),
-  workPhone: z.string().min(2, { message: 'Field is required' }),
-  position: z.string().min(2, { message: 'Field is required' }),
-  companyName: z.string().min(2, { message: 'Field is required' }),
-  companyWebsiteUrl: z.string().min(2, { message: 'Field is required' }),
-  password: z.string().min(2, { message: 'Field is required' }),
-  confirmPassword: z.string().min(2, { message: 'Field is required' }),
-  address: z.object({
-    country: z.string().min(2, { message: 'Country is required' }),
-    state: z.string().min(2, { message: 'State is required' }),
-    street: z.string().min(2, { message: 'Street is required' }),
-    zipcode: z.string().min(2, { message: 'Zip Code is required' }),
-    city: z.string().min(2, { message: 'City is required' })
+const FormSchema = z
+  .object({
+    firstName: z.string().min(2, {
+      message: 'Field is required.'
+    }),
+    lastName: z.string().min(2, { message: 'Field is required' }),
+    email: z.string().email().min(2, { message: 'Field is required.' }),
+    workPhone: z.string().min(2, { message: 'Field is required' }),
+    position: z.string().min(2, { message: 'Field is required' }),
+    company: z.string().min(2, { message: 'Field is required' }),
+    companyWebsiteUrl: z.string().min(2, { message: 'Field is required' }),
+    password: z.string().min(2, { message: 'Field is required' }),
+    confirmPassword: z.string().min(2, { message: 'Field is required' }),
+    address: z.object({
+      country: z.string().optional(),
+      state: z.string().optional(),
+      street: z.string().optional(),
+      zip: z.string().optional(),
+      city: z.string().optional()
+    })
   })
-});
+  .refine((data) => data.password === data.confirmPassword, {
+    message: 'Passwords do not match',
+    path: ['confirmPassword']
+  });
 
 export function SignupForm() {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -64,42 +69,45 @@ export function SignupForm() {
     defaultValues: {
       firstName: '',
       lastName: '',
-      workEmail: '',
+      email: '',
       workPhone: '',
-      companyName: '',
+      company: '',
       companyWebsiteUrl: '',
       position: '',
       password: '',
-      confirmPassword: '',
+
       address: {
         country: '',
         city: '',
         state: '',
         street: '',
-        zipcode: ''
+        zip: ''
       }
     }
   });
   console.log(Register);
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
-    const response = await fetch(Register, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(values)
-    });
+    const { confirmPassword, ...formData } = values;
+    try {
+      const response = await fetch(Register, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+      console.log("5678",formData)
 
-    console.log('response-->', response);
-    const data = await response.json();
-    console.log('hi');
+      console.log('response-->', response);
+      const data = await response.json();
 
-    console.log('---->', data);
+      console.log('---->', data);
+    } catch (error) {
+      console.log('error', error);
+    }
 
-    // toast('Signup  Successful Redirecting...', {
-    //   className: 'border border-primary text-center text-base flex justify-center rounded-lg mb-2'
-    // });
+  
 
     console.log('values submitted', values);
   };
@@ -153,7 +161,7 @@ export function SignupForm() {
         />
         <FormField
           control={form.control}
-          name="workEmail"
+          name="email"
           render={({ field }) => (
             <FormItem>
               <FormLabel className="font-medium text-base ">Work Email</FormLabel>
@@ -181,7 +189,7 @@ export function SignupForm() {
         />
         <FormField
           control={form.control}
-          name="companyName"
+          name="company"
           render={({ field }) => (
             <FormItem>
               <FormLabel className="font-medium text-base ">Company</FormLabel>
@@ -270,7 +278,7 @@ export function SignupForm() {
                 />
                 <FormField
                   control={form.control}
-                  name="address.zipcode"
+                  name="address.zip"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Zip Code</FormLabel>
