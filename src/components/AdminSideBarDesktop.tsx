@@ -24,28 +24,54 @@ function AdminSideBarDesktop() {
           </span>
           Dashboard
         </div>
-        <div className="flex items-center gap-1">
+        <div className="flex gap-1">
+         
           <Accordion type="single" collapsible >
             <AccordionItem value="item-1">
-              <AccordionTrigger className='flex justify-between'>
-                {' '}
-                <span>
+              <AccordionTrigger className='flex justify-between w-40  '>
+              <div className='flex gap-1'>
+              <span>
                   <img src="/icons/catalog.svg" alt="Catalog" />
                 </span>
                 Catalogue
+              </div>
               </AccordionTrigger>
-              <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
+              <AccordionContent className='max-w-36' >
+                <div className="flex flex-col gap-2 px-3">
+                  <Link to='/coffee-listings'>Coffee Listings</Link>
+                  <Link to='/categories'>Categories</Link>
+                  <Link to='/admin-origins'>Origins</Link>
+                </div>
+              </AccordionContent>
             </AccordionItem>
            
          
           </Accordion>
         </div>
-        <div className="flex items-center gap-1">
-          <span>
-            <img src="/icons/sales.svg" alt="Sales" />
-          </span>
-          Sales
-        </div>
+        <div className="flex gap-1">
+         
+         <Accordion type="single" collapsible >
+           <AccordionItem value="item-1">
+             <AccordionTrigger className='flex justify-between w-40  '>
+             <div className='flex gap-1'>
+             <span>
+                 <img src="/icons/sales.svg" alt="Sales" />
+               </span>
+               Sales
+             </div>
+             </AccordionTrigger>
+             <AccordionContent className='max-w-36' >
+               <div className="flex flex-col gap-2 px-3">
+                 <Link to='/coffee-listings'>Coffee Listings</Link>
+                 <Link to='/categories'>Categories</Link>
+                 <Link to='/origins'>Origins</Link>
+               </div>
+             </AccordionContent>
+           </AccordionItem>
+          
+        
+         </Accordion>
+       </div>
         <div className="flex items-center gap-1">
           <span>
             <img src="/icons/customer.svg" alt="Customers" />

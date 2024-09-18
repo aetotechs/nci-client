@@ -67,6 +67,8 @@ export default {
         Availabletext: 'rgba(var( --available-textcolor))',
         foreground: 'hsl(var(--foreground))',
         outline: 'rgba(var(--outline-background))',
+        inputfield:'rgba(var(--input-field))',
+        textdarken:'rgba(var(--text-darken))',
 
         primary: {
           DEFAULT: 'hsl(var(--primary))',

@@ -19,6 +19,8 @@ import About from '@/pages/about-us';
 import ContactUs from '@/pages/contact-us';
 import OriginsPage from '@/pages/origins';
 import Admin from '@/pages/admin-dashboard';
+import Categories from './pages/categories';
+import AdminOrigins from './pages/Admin-origins';
 export interface IStatus {
   status: boolean;
 }
@@ -47,6 +49,8 @@ function App() {
           <Route path="/contact-us" element={<ContactUs status={loggedIn} />} />
           <Route path="/origins" element={<OriginsPage status={loggedIn} />} />
           <Route path='/admin' element={<Admin status={loggedIn} />} />
+          <Route path ='/categories' element={<Categories />} />
+          <Route path='/admin-origins' element={<AdminOrigins  />} />
         </Routes>
       </BrowserRouter>
     </>
