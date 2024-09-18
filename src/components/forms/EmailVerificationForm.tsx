@@ -12,7 +12,6 @@ import {
   FormMessage
 } from '@/components/ui/form';
 import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/input-otp';
-import { Link } from 'react-router-dom';
 
 const FormSchema = z.object({
   pin: z.string().min(6, {
@@ -21,6 +20,7 @@ const FormSchema = z.object({
 });
 
 export function EmailOtpForm() {
+  const email = localStorage.getItem('email');
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -29,15 +29,15 @@ export function EmailOtpForm() {
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log(data);
+    console.log(data.pin);
+    console.log(email);
   }
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className=" w-full px-4 md:w-full flex flex-col justify-center items-center space-y-6 "
-      >
+        className=" w-full px-4 md:w-full flex flex-col justify-center items-center space-y-6 ">
         <FormField
           control={form.control}
           name="pin"
@@ -62,8 +62,8 @@ export function EmailOtpForm() {
           )}
         />
 
-        <Button type="submit" className="w-full md:w-[417px] h-[57px] rounded-[8px]">
-          <Link to="/login">Verify</Link>
+        <Button type="submit" className="w-full md:w-[417px] h-11 rounded-[8px]">
+          Verify
         </Button>
       </form>
     </Form>

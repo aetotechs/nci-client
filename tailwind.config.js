@@ -62,6 +62,7 @@ export default {
         selectborder: 'rgba(var(--select-border))',
         cardborder: 'rgba(var(--card-border))',
         textdark: 'rgba(var(--text-dark))',
+        toastsuccess:'rgba(var(--toast-success))',
         foreground: 'hsl(var(--foreground))',
         outline: 'rgba(var(--outline-background))',
 

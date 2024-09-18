@@ -23,6 +23,7 @@ import { CheckboxDemo } from '@/components/TermsCheckBox';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { toast } from 'sonner';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Register } from '@/lib/api-routes';
 
@@ -55,6 +56,8 @@ const FormSchema = z
 export function SignupForm() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
 
   const togglePassword = () => {
     setPasswordVisible(!passwordVisible);
@@ -85,10 +88,10 @@ export function SignupForm() {
       }
     }
   });
-  console.log(Register);
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
     const { confirmPassword, ...formData } = values;
+    setIsSubmitting(true);
     try {
       const response = await fetch(Register, {
         method: 'POST',
@@ -97,19 +100,51 @@ export function SignupForm() {
         },
         body: JSON.stringify(formData)
       });
-      console.log("5678",formData)
+      console.log(response);
 
-      console.log('response-->', response);
-      const data = await response.json();
+      if (response.status === 200) {
+        localStorage.setItem('email', formData.email);
+        setTimeout(() => {
+          toast.success(
+            <div className="flex gap-1 items-center">
+              <span>
+                <img src="/icons/signupemail.svg" alt="Email" />
+              </span>
+              <span>Success!</span> Check email to verify your account.
+            </div>,
+            {
+              style: {
+                background: '#007BFF1A',
 
-      console.log('---->', data);
+                color: '#007BFF',
+                border: '1px solid #007BFF80'
+              }
+            }
+          );
+          navigate('/verify-email');
+        }, 2000);
+      } else {
+        const text = await response.text();
+
+        toast.error('Email or PhoneNumber already registered.Please use different details', {
+          style: {
+            backgroundColor: '#F443361A',
+            color: '#F44336',
+            border: '1px solid #F4433680'
+          }
+        });
+      }
     } catch (error) {
-      console.log('error', error);
+      toast.error('Try Again Later', {
+        style: {
+          backgroundColor: '#F443361A',
+          color: '#FFE6E6',
+          border: '1px solid #F4433680'
+        }
+      });
+    } finally {
+      setIsSubmitting(false);
     }
-
-  
-
-    console.log('values submitted', values);
   };
 
   return (
@@ -355,8 +390,8 @@ export function SignupForm() {
         <div className="col-span-2">
           <CheckboxDemo />
         </div>
-        <Button type="submit" className="col-span-2">
-          Sign Up
+        <Button type="submit" className="col-span-2" disabled={isSubmitting}>
+          {isSubmitting ? 'Submitting...' : 'Sign Up'}
         </Button>
       </form>
     </Form>
