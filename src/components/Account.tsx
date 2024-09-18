@@ -1,9 +1,13 @@
 import { Button } from '@/components/ui/button';
 
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export function AccountPopover() {
+  const HandleClick = () => {
+    localStorage.clear();
+    window.location.reload();
+  };
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -13,7 +17,9 @@ export function AccountPopover() {
         <div className="flex flex-col gap-3 px-2">
           <Link to="/profile">My Account</Link>
           <Link to="/profile">Wishlist</Link>
-          <Link to="/login">Log Out</Link>
+          <span className="cursor-pointer" onClick={HandleClick}>
+            Log Out
+          </span>
         </div>
       </PopoverContent>
     </Popover>

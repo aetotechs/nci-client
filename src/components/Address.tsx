@@ -12,7 +12,7 @@ function Address({ control }: { control: any }) {
       <AccordionItem value="item-1">
         <AccordionTrigger>Address</AccordionTrigger>
         <AccordionContent>
-          <AddressForm control={control}/>
+          <AddressForm control={control} />
         </AccordionContent>
       </AccordionItem>
     </Accordion>

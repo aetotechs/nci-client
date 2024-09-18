@@ -34,7 +34,10 @@ const FormSchema = z
     }),
     lastName: z.string().min(2, { message: 'Field is required' }),
     email: z.string().email().min(2, { message: 'Field is required.' }),
-    workPhone: z.string().min(2, { message: 'Field is required' }),
+    workPhone: z
+      .string()
+      .min(2, { message: 'Field is required' })
+      .max(15, { message: 'Field is too long' }),
     position: z.string().min(2, { message: 'Field is required' }),
     company: z.string().min(2, { message: 'Field is required' }),
     companyWebsiteUrl: z.string().min(2, { message: 'Field is required' }),
@@ -57,6 +60,7 @@ export function SignupForm() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(false);
   const navigate = useNavigate();
 
   const togglePassword = () => {
@@ -90,6 +94,16 @@ export function SignupForm() {
   });
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+    if (!termsAccepted) {
+      toast.error('Please accept the terms and conditions before signing up.', {
+        style: {
+          backgroundColor: '#F443361A',
+          color: '#F44336',
+          border: '1px solid #F4433680'
+        }
+      });
+      return;
+    }
     const { confirmPassword, ...formData } = values;
     setIsSubmitting(true);
     try {
@@ -104,28 +118,28 @@ export function SignupForm() {
 
       if (response.status === 200) {
         localStorage.setItem('email', formData.email);
-        setTimeout(() => {
-          toast.success(
-            <div className="flex gap-1 items-center">
-              <span>
-                <img src="/icons/signupemail.svg" alt="Email" />
-              </span>
-              <span>Success!</span> Check email to verify your account.
-            </div>,
-            {
-              style: {
-                background: '#007BFF1A',
 
-                color: '#007BFF',
-                border: '1px solid #007BFF80'
-              }
+        toast.success(
+          <div className="flex gap-1 items-center">
+            <span>
+              <img src="/icons/signupemail.svg" alt="Email" />
+            </span>
+            <span>Success!</span> Check email to verify your account.
+          </div>,
+          {
+            style: {
+              background: '#007BFF1A',
+
+              color: '#007BFF',
+              border: '1px solid #007BFF80'
             }
-          );
-          navigate('/verify-email');
-        }, 2000);
-      } else {
-        const text = await response.text();
+          }
+        );
 
+        setTimeout(() => {
+          navigate('/verify-email');
+        }, 5000);
+      } else {
         toast.error('Email or PhoneNumber already registered.Please use different details', {
           style: {
             backgroundColor: '#F443361A',
@@ -151,7 +165,8 @@ export function SignupForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="w-full flex flex-col md:grid md:grid-cols-2 gap-5 ">
+        className="w-full flex flex-col md:grid md:grid-cols-2 gap-5 "
+      >
         <FormField
           control={form.control}
           name="firstName"
@@ -388,7 +403,7 @@ export function SignupForm() {
         />
 
         <div className="col-span-2">
-          <CheckboxDemo />
+          <CheckboxDemo checked={termsAccepted} onCheckedChange={setTermsAccepted} />
         </div>
         <Button type="submit" className="col-span-2" disabled={isSubmitting}>
           {isSubmitting ? 'Submitting...' : 'Sign Up'}

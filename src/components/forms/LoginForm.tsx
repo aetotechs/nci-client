@@ -14,7 +14,7 @@ import {
   FormMessage
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { Login } from '@/lib/api-routes';
 import { toast } from 'sonner';
@@ -27,6 +27,8 @@ const FormSchema = z.object({
 });
 
 export function LoginForm() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
 
   const togglePassword = () => {
@@ -42,6 +44,7 @@ export function LoginForm() {
   console.log(Login);
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+    setIsSubmitting(true);
     try {
       const response = await fetch(Login, {
         method: 'POST',
@@ -50,20 +53,46 @@ export function LoginForm() {
         },
         body: JSON.stringify(values)
       });
-      const data = await response.json();  
-      
-      console.log('---->', data);
 
+      const user = await response.json();
 
-      if(response.ok){
-        toast('Login Successful Redirecting...', {
-          className: 'border border-primary text-center text-base flex justify-center rounded-lg mb-2'
+      if (response.ok) {
+        localStorage.setItem('token', user.token);
+        localStorage.setItem('user', user.user);
+        localStorage.setItem('isLoggedIn', JSON.stringify(true));
+
+        toast.success('Login Successful Redirecting...', {
+          style: {
+            background: '#007BFF1A',
+
+            color: '#007BFF',
+            border: '1px solid #007BFF80'
+          }
+        });
+
+        setTimeout(() => {
+          navigate('/');
+        }, 5000);
+      } else {
+        const data = await response.text();
+        toast.error(data, {
+          style: {
+            backgroundColor: '#F443361A',
+            color: '#F44336',
+            border: '1px solid #F4433680'
+          }
         });
       }
-     
-
     } catch (error) {
-      console.log('error', error);
+      toast.error('Try Again Later', {
+        style: {
+          backgroundColor: '#F443361A',
+          color: '#F44336',
+          border: '1px solid #F4433680'
+        }
+      });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -75,12 +104,12 @@ export function LoginForm() {
           name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="font-medium text-base">username</FormLabel>
+              <FormLabel className="font-medium text-base">Email</FormLabel>
 
               <FormControl>
                 <Input
                   type="username"
-                  placeholder="Enter your username"
+                  placeholder="Enter your email"
                   className="h-10 "
                   {...field}
                 />
@@ -122,8 +151,8 @@ export function LoginForm() {
             Forgot Password
           </Link>
         </div>
-        <Button type="submit" className="w-full font-normal text-base">
-          Login
+        <Button type="submit" className="w-full font-normal text-base" disabled={isSubmitting}>
+          {isSubmitting ? 'Submitting...' : 'Login'}
         </Button>
       </form>
     </Form>
