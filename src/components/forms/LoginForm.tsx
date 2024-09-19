@@ -14,17 +14,21 @@ import {
   FormMessage
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
+import { Login } from '@/lib/api-routes';
+import { toast } from 'sonner';
 
 const FormSchema = z.object({
-  email: z.string().min(2, {
-    message: 'email must be at least 2 characters.'
+  username: z.string().min(2, {
+    message: 'username must be at least 2 characters.'
   }),
   password: z.string().min(2, { message: 'password must be at least 2 characters.' })
 });
 
 export function LoginForm() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
 
   const togglePassword = () => {
@@ -33,27 +37,82 @@ export function LoginForm() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      email: '',
+      username: '',
       password: ''
     }
   });
+  console.log(Login);
 
-  function onSubmit(values: z.infer<typeof FormSchema>) {
-    console.log(values);
-  }
+  const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+    setIsSubmitting(true);
+    try {
+      const response = await fetch(Login, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+      });
+
+      const user = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem('token', user.token);
+        localStorage.setItem('user', user.user);
+        localStorage.setItem('isLoggedIn', JSON.stringify(true));
+
+        toast.success('Login Successful Redirecting...', {
+          style: {
+            background: '#007BFF1A',
+
+            color: '#007BFF',
+            border: '1px solid #007BFF80'
+          }
+        });
+
+        setTimeout(() => {
+          navigate('/');
+        }, 5000);
+      } else {
+        const data = await response.text();
+        toast.error(data, {
+          style: {
+            backgroundColor: '#F443361A',
+            color: '#F44336',
+            border: '1px solid #F4433680'
+          }
+        });
+      }
+    } catch (error) {
+      toast.error('Try Again Later', {
+        style: {
+          backgroundColor: '#F443361A',
+          color: '#F44336',
+          border: '1px solid #F4433680'
+        }
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-4">
         <FormField
           control={form.control}
-          name="email"
+          name="username"
           render={({ field }) => (
             <FormItem>
               <FormLabel className="font-medium text-base">Email</FormLabel>
 
               <FormControl>
-                <Input type="email" placeholder="Enter your email" className="h-12 " {...field} />
+                <Input
+                  type="username"
+                  placeholder="Enter your email"
+                  className="h-10 "
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -70,7 +129,7 @@ export function LoginForm() {
                   <Input
                     type={visible ? 'text' : 'password'}
                     placeholder="Enter your password"
-                    className="h-12 border-none ring-offset-0 focus-visible:ring-0  focus-visible:ring-offset-0  "
+                    className="h-10 border-none ring-offset-0 focus-visible:ring-0  focus-visible:ring-offset-0  "
                     {...field}
                   />
                   <p onClick={togglePassword}>
@@ -92,8 +151,8 @@ export function LoginForm() {
             Forgot Password
           </Link>
         </div>
-        <Button type="submit" className="w-full font-normal text-base">
-          Login
+        <Button type="submit" className="w-full font-normal text-base" disabled={isSubmitting}>
+          {isSubmitting ? 'Submitting...' : 'Login'}
         </Button>
       </form>
     </Form>

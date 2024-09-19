@@ -9,7 +9,7 @@ import ShopAddress from '@/pages/shop-address';
 import ShopPayment from '@/pages/shop-payment';
 import ClosedOrder from '@/pages/close-shop';
 import ShopItems from '@/pages/shop-items';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CoffeeShop from '@/pages/coffee-shop';
 import ProductPage from '@/pages/product-page';
 import Profile from '@/pages/profile';
@@ -23,7 +23,13 @@ export interface IStatus {
 }
 
 function App() {
-  const [loggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
+  useEffect(() => {
+    const storedValue = localStorage.getItem('isLoggedIn');
+    const isLogged = storedValue ? JSON.parse(storedValue) : false;
+    setLoggedIn(isLogged);
+  }, []);
+
   return (
     <>
       <Toaster />
