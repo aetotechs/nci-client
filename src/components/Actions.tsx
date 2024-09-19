@@ -7,10 +7,12 @@ import { DeleteDialog } from './DeleteDialog';
 import { IOrigins } from './tables/OriginsTable';
 import { IRegions } from './tables/RegionsTable';
 import { ViewOrigin } from './ViewOrigin';
+import { IListings } from './tables/CoffeeListingsTable';
 export interface IActions {
   category?: ICategories;
   origin?: IOrigins;
   region?: IRegions;
+  listing?: IListings;
 }
 
 export function ActionsPopover({ category, origin }: IActions) {

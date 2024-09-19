@@ -21,6 +21,8 @@ import OriginsPage from '@/pages/origins';
 import Admin from '@/pages/admin-dashboard';
 import Categories from './pages/categories';
 import AdminOrigins from './pages/Admin-origins';
+import CoffeeListings from './pages/coffee-listings';
+
 export interface IStatus {
   status: boolean;
 }
@@ -51,6 +53,7 @@ function App() {
           <Route path='/admin' element={<Admin status={loggedIn} />} />
           <Route path ='/categories' element={<Categories />} />
           <Route path='/admin-origins' element={<AdminOrigins  />} />
+          <Route path='/coffee-listings' element={<CoffeeListings />} />
         </Routes>
       </BrowserRouter>
     </>
