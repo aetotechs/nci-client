@@ -18,6 +18,7 @@ import VerifyEmail from '@/pages/verify-email';
 import About from '@/pages/about-us';
 import ContactUs from '@/pages/contact-us';
 import OriginsPage from '@/pages/origins';
+import { isAuthenticated } from './lib/cookie';
 export interface IStatus {
   status: boolean;
 }
@@ -25,9 +26,8 @@ export interface IStatus {
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   useEffect(() => {
-    const storedValue = localStorage.getItem('isLoggedIn');
-    const isLogged = storedValue ? JSON.parse(storedValue) : false;
-    setLoggedIn(isLogged);
+    const UserLoggedIn = isAuthenticated();
+    setLoggedIn(UserLoggedIn);
   }, []);
 
   return (

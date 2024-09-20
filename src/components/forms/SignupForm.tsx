@@ -117,7 +117,7 @@ export function SignupForm() {
       console.log(response);
 
       if (response.status === 200) {
-        localStorage.setItem('email', formData.email);
+       
 
         toast.success(
           <div className="flex gap-1 items-center">

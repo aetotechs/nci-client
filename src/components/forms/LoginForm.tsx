@@ -18,6 +18,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { Login } from '@/lib/api-routes';
 import { toast } from 'sonner';
+import { setAuthUser, setUserToken } from '@/lib/cookie';
 
 const FormSchema = z.object({
   username: z.string().min(2, {
@@ -41,7 +42,7 @@ export function LoginForm() {
       password: ''
     }
   });
-  console.log(Login);
+  
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
     setIsSubmitting(true);
@@ -57,9 +58,9 @@ export function LoginForm() {
       const user = await response.json();
 
       if (response.ok) {
-        localStorage.setItem('token', user.token);
-        localStorage.setItem('user', user.user);
-        localStorage.setItem('isLoggedIn', JSON.stringify(true));
+        setUserToken(user.token);
+        setAuthUser(user.user)
+    
 
         toast.success('Login Successful Redirecting...', {
           style: {
@@ -72,6 +73,7 @@ export function LoginForm() {
 
         setTimeout(() => {
           navigate('/');
+          window.location.reload();
         }, 5000);
       } else {
         const data = await response.text();
