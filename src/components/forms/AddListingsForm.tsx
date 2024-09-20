@@ -15,7 +15,16 @@ import {
 import { Input } from '@/components/ui/input';
 
 import { toast } from 'sonner';
-import { Textarea } from '../ui/textarea';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@/components/ui/select';
+
+import { RichTextEditor } from '../RichTextEditor';
+import { PendingPopover } from '../PendingPopover';
 
 const FormSchema = z.object({
   brand: z.string().min(2, { message: 'Field is required' }),
@@ -109,7 +118,16 @@ export function ListingsForm() {
                 <FormItem className="col-span-2">
                   <FormLabel>Category *</FormLabel>
                   <FormControl>
-                    <Input type="text" placeholder="" className="h-9 " {...field} />
+                  <Select >
+                        <SelectTrigger >
+                          <SelectValue  />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="light">Light</SelectItem>
+                          <SelectItem value="dark">Dark</SelectItem>
+                          <SelectItem value="system">System</SelectItem>
+                        </SelectContent>
+                      </Select>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -161,7 +179,16 @@ export function ListingsForm() {
                 <FormItem>
                   <FormLabel>Bag Weight (kg) *</FormLabel>
                   <FormControl>
-                    <Input type="text" placeholder="" className="h-9 " {...field} />
+                  <Select >
+                        <SelectTrigger >
+                          <SelectValue  />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="light">Light</SelectItem>
+                          <SelectItem value="dark">Dark</SelectItem>
+                          <SelectItem value="system">System</SelectItem>
+                        </SelectContent>
+                      </Select>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -174,7 +201,16 @@ export function ListingsForm() {
                 <FormItem>
                   <FormLabel>Origin *</FormLabel>
                   <FormControl>
-                    <Input type="text" placeholder="" className="h-9 " {...field} />
+                    <Select>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="light">Light</SelectItem>
+                        <SelectItem value="dark">Dark</SelectItem>
+                        <SelectItem value="system">System</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -187,7 +223,16 @@ export function ListingsForm() {
                 <FormItem>
                   <FormLabel>Region</FormLabel>
                   <FormControl>
-                    <Input type="text" placeholder="" className="h-9 " {...field} />
+                    <Select>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="light">Light</SelectItem>
+                        <SelectItem value="dark">Dark</SelectItem>
+                        <SelectItem value="system">System</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -238,8 +283,11 @@ export function ListingsForm() {
               render={({ field }) => (
                 <FormItem className="col-span-2">
                   <FormLabel>About the Coffee *</FormLabel>
+                  <FormDescription className="font-normal text-[13px] text-inactive">
+                    Briefly describe the coffee and upload a related image.
+                  </FormDescription>
                   <FormControl>
-                    <Input type="text" placeholder="" className="h-9 " {...field} />
+                    <RichTextEditor />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -262,7 +310,16 @@ export function ListingsForm() {
                   <FormItem className="col-span-2">
                     <FormLabel>Harvest Season *</FormLabel>
                     <FormControl>
-                      <Input type="text" placeholder="" className="h-9 " {...field} />
+                      <Select>
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="light">Light</SelectItem>
+                          <SelectItem value="dark">Dark</SelectItem>
+                          <SelectItem value="system">System</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -275,7 +332,16 @@ export function ListingsForm() {
                   <FormItem className="col-span-2">
                     <FormLabel>Warehouse *</FormLabel>
                     <FormControl>
-                      <Input type="text" placeholder="" className="h-9 " {...field} />
+                      <Select>
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="light">Light</SelectItem>
+                          <SelectItem value="dark">Dark</SelectItem>
+                          <SelectItem value="system">System</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -288,7 +354,16 @@ export function ListingsForm() {
                   <FormItem>
                     <FormLabel>Status *</FormLabel>
                     <FormControl>
-                      <Input type="text" placeholder="" className="h-9 " {...field} />
+                      <Select>
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="light">Light</SelectItem>
+                          <SelectItem value="dark">Dark</SelectItem>
+                          <SelectItem value="system">System</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -301,7 +376,16 @@ export function ListingsForm() {
                   <FormItem>
                     <FormLabel>Processing *</FormLabel>
                     <FormControl>
-                      <Input type="text" placeholder="" className="h-9 " {...field} />
+                      <Select>
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="light">Light</SelectItem>
+                          <SelectItem value="dark">Dark</SelectItem>
+                          <SelectItem value="system">System</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -327,7 +411,16 @@ export function ListingsForm() {
                   <FormItem>
                     <FormLabel>Bag Type *</FormLabel>
                     <FormControl>
-                      <Input type="text" placeholder="" className="h-9 " {...field} />
+                      <Select>
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="light">Light</SelectItem>
+                          <SelectItem value="dark">Dark</SelectItem>
+                          <SelectItem value="system">System</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -340,7 +433,16 @@ export function ListingsForm() {
                   <FormItem>
                     <FormLabel>Plant Species *</FormLabel>
                     <FormControl>
-                      <Input type="text" placeholder="" className="h-9 " {...field} />
+                      <Select>
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="light">Light</SelectItem>
+                          <SelectItem value="dark">Dark</SelectItem>
+                          <SelectItem value="system">System</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -366,7 +468,16 @@ export function ListingsForm() {
                   <FormItem className="col-span-2">
                     <FormLabel>Certifications *</FormLabel>
                     <FormControl>
-                      <Input type="text" placeholder="" className="h-9 " {...field} />
+                      <Select>
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="light">Light</SelectItem>
+                          <SelectItem value="dark">Dark</SelectItem>
+                          <SelectItem value="system">System</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -377,11 +488,11 @@ export function ListingsForm() {
           <div className="border border-primary/30 p-4 rounded-[8px] my-3">
             <div>
               <h4 className="font-semibold text-base">Inventories (Sample/Bag)</h4>
-              <div className="my-2 text-sm">
+              <div className="my-2 text-sm flex items-center gap-2">
                 <span className="text-primary">Pending </span>
                 <span className="text-textdark">Orders,</span>
                 <span>Qty:0</span>
-                <span></span>
+               <PendingPopover/>
               </div>
               <div className="flex gap-5">
                 <FormField
@@ -413,11 +524,14 @@ export function ListingsForm() {
               </div>
             </div>
           </div>
-          <div className="border-t md:mt-64 flex justify-end">
+          <div className="flex items-center justify-end gap-2 mt-10">
+            <Button variant={'outline'} className="bg-white text-primary border-primary">
+              Preview
+            </Button>
             <Button
               type="submit"
-              className=" font-normal my-2 text-sm border border-primary text-white md:w-[82px] h-[44px]">
-              Save
+              className=" font-normal  text-sm border border-primary text-white  h-[44px]">
+              Save Listing
             </Button>
           </div>
         </div>

@@ -14,7 +14,7 @@ import {
   SelectValue
 } from '@/components/ui/select';
 
-import { FilterSheet } from '@/components/FilterMobile';
+import { FilterSheet, Listings } from '@/components/FilterMobile';
 
 function CoffeeShop({ status }: IStatus) {
   const breadcrumbItems = [{ href: '/coffee-shop', label: 'Shop' }];
@@ -58,7 +58,7 @@ function CoffeeShop({ status }: IStatus) {
             <div className="w-[372px] h-max  bg-white px-10 hidden md:flex md:flex-col">
               <h5 className="font-bold my-5">Filter</h5>
               <div>
-                <CoffeeListings />
+                <CoffeeListings Listings={Listings} />
               </div>
             </div>
 
