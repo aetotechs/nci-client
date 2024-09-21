@@ -8,11 +8,13 @@ import { IOrigins } from './tables/OriginsTable';
 import { IRegions } from './tables/RegionsTable';
 import { ViewOrigin } from './ViewOrigin';
 import { IListings } from './tables/CoffeeListingsTable';
+import { IOrders } from './tables/AdminOrdersTable';
 export interface IActions {
   category?: ICategories;
   origin?: IOrigins;
   region?: IRegions;
   listing?: IListings;
+  order?: IOrders
 }
 
 export function ActionsPopover({ category, origin }: IActions) {
