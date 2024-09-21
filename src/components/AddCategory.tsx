@@ -12,7 +12,7 @@ export function AddCategory() {
           <span>
             <Plus className="h-4 w-4" />
           </span>
-          Add New
+          Add Category
         </Button>
       </SheetTrigger>
       <SheetContent className=" px-6">

@@ -1,13 +1,13 @@
 import AddListing from '@/components/AddListing';
+import { OrderSheet } from '@/components/AddOrder';
 import AdminHeader from '@/components/AdminHeader';
 import AdminSideBarDesktop from '@/components/AdminSideBarDesktop';
 
 import { ListingFilter } from '@/components/ListingFilter';
-import OrderItems from '@/components/OrderItems';
 
 import Search from '@/components/Search';
 import { AdminOrdersTable } from '@/components/tables/AdminOrdersTable';
-import { OrdersTable } from '@/components/tables/OrdersTable';
+
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
@@ -17,58 +17,58 @@ export const orders = [
   {
     id: '1',
     orderDate: '2024-01-01',
-    status: 'Completed',
-    orderItems: ['item1', 'item2'],  
+    status: 'Shipped',
+    orderItems: ['item1', 'item2'],
     customer: 'John Doe',
-    revenue: 100,
+    revenue: 100
   },
   {
     id: '2',
     orderDate: '2024-01-01',
-    status: 'Completed',
-    orderItems: ['item1', 'item2'],  
+    status: 'Cancelled',
+    orderItems: ['item1', 'item2'],
     customer: 'John Doe',
-    revenue: 100,
+    revenue: 100
   },
   {
     id: '3',
     orderDate: '2024-01-01',
-    status: 'Completed',
-    orderItems: ['item1', 'item2'],  
+    status: 'Processing',
+    orderItems: ['item1', 'item2'],
     customer: 'John Doe',
-    revenue: 100,
+    revenue: 100
   },
   {
     id: '4',
     orderDate: '2024-01-01',
-    status: 'Completed',
-    orderItems: ['item1', 'item2'],  
+    status: 'Shipped',
+    orderItems: ['item1', 'item2'],
     customer: 'John Doe',
-    revenue: 100,
+    revenue: 100
   },
   {
     id: '5',
     orderDate: '2024-01-01',
-    status: 'Completed',
-    orderItems: ['item1', 'item2'], 
+    status: 'Cancelled',
+    orderItems: ['item1', 'item2'],
     customer: 'John Doe',
-    revenue: 100,
+    revenue: 100
   },
   {
     id: '6',
     orderDate: '2024-01-01',
-    status: 'Completed',
-    orderItems: ['item1', 'item2'],  
+    status: 'Processing',
+    orderItems: ['item1', 'item2'],
     customer: 'John Doe',
-    revenue: 100,
+    revenue: 100
   },
   {
     id: '7',
     orderDate: '2024-01-01',
-    status: 'Completed',
-    orderItems: ['item1', 'item2'],  
+    status: 'Shipped',
+    orderItems: ['item1', 'item2'],
     customer: 'John Doe',
-    revenue: 100,
+    revenue: 100
   }
 ];
 function Orders() {
@@ -99,12 +99,7 @@ function Orders() {
               <Search />
               <div className="flex gap-2">
                 <ListingFilter />
-                <Button className="gap-2 " onClick={HandleClick}>
-                  <span>
-                    <Plus className="h-4 w-4" />
-                  </span>{' '}
-                  {showAddListing ? 'Cancel' : 'Add Listing'}
-                </Button>
+                <OrderSheet />
               </div>
             </div>
 
