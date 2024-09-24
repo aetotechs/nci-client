@@ -23,6 +23,8 @@ import Categories from './pages/categories';
 import AdminOrigins from './pages/Admin-origins';
 import CoffeeListings from './pages/coffee-listings';
 import Orders from './pages/Orders';
+import Transactions from './pages/transactions';
+import Customers from './pages/customers';
 
 export interface IStatus {
   status: boolean;
@@ -56,6 +58,8 @@ function App() {
           <Route path='/admin-origins' element={<AdminOrigins  />} />
           <Route path='/coffee-listings' element={<CoffeeListings />} />
           <Route path='/orders' element={<Orders />} />
+          <Route path='/transactions' element={<Transactions />} />
+          <Route path='/customers' element={<Customers />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -1,12 +1,11 @@
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { FilterForm } from './forms/FilterForm';
+
 import { Button } from './ui/button';
-import { useLocation } from 'react-router-dom';
 import { TransactionFilterForm } from './forms/TransactionFilterForm';
 
-export function ListingFilter() {
-  const location = useLocation();
-  const { pathname } = location;
+
+export function TransactionFilter() {
+
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -17,8 +16,9 @@ export function ListingFilter() {
           Filters
         </Button>
       </PopoverTrigger>
+
       <PopoverContent>
-        {pathname === '/coffee-listings' ? <FilterForm /> : <TransactionFilterForm />}
+        <TransactionFilterForm />
       </PopoverContent>
     </Popover>
   );

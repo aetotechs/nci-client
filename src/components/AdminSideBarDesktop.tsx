@@ -91,6 +91,7 @@ function AdminSideBarDesktop() {
             </AccordionItem>
           </Accordion>
         </div>
+        <Link to='/customers'>
         <div
           className={`flex items-center gap-1 cursor-pointer ${isActive('/customers') ? 'text-primary' : ''}`}>
           <span>
@@ -98,6 +99,7 @@ function AdminSideBarDesktop() {
           </span>
           Customers
         </div>
+        </Link>
         <div
           className={`flex items-center gap-1 cursor-pointer ${isActive('/analytics') ? 'text-primary' : ''}`}>
           <span>
