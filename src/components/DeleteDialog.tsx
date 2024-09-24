@@ -15,6 +15,7 @@ export function DeleteDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
+        
       <div className="flex items-center justify-center -mt-1 pl-3 gap-2 cursor-pointer">
           <Trash2Icon className="h-[14px] w-[14px]" />
           <span className='text-[13px] font-normal'>Delete</span>

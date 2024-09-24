@@ -1,6 +1,7 @@
-import { GraphComponent } from './BarGraph';
+
 import CoffeeBrands from './CoffeeBrands';
 import RecentCustomers from './RecentCustomers';
+import SalesGraph from './SalesGraph';
 import { StockTable } from './tables/StockTable';
 import { Badge } from './ui/badge';
 import { Input } from './ui/input';
@@ -59,11 +60,11 @@ const coffeebrands = [
     bags: 0
   }
 ];
-function Dashboard() {
+function AnalyticsDashboard() {
   return (
     <div className="md:mt-14">
       <div className="flex justify-between ">
-        <h3 className="font-semibold text-[23px]">Dashboard</h3>
+        <h3 className="font-semibold text-[23px]">Analytics</h3>
         <div>
           <Input type="date" />
         </div>
@@ -114,7 +115,7 @@ function Dashboard() {
             </div>
           </div>
           <div className="py-10 pr-10">
-            <GraphComponent />
+            <SalesGraph />
           </div>
         </div>
         <div className="border border-primary/30 bg-white overflow-hidden md:w-[416px] rounded-[10px]">
@@ -136,4 +137,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default AnalyticsDashboard;

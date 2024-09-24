@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 60, 100%, 97%, 1;
     --text-color: 76, 43, 31, 1;
     --progress-color: 88, 89, 98, 1;
     --benefits-background: 57, 23, 22, 1;
@@ -20,11 +20,11 @@
     --select-background: 245, 239, 229, 1;
     --select-border: 244, 244, 230, 1;
     --card-border: 185, 187, 198, 1;
-    --input-field:242, 242, 242, 1;
-    --text-darken:57, 23, 22, 1;
-    --progress-color:180, 100%, 25%, 1;
-    --available-background:5, 164, 114, 0.12;
-    --available-textcolor:0, 154, 104, 1;
+    --input-field: 242, 242, 242, 1;
+    --text-darken: 57, 23, 22, 1;
+    --progress-color: 180, 100%, 25%, 1;
+    --available-background: 5, 164, 114, 0.12;
+    --available-textcolor: 0, 154, 104, 1;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
     --outline-background: 161, 121, 47, 0.1;
@@ -53,7 +53,7 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 60, 100%, 97%, 1;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;

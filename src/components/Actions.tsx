@@ -11,6 +11,8 @@ import { ITransactions } from './tables/TransactionsTable';
 import { ViewTransaction } from './ViewTransaction';
 import { useLocation } from 'react-router-dom';
 import { ICustomers } from './tables/CustomersTable';
+import { EyeIcon } from 'lucide-react';
+
 
 export interface IActions {
   category?: ICategories;
@@ -20,6 +22,7 @@ export interface IActions {
   order?: IOrders;
   transactionId?: ITransactions;
   customerId?: ICustomers;
+  setShowViewCustomer?: (show: boolean) => void;
 }
 
 export function ActionsPopover({
@@ -28,13 +31,18 @@ export function ActionsPopover({
   region,
   listing,
   order,
-  transactionId
+  transactionId,
+  setShowViewCustomer
 }: IActions) {
   const location = useLocation();
-  const {pathname}=location;
+  const { pathname } = location;
+  const HandleClick = () => {
+    if (setShowViewCustomer) {
+      setShowViewCustomer(true);  
+    }  };
 
   const renderContent = () => {
-    if (pathname==='/category') {
+    if (pathname === '/category') {
       return (
         <>
           <ViewCategory category={category} />
@@ -54,19 +62,23 @@ export function ActionsPopover({
     if (order) {
       return <p>Order ID: {order.id}</p>;
     }
-    if (pathname==='/transactions') {
+    if (pathname === '/transactions') {
       return (
         <>
           <ViewTransaction transactionId={transactionId} />
-          
         </>
       );
     }
-    if (pathname==='/customers') {
+    if (pathname === '/customers') {
       return (
         <>
-          <ViewTransaction transactionId={transactionId} />
-          <DeleteDialog />
+          <div
+            onClick={HandleClick}
+            className="flex items-center justify-between -mt-1 gap-2 cursor-pointer">
+            <EyeIcon className="h-[14px] w-[14px]" />
+            <span className="text-[13px] font-normal">View</span>
+          </div>
+          
         </>
       );
     }

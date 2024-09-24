@@ -9,8 +9,7 @@ import Search from '@/components/Search';
 import { AdminOrdersTable } from '@/components/tables/AdminOrdersTable';
 
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Plus } from 'lucide-react';
+
 import { useState } from 'react';
 
 export const orders = [

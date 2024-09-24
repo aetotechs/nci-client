@@ -75,13 +75,13 @@ function AdminSideBarDesktop() {
               </AccordionTrigger>
               <AccordionContent className="max-w-36">
                 <div className="flex flex-col gap-2 px-3">
-                  <Link
-                    to="/orders"
-                    className={isActive('/orders') ? 'text-primary' : ''}>
-                   Orders
+                  <Link to="/orders" className={isActive('/orders') ? 'text-primary' : ''}>
+                    Orders
                   </Link>
-                  <Link to="/transactions" className={isActive('/transactions') ? 'text-primary' : ''}>
-                   Transactions
+                  <Link
+                    to="/transactions"
+                    className={isActive('/transactions') ? 'text-primary' : ''}>
+                    Transactions
                   </Link>
                   <Link to="/discounr" className={isActive('/discount') ? 'text-primary' : ''}>
                     Discount & Offers
@@ -91,29 +91,33 @@ function AdminSideBarDesktop() {
             </AccordionItem>
           </Accordion>
         </div>
-        <Link to='/customers'>
-        <div
-          className={`flex items-center gap-1 cursor-pointer ${isActive('/customers') ? 'text-primary' : ''}`}>
-          <span>
-            <img src="/icons/customer.svg" alt="Customers" />
-          </span>
-          Customers
-        </div>
+        <Link to="/customers">
+          <div
+            className={`flex items-center gap-1 cursor-pointer ${isActive('/customers') ? 'text-primary' : ''}`}>
+            <span>
+              <img src="/icons/customer.svg" alt="Customers" />
+            </span>
+            Customers
+          </div>
         </Link>
-        <div
-          className={`flex items-center gap-1 cursor-pointer ${isActive('/analytics') ? 'text-primary' : ''}`}>
-          <span>
-            <img src="/icons/analytics.svg" alt="Analytics" />
-          </span>
-          Analytics
-        </div>
-        <div
-          className={`flex items-center gap-1 cursor-pointer ${isActive('/settings') ? 'text-primary' : ''}`}>
-          <span>
-            <img src="/icons/settings.svg" alt="Settings" />
-          </span>
-          Settings
-        </div>
+        <Link to="/analytics">
+          <div
+            className={`flex items-center gap-1 cursor-pointer ${isActive('/analytics') ? 'text-primary' : ''}`}>
+            <span>
+              <img src="/icons/analytics.svg" alt="Analytics" />
+            </span>
+            Analytics
+          </div>
+        </Link>
+        <Link to="/settings">
+          <div
+            className={`flex items-center gap-1 cursor-pointer ${isActive('/settings') ? 'text-primary' : ''}`}>
+            <span>
+              <img src="/icons/settings.svg" alt="Settings" />
+            </span>
+            Settings
+          </div>
+        </Link>
         <div
           className={`flex items-center gap-1 cursor-pointer ${isActive('/logout') ? 'text-primary' : ''}`}>
           <span>

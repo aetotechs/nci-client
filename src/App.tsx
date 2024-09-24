@@ -25,6 +25,7 @@ import CoffeeListings from './pages/coffee-listings';
 import Orders from './pages/Orders';
 import Transactions from './pages/transactions';
 import Customers from './pages/customers';
+import Analytics from './pages/analytics';
 
 export interface IStatus {
   status: boolean;
@@ -60,6 +61,7 @@ function App() {
           <Route path='/orders' element={<Orders />} />
           <Route path='/transactions' element={<Transactions />} />
           <Route path='/customers' element={<Customers />} />
+          <Route path='/analytics' element={<Analytics />} />
         </Routes>
       </BrowserRouter>
     </>

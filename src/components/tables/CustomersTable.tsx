@@ -19,12 +19,15 @@ export interface ICustomers {
   date: string;
 }
 
-interface ICustomerTableProps {
+export interface ICustomerTableProps {
   customers: ICustomers[];
   customerId?: ICustomers;
+  setShowViewCustomer: (show: boolean) => void;
+
+  
 }
 
-export function CustomersTable({ customers, customerId }: ICustomerTableProps) {
+export function CustomersTable({ customers, customerId ,setShowViewCustomer}: ICustomerTableProps) {
   return (
     <Table>
       <TableHeader className="h-9 bg-primary/10 text-textdark">
@@ -50,7 +53,11 @@ export function CustomersTable({ customers, customerId }: ICustomerTableProps) {
             <TableCell className="text-center">{customer.revenue}</TableCell>
 
             <TableCell className="relative">
-              <ActionsPopover customerId={customerId} />
+              <ActionsPopover
+                customerId={customerId}
+                setShowViewCustomer={setShowViewCustomer}
+                
+              />
             </TableCell>
           </TableRow>
         ))}

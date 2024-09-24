@@ -8,13 +8,16 @@ import {
 } from '@/components/ui/table';
 
 import { ActionsPopover } from '../Actions';
+import { useLocation } from 'react-router-dom';
+import path from 'path/posix';
 
 export interface IOrders {
   id: string;
   orderDate: string;
-  status: string
+  status: string;
   orderItems: string[];
-  customer: string;
+  totalPrice?: number;
+  customer?: string;
   revenue: number;
 }
 
@@ -36,6 +39,8 @@ function getStatusBadge(status: IOrders['status']) {
 }
 
 export function AdminOrdersTable({ orders }: IOrdersTable) {
+  const location = useLocation();
+  const { pathname } = location;
   return (
     <Table>
       <TableHeader className="h-9 bg-primary/10 text-textdark">
@@ -44,23 +49,38 @@ export function AdminOrdersTable({ orders }: IOrdersTable) {
           <TableHead className="text-dark font-medium">Order Date</TableHead>
           <TableHead className="text-dark font-medium">Status</TableHead>
           <TableHead className="text-dark font-medium">Ordered Items</TableHead>
-          <TableHead className="text-dark font-medium">Customer</TableHead>
-          <TableHead className="text-dark font-medium">Revenue ($)</TableHead>
-          <TableHead></TableHead>
+          {pathname === '/orders' && (
+            <>
+              <TableHead className="text-dark font-medium">Customer</TableHead>
+              <TableHead className="text-dark font-medium">Revenue ($)</TableHead>
+              <TableHead></TableHead>
+            </>
+          )}
         </TableRow>
       </TableHeader>
       <TableBody>
         {orders.map((order, index) => (
           <TableRow key={index} className="border-b h-10">
             <TableCell className="font-medium">#{order.id}</TableCell>
-            <TableCell className="font-medium">{order.orderDate}</TableCell>
+            <TableCell className="font-normal text-[15px]">{order.orderDate}</TableCell>
             <TableCell>{getStatusBadge(order.status)}</TableCell>
-            <TableCell>{order.orderItems.join(', ')}</TableCell>
-            <TableCell>{order.customer}</TableCell>
-            <TableCell>{order.revenue}</TableCell>
-            <TableCell>
-              <ActionsPopover order={order} />
-            </TableCell>
+            {pathname == '/orders' && <TableCell>{order.orderItems.join(', ')}</TableCell>}
+            {pathname === '/customers' && (
+              <TableCell className="flex flex-col gap-1">
+                <span className="font-medium text-[15px]">${order.totalPrice}</span>
+                <span className="text-sm">{order.orderItems.join(', ')}</span>
+              </TableCell>
+            )}
+
+            {pathname === '/orders' && (
+              <>
+                <TableCell>{order.customer}</TableCell>
+                <TableCell>{order.revenue}</TableCell>
+                <TableCell>
+                  <ActionsPopover order={order} />
+                </TableCell>
+              </>
+            )}
           </TableRow>
         ))}
       </TableBody>

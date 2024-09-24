@@ -43,6 +43,7 @@ export default {
         mobileabout: "url('/images/mobile-about.png')"
       },
       colors: {
+        background:'hsla(var(--background))',
         border: 'hsla(var(--border))',
         benefits: 'rgba(var(--benefits-background))',
         input: 'hsl(var(--input))',
