@@ -12,7 +12,7 @@ import ShopItems from '@/pages/shop-items';
 import { useEffect, useState } from 'react';
 import CoffeeShop from '@/pages/coffee-shop';
 import ProductPage from '@/pages/product-page';
-import Profile from '@/pages/profile';
+import Profile, { User } from '@/pages/profile';
 import ResetPasswordPage from '@/pages/reset-password';
 import VerifyEmail from '@/pages/verify-email';
 import About from '@/pages/about-us';
@@ -21,6 +21,7 @@ import OriginsPage from '@/pages/origins';
 import { isAuthenticated } from './lib/cookie';
 export interface IStatus {
   status: boolean;
+  user?: User;
 }
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
   useEffect(() => {
     const UserLoggedIn = isAuthenticated();
     setLoggedIn(UserLoggedIn);
+
   }, []);
 
   return (

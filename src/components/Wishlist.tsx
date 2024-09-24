@@ -2,6 +2,7 @@ import { IStatus } from '@/App';
 import { Link } from 'react-router-dom';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
+import { ProfileProps } from '@/pages/profile';
 
 const cards = [
   {
@@ -39,7 +40,7 @@ const cards = [
   }
 ];
 
-function Wishlist({ status }: IStatus) {
+function Wishlist({ status, user }: IStatus) {
   return (
     <div className="px-5 my-5 md:my-0 md:px-0">
       <div className="mb-4">
@@ -48,9 +49,7 @@ function Wishlist({ status }: IStatus) {
       <div className={'flex flex-col md:grid grid-cols-3 gap-5'}>
         {cards.map((card, index) => {
           const isDisabled =
-            card.bagStatus === 'Not Available' &&
-            card.sampleStatus === 'Not Available' &&
-            status === true;
+            card.bagStatus === 'Not Available' && card.sampleStatus === 'Not Available' && !!status;
 
           return (
             <Link to={`/product/${card.name}`} key={index}>
@@ -58,8 +57,7 @@ function Wishlist({ status }: IStatus) {
                 className={` md:w-[272px] h-[252px]  border rounded-[10px] flex flex-col px-2 py-3  bg-white ${
                   isDisabled ? 'border-gray-300 bg-gray-100 text-gray-500' : 'border-primary/30'
                 } `}
-                style={{ pointerEvents: isDisabled ? 'none' : 'auto' }}
-              >
+                style={{ pointerEvents: isDisabled ? 'none' : 'auto' }}>
                 <div className="font-medium flex justify-between  text-sm mb-3 it">
                   {card.name}
                   <span className="mt-1">
@@ -80,8 +78,7 @@ function Wishlist({ status }: IStatus) {
                         {card.sampleStatus !== 'Available' && (
                           <Badge
                             variant="outline"
-                            className="bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px]"
-                          >
+                            className="bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px]">
                             <div className="h-[5px] w-[5px] rounded-full bg-destructive"></div>
                             <p className="text-destructive">{card.sampleStatus}</p>
                           </Badge>
@@ -92,8 +89,7 @@ function Wishlist({ status }: IStatus) {
                         {card.bagStatus !== 'Available' && (
                           <Badge
                             variant="outline"
-                            className="bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px]"
-                          >
+                            className="bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px]">
                             <div className="h-[5px] w-[5px] rounded-full bg-destructive"></div>
                             <p className="text-destructive">{card.bagStatus}</p>
                           </Badge>
@@ -110,8 +106,7 @@ function Wishlist({ status }: IStatus) {
                 <div className=" w-[333px] ">
                   <Button
                     className="rounded-[10px] bg-primary  text-white font-normal text-[15px] w-[316px] md:w-[250px] h-[30px] "
-                    disabled={isDisabled}
-                  >
+                    disabled={isDisabled}>
                     Add To Cart
                   </Button>
                 </div>

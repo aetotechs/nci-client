@@ -3,16 +3,17 @@ import NavItems from '@/components/NavItems';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { AccountPopover } from '@/components/Account';
-import { IStatus } from '@/App';
+
 
 import { MobileNav } from './MobileNav';
+import { IStatus } from '@/App';
 
-function Header({ status }: IStatus) {
+function Header({ status }:IStatus){
   return (
-    <div className="bg-white flex justify-between p-5 md:rounded-[30px] top-0  md:h-[89px] md:sticky md:top-2 shadow-md z-40 w-[100%] md:w-full">
+    <div className="bg-white flex  justify-between p-5 md:rounded-[30px] top-0  md:h-[89px] md:sticky md:top-2 shadow-md z-40 w-[100%] md:w-full">
       <Link to="/">
-        <div className="w-[130px] h-12 md:w-52 md:h-12">
-          <img src="/logos/logo.png" alt="coffee logo" width="200" height={38} />
+        <div className="w-[12vw]  h-12  md:h-12">
+          <img src="/logos/logo.png" alt="coffee logo"  />
         </div>
       </Link>
 

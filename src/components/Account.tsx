@@ -4,9 +4,11 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Link, useNavigate } from 'react-router-dom';
 
 export function AccountPopover() {
+  const navigate = useNavigate();
   const HandleClick = () => {
     localStorage.clear();
     window.location.reload();
+    navigate('/');
   };
   return (
     <Popover>

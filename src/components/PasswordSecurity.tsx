@@ -1,6 +1,7 @@
+import { ProfileProps } from '@/pages/profile';
 import { ChangePasswordForm } from './forms/ChangePasswordForm';
 
-function PasswordSecurity() {
+function PasswordSecurity({ user }: ProfileProps) {
   return (
     <div className="px-5 md:px-0">
       <div>

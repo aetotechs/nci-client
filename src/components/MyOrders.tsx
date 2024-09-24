@@ -1,4 +1,5 @@
 import { IOrder, OrdersTable } from '@/components/tables/OrdersTable';
+import { ProfileProps } from '@/pages/profile';
 import { useEffect, useState } from 'react';
 const Orders = [
   {
@@ -31,7 +32,7 @@ const Orders = [
   }
 ];
 
-function MyOrders() {
+function MyOrders({ user }: ProfileProps) {
   const [orders, setOrders] = useState<IOrder[]>([]);
 
   useEffect(() => {

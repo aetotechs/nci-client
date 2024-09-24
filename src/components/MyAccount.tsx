@@ -1,6 +1,8 @@
 import { Switch } from '@/components/ui/switch';
 import { EditDialog } from '@/components/EditContactInformation';
-function MyAccount() {
+import { ProfileProps } from '@/pages/profile';
+function MyAccount({user}:ProfileProps) {
+ 
   return (
     <div className=" px-3 ">
       <div>
@@ -12,10 +14,10 @@ function MyAccount() {
             <h5 className="font-semibold text-[17px]">Contact Information</h5>
           </div>
           <div className="my-4 font-normal text-base text-black">
-            <p>John Doe</p>
-            <p>johndoe@gmail.com</p>
+            <p>{user?.firstName} {user?.lastName}</p>
+            <p className='text-sm'>{user?.email}</p>
           </div>
-          <EditDialog />
+          <EditDialog user={user} />
         </div>
         <div className="w-[300px] md:w-[407px] h-[180px] rounded-[8px] border flex flex-col py-5 px-5 border-cardborder">
           <div>

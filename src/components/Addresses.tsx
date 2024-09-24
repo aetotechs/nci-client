@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { AddAdressDialog } from '@/components/AddNewAddress';
 import { EditAddressDialog } from './EditShipping';
+import { ProfileProps } from '@/pages/profile';
 
 const MyAddresses = [
   {
@@ -27,7 +28,7 @@ const MyAddresses = [
   }
 ];
 
-function Addresses() {
+function Addresses({ user }: ProfileProps) {
   return (
     <div className="px-5 my-5 md:px-0 md:my-0">
       <div className="mb-4">

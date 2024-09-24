@@ -9,8 +9,9 @@ import {
 
 import { EditContactForm } from '@/components/forms/EditContactForm';
 import { Edit } from 'lucide-react';
+import { ProfileProps, User } from '@/pages/profile';
 
-export function EditDialog() {
+export function EditDialog({user}:ProfileProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -26,7 +27,7 @@ export function EditDialog() {
           <DialogTitle className="font-semibold text-xl">Edit Contact Information</DialogTitle>
         </DialogHeader>
 
-        <EditContactForm />
+        <EditContactForm user={user}/>
       </DialogContent>
     </Dialog>
   );
