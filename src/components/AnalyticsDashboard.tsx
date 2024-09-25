@@ -1,9 +1,10 @@
+import { Download } from 'lucide-react';
 
-import CoffeeBrands from './CoffeeBrands';
 import RecentCustomers from './RecentCustomers';
 import SalesGraph from './SalesGraph';
 import { StockTable } from './tables/StockTable';
 import { Badge } from './ui/badge';
+import { Button } from './ui/button';
 import { Input } from './ui/input';
 import {
   Select,
@@ -12,27 +13,61 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select';
+
+import { AdminOrdersTable } from './tables/AdminOrdersTable';
+
+
+
+ const orders = [
+  {
+    id: '1',
+    orderDate: 'Aug 24,2024',
+    status: 'Shipped',
+    item:"Endiro",
+    customer: 'John Doe',
+    revenue: 100
+  },
+  {
+    id: '2',
+    orderDate: 'Aug 24,2024',
+    status: 'Cancelled',
+    item:"Endiro",
+    customer: 'John Doe',
+    revenue: 100
+  },
+  {
+    id: '3',
+    orderDate: 'Aug 24,2024',
+    status: 'Processing',
+    item:"Endiro",
+    customer: 'John Doe',
+    revenue: 100
+  }
+  
+];
+
+
 const items = [
   {
-    title: 'Total Coffee Listings',
-    numberofusers: 123,
+    title: 'TOTAL SALES',
+    numberofusers: '$ 45000',
     date: '2 morethan last month',
     percentage: 4
   },
   {
-    title: 'Total Coffee Listings',
+    title: 'TOTAL ORDERS',
     numberofusers: 123,
     date: '7 morethan last month',
-    percentage: +8
+    percentage: 8
   },
   {
-    title: 'TOTAL users',
+    title: 'TOTAL UsERS',
     numberofusers: 1540,
     date: '98 morethan last month',
     percentage: 15
   },
   {
-    title: 'orders',
+    title: 'ORDERS LAST MONTH',
     numberofusers: 325,
     date: '21 less than last month',
     percentage: -10
@@ -64,8 +99,14 @@ function AnalyticsDashboard() {
   return (
     <div className="md:mt-14">
       <div className="flex justify-between ">
-        <h3 className="font-semibold text-[23px]">Analytics</h3>
-        <div>
+        <h3 className="font-semibold text-[23px] leading-5">Analytics</h3>
+        <div className="flex items-center gap-3">
+          <Button className="items-center gap-2 grow">
+            <span>
+              <Download className="h-4 w-4" />
+            </span>
+            Export Report
+          </Button>
           <Input type="date" />
         </div>
       </div>
@@ -93,12 +134,11 @@ function AnalyticsDashboard() {
           </div>
         ))}
       </div>
-      <div className="flex gap-10 my-6">
-        <div className="border border-primary/30 bg-white   md:w-[714px] rounded-[10px]">
+      <div className="flex gap-5 my-6">
+        <div className="border border-primary/30 bg-white   lg:w-[47vw] lg:max-h-[301px] rounded-[10px]">
           <div className="flex justify-between px-10 py-3">
             <div className="">
-              <h3 className="font-semibold text-base">Orders Over Time</h3>
-              <p className="font-bold text-xl">120</p>
+              <h3 className="font-semibold text-base">Sales Overview</h3>
             </div>
             <div>
               <Select>
@@ -114,12 +154,27 @@ function AnalyticsDashboard() {
               </Select>
             </div>
           </div>
-          <div className="py-10 pr-10">
+          <div className="pb-10 py-5 pr-10">
             <SalesGraph />
           </div>
         </div>
-        <div className="border border-primary/30 bg-white overflow-hidden md:w-[416px] rounded-[10px]">
-          <CoffeeBrands />
+        <div className="border border-primary/30 bg-white lg:w-[60vw] px-5  overflow-y-hidden lg:max-h-[301px] rounded-[10px]">
+          <div className="flex justify-between  py-3">
+            <div className="">
+              <h3 className="font-semibold text-base">Current Orders</h3>
+            </div>
+            <div>
+              <Button className="items-center gap-3 rounded-[8px] h-8">
+                <span>
+                  <Download className="h-4 w-4" />
+                </span>
+                Export
+              </Button>
+            </div>
+          </div>
+          <div className="pb-10  ">
+            <AdminOrdersTable orders={orders} />
+          </div>
         </div>
       </div>
       <div className="flex gap-10 my-6">

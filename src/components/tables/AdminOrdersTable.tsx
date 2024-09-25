@@ -9,13 +9,15 @@ import {
 
 import { ActionsPopover } from '../Actions';
 import { useLocation } from 'react-router-dom';
-import path from 'path/posix';
+
+import { Eye } from 'lucide-react';
 
 export interface IOrders {
   id: string;
   orderDate: string;
   status: string;
-  orderItems: string[];
+  orderItems?: string[];
+  item?: string;
   totalPrice?: number;
   customer?: string;
   revenue: number;
@@ -48,7 +50,8 @@ export function AdminOrdersTable({ orders }: IOrdersTable) {
           <TableHead className="text-dark font-medium">OrderId</TableHead>
           <TableHead className="text-dark font-medium">Order Date</TableHead>
           <TableHead className="text-dark font-medium">Status</TableHead>
-          <TableHead className="text-dark font-medium">Ordered Items</TableHead>
+          <TableHead className="text-dark font-medium">{pathname==='/analytics'?'Item':'Ordered Items'}</TableHead>
+          {pathname === '/analytics' && <TableHead></TableHead>}
           {pathname === '/orders' && (
             <>
               <TableHead className="text-dark font-medium">Customer</TableHead>
@@ -64,11 +67,17 @@ export function AdminOrdersTable({ orders }: IOrdersTable) {
             <TableCell className="font-medium">#{order.id}</TableCell>
             <TableCell className="font-normal text-[15px]">{order.orderDate}</TableCell>
             <TableCell>{getStatusBadge(order.status)}</TableCell>
-            {pathname == '/orders' && <TableCell>{order.orderItems.join(', ')}</TableCell>}
+            {pathname == '/orders' ? <TableCell>{order?.orderItems?.join(', ')}</TableCell>:<TableCell>{order?.item}</TableCell>}
+            {pathname === '/analytics' && (
+              <TableCell>
+                <Eye className='h-4 w-4' />
+              </TableCell>
+            )}
+
             {pathname === '/customers' && (
               <TableCell className="flex flex-col gap-1">
                 <span className="font-medium text-[15px]">${order.totalPrice}</span>
-                <span className="text-sm">{order.orderItems.join(', ')}</span>
+                <span className="text-sm">{order?.orderItems?.join(', ')}</span>
               </TableCell>
             )}
 

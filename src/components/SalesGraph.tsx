@@ -13,33 +13,33 @@ import {
 const data = [
   {
     name: 'Jan',
-    sales: 4000,
+    sales: 100,
   },
   {
     name: 'Feb',
-    sales: 3000,
+    sales: 350,
   },
   {
     name: 'Mar',
-    sales: 2000,
+    sales: 150,
     
   },
   {
     name: 'June',
-    sales: 2780,
+    sales: 200,
   },
   {
     name: 'July',
-    sales: 1890,
+    sales: 280,
   },
   {
     name: 'Aug',
-    sales: 2390,
+    sales: 159,
     
   },
   {
     name: 'Sep',
-    sales: 3490,
+    sales: 500,
     
   },
 ];
@@ -54,7 +54,7 @@ export default class SalesGraph extends PureComponent {
             <XAxis dataKey="name" padding={{ left: 30, right: 30 }} />
             <YAxis />
             <Tooltip />
-            <Legend />
+            
 
             <Line type="monotone" dataKey="sales" stroke="#DB9190" />
           </LineChart>
