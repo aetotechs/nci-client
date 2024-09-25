@@ -6,6 +6,7 @@ import { OriginsTable } from '@/components/tables/OriginsTable';
 import { RegionsTable } from '@/components/tables/RegionsTable';
 import { AddOrigin } from '@/components/AddOrigin';
 import { AddRegion } from '@/components/AddRegion';
+import AdminAccount from '@/components/AdminAccount';
 
 const origins = [
   {
@@ -37,8 +38,8 @@ const regions = [
   }
 ];
 
-function AdminOrigins() {
-  const [activeTab, setActiveTab] = useState<'origins' | 'regions'>('origins');
+function Settings() {
+  const [activeTab, setActiveTab] = useState<'AdminAccount' | 'users' | 'preferences'>('AdminAccount');
 
   return (
     <div className="grid grid-cols-7 md:h-screen">
@@ -47,32 +48,34 @@ function AdminOrigins() {
       </div>
       <div className="col-span-6">
         <AdminHeader />
-        <div className="p-5 my-4">
+        <div className="p-5">
           <div className="flex justify-between">
-            <h3 className="font-semibold text-2xl">Origins</h3>
+            <h3 className="font-semibold text-2xl">Settings</h3>
           </div>
           <div className="flex justify-between items-center my-2">
             <div className="flex gap-3 items-center">
               <h4
-                className={`cursor-pointer ${activeTab === 'origins' ? 'underline font-semibold' : ''}`}
-                onClick={() => setActiveTab('origins')}>
-                Origins
+                className={`cursor-pointer ${activeTab === 'AdminAccount' ? 'underline font-semibold' : ''}`}
+                onClick={() => setActiveTab('AdminAccount')}>
+                Account
               </h4>
               <h4
-                className={`cursor-pointer ${activeTab === 'regions' ? 'underline font-semibold' : ''}`}
-                onClick={() => setActiveTab('regions')}>
-                Regions
+                className={`cursor-pointer ${activeTab === 'users' ? 'underline font-semibold' : ''}`}
+                onClick={() => setActiveTab('users')}>
+                Users
+              </h4>
+              <h4
+                className={`cursor-pointer ${activeTab === 'preferences' ? 'underline font-semibold' : ''}`}
+                onClick={() => setActiveTab('preferences')}>
+                Notification Preferences
               </h4>
             </div>
-            <div className="flex gap-2">
-              <Search />
-              {activeTab === 'origins' ? <AddOrigin /> : <AddRegion />}
-            </div>
+            
           </div>
 
-          <div className="border my-8 rounded-t-[8px] overflow-hidden">
-            {activeTab === 'origins' ? (
-              <OriginsTable origins={origins} />
+          <div className="mt-6">
+            {activeTab === 'AdminAccount' ? (
+              <AdminAccount />
             ) : (
               <RegionsTable regions={regions} />
             )}
@@ -83,4 +86,4 @@ function AdminOrigins() {
   );
 }
 
-export default AdminOrigins;
+export default Settings;

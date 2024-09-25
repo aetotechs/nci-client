@@ -4,7 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger
 } from '@/components/ui/accordion';
-import { HomeIcon } from 'lucide-react';
+import { HomeIcon, Settings } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
 function AdminSideBarDesktop() {
@@ -13,8 +13,8 @@ function AdminSideBarDesktop() {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <aside className="flex flex-col gap-3 fixed ">
-      <div className="border-b border-primary/30 py-2 mb-4 w-[200px] ">
+    <aside className="flex flex-col gap-3 fixed  ">
+      <div className="border-b border-primary/30 py-2 mb-4  ">
         <Link to="/">
           <div className="w-[160px] h-12 md:w-[180px] md:h-10 px-3 ">
             <img src="/logos/logo.png" alt="coffee logo" width="200" height={38} />
@@ -83,7 +83,7 @@ function AdminSideBarDesktop() {
                     className={isActive('/transactions') ? 'text-primary' : ''}>
                     Transactions
                   </Link>
-                  <Link to="/discounr" className={isActive('/discount') ? 'text-primary' : ''}>
+                  <Link to="/discount" className={isActive('/discount') ? 'text-primary' : ''}>
                     Discount & Offers
                   </Link>
                 </div>
@@ -104,6 +104,7 @@ function AdminSideBarDesktop() {
           <div
             className={`flex items-center gap-1 cursor-pointer ${isActive('/analytics') ? 'text-primary' : ''}`}>
             <span>
+              
               <img src="/icons/analytics.svg" alt="Analytics" />
             </span>
             Analytics
@@ -113,7 +114,7 @@ function AdminSideBarDesktop() {
           <div
             className={`flex items-center gap-1 cursor-pointer ${isActive('/settings') ? 'text-primary' : ''}`}>
             <span>
-              <img src="/icons/settings.svg" alt="Settings" />
+              <Settings className='h-4 w-4'/>
             </span>
             Settings
           </div>

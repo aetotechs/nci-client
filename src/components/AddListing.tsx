@@ -18,7 +18,7 @@ function AddListing() {
   return (
     <>
       <div>{showAddListing ?
-        <div className="my-20 px-9">
+        <div className="my-2 px-9">
         <div className="my-4 flex items-center cursor-pointer gap-2" onClick={handleToggle}>
           <span>
             <ArrowLeft />
@@ -34,7 +34,7 @@ function AddListing() {
       
       
       : 
-      <div className="p-5 my-14">
+      <div className="p-5">
             <div className="flex gap-3 items-center">
               <h3 className="font-semibold text-2xl">CoffeeListings</h3>
               <Badge

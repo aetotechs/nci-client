@@ -1,7 +1,6 @@
 import AdminHeader from '@/components/AdminHeader';
 import AdminSideBarDesktop from '@/components/AdminSideBarDesktop';
 
-import { ListingFilter } from '@/components/ListingFilter';
 
 import { TransactionsTable } from '@/components/tables/TransactionsTable';
 import { TransactionFilter } from '@/components/TransactionFilter';
@@ -68,7 +67,7 @@ function Transactions() {
       <div className="col-span-6 ">
         <AdminHeader />
 
-        <div className="p-5 mt-14 flex justify-between">
+        <div className="p-5  flex justify-between">
           <div className="flex gap-3 items-center">
             <h3 className="font-semibold text-2xl">Transactions</h3>
             <Badge
@@ -82,7 +81,7 @@ function Transactions() {
           </div>
         </div>
 
-        <div className="border my-5 rounded-t-[8px] mx-5  overflow-hidden">
+        <div className="border  rounded-t-[8px] mx-5  overflow-hidden">
           <TransactionsTable transactions={transactions} />
         </div>
         <div>

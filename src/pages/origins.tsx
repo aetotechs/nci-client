@@ -70,7 +70,7 @@ function OriginsPage({ status }: IStatus) {
             <div className="w-[372px] bg-white h-max px-10 hidden md:flex md:flex-col">
               <h5 className="font-bold my-5">Filter</h5>
               <div>
-                <CoffeeListings />
+                <CoffeeListings Listings={[]} />
               </div>
             </div>
 

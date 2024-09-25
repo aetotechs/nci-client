@@ -3,13 +3,16 @@ import Search from './Search'
 
 function AdminHeader() {
   return (
-    <div className='w-full flex items-center justify-between border-b border-primary/30 px-4 md:h-[57px] max-w-full bg-white  fixed z-10 '>
+    <div className=' flex items-center justify-between border-b border-primary/30 px-5 md:h-[57px] sticky top-0  bg-white   z-10 '>
         <div>
             <Search/>
         </div>
-        <div className=''>
-           <img src="/icons/notification.svg" alt="Notifications" /> 
-        
+        <div className='flex items-center gap-7'>
+           <img src="/icons/notification.svg" alt="Notifications" width={24}/> 
+           <div className='h-9 w-9'>
+           <img src="/icons/avatar.png" alt="Avatars" />
+
+           </div>
         </div>
     </div>
   )

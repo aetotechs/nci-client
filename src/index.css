@@ -4,7 +4,8 @@
 
 @layer base {
   :root {
-    --background: 60, 100%, 97%, 1;
+    --background: 0 0% 100%;
+    --input-background: 60, 100%, 97%, 1;
     --text-color: 76, 43, 31, 1;
     --progress-color: 88, 89, 98, 1;
     --benefits-background: 57, 23, 22, 1;
@@ -53,7 +54,7 @@
   }
 
   .dark {
-    --background: 60, 100%, 97%, 1;
+    --background: 0 0% 100%;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;

@@ -26,6 +26,7 @@ import Orders from './pages/Orders';
 import Transactions from './pages/transactions';
 import Customers from './pages/customers';
 import Analytics from './pages/analytics';
+import Settings from './pages/settings';
 
 export interface IStatus {
   status: boolean;
@@ -62,6 +63,7 @@ function App() {
           <Route path='/transactions' element={<Transactions />} />
           <Route path='/customers' element={<Customers />} />
           <Route path='/analytics' element={<Analytics />} />
+          <Route path='/settings' element={<Settings />} />
         </Routes>
       </BrowserRouter>
     </>

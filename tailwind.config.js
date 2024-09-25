@@ -47,6 +47,7 @@ export default {
         border: 'hsla(var(--border))',
         benefits: 'rgba(var(--benefits-background))',
         input: 'hsl(var(--input))',
+        inputbackground:'hsla(var(--input-background))',
         inactive: 'rgba(var(--progress-color))',
         textcolor: 'rgba(var(--text-color))',
         textsecondary: 'rgba(var(--text-secondary))',

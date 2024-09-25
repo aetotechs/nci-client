@@ -16,6 +16,7 @@ import {
 import { Input } from '@/components/ui/input';
 
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
 const FormSchema = z
   .object({
@@ -29,6 +30,8 @@ const FormSchema = z
   });
 
 export function ChangePasswordForm() {
+  const location = useLocation();
+  const { pathname } = location;
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [newPasswordVisible, setnewPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
@@ -63,14 +66,14 @@ export function ChangePasswordForm() {
           control={form.control}
           name="currentPassword"
           render={({ field }) => (
-            <FormItem className="my-4">
-              <FormLabel className="font-normal text-base ">Current Password</FormLabel>
+            <FormItem className={`my-4 ${pathname === '/settings' && 'flex items-center gap-5'}`}>
+              <FormLabel className={`&{pathname==='/settings ? 'text-sm':'font-normal text-base} `}>Current Password</FormLabel>
               <FormControl>
                 <div className="flex border justify-between items-center pr-4 rounded-[8px] overflow-hidden">
                   <Input
                     type={passwordVisible ? 'text' : 'password'}
                     placeholder="*** *** ***"
-                    className="h-12 w-[391px] border-none ring-offset-0 focus-visible:ring-0  focus-visible:ring-offset-0  "
+                    className={`h-12 w-[391px] border-none ring-offset-0 focus-visible:ring-0  focus-visible:ring-offset-0 ${pathname === '/settings' && 'h-8 bg-inputbackground'}  `}
                     {...field}
                   />
                   <p onClick={togglePassword}>
@@ -91,14 +94,15 @@ export function ChangePasswordForm() {
           control={form.control}
           name="newPassword"
           render={({ field }) => (
-            <FormItem className="my-4">
-              <FormLabel className="font-normal text-base ">New Password</FormLabel>
+            <FormItem className={`my-4 ${pathname === '/settings' && 'flex items-center gap-10'}`}>
+              {' '}
+              <FormLabel className={`&{pathname==='/settings ? 'text-sm':'font-normal text-base} `}>New Password</FormLabel>
               <FormControl>
                 <div className="flex border justify-between items-center pr-4 rounded-[8px] overflow-hidden">
                   <Input
                     type={newPasswordVisible ? 'text' : 'password'}
                     placeholder="*** *** ***"
-                    className="h-12 w-[391px] border-none ring-offset-0 focus-visible:ring-0  focus-visible:ring-offset-0  "
+                    className={`h-12 w-[391px] border-none ring-offset-0 focus-visible:ring-0  focus-visible:ring-offset-0 ${pathname === '/settings' && 'h-8 bg-inputbackground'}  `}
                     {...field}
                   />
                   <p onClick={togglenewPassword}>
@@ -110,7 +114,6 @@ export function ChangePasswordForm() {
                   </p>
                 </div>
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
@@ -119,14 +122,15 @@ export function ChangePasswordForm() {
           control={form.control}
           name="confirmPassword"
           render={({ field }) => (
-            <FormItem className="my-4">
-              <FormLabel className="font-normal text-base ">Confirm New Password</FormLabel>
+            <FormItem className={`my-4 ${pathname === '/settings' && 'flex items-center gap-5'}`}>
+              {' '}
+              <FormLabel className={`&{pathname==='/settings ? 'text-sm':'font-normal text-base} `}>Confirm  Password</FormLabel>
               <FormControl>
                 <div className="flex border justify-between items-center pr-4 rounded-[8px] overflow-hidden">
                   <Input
                     type={confirmPasswordVisible ? 'text' : 'password'}
                     placeholder="*** *** ***"
-                    className="h-12 w-[391px] border-none ring-offset-0 focus-visible:ring-0  focus-visible:ring-offset-0  "
+                    className={`h-12 w-[391px] border-none ring-offset-0 focus-visible:ring-0  focus-visible:ring-offset-0 ${pathname === '/settings' && 'h-8 bg-inputbackground '} `}
                     {...field}
                   />
                   <p onClick={toggleConfirmPassword}>
@@ -138,14 +142,15 @@ export function ChangePasswordForm() {
                   </p>
                 </div>
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <Button type="submit" className="w-full font-normal h-[50px] rounded-[6px] text-base my-6">
-          Save
+        <Button
+          type="submit"
+          className={` ${pathname==='/settings' ?'float-end font-normal text-[12px] h-8':'w-full font-normal h-[50px] rounded-[6px] text-base my-6 '}`}>
+          {pathname === '/settings' ? 'Update Password' : 'Save'}
         </Button>
       </form>
     </Form>

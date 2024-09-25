@@ -97,7 +97,7 @@ const coffeebrands = [
 ];
 function AnalyticsDashboard() {
   return (
-    <div className="md:mt-14">
+    <div className="md:mt-4">
       <div className="flex justify-between ">
         <h3 className="font-semibold text-[23px] leading-5">Analytics</h3>
         <div className="flex items-center gap-3">

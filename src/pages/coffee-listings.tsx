@@ -99,7 +99,7 @@ function CoffeeListings() {
         {showAddListing ? (
           <AddListing />
         ) : (
-          <div className="p-5 my-14">
+          <div className="p-5 ">
             <div className="flex gap-3 items-center">
               <h3 className="font-semibold text-2xl">CoffeeListings</h3>
               <Badge

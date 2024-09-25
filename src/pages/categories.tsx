@@ -33,8 +33,8 @@ function Categories() {
       </div>
       <div className="col-span-6 ">
         <AdminHeader />
-        <div className="p-5 my-14">
-          <div className="flex justify-between">
+        <div className="px-5 md:mt-4">
+        <div className="flex justify-between">
             <h3 className="font-semibold text-2xl">Categories</h3>
             <div className="flex gap-2">
               <Search />
