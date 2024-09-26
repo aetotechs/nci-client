@@ -18,7 +18,7 @@ function AdminAccount() {
                   <span>Nile Admin</span>
 
                   <span>
-                    <Badge variant={'outline'} className='text-red-400 '>Admin</Badge>
+                    <Badge variant={'outline'} className='text-red-400 bg-red-200 border-red-300 '>Admin</Badge>
                   </span>
                 </h3>
                 <h5 className="font-normal text-sm">admin@nilecoffeeimports.com</h5>

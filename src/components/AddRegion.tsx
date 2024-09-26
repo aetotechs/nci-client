@@ -1,7 +1,6 @@
 import { Button } from '@/components/ui/button';
 
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { CategoryForm } from './forms/AddCategoryForm';
 import { Plus } from 'lucide-react';
 import { RegionForm } from './forms/AddRegionForm';
 

@@ -7,6 +7,8 @@ import { RegionsTable } from '@/components/tables/RegionsTable';
 import { AddOrigin } from '@/components/AddOrigin';
 import { AddRegion } from '@/components/AddRegion';
 import AdminAccount from '@/components/AdminAccount';
+import Preferences from '@/components/Preferences';
+import Users from '@/components/Users';
 
 const origins = [
   {
@@ -50,7 +52,7 @@ function Settings() {
         <AdminHeader />
         <div className="p-5">
           <div className="flex justify-between">
-            <h3 className="font-semibold text-2xl">Settings</h3>
+            <h3 className="font-semibold text-xl lg:text-[23px]">Settings</h3>
           </div>
           <div className="flex justify-between items-center my-2">
             <div className="flex gap-3 items-center">
@@ -74,11 +76,16 @@ function Settings() {
           </div>
 
           <div className="mt-6">
-            {activeTab === 'AdminAccount' ? (
+            {activeTab === 'AdminAccount' && (
               <AdminAccount />
-            ) : (
-              <RegionsTable regions={regions} />
-            )}
+            )            
+            }
+
+            {activeTab === 'preferences' && (
+              <Preferences/>)}
+
+             {activeTab === 'users' && (
+              <Users/>)} 
           </div>
         </div>
       </div>
