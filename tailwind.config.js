@@ -67,6 +67,7 @@ export default {
         textdark: 'rgba(var(--text-dark))',
         Availablebackground:'rgba(var(--available-background))',
         Availabletext: 'rgba(var( --available-textcolor))',
+        toastsuccess: 'rgba(var(--toast-success))',
         foreground: 'hsl(var(--foreground))',
         outline: 'rgba(var(--outline-background))',
         inputfield:'rgba(var(--input-field))',

@@ -1,7 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger
+} from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -13,31 +18,50 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
-import Address from '@/components/Address';
 import { CheckboxDemo } from '@/components/TermsCheckBox';
 
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { toast } from 'sonner';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-const FormSchema = z.object({
-  firstName: z.string().min(2, {
-    message: 'Field is required.'
-  }),
-  lastName: z.string().min(2, { message: 'Field is required' }),
-  workEmail: z.string().min(2, { message: 'Field is required.' }),
-  workPhone: z.string().min(2, { message: 'Field is required' }),
-  position: z.string().min(2, { message: 'Field is required' }),
-  companyName: z.string().min(2, { message: 'Field is required' }),
-  companyWebsite: z.string().min(2, { message: 'Field is required' }),
-  password: z.string().min(2, { message: 'Field is required' }),
-  confirmPassword: z.string().min(2, { message: 'Field is required' })
-});
+import { Register } from '@/lib/api-routes';
+
+const FormSchema = z
+  .object({
+    firstName: z.string().min(2, {
+      message: 'Field is required.'
+    }),
+    lastName: z.string().min(2, { message: 'Field is required' }),
+    email: z.string().email().min(2, { message: 'Field is required.' }),
+    workPhone: z
+      .string()
+      .min(2, { message: 'Field is required' })
+      .max(15, { message: 'Field is too long' }),
+    position: z.string().min(2, { message: 'Field is required' }),
+    company: z.string().min(2, { message: 'Field is required' }),
+    companyWebsiteUrl: z.string().min(2, { message: 'Field is required' }),
+    password: z.string().min(2, { message: 'Field is required' }),
+    confirmPassword: z.string().min(2, { message: 'Field is required' }),
+    address: z.object({
+      country: z.string().optional(),
+      state: z.string().optional(),
+      street: z.string().optional(),
+      zip: z.string().optional(),
+      city: z.string().optional()
+    })
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: 'Passwords do not match',
+    path: ['confirmPassword']
+  });
 
 export function SignupForm() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(false);
+  const navigate = useNavigate();
 
   const togglePassword = () => {
     setPasswordVisible(!passwordVisible);
@@ -52,22 +76,88 @@ export function SignupForm() {
     defaultValues: {
       firstName: '',
       lastName: '',
-      workEmail: '',
+      email: '',
       workPhone: '',
-      companyName: '',
-      companyWebsite: '',
+      company: '',
+      companyWebsiteUrl: '',
       position: '',
       password: '',
-      confirmPassword: ''
+
+      address: {
+        country: '',
+        city: '',
+        state: '',
+        street: '',
+        zip: ''
+      }
     }
   });
 
-  function onSubmit(values: z.infer<typeof FormSchema>) {
-    toast('Signup  Successful Redirecting...', {
-      className: 'border border-primary text-center text-base flex justify-center rounded-lg mb-2'
-    });
-    console.log('values submitted', values);
-  }
+  const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+    if (!termsAccepted) {
+      toast.error('Please accept the terms and conditions before signing up.', {
+        style: {
+          backgroundColor: '#F443361A',
+          color: '#F44336',
+          border: '1px solid #F4433680'
+        }
+      });
+      return;
+    }
+    const { confirmPassword, ...formData } = values;
+    setIsSubmitting(true);
+    try {
+      const response = await fetch(Register, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+      console.log(response);
+
+      if (response.status === 200) {
+        toast.success(
+          <div className="flex gap-1 items-center">
+            <span>
+              <img src="/icons/signupemail.svg" alt="Email" />
+            </span>
+            <span>Success!</span> Check email to verify your account.
+          </div>,
+          {
+            style: {
+              background: '#007BFF1A',
+
+              color: '#007BFF',
+              border: '1px solid #007BFF80'
+            }
+          }
+        );
+
+        setTimeout(() => {
+          navigate('/verify-email');
+        }, 5000);
+      } else {
+        toast.error('Email or PhoneNumber already registered.Please use different details', {
+          style: {
+            backgroundColor: '#F443361A',
+            color: '#F44336',
+            border: '1px solid #F4433680'
+          }
+        });
+      }
+    } catch (error) {
+      toast.error('Try Again Later', {
+        style: {
+          backgroundColor: '#F443361A',
+          color: '#FFE6E6',
+          border: '1px solid #F4433680'
+        }
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <Form {...form}>
@@ -119,7 +209,7 @@ export function SignupForm() {
         />
         <FormField
           control={form.control}
-          name="workEmail"
+          name="email"
           render={({ field }) => (
             <FormItem>
               <FormLabel className="font-medium text-base ">Work Email</FormLabel>
@@ -147,7 +237,7 @@ export function SignupForm() {
         />
         <FormField
           control={form.control}
-          name="companyName"
+          name="company"
           render={({ field }) => (
             <FormItem>
               <FormLabel className="font-medium text-base ">Company</FormLabel>
@@ -161,7 +251,7 @@ export function SignupForm() {
         />
         <FormField
           control={form.control}
-          name="companyWebsite"
+          name="companyWebsiteUrl"
           render={({ field }) => (
             <FormItem>
               <FormLabel className="font-medium text-base ">Company Website</FormLabel>
@@ -174,8 +264,85 @@ export function SignupForm() {
           )}
         />
         <div className="col-span-2">
-          <Address />
+          <Accordion type="single" collapsible>
+            <AccordionItem value="item-1">
+              <AccordionTrigger>Address</AccordionTrigger>
+              <AccordionContent className="grid grid-cols-2 gap-2">
+                <FormField
+                  control={form.control}
+                  name="address.country"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Country</FormLabel>
+                      <FormControl>
+                        <Input type="text" placeholder="Enter your country" {...field} />
+                      </FormControl>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="address.city"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>City</FormLabel>
+                      <FormControl>
+                        <Input type="text" placeholder="Enter your city" {...field} />
+                      </FormControl>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="address.state"
+                  render={({ field }) => (
+                    <FormItem className="col-span-2">
+                      <FormLabel>State</FormLabel>
+                      <FormControl>
+                        <Input type="text" placeholder="Enter your   state" {...field} />
+                      </FormControl>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="address.street"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Street</FormLabel>
+                      <FormControl>
+                        <Input type="text" placeholder="Enter your street" {...field} />
+                      </FormControl>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="address.zip"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Zip Code</FormLabel>
+                      <FormControl>
+                        <Input type="text" placeholder="Enter your zipcode" {...field} />
+                      </FormControl>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
+
         <FormField
           control={form.control}
           name="password"
@@ -234,10 +401,10 @@ export function SignupForm() {
         />
 
         <div className="col-span-2">
-          <CheckboxDemo />
+          <CheckboxDemo checked={termsAccepted} onCheckedChange={setTermsAccepted} />
         </div>
-        <Button type="submit" className="col-span-2">
-          <Link to="/verify-email">Sign Up</Link>
+        <Button type="submit" className="col-span-2" disabled={isSubmitting}>
+          {isSubmitting ? 'Submitting...' : 'Sign Up'}
         </Button>
       </form>
     </Form>

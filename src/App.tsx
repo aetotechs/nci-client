@@ -9,10 +9,10 @@ import ShopAddress from '@/pages/shop-address';
 import ShopPayment from '@/pages/shop-payment';
 import ClosedOrder from '@/pages/close-shop';
 import ShopItems from '@/pages/shop-items';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CoffeeShop from '@/pages/coffee-shop';
 import ProductPage from '@/pages/product-page';
-import Profile from '@/pages/profile';
+import Profile, { User } from '@/pages/profile';
 import ResetPasswordPage from '@/pages/reset-password';
 import VerifyEmail from '@/pages/verify-email';
 import About from '@/pages/about-us';
@@ -28,12 +28,19 @@ import Customers from './pages/customers';
 import Analytics from './pages/analytics';
 import Settings from './pages/settings';
 
+import { isAuthenticated } from './lib/cookie';
 export interface IStatus {
   status: boolean;
+  user?: User;
 }
 
 function App() {
-  const [loggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
+  useEffect(() => {
+    const UserLoggedIn = isAuthenticated();
+    setLoggedIn(UserLoggedIn);
+  }, []);
+
   return (
     <>
       <Toaster />

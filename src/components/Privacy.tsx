@@ -1,7 +1,8 @@
 import { DownloadForm } from '@/components/forms/DownloadDataForm';
 import { DeleteConscent } from '@/components/forms/DeleteConscent';
+import { ProfileProps } from '@/pages/profile';
 
-function Privacy() {
+function Privacy({ user }: ProfileProps) {
   return (
     <div className="md:w-[858px] px-5 w-[90%]">
       <div>

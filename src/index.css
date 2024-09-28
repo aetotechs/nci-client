@@ -19,6 +19,7 @@
     --text-dark: 34, 34, 34, 1;
     --badge-background: 244, 67, 54, 0.12;
     --select-background: 245, 239, 229, 1;
+    --toast-success: 0, 123, 255, 1;
     --select-border: 244, 244, 230, 1;
     --card-border: 185, 187, 198, 1;
     --input-field: 242, 242, 242, 1;
@@ -92,6 +93,5 @@
     scroll-behavior: smooth;
 
     overflow-x: hidden;
-    overflow-y: auto;
   }
 }

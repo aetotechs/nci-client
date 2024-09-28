@@ -79,7 +79,7 @@ function Categories() {
           {categories.map((category, index) => (
             <SwiperSlide key={index}>
               <div
-                className="md:w-[390px] h-[338px] rounded-ee-[20px] rounded-ss-[20px] flex justify-center items-center text-white text-2xl font-semibold"
+                className=" h-[338px] rounded-ee-[20px] rounded-ss-[20px] flex justify-center items-center text-white text-2xl font-semibold"
                 style={{
                   backgroundImage: category.imageUrl
                     ? `linear-gradient(rgba(161, 121, 47, 0.3), rgba(161, 121, 47, 0.3)), url(${category.imageUrl})`

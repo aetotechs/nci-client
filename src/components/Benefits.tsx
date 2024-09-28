@@ -6,7 +6,7 @@ import { IStatus } from '@/App';
 function Benefits({ status }: IStatus) {
   return (
     <div
-      className={`rounded-2xl h-[364px] md:h-[275px] p-5 md:flex flex-col  items-center bg-benefits md:pt-10 mt-20   ${!status && ' h-[450px] md:h-[390px]'}`}
+      className={`rounded-2xl h-[364px] p-5 md:flex flex-col  items-center bg-benefits md:pt-10 mt-20   ${!status && ' h-[450px] '}`}
     >
       <div className="">
         <h3 className="font-semibold text-center my-2 md:my-0 text-xl md:text-[26px] text-white">

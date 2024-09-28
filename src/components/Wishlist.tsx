@@ -2,6 +2,7 @@ import { IStatus } from '@/App';
 import { Link } from 'react-router-dom';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
+import { ProfileProps } from '@/pages/profile';
 
 const cards = [
   {
@@ -39,7 +40,7 @@ const cards = [
   }
 ];
 
-function Wishlist({ status }: IStatus) {
+function Wishlist({ status, user }: IStatus) {
   return (
     <div className="px-5 my-5 md:my-0 md:px-0">
       <div className="mb-4">
@@ -48,9 +49,7 @@ function Wishlist({ status }: IStatus) {
       <div className={'flex flex-col md:grid grid-cols-3 gap-5'}>
         {cards.map((card, index) => {
           const isDisabled =
-            card.bagStatus === 'Not Available' &&
-            card.sampleStatus === 'Not Available' &&
-            status === true;
+            card.bagStatus === 'Not Available' && card.sampleStatus === 'Not Available' && !!status;
 
           return (
             <Link to={`/product/${card.name}`} key={index}>

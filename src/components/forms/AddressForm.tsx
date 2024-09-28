@@ -22,7 +22,7 @@ const FormSchema = z.object({
   city: z.string().min(2, { message: 'Field is required' })
 });
 
-export function AddressForm() {
+export function AddressForm({ control }: { control: any }) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
