@@ -61,19 +61,19 @@ const coffeebrands = [
 ];
 function Dashboard() {
   return (
-    <div className="md:mt-4">
+    <div className="md:mt-4 mt-24 pl-5 md:pl-0 md:px-6">
       <div className="flex justify-between ">
         <h3 className="font-semibold text-[23px]">Dashboard</h3>
         <div>
           <Input type="date" />
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-5 my-4">
+      <div className=" grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-5 my-4">
         {items.map((item, index) => (
           <div
             key={index}
-            className="flex flex-col gap-2 bg-white border border-primary/30 rounded-[10px] h-[117px] py-4 px-2">
-            <div className="font-medium text-sm leading-4 uppercase">{item.title}</div>
+            className="flex flex-col gap-2 bg-white border border-primary/30 rounded-[10px] md:h-[117px] py-4 px-2">
+            <div className="font-medium text-[11px] md:text-sm leading-4 uppercase">{item.title}</div>
             <div className="flex justify-between items-center">
               <div className="font-bold">{item.numberofusers}</div>
               <div>
@@ -92,7 +92,7 @@ function Dashboard() {
           </div>
         ))}
       </div>
-      <div className="flex gap-10 my-6">
+      <div className="flex flex-col gap-5 md:flex-row md:gap-5 my-6">
         <div className="border border-primary/30 bg-white   md:w-[714px] rounded-[10px]">
           <div className="flex justify-between px-10 py-3">
             <div className="">
@@ -121,7 +121,7 @@ function Dashboard() {
           <CoffeeBrands />
         </div>
       </div>
-      <div className="flex gap-10 my-6">
+      <div className="flex flex-col md:flex-row gap-4 md:gap-5 my-6">
         <div className="border border-primary/30 bg-white px-10 py-4  md:w-[714px] rounded-[10px]">
           <div>
             <h3 className="font-semibold text-base my-2">Stock Threshold</h3>

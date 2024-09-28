@@ -11,8 +11,8 @@ import { ITransactions } from './tables/TransactionsTable';
 import { ViewTransaction } from './ViewTransaction';
 import { useLocation } from 'react-router-dom';
 import { ICustomers } from './tables/CustomersTable';
-import { EyeIcon } from 'lucide-react';
-
+import { Edit, EyeIcon } from 'lucide-react';
+import { DeleteUser } from './DeleteUser';
 
 export interface IActions {
   category?: ICategories;
@@ -38,8 +38,9 @@ export function ActionsPopover({
   const { pathname } = location;
   const HandleClick = () => {
     if (setShowViewCustomer) {
-      setShowViewCustomer(true);  
-    }  };
+      setShowViewCustomer(true);
+    }
+  };
 
   const renderContent = () => {
     if (pathname === '/category') {
@@ -69,6 +70,26 @@ export function ActionsPopover({
         </>
       );
     }
+
+    if (pathname === '/settings') {
+      return (
+        <>
+         <div
+          
+            className="flex items-center -mt-1 gap-2 cursor-pointer">
+            <EyeIcon className="h-[14px] w-[14px]" />
+            <span className="text-[13px] font-normal">View</span>
+          </div>
+          <div
+            
+            className="flex items-center  -mt-1 gap-2 cursor-pointer">
+            <Edit className="h-[14px] w-[14px]" />
+            <span className="text-[13px] font-normal">Edit</span>
+          </div>
+          <DeleteUser  />
+        </>
+      );
+    }
     if (pathname === '/customers') {
       return (
         <>
@@ -78,7 +99,6 @@ export function ActionsPopover({
             <EyeIcon className="h-[14px] w-[14px]" />
             <span className="text-[13px] font-normal">View</span>
           </div>
-          
         </>
       );
     }
@@ -87,11 +107,11 @@ export function ActionsPopover({
 
   return (
     <Popover>
-      <PopoverTrigger asChild>
+      <PopoverTrigger asChild className='cursor-pointer' >
         <img src="/icons/actions.svg" alt="Actions" />
       </PopoverTrigger>
-      <PopoverContent className="w-32 h-min flex flex-col justify-center items-center gap-2 text-dark shadow-md absolute right-5">
-        <div className="flex flex-col items-center gap-2 justify-center">{renderContent()}</div>
+      <PopoverContent className="w-[10vw] h-min  text-dark shadow-md absolute right-5">
+        <div className="flex flex-col  gap-2 ">{renderContent()}</div>
       </PopoverContent>
     </Popover>
   );

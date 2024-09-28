@@ -66,15 +66,15 @@ function Users() {
 
       <div className="border border-primary/30 bg-white flex flex-col gap-2 py-1 px-3 grow rounded-[8px] max-h-[236px] mt-12">
         <h3 className="font-semibold text-[15px] text-textdark">User Access Control</h3>
-        <p className="font-normal text-sm">
+        <p className='text-textmuted text-sm font-normal'>
           Assign roles to control user access across the platform.
         </p>
         <h5>Admin role</h5>
-        <p>
+        <p className='text-textmuted text-sm font-normal'>
           Admins have access to the entire site. They manage users, orders, and overall analytics.
         </p>
         <h5>User role</h5>
-        <p>
+        <p className='text-textmuted text-sm font-normal'>
           Users have access to all services but cannot edit platform settings or access admin
           privileges.
         </p>
