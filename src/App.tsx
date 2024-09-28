@@ -29,6 +29,7 @@ import Analytics from './pages/analytics';
 import Settings from './pages/settings';
 
 import { isAuthenticated } from './lib/cookie';
+import AdminRoute from './components/AdminRoute';
 export interface IStatus {
   status: boolean;
   user?: User;
@@ -62,15 +63,78 @@ function App() {
           <Route path="/about" element={<About status={loggedIn} />} />
           <Route path="/contact-us" element={<ContactUs status={loggedIn} />} />
           <Route path="/origins" element={<OriginsPage status={loggedIn} />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/categories" element={<Categories />} />
-          <Route path="/admin-origins" element={<AdminOrigins />} />
-          <Route path="/coffee-listings" element={<CoffeeListings />} />
-          <Route path="/orders" element={<Orders />} />
-          <Route path="/transactions" element={<Transactions />} />
-          <Route path="/customers" element={<Customers />} />
-          <Route path="/analytics" element={<Analytics />} />
-          <Route path="/settings" element={<Settings />} />
+          <Route
+            path="/admin"
+            element={
+              <AdminRoute>
+                <Admin />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/categories"
+            element={
+              <AdminRoute>
+                <Categories />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/admin-origins"
+            element={
+              <AdminRoute>
+                <AdminOrigins />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/coffee-listings"
+            element={
+              <AdminRoute>
+                <CoffeeListings />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/orders"
+            element={
+              <AdminRoute>
+                <Orders />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/transactions"
+            element={
+              <AdminRoute>
+                <Transactions />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/customers"
+            element={
+              <AdminRoute>
+                <Customers />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/analytics"
+            element={
+              <AdminRoute>
+                <Analytics />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <AdminRoute>
+                <Settings />
+              </AdminRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>
