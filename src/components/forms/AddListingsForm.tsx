@@ -93,8 +93,11 @@ export function ListingsForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className=" flex gap-5 ">
-        <div className="bg-white border border-primary/30 rounded-[8px] p-5 w-[50vw] max-h-min">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className=" flex flex-col w-[85vw]  md:flex-row gap-5 "
+      >
+        <div className="bg-white border border-primary/30 rounded-[8px] p-5 w-full md:w-[45vw] max-h-min">
           <h3 className="text-base font-semibold">General</h3>
 
           <div className="grid grid-cols-2 gap-5">
@@ -118,16 +121,16 @@ export function ListingsForm() {
                 <FormItem className="col-span-2">
                   <FormLabel>Category *</FormLabel>
                   <FormControl>
-                  <Select >
-                        <SelectTrigger >
-                          <SelectValue  />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="light">Light</SelectItem>
-                          <SelectItem value="dark">Dark</SelectItem>
-                          <SelectItem value="system">System</SelectItem>
-                        </SelectContent>
-                      </Select>
+                    <Select>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="light">Light</SelectItem>
+                        <SelectItem value="dark">Dark</SelectItem>
+                        <SelectItem value="system">System</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -179,16 +182,16 @@ export function ListingsForm() {
                 <FormItem>
                   <FormLabel>Bag Weight (kg) *</FormLabel>
                   <FormControl>
-                  <Select >
-                        <SelectTrigger >
-                          <SelectValue  />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="light">Light</SelectItem>
-                          <SelectItem value="dark">Dark</SelectItem>
-                          <SelectItem value="system">System</SelectItem>
-                        </SelectContent>
-                      </Select>
+                    <Select>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="light">Light</SelectItem>
+                        <SelectItem value="dark">Dark</SelectItem>
+                        <SelectItem value="system">System</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -296,7 +299,7 @@ export function ListingsForm() {
           </div>
         </div>
         <div>
-          <div className="bg-white border border-primary/30 rounded-[8px] p-5 w-[32vw]">
+          <div className="bg-white border border-primary/30 rounded-[8px] p-5 md:w-[32vw]">
             <h3 className="text-base font-semibold">Attributes</h3>
             <p className="font-normal text-[12px]">
               Custom attributes can be added to your list of attributes. Click Add
@@ -485,14 +488,14 @@ export function ListingsForm() {
               />
             </div>
           </div>
-          <div className="border border-primary/30 p-4 rounded-[8px] my-3">
+          <div className="border border-primary/30 p-4 rounded-[8px] my-3 md:w-[32vw]">
             <div>
               <h4 className="font-semibold text-base">Inventories (Sample/Bag)</h4>
               <div className="my-2 text-sm flex items-center gap-2">
                 <span className="text-primary">Pending </span>
                 <span className="text-textdark">Orders,</span>
                 <span>Qty:0</span>
-               <PendingPopover/>
+                <PendingPopover />
               </div>
               <div className="flex gap-5">
                 <FormField
@@ -530,7 +533,8 @@ export function ListingsForm() {
             </Button>
             <Button
               type="submit"
-              className=" font-normal  text-sm border border-primary text-white  h-[44px]">
+              className=" font-normal  text-sm border border-primary text-white  h-[44px]"
+            >
               Save Listing
             </Button>
           </div>

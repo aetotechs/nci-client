@@ -41,7 +41,9 @@ export function OrdersTable({ orders }: IOrderTableProps) {
           <TableHead className="text-center">Status</TableHead>
           <TableHead className="text-center">Quantity</TableHead>
           <TableHead className="text-center">Total</TableHead>
-          <TableHead></TableHead>
+          <TableHead>
+            <span className="flex md:hidden">Actions</span>
+          </TableHead>
         </TableRow>
       </TableHeader>
 

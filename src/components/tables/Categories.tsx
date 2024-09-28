@@ -19,10 +19,10 @@ export interface ICategories {
 
 interface ICategoriesTable {
   categories: ICategories[];
-  category?:ICategories;
+  category?: ICategories;
 }
 
-export function CategoriesTable({ categories,category }: ICategoriesTable) {
+export function CategoriesTable({ categories, category }: ICategoriesTable) {
   return (
     <Table>
       <TableHeader className=" h-9 bg-primary/10 ">
@@ -31,7 +31,9 @@ export function CategoriesTable({ categories,category }: ICategoriesTable) {
           <TableHead className="text-dark font-medium">Name</TableHead>
           <TableHead className="text-dark font-medium">Description</TableHead>
           <TableHead className="text-dark font-medium">Subcategories</TableHead>
-          <TableHead></TableHead>
+          <TableHead>
+            <span className="flex md:hidden">Actions</span>
+          </TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -46,7 +48,8 @@ export function CategoriesTable({ categories,category }: ICategoriesTable) {
                   <Badge
                     variant="outline"
                     key={subIndex}
-                    className=" text-textdarken  bg-inputfield border-none text-xs font-medium px-2 py-1 rounded-[5px]">
+                    className=" text-textdarken  bg-inputfield border-none text-xs font-medium px-2 py-1 rounded-[5px]"
+                  >
                     {subcategory}
                   </Badge>
                 ))}

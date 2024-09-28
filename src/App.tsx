@@ -62,15 +62,15 @@ function App() {
           <Route path="/about" element={<About status={loggedIn} />} />
           <Route path="/contact-us" element={<ContactUs status={loggedIn} />} />
           <Route path="/origins" element={<OriginsPage status={loggedIn} />} />
-          <Route path='/admin' element={<Admin status={loggedIn} />} />
-          <Route path ='/categories' element={<Categories />} />
-          <Route path='/admin-origins' element={<AdminOrigins  />} />
-          <Route path='/coffee-listings' element={<CoffeeListings />} />
-          <Route path='/orders' element={<Orders />} />
-          <Route path='/transactions' element={<Transactions />} />
-          <Route path='/customers' element={<Customers />} />
-          <Route path='/analytics' element={<Analytics />} />
-          <Route path='/settings' element={<Settings />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/categories" element={<Categories />} />
+          <Route path="/admin-origins" element={<AdminOrigins />} />
+          <Route path="/coffee-listings" element={<CoffeeListings />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/transactions" element={<Transactions />} />
+          <Route path="/customers" element={<Customers />} />
+          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
       </BrowserRouter>
     </>

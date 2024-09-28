@@ -28,17 +28,10 @@ export function GraphComponent() {
   return (
     <ChartContainer config={chartConfig} className="md:h-[191px]  w-full">
       <BarChart accessibilityLayer data={chartData}>
-       
-        <XAxis
-          dataKey="month"
-          tickLine={false}
-          tickMargin={10}
-          
-         
-        />
+        <XAxis dataKey="month" tickLine={false} tickMargin={10} />
         <YAxis />
         <ChartTooltip content={<ChartTooltipContent />} />
-       
+
         <Bar dataKey="orders" fill="var(--color-orders)" radius={5} />
       </BarChart>
     </ChartContainer>

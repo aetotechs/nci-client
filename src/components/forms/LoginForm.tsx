@@ -18,7 +18,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { Login } from '@/lib/api-routes';
 import { toast } from 'sonner';
-import { setAuthUser, setUserToken } from '@/lib/cookie';
+import { getAuthUser, setAuthUser, setUserToken } from '@/lib/cookie';
 
 const FormSchema = z.object({
   username: z.string().min(2, {
@@ -53,28 +53,44 @@ export function LoginForm() {
         },
         body: JSON.stringify(values)
       });
-
       const user = await response.json();
 
       if (response.ok) {
         setUserToken(user.token);
         setAuthUser(user.user);
+        const userRole = getAuthUser();
+        const role = userRole.role;
 
-        toast.success('Login Successful Redirecting...', {
-          style: {
-            background: '#007BFF1A',
+        if (role === 'USER') {
+          toast.success('Login Successful Redirecting...', {
+            style: {
+              background: '#007BFF1A',
 
-            color: '#007BFF',
-            border: '1px solid #007BFF80'
-          }
-        });
+              color: '#007BFF',
+              border: '1px solid #007BFF80'
+            }
+          });
+          setTimeout(() => {
+            navigate('/');
+            window.location.reload();
+          }, 5000);
+        } else {
+          console.log(userRole);
+          toast.success('Login Successful Redirecting...', {
+            style: {
+              background: '#007BFF1A',
 
-        setTimeout(() => {
-          navigate('/');
-          window.location.reload();
-        }, 5000);
+              color: '#007BFF',
+              border: '1px solid #007BFF80'
+            }
+          });
+          setTimeout(() => {
+            navigate('/admin');
+          }, 2000);
+        }
       } else {
         const data = await response.text();
+
         toast.error(data, {
           style: {
             backgroundColor: '#F443361A',

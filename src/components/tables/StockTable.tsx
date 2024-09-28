@@ -25,7 +25,9 @@ export function StockTable({ coffeebrands }: IStockTableProps) {
         <TableRow>
           <TableHead>Coffee Brand</TableHead>
           <TableHead>Samples</TableHead>
-          <TableHead>Bags</TableHead>
+          <TableHead>
+            <span className="flex md:hidden">Actions</span>
+          </TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -35,8 +37,9 @@ export function StockTable({ coffeebrands }: IStockTableProps) {
             <TableCell>
               {brand.samples}
               <Badge
-              variant='outline'
-                className={`ml-2 ${brand.samples > 0 ? 'bg-Availablebackground text-Availabletext' : 'bg-destructive text-red-400'} px-2 border-none`}>
+                variant="outline"
+                className={`ml-2 ${brand.samples > 0 ? 'bg-Availablebackground text-Availabletext' : 'bg-destructive text-red-400'} px-2 border-none`}
+              >
                 {brand.samples > 0 ? (
                   <div className="flex items-center gap-1">
                     <div className="h-1 w-1 rounded-full bg-green-400"></div>Available
@@ -50,8 +53,10 @@ export function StockTable({ coffeebrands }: IStockTableProps) {
             </TableCell>
             <TableCell>
               {brand.bags}
-              <Badge variant='outline'
-                className={`ml-2 ${brand.bags > 0 ? 'bg-Availablebackground text-Availabletext' : 'bg-destructive text-red-400'} px-2 border-none`}>
+              <Badge
+                variant="outline"
+                className={`ml-2 ${brand.bags > 0 ? 'bg-Availablebackground text-Availabletext' : 'bg-destructive text-red-400'} px-2 border-none`}
+              >
                 {brand.bags > 0 ? (
                   <div className="flex items-center gap-1">
                     <div className="h-1 w-1 rounded-full bg-green-400"></div>Available

@@ -54,7 +54,6 @@ export function ViewCategoryForm({ category }: IActions) {
         </div>
 
         <div className="">
-        
           <div className="">
             {isNameEditable ? (
               <FormField
@@ -62,7 +61,6 @@ export function ViewCategoryForm({ category }: IActions) {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    
                     <FormControl>
                       <Input
                         type="text"
@@ -77,13 +75,14 @@ export function ViewCategoryForm({ category }: IActions) {
                 )}
               />
             ) : (
-              <div className='flex justify-between'>
-                  <span>Name</span>
-                <div className='flex gap-1'>
+              <div className="flex justify-between">
+                <span>Name</span>
+                <div className="flex gap-1">
                   <span className="font-medium text-sm">{category?.name}</span>
                   <span
                     onClick={() => setIsNameEditable(!isNameEditable)}
-                    className="cursor-pointer">
+                    className="cursor-pointer"
+                  >
                     <Pen className="h-4 w-4" />
                   </span>
                 </div>
@@ -140,7 +139,8 @@ export function ViewCategoryForm({ category }: IActions) {
         <div className="border-t mt-28 flex justify-end ">
           <Button
             type="submit"
-            className=" font-normal my-2 text-sm border border-primary text-white md:w-[82px] h-[44px]">
+            className=" font-normal my-2 text-sm border border-primary text-white md:w-[82px] h-[44px]"
+          >
             Save
           </Button>
         </div>

@@ -23,11 +23,13 @@ export interface ICustomerTableProps {
   customers: ICustomers[];
   customerId?: ICustomers;
   setShowViewCustomer: (show: boolean) => void;
-
-  
 }
 
-export function CustomersTable({ customers, customerId ,setShowViewCustomer}: ICustomerTableProps) {
+export function CustomersTable({
+  customers,
+  customerId,
+  setShowViewCustomer
+}: ICustomerTableProps) {
   return (
     <Table>
       <TableHeader className="h-9 bg-primary/10 text-textdark">
@@ -38,7 +40,9 @@ export function CustomersTable({ customers, customerId ,setShowViewCustomer}: IC
           <TableHead className="text-dark font-medium text-center">Date</TableHead>
 
           <TableHead className="text-dark font-medium text-center">Revenue ($)</TableHead>
-          <TableHead></TableHead>
+          <TableHead>
+            <span className="flex md:hidden">Actions</span>
+          </TableHead>
         </TableRow>
       </TableHeader>
 
@@ -53,11 +57,7 @@ export function CustomersTable({ customers, customerId ,setShowViewCustomer}: IC
             <TableCell className="text-center">{customer.revenue}</TableCell>
 
             <TableCell className="relative">
-              <ActionsPopover
-                customerId={customerId}
-                setShowViewCustomer={setShowViewCustomer}
-                
-              />
+              <ActionsPopover customerId={customerId} setShowViewCustomer={setShowViewCustomer} />
             </TableCell>
           </TableRow>
         ))}

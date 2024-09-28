@@ -1,8 +1,8 @@
-
 import AddListing from '@/components/AddListing';
 import AdminHeader from '@/components/AdminHeader';
 import AdminMobileNav from '@/components/AdminMobileNav';
 import AdminSideBarDesktop from '@/components/AdminSideBarDesktop';
+import { FilterSheet } from '@/components/CoffeeListingMobile';
 
 import { ListingFilter } from '@/components/ListingFilter';
 
@@ -87,7 +87,7 @@ export const Listings = [
 ];
 function CoffeeListings() {
   const [showAddListing, setShowAddListing] = useState(false);
-  
+
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const toggleCollapse = () => setIsCollapsed(!isCollapsed);
@@ -95,36 +95,49 @@ function CoffeeListings() {
     setShowAddListing((prev) => !prev);
   };
   return (
-    <div className="grid grid-cols-7 md:h-screen">
-       <div className={` w-[15vw] hidden md:flex bg-white h-screen border-r border-primary/30 sticky top-0  transition-all duration-300 ${isCollapsed && 'w-[6vw] overflow-x-hidden'}`}>
-      <AdminSideBarDesktop isCollapsed={isCollapsed} toggleCollapse={toggleCollapse} />
+    <div className={`flex w-[100vw]  relative `}>
+      <div
+        className={` w-[15vw] hidden md:flex bg-white h-screen border-r border-primary/30 sticky top-0  transition-all duration-300 ${isCollapsed && 'w-[5vw] overflow-x-hidden'}`}
+      >
+        <AdminSideBarDesktop isCollapsed={isCollapsed} toggleCollapse={toggleCollapse} />
       </div>
       <div className="absolute top-4 hidden md:flex">
-      <button
+        <button
           onClick={toggleCollapse}
-          className={`text-primary bg-white shadow-md  z-50 fixed  rounded-sm translate-x-[14vw] ${isCollapsed && 'translate-x-[4vw]'}`}>
+          className={`text-primary bg-white shadow-md  z-50 fixed  rounded-sm translate-x-[14vw] ${isCollapsed && 'translate-x-[4vw]'}`}
+        >
           {isCollapsed ? <ChevronRight className="h-5 w-5" /> : <ChevronLeft className=" " />}
         </button>
       </div>
-      <div className={`w-[100vw]   transition-all duration-100 ${isCollapsed ?'w-[95vw]':'w-[85vw]'} `}>
-        <AdminHeader/>
-        <AdminMobileNav/>
+      <div
+        className={`w-[100vw]   transition-all duration-100 ${isCollapsed ? 'w-[95vw]' : 'w-[85vw]'} `}
+      >
+        <AdminHeader />
+        <AdminMobileNav />
         {showAddListing ? (
-          <AddListing />
+          <AddListing isCollapsed={isCollapsed} toggleCollapse={toggleCollapse} />
         ) : (
-          <div className="p-5 ">
+          <div
+            className={`p-5 md:pr-10 w-[100vw] ${isCollapsed ? 'md:w-[94vw] ' : 'md:w-[84vw]'} mt-20 md:mt-0 `}
+          >
             <div className="flex gap-3 items-center">
-              <h3 className="font-semibold text-2xl">CoffeeListings</h3>
+              <h3 className="font-semibold text-2xl ">CoffeeListings</h3>
               <Badge
                 variant="outline"
-                className="h-6 w-8 rounded-[5px] border-primary/30 bg-white justify-center text-primary">
+                className="h-6 w-8 rounded-[5px] border-primary/30 bg-white justify-center text-primary"
+              >
                 {Listings.length}
               </Badge>
             </div>
-            <div className="flex justify-between mt-5">
+            <div className="flex gap-2 md:justify-between  mt-5">
               <Search />
               <div className="flex gap-2">
-                <ListingFilter />
+                <div className="hidden md:flex">
+                  <ListingFilter />
+                </div>
+                <div className="flex md:hidden">
+                  <FilterSheet />
+                </div>
                 <Button className="gap-2 " onClick={HandleClick}>
                   <span>
                     <Plus className="h-4 w-4" />
@@ -134,7 +147,7 @@ function CoffeeListings() {
               </div>
             </div>
 
-            <div className="border my-10 rounded-t-[8px]  overflow-hidden">
+            <div className="border my-10 rounded-t-[8px]  w-full  overflow-hidden">
               <CoffeeListingsTable listings={Listings} />
             </div>
             <div>

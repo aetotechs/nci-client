@@ -14,7 +14,7 @@ export function AddUser() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-      <Button className="gap-2 h-[34px]">
+        <Button className="gap-2 h-[34px]">
           <span>
             <Plus className="h-4 w-4" />
           </span>

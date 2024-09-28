@@ -3,13 +3,12 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 import { IActions } from './Actions';
 import { ArrowDown, EyeIcon } from 'lucide-react';
 import { checkStatus } from './tables/TransactionsTable';
-//import { checkStatus } from './tables/TransactionsTable';
 
 export function ViewTransaction({ transactionId }: IActions) {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <div className="flex items-center justify-between -mt-1 gap-2 cursor-pointer">
+        <div className="flex items-center justify-center -mt-1 gap-2 cursor-pointer">
           <EyeIcon className="h-[14px] w-[14px]" />
           <span className="text-[13px] font-normal">View</span>
         </div>
@@ -39,9 +38,10 @@ export function ViewTransaction({ transactionId }: IActions) {
             <div className="flex justify-between">
               <span className="font-normal ">Status</span>
               <div
-                className={`flex h-max w-max px-2 py-1 rounded-[5px] border-none items-center gap-1 ${checkStatus('Completed')}`}>
+                className={`flex h-max w-max px-2 py-1 rounded-[5px] border-none items-center gap-1 ${checkStatus('Completed')}`}
+              >
                 <div className="h-[6px] w-[6px] rounded-full bg-current"></div>
-                <span className='font-medium'>Completed</span>
+                <span className="font-medium">Completed</span>
               </div>
             </div>
             <div className="flex justify-between">

@@ -42,7 +42,9 @@ export function UsersTable({ users, userId }: IUsersTableProps) {
           <TableHead className="text-dark font-medium">User</TableHead>
           <TableHead className="text-dark font-medium">Role</TableHead>
 
-          <TableHead></TableHead>
+          <TableHead>
+            <span className="flex md:hidden">Actions</span>
+          </TableHead>
         </TableRow>
       </TableHeader>
 
@@ -63,7 +65,8 @@ export function UsersTable({ users, userId }: IUsersTableProps) {
 
             <TableCell className="">
               <div
-                className={`flex h-max w-[77px] px-2 py-1 rounded-[6px]  ${checkRole(user.role)}`}>
+                className={`flex h-max w-[77px] px-2 py-1 rounded-[6px]  ${checkRole(user.role)}`}
+              >
                 <DialogDemo role={user.role} name={user.name} />
               </div>
             </TableCell>

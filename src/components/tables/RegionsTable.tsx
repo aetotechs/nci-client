@@ -7,7 +7,6 @@ import {
   TableRow
 } from '@/components/ui/table';
 
-
 import { ActionsPopover } from '../Actions';
 
 export interface IRegions {
@@ -31,7 +30,9 @@ export function RegionsTable({ regions, region }: IregionsTable) {
           <TableHead className="text-dark font-medium">Name</TableHead>
           <TableHead className="text-dark font-medium ">Origin</TableHead>
           <TableHead className="text-dark font-medium ">Number Of coffee listings</TableHead>
-          <TableHead></TableHead>
+          <TableHead>
+            <span className="flex md:hidden">Actions</span>
+          </TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -40,7 +41,7 @@ export function RegionsTable({ regions, region }: IregionsTable) {
             <TableCell className="font-medium ">#{index + 1}</TableCell>
             <TableCell className="font-medium">{region.name}</TableCell>
             <TableCell className="">{region.origin}</TableCell>
-            <TableCell className=''>{region.numberOfCoffeeListings}</TableCell>
+            <TableCell className="">{region.numberOfCoffeeListings}</TableCell>
             <TableCell>
               <ActionsPopover region={region} />
             </TableCell>

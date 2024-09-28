@@ -74,10 +74,11 @@ export function OriginForm() {
           )}
         />
 
-        <div className="border-t md:mt-64 flex justify-end">
+        <div className="border-t md:mt-60 flex justify-end">
           <Button
             type="submit"
-            className=" font-normal my-2 text-sm border border-primary text-white md:w-[82px] h-[44px]">
+            className=" font-normal my-2 text-sm border border-primary text-white md:w-[82px] h-[44px]"
+          >
             Save
           </Button>
         </div>

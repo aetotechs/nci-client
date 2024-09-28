@@ -43,7 +43,7 @@ export function ActionsPopover({
   };
 
   const renderContent = () => {
-    if (pathname === '/category') {
+    if (category) {
       return (
         <>
           <ViewCategory category={category} />
@@ -55,13 +55,29 @@ export function ActionsPopover({
       return <ViewOrigin origin={origin} />;
     }
     if (region) {
-      return <p>Region: {region.name}</p>;
+      return <ViewOrigin origin={origin} />;
     }
     if (listing) {
-      return <p>Listing: {listing.bagWeight}</p>;
+      return (
+        <>
+          <div className="flex items-center -mt-1 gap-2 cursor-pointer">
+            <EyeIcon className="h-[14px] w-[14px]" />
+            <span className="text-[13px] font-normal">View</span>
+          </div>
+          <div className="flex items-center  -mt-1 gap-2 cursor-pointer">
+            <Edit className="h-[14px] w-[14px]" />
+            <span className="text-[13px] font-normal">Edit</span>
+          </div>
+        </>
+      );
     }
-    if (order) {
-      return <p>Order ID: {order.id}</p>;
+    if (pathname === '/orders') {
+      return (
+        <div className="flex items-center -mt-1 gap-2 cursor-pointer">
+          <EyeIcon className="h-[14px] w-[14px]" />
+          <span className="text-[13px] font-normal">View</span>
+        </div>
+      );
     }
     if (pathname === '/transactions') {
       return (
@@ -74,19 +90,15 @@ export function ActionsPopover({
     if (pathname === '/settings') {
       return (
         <>
-         <div
-          
-            className="flex items-center -mt-1 gap-2 cursor-pointer">
+          <div className="flex items-center -mt-1 gap-2 cursor-pointer">
             <EyeIcon className="h-[14px] w-[14px]" />
             <span className="text-[13px] font-normal">View</span>
           </div>
-          <div
-            
-            className="flex items-center  -mt-1 gap-2 cursor-pointer">
+          <div className="flex items-center  -mt-1 gap-2 cursor-pointer">
             <Edit className="h-[14px] w-[14px]" />
             <span className="text-[13px] font-normal">Edit</span>
           </div>
-          <DeleteUser  />
+          <DeleteUser />
         </>
       );
     }
@@ -95,7 +107,8 @@ export function ActionsPopover({
         <>
           <div
             onClick={HandleClick}
-            className="flex items-center justify-between -mt-1 gap-2 cursor-pointer">
+            className="flex items-center justify-center -mt-1 gap-2 cursor-pointer"
+          >
             <EyeIcon className="h-[14px] w-[14px]" />
             <span className="text-[13px] font-normal">View</span>
           </div>
@@ -107,7 +120,7 @@ export function ActionsPopover({
 
   return (
     <Popover>
-      <PopoverTrigger asChild className='cursor-pointer' >
+      <PopoverTrigger asChild className="cursor-pointer">
         <img src="/icons/actions.svg" alt="Actions" />
       </PopoverTrigger>
       <PopoverContent className="w-[10vw] h-min  text-dark shadow-md absolute right-5">

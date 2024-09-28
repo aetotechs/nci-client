@@ -41,7 +41,8 @@ export function AddUserForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="w-full flex flex-col md:grid md:grid-cols-2 gap-5 p-2">
+        className="w-full flex flex-col md:grid md:grid-cols-2 gap-5 p-2"
+      >
         <FormField
           control={form.control}
           name="firstName"
@@ -83,7 +84,7 @@ export function AddUserForm() {
           )}
         />
 
-        <div className=' border-t col-span-2 flex justify-end'>
+        <div className=" border-t col-span-2 flex justify-end">
           <Button type="submit" className="mt-3 h-8 ">
             Submit
           </Button>

@@ -1,4 +1,4 @@
-import { ChevronRight } from "lucide-react";
+import { ChevronRight } from 'lucide-react';
 
 const customers = [
   {
@@ -33,7 +33,12 @@ function RecentCustomers() {
     <div>
       <div className="flex justify-between">
         <h3 className="font-semibold text-base">Recent Customers</h3>
-        <p className="text-primary flex items-center gap-1 text-sm">See All <span><ChevronRight className="h-4 w-4"/></span></p>
+        <p className="text-primary flex items-center gap-1 text-sm">
+          See All{' '}
+          <span>
+            <ChevronRight className="h-4 w-4" />
+          </span>
+        </p>
       </div>
       <div className="flex flex-col gap-3 my-2">
         {customers.map((customer, index) => (

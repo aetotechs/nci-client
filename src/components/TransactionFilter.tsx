@@ -3,9 +3,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Button } from './ui/button';
 import { TransactionFilterForm } from './forms/TransactionFilterForm';
 
-
 export function TransactionFilter() {
-
   return (
     <Popover>
       <PopoverTrigger asChild>

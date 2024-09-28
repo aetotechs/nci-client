@@ -112,7 +112,8 @@ export function TransactionFilterForm() {
                             {status.items.map((s, idx) => (
                               <li
                                 key={idx}
-                                className="flex gap-3 items-center font-normal text-base">
+                                className="flex gap-3 items-center font-normal text-base"
+                              >
                                 <Checkbox className="border-rgba(108, 109, 118, 1)" />
                                 {s}
                               </li>

@@ -88,7 +88,8 @@ export function CategoryForm() {
         <div className="border-t mt-28 flex justify-end ">
           <Button
             type="submit"
-            className=" font-normal my-2 text-sm border border-primary text-white md:w-[82px] h-[44px]">
+            className=" font-normal my-2 text-sm border border-primary text-white md:w-[82px] h-[44px]"
+          >
             Save
           </Button>
         </div>

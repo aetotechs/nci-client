@@ -6,18 +6,16 @@ import {
 } from '@/components/ui/accordion';
 import { Checkbox } from '@/components/ui/checkbox';
 
-interface Listing{
+interface Listing {
   title: string;
-  items:string[];
+  items: string[];
 }
 
-interface IListings{
-  Listings:Listing[];
+interface IListings {
+  Listings: Listing[];
 }
 
-
-
-function CoffeeListings({Listings}:IListings) {
+function CoffeeListings({ Listings }: IListings) {
   return (
     <div>
       <Accordion type="multiple" className="w-full">

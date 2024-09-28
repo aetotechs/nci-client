@@ -23,8 +23,6 @@ import {
 } from '@/components/ui/select';
 import { toast } from 'sonner';
 
-
-
 const FormSchema = z.object({
   customer: z.string().min(2, { message: 'Field is required' })
 });
@@ -75,9 +73,11 @@ export function SelectCustmerForm() {
         />
 
         <div className=" mt-20 flex justify-center ">
-          <Button variant={'outline'}
+          <Button
+            variant={'outline'}
             type="submit"
-            className=" font-normal my-2 text-sm border bg-white border-primary text-primary  h-[38px]">
+            className=" font-normal my-2 text-sm border bg-white border-primary text-primary  h-[38px]"
+          >
             Create Customer
           </Button>
         </div>

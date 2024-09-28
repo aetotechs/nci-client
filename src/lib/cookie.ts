@@ -35,9 +35,7 @@ const logout = () => {
 };
 const isAuthTokenExpired = (expirationTime: number) => {
   const currentTime = Math.floor(Date.now() / 1000);
-  console.log('CurrentTime: ', currentTime);
-  console.log('TokenExpirationTime: ', expirationTime);
-  console.log('Time to live: ', expirationTime - currentTime);
+
   return expirationTime < currentTime;
 };
 const decodeToken = (token: any) => {

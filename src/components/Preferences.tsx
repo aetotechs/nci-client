@@ -2,18 +2,20 @@ import { Switch } from '@/components/ui/switch';
 
 function Preferences() {
   return (
-    <div className="flex flex-col gap-3 max-w-[30vw]">
+    <div className="flex flex-col gap-3 md:max-w-[30vw]">
       <div className="flex items-center justify-between">
-      <div className="w-[20vw]">
-      <h5 className="font-semibold text-sm">Order Notifications</h5>
-          <p className="font-normal text-[13px] text-textmuted">Receive email alerts when a new order is placed</p>
+        <div className="md:w-[20vw]">
+          <h5 className="font-semibold text-sm">Order Notifications</h5>
+          <p className="font-normal text-[13px] text-textmuted">
+            Receive email alerts when a new order is placed
+          </p>
         </div>
         <div className="flex items-center space-x-2">
           <Switch id="order" />
         </div>
       </div>
       <div className="flex items-center justify-between">
-        <div className="w-[20vw]">
+        <div className="md:w-[20vw]">
           <h5 className="font-semibold text-sm">Stock Alerts</h5>
           <p className="font-normal text-[13px]  text-textmuted">
             Receive notifications for stock-related events, such as low inventory
@@ -25,8 +27,8 @@ function Preferences() {
       </div>
 
       <div className="flex items-center justify-between">
-      <div className="w-[20vw]">
-      <h5 className="font-semibold text-sm">Transaction Alerts</h5>
+        <div className="md:w-[20vw]">
+          <h5 className="font-semibold text-sm">Transaction Alerts</h5>
           <p className="font-normal text-[13px]  text-textmuted">
             Receive notifications when payments are processed
           </p>

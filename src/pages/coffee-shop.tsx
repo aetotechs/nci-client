@@ -14,7 +14,7 @@ import {
   SelectValue
 } from '@/components/ui/select';
 
-import { FilterSheet } from '@/components/FilterMobile';
+import { FilterSheet, Listings } from '@/components/FilterMobile';
 
 function CoffeeShop({ status }: IStatus) {
   const breadcrumbItems = [{ href: '/coffee-shop', label: 'Shop' }];

@@ -16,14 +16,12 @@ import {
 
 import { AdminOrdersTable } from './tables/AdminOrdersTable';
 
-
-
- const orders = [
+const orders = [
   {
     id: '1',
     orderDate: 'Aug 24,2024',
     status: 'Shipped',
-    item:"Endiro",
+    item: 'Endiro',
     customer: 'John Doe',
     revenue: 100
   },
@@ -31,7 +29,7 @@ import { AdminOrdersTable } from './tables/AdminOrdersTable';
     id: '2',
     orderDate: 'Aug 24,2024',
     status: 'Cancelled',
-    item:"Endiro",
+    item: 'Endiro',
     customer: 'John Doe',
     revenue: 100
   },
@@ -39,13 +37,11 @@ import { AdminOrdersTable } from './tables/AdminOrdersTable';
     id: '3',
     orderDate: 'Aug 24,2024',
     status: 'Processing',
-    item:"Endiro",
+    item: 'Endiro',
     customer: 'John Doe',
     revenue: 100
   }
-  
 ];
-
 
 const items = [
   {
@@ -97,8 +93,8 @@ const coffeebrands = [
 ];
 function AnalyticsDashboard() {
   return (
-    <div className="md:mt-4">
-      <div className="flex justify-between ">
+    <div className="md:mt-4 mt-24 ">
+      <div className="flex flex-col md:flex-row gap-5 justify-between ">
         <h3 className="font-semibold text-[23px] leading-5">Analytics</h3>
         <div className="flex items-center gap-3">
           <Button className="items-center gap-2 grow">
@@ -110,11 +106,12 @@ function AnalyticsDashboard() {
           <Input type="date" />
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-5 my-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 my-4">
         {items.map((item, index) => (
           <div
             key={index}
-            className="flex flex-col gap-2 bg-white border border-primary/30 rounded-[10px] h-[117px] py-4 px-2">
+            className="flex flex-col gap-2 bg-white border border-primary/30 rounded-[10px] h-[117px] py-4 px-2"
+          >
             <div className="font-medium text-sm leading-4 uppercase">{item.title}</div>
             <div className="flex justify-between items-center">
               <div className="font-bold">{item.numberofusers}</div>
@@ -125,7 +122,8 @@ function AnalyticsDashboard() {
                     item.percentage < 0
                       ? 'bg-destructive text-red-400'
                       : 'bg-Availablebackground text-Availabletext'
-                  }`}>
+                  }`}
+                >
                   {item.percentage}%
                 </Badge>
               </div>
@@ -134,7 +132,7 @@ function AnalyticsDashboard() {
           </div>
         ))}
       </div>
-      <div className="flex gap-5 my-6">
+      <div className="flex flex-col md:flex-row gap-5 my-6">
         <div className="border border-primary/30 bg-white   lg:w-[47vw] lg:max-h-[301px] rounded-[10px]">
           <div className="flex justify-between px-10 py-3">
             <div className="">
@@ -177,7 +175,7 @@ function AnalyticsDashboard() {
           </div>
         </div>
       </div>
-      <div className="flex gap-10 my-6">
+      <div className="flex flex-col md:flex-row gap-5 my-6">
         <div className="border border-primary/30 bg-white px-10 py-4  md:w-[714px] rounded-[10px]">
           <div>
             <h3 className="font-semibold text-base my-2">Stock Threshold</h3>

@@ -27,15 +27,17 @@ export function OrderSheet() {
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
-          <SheetTitle className='m-3 px-2'>
+          <SheetTitle className="m-3 px-2">
             <h3 className="font-semibold text-xl">Select Customer</h3>
           </SheetTitle>
         </SheetHeader>
         <SelectCustmerForm />
 
-        <SheetFooter className='border-t mt-72'>
-          <SheetClose asChild >
-            <Button type="submit" className='mx-3 my-2'>Proceed</Button>
+        <SheetFooter className="border-t mt-10 md:mt-64">
+          <SheetClose asChild>
+            <Button type="submit" className="mx-3 my-2">
+              Proceed
+            </Button>
           </SheetClose>
         </SheetFooter>
       </SheetContent>

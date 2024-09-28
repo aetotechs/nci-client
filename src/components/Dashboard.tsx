@@ -72,8 +72,11 @@ function Dashboard() {
         {items.map((item, index) => (
           <div
             key={index}
-            className="flex flex-col gap-2 bg-white border border-primary/30 rounded-[10px] md:h-[117px] py-4 px-2">
-            <div className="font-medium text-[11px] md:text-sm leading-4 uppercase">{item.title}</div>
+            className="flex flex-col gap-2 bg-white border border-primary/30 rounded-[10px] md:h-[117px] py-4 px-2"
+          >
+            <div className="font-medium text-[11px] md:text-sm leading-4 uppercase">
+              {item.title}
+            </div>
             <div className="flex justify-between items-center">
               <div className="font-bold">{item.numberofusers}</div>
               <div>
@@ -83,7 +86,8 @@ function Dashboard() {
                     item.percentage < 0
                       ? 'bg-destructive text-red-400'
                       : 'bg-Availablebackground text-Availabletext'
-                  }`}>
+                  }`}
+                >
                   {item.percentage}%
                 </Badge>
               </div>

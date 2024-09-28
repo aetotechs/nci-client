@@ -1,12 +1,18 @@
-import { MenuIcon } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { MobileSideBar } from './MobileSideNav';
 
 function AdminMobileNav() {
   return (
     <div className="flex h-[70px] bg-white justify-between md:hidden px-4 w-[100vw] fixed z-20 top-0">
-      <div className="flex items-center">
+      <div className="flex items-center gap-7">
         <div>
-          <MenuIcon />
+          <MobileSideBar />
         </div>
+        <Link to="/admin">
+          <div className="w-[25vw] py-2 h-[40px]">
+            <img src="/logos/logo.png" alt="coffee logo" width="200" height={38} />
+          </div>
+        </Link>
       </div>
 
       <div className="flex items-center gap-7">

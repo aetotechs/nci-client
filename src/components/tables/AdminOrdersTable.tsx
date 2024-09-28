@@ -45,19 +45,25 @@ export function AdminOrdersTable({ orders }: IOrdersTable) {
   const { pathname } = location;
   return (
     <Table>
-      <TableHeader className="h-9 bg-primary/10 text-textdark">
+      <TableHeader className="h-9 bg-primary/10 text-textdark  ">
         <TableRow>
           <TableHead className="text-dark font-medium">OrderId</TableHead>
           <TableHead className="text-dark font-medium">Order Date</TableHead>
           <TableHead className="text-dark font-medium">Status</TableHead>
-          <TableHead className="text-dark font-medium">{pathname==='/analytics'?'Item':'Ordered Items'}</TableHead>
-          {pathname === '/analytics' && <TableHead></TableHead>}
-          {pathname === '/orders' && (
+          <TableHead className="text-dark font-medium ">
+            {pathname === '/analytics' ? 'Item' : 'Ordered Items'}
+          </TableHead>
+          {pathname === '/analytics' ? <TableHead></TableHead> : ''}
+          {pathname === '/orders' ? (
             <>
               <TableHead className="text-dark font-medium">Customer</TableHead>
               <TableHead className="text-dark font-medium">Revenue ($)</TableHead>
-              <TableHead></TableHead>
+              <TableHead>
+                <span className="flex md:hidden">Actions</span>
+              </TableHead>
             </>
+          ) : (
+            ''
           )}
         </TableRow>
       </TableHeader>
@@ -67,15 +73,16 @@ export function AdminOrdersTable({ orders }: IOrdersTable) {
             <TableCell className="font-medium">#{order.id}</TableCell>
             <TableCell className="font-normal text-[15px]">{order.orderDate}</TableCell>
             <TableCell>{getStatusBadge(order.status)}</TableCell>
-            {pathname == '/orders' ? <TableCell>{order?.orderItems?.join(', ')}</TableCell>:<TableCell>{order?.item}</TableCell>}
+            {pathname == '/orders' && <TableCell>{order?.orderItems?.join(', ')}</TableCell>}
+            {pathname == '/analytics ' && <TableCell>{order?.item}</TableCell>}
             {pathname === '/analytics' && (
               <TableCell>
-                <Eye className='h-4 w-4' />
+                <Eye className="h-4 w-4" />
               </TableCell>
             )}
 
             {pathname === '/customers' && (
-              <TableCell className="flex flex-col gap-1">
+              <TableCell className="flex flex-col gap-1 ">
                 <span className="font-medium text-[15px]">${order.totalPrice}</span>
                 <span className="text-sm">{order?.orderItems?.join(', ')}</span>
               </TableCell>

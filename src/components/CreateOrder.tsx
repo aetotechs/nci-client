@@ -25,7 +25,7 @@ function CreateOrder() {
               </div>
             </div>
             <div>
-              <Search/>
+              <Search />
             </div>
           </div>
         </div>

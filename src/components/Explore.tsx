@@ -8,6 +8,9 @@ import { AddToCart, FetchItems } from '@/lib/api-routes';
 import { getAuthUser, getUserToken } from '@/lib/cookie';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
+export const truncate = (lotNumber: string) => {
+  return lotNumber.length > 10 ? lotNumber.slice(0, 10) + '...' : lotNumber;
+};
 
 function Explore({ status }: IStatus) {
   const [addingStates, setAddingStates] = useState<{ [key: string]: boolean }>({});
@@ -15,10 +18,6 @@ function Explore({ status }: IStatus) {
   const location = useLocation();
   const { pathname } = location;
   const navigate = useNavigate();
-
-  const truncate = (lotNumber: string) => {
-    return lotNumber.length > 10 ? lotNumber.slice(0, 10) + '...' : lotNumber;
-  };
 
   useEffect(() => {
     const fetchProducts = async () => {

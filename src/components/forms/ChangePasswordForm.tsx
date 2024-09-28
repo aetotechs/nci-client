@@ -67,7 +67,9 @@ export function ChangePasswordForm() {
           name="currentPassword"
           render={({ field }) => (
             <FormItem className={`my-4 ${pathname === '/settings' && 'flex items-center gap-5'}`}>
-              <FormLabel className={`&{pathname==='/settings ? 'text-sm':'font-normal text-base} `}>Current Password</FormLabel>
+              <FormLabel className={`&{pathname==='/settings ? 'text-sm':'font-normal text-base} `}>
+                Current Password
+              </FormLabel>
               <FormControl>
                 <div className="flex border justify-between items-center pr-4 rounded-[8px] overflow-hidden">
                   <Input
@@ -96,7 +98,9 @@ export function ChangePasswordForm() {
           render={({ field }) => (
             <FormItem className={`my-4 ${pathname === '/settings' && 'flex items-center gap-10'}`}>
               {' '}
-              <FormLabel className={`&{pathname==='/settings ? 'text-sm':'font-normal text-base} `}>New Password</FormLabel>
+              <FormLabel className={`&{pathname==='/settings ? 'text-sm':'font-normal text-base} `}>
+                New Password
+              </FormLabel>
               <FormControl>
                 <div className="flex border justify-between items-center pr-4 rounded-[8px] overflow-hidden">
                   <Input
@@ -124,7 +128,9 @@ export function ChangePasswordForm() {
           render={({ field }) => (
             <FormItem className={`my-4 ${pathname === '/settings' && 'flex items-center gap-5'}`}>
               {' '}
-              <FormLabel className={`&{pathname==='/settings ? 'text-sm':'font-normal text-base} `}>Confirm  Password</FormLabel>
+              <FormLabel className={`&{pathname==='/settings ? 'text-sm':'font-normal text-base} `}>
+                Confirm Password
+              </FormLabel>
               <FormControl>
                 <div className="flex border justify-between items-center pr-4 rounded-[8px] overflow-hidden">
                   <Input
@@ -149,7 +155,8 @@ export function ChangePasswordForm() {
 
         <Button
           type="submit"
-          className={` ${pathname==='/settings' ?'float-end font-normal text-[12px] h-8':'w-full font-normal h-[50px] rounded-[6px] text-base my-6 '}`}>
+          className={` ${pathname === '/settings' ? 'float-end font-normal text-[12px] h-8' : 'w-full font-normal h-[50px] rounded-[6px] text-base my-6 '}`}
+        >
           {pathname === '/settings' ? 'Update Password' : 'Save'}
         </Button>
       </form>

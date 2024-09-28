@@ -3,6 +3,7 @@ import { FilterForm } from './forms/FilterForm';
 import { Button } from './ui/button';
 import { useLocation } from 'react-router-dom';
 import { TransactionFilterForm } from './forms/TransactionFilterForm';
+import { OrderFilterForm } from './forms/OrderFilterForm';
 
 export function ListingFilter() {
   const location = useLocation();
@@ -18,7 +19,10 @@ export function ListingFilter() {
         </Button>
       </PopoverTrigger>
       <PopoverContent>
-        {pathname === '/coffee-listings' ? <FilterForm /> : <TransactionFilterForm />}
+        {pathname === '/transactions' && <TransactionFilterForm />}
+        {pathname === '/coffee-listings' && <FilterForm />}
+        {pathname === '/orders' && <OrderFilterForm />}
+        {pathname === '/customers' && <OrderFilterForm />}
       </PopoverContent>
     </Popover>
   );

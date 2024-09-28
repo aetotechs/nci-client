@@ -60,7 +60,8 @@ export function ChangeDetails() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="w-full flex flex-col md:grid md:grid-cols-2 gap-5">
+        className="w-full flex flex-col md:grid md:grid-cols-2 gap-5"
+      >
         <FormField
           control={form.control}
           name="firstName"
@@ -120,7 +121,8 @@ export function ChangeDetails() {
         <Button
           type="submit"
           className="justify-self-end col-span-2 h-8 text-[13px]"
-          disabled={!isChanged}>
+          disabled={!isChanged}
+        >
           Save Changes
         </Button>
       </form>

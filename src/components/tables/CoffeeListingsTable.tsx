@@ -36,7 +36,9 @@ export function CoffeeListingsTable({ listings, listing }: ICoffeeListingsTable)
           <TableHead className="text-dark font-medium ">Price (Pound/Bag)</TableHead>
           <TableHead className="text-dark font-medium ">Bag Weight (kg)</TableHead>
           <TableHead className="text-dark font-medium ">Stock (Samples/Bags)</TableHead>
-          <TableHead></TableHead>
+          <TableHead>
+            <span className="flex md:hidden">Actions</span>
+          </TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -45,12 +47,20 @@ export function CoffeeListingsTable({ listings, listing }: ICoffeeListingsTable)
             <TableCell className="font-medium ">{listing.brand}</TableCell>
             <TableCell className="font-medium">{listing.region}</TableCell>
             <TableCell className="flex flex-col gap-2 text-[15px]">
-              <span className='font-normal text-textdark'> ${listing.samplePrice}/lb</span>
-              <span className='font-mormal text-gray-500'> ${listing.bagPrice}/bag</span>
+              <span className="font-normal text-textdark"> ${listing.samplePrice}/lb</span>
+              <span className="font-mormal text-gray-500"> ${listing.bagPrice}/bag</span>
             </TableCell>
             <TableCell className="">{listing.bagWeight}</TableCell>
             <TableCell className="">
-              <span className={`${listing.sampleStock>0?'text-Availabletext':'text-red-400'}`}>{listing.sampleStock} samples</span> / <span className={`${listing.bagStock>0?'text-Availabletext':'text-red-400'}`}>{listing.bagStock} bags</span>
+              <span
+                className={`${listing.sampleStock > 0 ? 'text-Availabletext' : 'text-red-400'}`}
+              >
+                {listing.sampleStock} samples
+              </span>{' '}
+              /{' '}
+              <span className={`${listing.bagStock > 0 ? 'text-Availabletext' : 'text-red-400'}`}>
+                {listing.bagStock} bags
+              </span>
             </TableCell>
             <TableCell>
               <ActionsPopover listing={listing} />
