@@ -42,7 +42,6 @@ export function LoginForm() {
       password: ''
     }
   });
-  
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
     setIsSubmitting(true);
@@ -59,8 +58,7 @@ export function LoginForm() {
 
       if (response.ok) {
         setUserToken(user.token);
-        setAuthUser(user.user)
-    
+        setAuthUser(user.user);
 
         toast.success('Login Successful Redirecting...', {
           style: {

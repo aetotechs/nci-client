@@ -2,7 +2,7 @@ import { AddPayementDialog } from '@/components/AddPaymentMethod';
 import { EditPaymentDialog } from '@/components/EditPayment';
 import { ProfileProps } from '@/pages/profile';
 
-function PaymentMethods({user}:ProfileProps) {
+function PaymentMethods({ user }: ProfileProps) {
   const PaymentMethods = [
     {
       title: 'Mastercard',

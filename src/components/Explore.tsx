@@ -81,11 +81,10 @@ function Explore({ status }: IStatus) {
       });
 
       if (response.ok) {
-
-        const data=await response.json();
-        const cartId=data.cartId;
+        const data = await response.json();
+        const cartId = data.cartId;
         localStorage.setItem('cartId', cartId);
-        
+
         toast.success(
           <div className="flex gap-1 items-center">
             <span>
@@ -136,7 +135,8 @@ function Explore({ status }: IStatus) {
       )}
       <div className={`${pathname === '/coffee-shop' ? 'py-0 ' : 'py-5 md:py-10'}`}>
         <div
-          className={`${pathname == '/' ? 'grid md:grid-cols-2 md:gap-3 lg:grid-cols-3 gap-5' : 'flex  lg:gap-4 gap-5 md:gap-2 flex-wrap'}`}>
+          className={`${pathname == '/' ? 'grid md:grid-cols-2 md:gap-3 lg:grid-cols-3 gap-5' : 'flex  lg:gap-4 gap-5 md:gap-2 flex-wrap'}`}
+        >
           {products.map((product, index) => {
             const isDisabled =
               product.stockAvailable === false &&
@@ -151,10 +151,12 @@ function Explore({ status }: IStatus) {
                 } ${pathname === '/coffee-shop' ? 'grow max-w-[300px]  px-5 py-2 ' : '  px-5  py-2 md:py-5'}
                   
                   `}
-                style={{ pointerEvents: isDisabled ? 'none' : 'auto' }}>
+                style={{ pointerEvents: isDisabled ? 'none' : 'auto' }}
+              >
                 <div
                   className="font-medium text-[18px] mb-3 cursor-pointer"
-                  onClick={() => HandleClick(product.name)}>
+                  onClick={() => HandleClick(product.name)}
+                >
                   {product.name}
                 </div>
                 <div className="font-normal text-[15px] mb-3 flex gap-1 items-center">
@@ -171,7 +173,8 @@ function Explore({ status }: IStatus) {
                         {product.sampleAvailable !== true && (
                           <Badge
                             variant="outline"
-                            className="bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px]">
+                            className="bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px]"
+                          >
                             <div className="h-[5px] w-[5px] rounded-full bg-destructive"></div>
                             <p className="text-destructive">Not Available</p>
                           </Badge>
@@ -182,7 +185,8 @@ function Explore({ status }: IStatus) {
                         {product.stockAvailable !== true && (
                           <Badge
                             variant="outline"
-                            className="bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px]">
+                            className="bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px]"
+                          >
                             <div className="h-[5px] w-[5px] rounded-full bg-destructive"></div>
                             <p className="text-destructive">Not Available</p>
                           </Badge>
@@ -197,19 +201,22 @@ function Explore({ status }: IStatus) {
                 </div>
                 {status ? (
                   <div
-                    className={`  ${pathname == '/coffee-shop' ? '  flex gap-2   md:flex-row  ' : 'flex flex-col md:flex-row justify-between  gap-3'}`}>
+                    className={`  ${pathname == '/coffee-shop' ? '  flex gap-2   md:flex-row  ' : 'flex flex-col md:flex-row justify-between  gap-3'}`}
+                  >
                     <Button
                       type="submit"
                       onClick={() => {
                         AddCart(product.itemId, product.name);
                       }}
                       className={`rounded-[10px] bg-primary grow  text-white font-normal text-[15px] h-10 md:h-[40px] ${pathname == '/coffee-shop' && 'h-[45px]   '}`}
-                      disabled={isDisabled || addingStates[product.itemId]}>
+                      disabled={isDisabled || addingStates[product.itemId]}
+                    >
                       {addingStates[product.itemId] ? 'Adding...' : 'Add to Cart'}
                     </Button>
                     <Button
                       className={`rounded-[10px] grow  h-10  md:h-[40px] text-primary font-normal text-[15px] bg-white border border-primary  ${pathname == '/coffee-shop' && 'h-[45px]    px-4 text-sm'}`}
-                      disabled={isDisabled}>
+                      disabled={isDisabled}
+                    >
                       Request Sample
                     </Button>
                   </div>
@@ -227,7 +234,8 @@ function Explore({ status }: IStatus) {
         <div className="flex justify-center my-5 md:my-0">
           <Link
             className="flex justify-between items-center p-3 gap-2 border border-primary rounded-md text-primary font-semibold text-[16px] leading-5"
-            to="/">
+            to="/"
+          >
             View More
             <span>
               <ChevronRight />

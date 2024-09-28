@@ -28,7 +28,6 @@ const myitems = [
 
 function ShoppingCart() {
   const [items, setItems] = useState<IItems[]>([]);
- 
 
   useEffect(() => {
     const fetchedItems = myitems;
@@ -60,9 +59,11 @@ function ShoppingCart() {
             Back
           </Button>
         </Link>
-        <Button onClick={HandleClear}
+        <Button
+          onClick={HandleClear}
           className="flex gap-2 bg-red-500 rounded-[10px] w-[109px] h-[43px] text-white px-3"
-          variant="outline">
+          variant="outline"
+        >
           <span>
             <Trash2 className="w-4 h-4" />
           </span>

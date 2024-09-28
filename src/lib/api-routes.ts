@@ -9,4 +9,5 @@ export const AddToCart = `${import.meta.env.VITE_USERORDER_URL}/carts`;
 export const FetchItems = `${import.meta.env.VITE_FETCHITEMS_URL}/items`;
 export const FetchUser = (email: string | null) =>
   `${import.meta.env.VITE_USERAPI_URL}/users/${email}`;
-export const FetchCartItems=(cartId: string | null)=>`${import.meta.env.VITE_USERORDER_URL}/carts?cartId=${cartId}`;
+export const FetchCartItems = (cartId: string | null) =>
+  `${import.meta.env.VITE_USERORDER_URL}/carts?cartId=${cartId}`;

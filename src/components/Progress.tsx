@@ -7,7 +7,7 @@ function Progress() {
   const location = useLocation();
 
   const steps = [
-    { paths: [ '/shop-items'], label: 'Cart' },
+    { paths: ['/shop-items'], label: 'Cart' },
     { paths: ['/shipping-address'], label: 'Address' },
     { paths: ['/shop-payment'], label: 'Payment' }
   ];

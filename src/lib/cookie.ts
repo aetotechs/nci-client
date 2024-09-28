@@ -13,7 +13,7 @@ const getAuthUser = () => {
 
   if (user) {
     try {
-      return JSON.parse(user); 
+      return JSON.parse(user);
     } catch (error) {
       console.error('Error parsing user data:', error);
       return null;
