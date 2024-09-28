@@ -54,7 +54,6 @@ function Explore({ status }: IStatus) {
   };
 
   const AddCart = async (productId: string, productName: string) => {
-    console.log(`Adding ${productId}`);
     setAddingStates((prev) => ({ ...prev, [productId]: true }));
     const user = getAuthUser();
     const customerId = user.userId;
