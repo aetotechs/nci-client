@@ -13,7 +13,7 @@ function Admin() {
   return (
     <div className={`flex w-[100vw]  relative ${isCollapsed && ' '}`}>
       <div
-        className={` w-[15vw] hidden md:flex bg-white h-screen border-r border-primary/30 sticky top-0  transition-all duration-300 ${isCollapsed && 'w-[6vw] overflow-x-hidden'}`}
+        className={` w-[15vw] hidden md:flex bg-white h-screen border-r border-primary/30 sticky top-0  transition-all duration-300 ${isCollapsed && 'w-[5vw] overflow-x-hidden'}`}
       >
         <AdminSideBarDesktop isCollapsed={isCollapsed} toggleCollapse={toggleCollapse} />
       </div>
