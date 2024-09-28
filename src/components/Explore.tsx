@@ -144,7 +144,7 @@ function Explore({ status }: IStatus) {
             return (
               <div
                 key={index}
-                className={`   border rounded-[20px] flex flex-col  bg-white ${
+                className={`   border rounded-[20px] flex flex-col ${!status && 'h-[230px]'}  bg-white ${
                   isDisabled ? 'border-gray-300 bg-gray-100 text-gray-500' : 'border-primary/30'
                 } ${pathname === '/coffee-shop' ? 'grow max-w-[300px]  px-5 py-2 ' : '  px-5  py-2 md:py-5'}
                   
@@ -219,7 +219,7 @@ function Explore({ status }: IStatus) {
                     </Button>
                   </div>
                 ) : (
-                  <Button className="py-5 h-10 md:h-12 rounded-[10px] my-5 ">
+                  <Button className="py-5 h-8 md:h-12 rounded-[10px] my-5 ">
                     <Link to="/login"> Log In To Buy/Sample</Link>
                   </Button>
                 )}
