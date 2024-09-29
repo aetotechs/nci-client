@@ -25,7 +25,7 @@ function CoffeeShop({ status }: IStatus) {
   }, [pathname]);
   return (
     <>
-      <div className="md:px-[5vw] w-[100vw] overflow-hidden  ">
+      <div className="md:px-[5vw] w-[100vw]   ">
         <Header status={status} />
         <div className="px-4   pt-10 md:pt-0  overflow-hidden">
           <div className="mt-10 hidden md:flex">
