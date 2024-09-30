@@ -16,8 +16,8 @@ function About({ status }: IStatus) {
 
   return (
     <>
-      <div className="md:my-5 mx-auto md:w-[1232px] ">
-        <Header status={status} />
+      <div className="md:px-[5vw] md:max-w-[100vw] overflow-x-hidden px-5   ">
+      <Header status={status} />
         <div className="w-[100vw] px-5 py-7 md:pt-0 md:w-[1232px] overflow-hidden">
           <div className="md:my-7 my-4">
             <h3 className="font-semibold text-xl">About Us</h3>

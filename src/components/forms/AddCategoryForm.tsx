@@ -85,7 +85,7 @@ export function CategoryForm() {
             </FormItem>
           )}
         />
-        <div className="border-t mt-28 flex justify-end ">
+        <div className="border-t mt-5 flex justify-end ">
           <Button
             type="submit"
             className=" font-normal my-2 text-sm border border-primary text-white md:w-[82px] h-[44px]"

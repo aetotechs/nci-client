@@ -4,7 +4,6 @@ import {
   AccordionItem,
   AccordionTrigger
 } from '@/components/ui/accordion';
-import { logout } from '@/lib/cookie';
 import { HomeIcon, Settings } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 export interface AdminSideBarDesktopProps {
@@ -31,7 +30,7 @@ function AdminSideBarDesktop({ isCollapsed }: AdminSideBarDesktopProps) {
       className={`flex flex-col gap-3 fixed transition-all  z-50 duration-300  ${isCollapsed ? 'w-16' : 'w-[14vw]'}`}
     >
       <div
-        className={`border-b border-primary/30 py-2 mb-4 flex relative items-center px-2 ${isCollapsed ? 'w-10vw overflow-hidden' : 'w-[20vw]'}`}
+        className={`border-b border-primary/30 py-2 mb-4 flex relative items-center  ${isCollapsed ? 'w-10vw overflow-hidden' : 'w-[20vw]'}`}
       >
         <Link to="/admin">
           <div className="w-[10vw] py-2 h-[40px]">

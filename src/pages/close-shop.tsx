@@ -27,7 +27,7 @@ function ClosedOrder({ status }: IStatus) {
   }, [pathname]);
   return (
     <>
-      <div className="md:my-5 mx-auto md:w-[1232px] w-[100vw] overflow-x-hidden  ">
+      <div className="md:my-5 mx-auto  w-[100vw] overflow-x-hidden  ">
         <Header status={status} />
 
         <div>

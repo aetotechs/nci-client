@@ -122,7 +122,7 @@ function Explore({ status }: IStatus) {
     }
   };
   return (
-    <div className="my-10 md:my-0 px-5 ">
+    <div className="my-10 md:my-0 md:px-5 ">
       {pathname === '/' && (
         <div className="flex justify-center flex-col items-center md:mb-2">
           <h3 className="font-semibold text-xl md:text-[26px] mt-4 md:mt-0">Explore Nile Coffee</h3>
@@ -133,7 +133,7 @@ function Explore({ status }: IStatus) {
       )}
       <div className={`${pathname === '/coffee-shop' ? 'py-0 ' : 'py-5 md:py-10'}`}>
         <div
-          className={`${pathname == '/' ? 'grid md:grid-cols-2 md:gap-3 lg:grid-cols-3 gap-5' : 'flex  lg:gap-4 gap-5 md:gap-2 flex-wrap'}`}
+          className={ 'grid md:grid-cols-2 md:gap-3 lg:grid-cols-3 gap-5'}
         >
           {products.map((product, index) => {
             const isDisabled =
@@ -144,7 +144,7 @@ function Explore({ status }: IStatus) {
             return (
               <div
                 key={index}
-                className={`   border rounded-[20px] flex flex-col ${!status && 'h-[230px]'}  bg-white ${
+                className={`   border rounded-[10px] flex flex-col ${!status && ''}  bg-white ${
                   isDisabled ? 'border-gray-300 bg-gray-100 text-gray-500' : 'border-primary/30'
                 } ${pathname === '/coffee-shop' ? 'grow max-w-[300px]  px-5 py-2 ' : '  px-5  py-2 md:py-5'}
                   
@@ -152,16 +152,16 @@ function Explore({ status }: IStatus) {
                 style={{ pointerEvents: isDisabled ? 'none' : 'auto' }}
               >
                 <div
-                  className="font-medium text-[18px] mb-3 cursor-pointer"
+                  className="font-medium text-base mb-3 cursor-pointer"
                   onClick={() => HandleClick(product.name)}
                 >
                   {product.name}
                 </div>
-                <div className="font-normal text-[15px] mb-3 flex gap-1 items-center">
+                <div className="font-normal  mb-3 flex gap-1 items-center">
                   <span>
                     <img src="icons/coffee-bean.svg" alt="Coffee Bean" />
                   </span>
-                  <span className="font-normal text-[14px]"> {product.flavor}</span>
+                  <span className="font-normal lower-case text-[12px]"> {product.flavor}</span>
                 </div>
                 <div className="font-normal text-[16px] mb-3">
                   {status && (
@@ -193,9 +193,9 @@ function Explore({ status }: IStatus) {
                     </div>
                   )}
                 </div>
-                <div className="flex justify-between mb-4">
-                  <p className="font-medium text-[15px]">{product.wareHouse}</p>
-                  <p className="font-normal text-sm text-inactive">{truncate(product.lotNumber)}</p>
+                <div className="flex text-[12px] justify-between mb-4">
+                  <p className="font-medium ">{product.wareHouse}</p>
+                  <p className="font-normal  text-inactive">{truncate(product.lotNumber)}</p>
                 </div>
                 {status ? (
                   <div
@@ -219,7 +219,7 @@ function Explore({ status }: IStatus) {
                     </Button>
                   </div>
                 ) : (
-                  <Button className="py-5 h-8 md:h-12 rounded-[10px] my-5 ">
+                  <Button className="py-5 h-8 text-[12px] md:h-8 rounded-[6px]  ">
                     <Link to="/login"> Log In To Buy/Sample</Link>
                   </Button>
                 )}

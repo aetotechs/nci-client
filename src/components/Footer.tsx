@@ -6,10 +6,10 @@ function Footer() {
   return (
     <div className="bottom-0 bg-white mx-auto  ">
       <div className="bg-footer bg-contain bg-no-repeat bg-center bg-white/60 bg-blend-overlay mt-24  pt-20 mb-20">
-        <div className="w-[90%] h-[181px] md:grid grid-cols-2  p-5 md:p-10 rounded-2xl shadow drop-shadow-xl border md:h-[120px]  mx-auto">
+        <div className="w-[90%] h-[181px] md:grid grid-cols-2  p-5 md:p-5 md:pt-7 md:items-center rounded-2xl shadow  border md:max-h-[120px]  mx-auto">
           <div>
             <h3 className="font-bold text-[18px] ">Subscribe to Our NewsLetter</h3>
-            <p className="my-3 md:py-0">
+            <p className="my-3 md:my-0">
               Stay updated on news, arrivals and all things green coffee
             </p>
           </div>
@@ -71,7 +71,7 @@ function Footer() {
             </div>
           </div>
           <div className="flex flex-col gap-3  ">
-            <h3 className="font-semibold text-base">Legal Infomamtion</h3>
+            <h3 className="font-semibold text-base">Legal Information</h3>
             <Link to="/terms-and-conditions">Terms and Conditions</Link>
             <Link to="/privacy-policy">Privacy Policy</Link>
             <Link to="/cookie-policy">Cookie Policy</Link>

@@ -4,7 +4,6 @@ import CartWithItems from '@/components/CartWithItems';
 import Coupon from '@/components/Coupon';
 import OrderSummary from '@/components/OrderSummary';
 import Progress from '@/components/Progress';
-import Footer from '@/components/Footer';
 import { IStatus } from '@/App';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -19,8 +18,8 @@ function ShopItems({ status }: IStatus) {
 
   return (
     <>
-      <div className="md:my-5 mx-auto md:w-[1232px] w-[100vw ] overflow-hidden ">
-        <Header status={status} />
+      <div className="md:px-[5vw] md:max-w-[100vw]  px-5   ">
+      <Header status={status} />
 
         <div className="mt-10 hidden md:flex">
           {' '}
