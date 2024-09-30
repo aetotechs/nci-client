@@ -12,22 +12,34 @@ import ShopItems from '@/pages/shop-items';
 import { useEffect, useState } from 'react';
 import CoffeeShop from '@/pages/coffee-shop';
 import ProductPage from '@/pages/product-page';
-import Profile from '@/pages/profile';
+import Profile, { User } from '@/pages/profile';
 import ResetPasswordPage from '@/pages/reset-password';
 import VerifyEmail from '@/pages/verify-email';
 import About from '@/pages/about-us';
 import ContactUs from '@/pages/contact-us';
 import OriginsPage from '@/pages/origins';
+import Admin from '@/pages/admin-dashboard';
+import Categories from './pages/categories';
+import AdminOrigins from './pages/Admin-origins';
+import CoffeeListings from './pages/coffee-listings';
+import Orders from './pages/Orders';
+import Transactions from './pages/transactions';
+import Customers from './pages/customers';
+import Analytics from './pages/analytics';
+import Settings from './pages/settings';
+
+import { isAuthenticated } from './lib/cookie';
+import AdminRoute from './components/AdminRoute';
 export interface IStatus {
   status: boolean;
+  user?: User;
 }
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   useEffect(() => {
-    const storedValue = localStorage.getItem('isLoggedIn');
-    const isLogged = storedValue ? JSON.parse(storedValue) : false;
-    setLoggedIn(isLogged);
+    const UserLoggedIn = isAuthenticated();
+    setLoggedIn(UserLoggedIn);
   }, []);
 
   return (
@@ -51,6 +63,78 @@ function App() {
           <Route path="/about" element={<About status={loggedIn} />} />
           <Route path="/contact-us" element={<ContactUs status={loggedIn} />} />
           <Route path="/origins" element={<OriginsPage status={loggedIn} />} />
+          <Route
+            path="/admin"
+            element={
+              <AdminRoute>
+                <Admin />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/categories"
+            element={
+              <AdminRoute>
+                <Categories />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/admin-origins"
+            element={
+              <AdminRoute>
+                <AdminOrigins />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/coffee-listings"
+            element={
+              <AdminRoute>
+                <CoffeeListings />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/orders"
+            element={
+              <AdminRoute>
+                <Orders />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/transactions"
+            element={
+              <AdminRoute>
+                <Transactions />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/customers"
+            element={
+              <AdminRoute>
+                <Customers />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/analytics"
+            element={
+              <AdminRoute>
+                <Analytics />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <AdminRoute>
+                <Settings />
+              </AdminRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>

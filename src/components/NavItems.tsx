@@ -4,7 +4,7 @@ import { CategoriesSheet } from './CategoriesSheet';
 
 function NavItems() {
   return (
-    <nav className="flex flex-col md:flex-row items-center list-none gap-10 text-[16px] text-text">
+    <nav className="flex flex-col md:flex-row items-center list-none gap-3 text-[16px] ">
       <li className="cursor-pointer text-textcolor active:text-primary  ">
         <Link to="/about" className="cursor-pointer">
           About Us

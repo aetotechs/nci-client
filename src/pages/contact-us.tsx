@@ -26,9 +26,9 @@ function ContactUs({ status }: IStatus) {
 
   return (
     <>
-      <div className="md:my-5 mx-auto md:w-[1232px] ">
-        <Header status={status} />
-        <div className="w-[100vw] px-5 py-7 md:pt-0 md:w-[1232px] overflow-hidden">
+      <div className="md:px-[5vw] md:max-w-[100vw]   ">
+      <Header status={status} />
+        <div className=" px-5 py-7 md:pt-0  overflow-hidden">
           <div className="md:my-7 my-4">
             <h3 className="font-semibold text-xl">Contact Us</h3>
           </div>
@@ -64,8 +64,8 @@ function ContactUs({ status }: IStatus) {
             </div>
           </div>
 
-          <div className="bg-white grid md:grid-cols-2 p-10 gap-6 rounded-[20px] md:h-[460px] md:mt-8">
-            <div className="md:w-[538px]">
+          <div className="bg-white grid md:grid-cols-2 p-10 gap-10 rounded-[20px] md:h-[460px] md:mt-8">
+            <div className="md:w-[40vw]">
               <h3 className="font-semibold text-[26px]">Suppliers</h3>
               <p className="text-base font-normal leading-7 text-textdark">
                 We value building new relationships and strengthening existing ones with

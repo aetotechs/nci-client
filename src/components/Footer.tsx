@@ -6,7 +6,7 @@ function Footer() {
   return (
     <div className="bottom-0 bg-white mx-auto  ">
       <div className="bg-footer bg-contain bg-no-repeat bg-center bg-white/60 bg-blend-overlay mt-24  pt-20 mb-20">
-        <div className="w-[90%] h-[181px] md:grid grid-cols-2  p-5 md:p-10 rounded-2xl shadow drop-shadow-xl border md:h-[120px] md:w-[1232px] mx-auto">
+        <div className="w-[90%] h-[181px] md:grid grid-cols-2  p-5 md:p-10 rounded-2xl shadow drop-shadow-xl border md:h-[120px]  mx-auto">
           <div>
             <h3 className="font-bold text-[18px] ">Subscribe to Our NewsLetter</h3>
             <p className="my-3 md:py-0">

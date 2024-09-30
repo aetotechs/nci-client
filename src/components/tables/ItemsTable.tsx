@@ -30,7 +30,9 @@ export function ItemsTable({ items }: ITableProps) {
           <TableHead className="col-span-3 flex items-center">Item</TableHead>
           <TableHead className="col-span-1   flex justify-center items-center">Quantity</TableHead>
           <TableHead className="col-span-1 flex justify-center items-center ">SubTotal</TableHead>
-          <TableHead className="col-span-1"></TableHead>
+          <TableHead>
+            <span className="flex md:hidden col-span-1">Actions</span>
+          </TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>

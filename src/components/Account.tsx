@@ -1,12 +1,16 @@
 import { Button } from '@/components/ui/button';
 
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { logout } from '@/lib/cookie';
 import { Link, useNavigate } from 'react-router-dom';
 
 export function AccountPopover() {
+  const navigate = useNavigate();
   const HandleClick = () => {
-    localStorage.clear();
+    logout();
     window.location.reload();
+
+    navigate('/');
   };
   return (
     <Popover>

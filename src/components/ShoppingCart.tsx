@@ -34,6 +34,9 @@ function ShoppingCart() {
 
     setItems(fetchedItems);
   }, [items]);
+  const HandleClear = () => {
+    setItems([]);
+  };
 
   return (
     <div className="md:w-[714px] w-[90vw] mx-5 h-[560px] bg-white p-10  flex flex-col rounded-[8px]">
@@ -57,6 +60,7 @@ function ShoppingCart() {
           </Button>
         </Link>
         <Button
+          onClick={HandleClear}
           className="flex gap-2 bg-red-500 rounded-[10px] w-[109px] h-[43px] text-white px-3"
           variant="outline"
         >
