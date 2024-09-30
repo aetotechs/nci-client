@@ -27,22 +27,22 @@ function Explore({ status }: IStatus) {
           const data = await response.json();
           setProducts(data);
         } else {
-          toast.error('Failed to fetch products', {
-            style: {
-              backgroundColor: '#F443361A',
-              color: '#F44336',
-              border: '1px solid #F4433680'
-            }
-          });
+          // toast.error('Failed to fetch products', {
+          //   style: {
+          //     backgroundColor: '#F443361A',
+          //     color: '#F44336',
+          //     border: '1px solid #F4433680'
+          //   }
+          // });
         }
       } catch (error) {
-        toast.error('Error fetching products', {
-          style: {
-            backgroundColor: '#F443361A',
-            color: '#F44336',
-            border: '1px solid #F4433680'
-          }
-        });
+        // toast.error('Error fetching products', {
+        //   style: {
+        //     backgroundColor: '#F443361A',
+        //     color: '#F44336',
+        //     border: '1px solid #F4433680'
+        //   }
+        // });
       }
     };
 
@@ -100,29 +100,29 @@ function Explore({ status }: IStatus) {
           }
         );
       } else {
-        const error = await response.text();
-        toast.error(error, {
-          style: {
-            backgroundColor: '#F443361A',
-            color: '#F44336',
-            border: '1px solid #F4433680'
-          }
-        });
+        //const error = await response.text();
+        // toast.error(error, {
+        //   style: {
+        //     backgroundColor: '#F443361A',
+        //     color: '#F44336',
+        //     border: '1px solid #F4433680'
+        //   }
+        // });
       }
     } catch (error) {
-      toast.error('Try Again Later', {
-        style: {
-          backgroundColor: '#F443361A',
-          color: '#FFE6E6',
-          border: '1px solid #F4433680'
-        }
-      });
+      // toast.error('Try Again Later', {
+      //   style: {
+      //     backgroundColor: '#F443361A',
+      //     color: '#FFE6E6',
+      //     border: '1px solid #F4433680'
+      //   }
+      // });
     } finally {
       setAddingStates((prev) => ({ ...prev, [productId]: false }));
     }
   };
   return (
-    <div className="my-10 md:my-0 md:px-5 ">
+    <div className={`my-10 md:my-0  ${pathname==='/' &&'md:px-5' }`}>
       {pathname === '/' && (
         <div className="flex justify-center flex-col items-center md:mb-2">
           <h3 className="font-semibold text-xl md:text-[26px] mt-4 md:mt-0">Explore Nile Coffee</h3>
@@ -131,9 +131,9 @@ function Explore({ status }: IStatus) {
           </p>
         </div>
       )}
-      <div className={`${pathname === '/coffee-shop' ? 'py-0 ' : 'py-5 md:py-10'}`}>
+      <div className={`${pathname === '/coffee-shop' ? 'py-0 w-[62vw]  ' : 'py-5 md:py-10'}`}>
         <div
-          className={ 'grid md:grid-cols-2 md:gap-3 lg:grid-cols-3 gap-5'}
+          className={ 'grid md:grid-cols-2 md:gap-3 lg:grid-cols-3 gap-5 '}
         >
           {products.map((product, index) => {
             const isDisabled =
@@ -145,14 +145,14 @@ function Explore({ status }: IStatus) {
               <div
                 key={index}
                 className={`   border rounded-[10px] flex flex-col ${!status && ''}  bg-white ${
-                  isDisabled ? 'border-gray-300 bg-gray-100 text-gray-500' : 'border-primary/30'
+                  isDisabled ? 'border-gray-300 bg-white text-[#b9bbc6]' : 'border-primary/30'
                 } ${pathname === '/coffee-shop' ? 'grow max-w-[300px]  px-5 py-2 ' : '  px-5  py-2 md:py-5'}
                   
                   `}
                 style={{ pointerEvents: isDisabled ? 'none' : 'auto' }}
               >
                 <div
-                  className="font-medium text-base mb-3 cursor-pointer"
+                  className={`font-medium text-base mb-3 cursor-pointer `}
                   onClick={() => HandleClick(product.name)}
                 >
                   {product.name}
@@ -163,30 +163,30 @@ function Explore({ status }: IStatus) {
                   </span>
                   <span className="font-normal lower-case text-[12px]"> {product.flavor}</span>
                 </div>
-                <div className="font-normal text-[16px] mb-3">
+                <div className="font-normal mb-3">
                   {status && (
                     <div className="flex flex-col gap-2">
                       <div className="flex justify-between">
-                        <p className="text-primary">${product.unitPrice}/lb</p>
+                        <p className={`text-primary ${pathname==='/coffee-shop' && 'text-[15px]'} ${isDisabled && 'text-[#b9bbc6]'}`}>${product.unitPrice}/lb</p>
                         {product.sampleAvailable !== true && (
                           <Badge
                             variant="outline"
-                            className="bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px]"
+                            className={`bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px] `}
                           >
-                            <div className="h-[5px] w-[5px] rounded-full bg-destructive"></div>
-                            <p className="text-destructive">Not Available</p>
+                            <div className="h-[5px] w-[5px] rounded-full bg-[#f44336]"></div>
+                            <p className={`text-destructive ${isDisabled && 'text-[#f44336]'}`}>Not Available</p>
                           </Badge>
                         )}
                       </div>
                       <div className="flex justify-between">
-                        <p className="text-primary">${product.unitPrice}/bag</p>
+                        <p className={`text-primary ${pathname==='/coffee-shop' && 'text-[15px]'} ${isDisabled && 'text-[#b9bbc6]'}`}>${product.unitPrice}/bag</p>
                         {product.stockAvailable !== true && (
                           <Badge
                             variant="outline"
                             className="bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px]"
                           >
-                            <div className="h-[5px] w-[5px] rounded-full bg-destructive"></div>
-                            <p className="text-destructive">Not Available</p>
+                            <div className="h-[5px] w-[5px] rounded-full bg-[#f44336]"></div>
+                            <p className="text-[#f44336]">Not Available</p>
                           </Badge>
                         )}
                       </div>
@@ -206,13 +206,13 @@ function Explore({ status }: IStatus) {
                       onClick={() => {
                         AddCart(product.itemId, product.name);
                       }}
-                      className={`rounded-[10px] bg-primary grow  text-white font-normal text-[15px] h-10 md:h-[40px] ${pathname == '/coffee-shop' && 'h-[45px]   '}`}
+                      className={`rounded-[6px] bg-primary grow  text-white font-normal text-[15px] md:h-[40px] ${pathname == '/coffee-shop' ? 'max-h-[30px]  text-[12px]':'h-10'} ${isDisabled && 'text-[#585962] bg-primary/20'}`}
                       disabled={isDisabled || addingStates[product.itemId]}
                     >
                       {addingStates[product.itemId] ? 'Adding...' : 'Add to Cart'}
                     </Button>
                     <Button
-                      className={`rounded-[10px] grow  h-10  md:h-[40px] text-primary font-normal text-[15px] bg-white border border-primary  ${pathname == '/coffee-shop' && 'h-[45px]    px-4 text-sm'}`}
+                      className={`rounded-[6px] grow   md:h-[40px] text-primary font-normal text-[15px] bg-white border border-primary  ${pathname == '/coffee-shop' ? 'max-h-[30px]   text-[12px]':'h-10'} ${isDisabled && 'text-[#1d1b20] border-primary/12'}`}
                       disabled={isDisabled}
                     >
                       Request Sample

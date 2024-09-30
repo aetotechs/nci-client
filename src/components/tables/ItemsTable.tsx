@@ -24,12 +24,12 @@ interface ITableProps {
 }
 export function ItemsTable({ items }: ITableProps) {
   return (
-    <Table className="w-[600px] overflow-hidden">
+    <Table className=" ">
       <TableHeader>
-        <TableRow className="grid grid-cols-6 text-center pt-3 px-4 border-none w-full ">
+        <TableRow className="grid grid-cols-6 text-center text-[12px] font-medium pt-3 px-4 border-none w-full ">
           <TableHead className="col-span-3 flex items-center">Item</TableHead>
           <TableHead className="col-span-1   flex justify-center items-center">Quantity</TableHead>
-          <TableHead className="col-span-1 flex justify-center items-center ">SubTotal</TableHead>
+          <TableHead className="col-span-1 flex justify-end items-center ">SubTotal</TableHead>
           <TableHead>
             <span className="flex md:hidden col-span-1">Actions</span>
           </TableHead>
@@ -37,30 +37,30 @@ export function ItemsTable({ items }: ITableProps) {
       </TableHeader>
       <TableBody>
         {items.map((item, index) => (
-          <div key={index} className="flex justify-between items-center gap-2">
+          <div key={index} className="flex  items-center gap-2 ">
             <div>
               <Checkbox />
             </div>
-            <div className="border mb-3 rounded-[8px]">
-              <TableRow key={index} className="   w-[607px] grid grid-cols-6 h-[140px]">
-                <TableCell className="font-medium col-span-3 px-10">
+            <div className="border mb-3 rounded-[8px] grow">
+              <TableRow key={index} className="    grid grid-cols-6 gap-4 ">
+                <TableCell className="font-medium col-span-3 ">
                   <div>
-                    <h3 className="font-medium text-[17px]">{item.name}</h3>
-                    <div className="mt-2">
-                      <p className="font-normal text-[15px]">{`Lot Number:${item.lotNumber}`}</p>
-                      <p>{`Ware House:${item.warehouse}`}</p>
-                      <p>{`Quantity:${item.quantity}`}</p>
+                    <h3 className="font-medium text-[13px]">{item.name}</h3>
+                    <div className="mt-2 font-normal text-[12px]">
+                      <p className=""><span className='text-[#616161]'>Lot Number:</span><span>{item.lotNumber}</span></p>
+                      <p className=""><span className='text-[#616161]'>Warehouse:</span><span>{item.warehouse}</span></p>
+                      <p className=""><span className='text-[#616161]'>Quantity:</span><span>{item.quantity}</span></p>
                     </div>
                   </div>
                 </TableCell>
                 <TableCell className="col-span-1 flex  items-center -ml-5 ">
                   <Counter className="w-[78px] h-[24px]" />
                 </TableCell>
-                <TableCell className="col-span-1 flex items-center font-semibold text-base">
+                <TableCell className="col-span-1 flex items-center font-semibold text-[13px]">
                   {item.subtotal}
                 </TableCell>
-                <TableCell className="col-span-1 flex items-center">
-                  <Trash2 className="w-4 h-4" />
+                <TableCell className="col-span-1 flex items-center justify-end">
+                  <Trash2 className="w-4 h-4 text-[#8b8d98]" />
                 </TableCell>
               </TableRow>
             </div>

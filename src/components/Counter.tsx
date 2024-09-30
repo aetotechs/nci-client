@@ -29,7 +29,7 @@ function Counter({ className }: CounterProps) {
   return (
     <div
       className={clsx(
-        'flex rounded-xl bg-slate-400 items-center justify-around drop-shadow',
+        'flex rounded-xl bg-[#f2f2f2] px-1 items-center justify-around  border border-[#dbdcdf]',
 
         className
       )}
@@ -38,7 +38,7 @@ function Counter({ className }: CounterProps) {
         -
       </div>
       <Separator orientation="vertical" className="h-4" />
-      <div>{state.count}</div>
+      <div className='text-[11px] '>{state.count}</div>
       <Separator orientation="vertical" className="h-4" />
       <div onClick={() => dispatch({ type: 'increment' })} className="cursor-pointer">
         +

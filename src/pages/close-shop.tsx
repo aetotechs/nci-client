@@ -27,13 +27,13 @@ function ClosedOrder({ status }: IStatus) {
   }, [pathname]);
   return (
     <>
-      <div className="md:my-5 mx-auto  w-[100vw] overflow-x-hidden  ">
-        <Header status={status} />
+      <div className="md:px-[5vw] md:max-w-[100vw]  px-5   ">
+      <Header status={status} />
 
         <div>
-          <div className="md:h-screen  md:my-7 px-4 flex flex-col gap-20 md:grid md:grid-cols-5 md:gap-5 md:place-content-center my-5">
-            <div className="col-span-3">
-              <div className="md:w-[528px] h-[345px]">
+          <div className="md:h-screen  md:my-10 px-4 flex flex-col md:flex-row  gap-20  md:place-content-center my-5">
+            <div className="">
+              <div className="md:w-[50vw]  ">
                 <div className="flex items-center gap-2 mb-4">
                   <div className="rounded-full w-[40px] h-[40px] bg-iconbackground flex items-center justify-center">
                     <Check className="text-white h-10 w-8" />
@@ -41,39 +41,39 @@ function ClosedOrder({ status }: IStatus) {
                   <h3 className="font-semibold text-2xl leading-10">Thank you for your order!</h3>
                 </div>
                 <div>
-                  <p className="text-sm md:pr-7 md:w-[436px] mb-4 text-textmuted">
+                  <p className="text-sm md:pr-7  mb-4 text-textmuted">
                     Your order has been received. We will notify you by email once your order has
                     been shipped
                   </p>
-                  <div className="w-[416px]">
-                    <h5 className="font-semibold text-[21px] leading-tight mb-4">
+                  <div className="w-[416px] text-sm ">
+                    <h5 className="font-semibold text-[18px] leading-tight mb-2">
                       Shipping Address
                     </h5>
-                    <div className="flex my-1">
-                      <h6>Name:</h6>
+                    <div className="flex my-1 gap-1 ">
+                      <h6 className='text-[#616161]'>Name:</h6>
                       <p>{Address.name}</p>
                     </div>
-                    <div className="flex  my-1">
-                      <h6>Company:</h6>
+                    <div className="flex  my-1 gap-1">
+                      <h6 className='text-[#616161]'>Company:</h6>
                       <p>{Address.companyName}</p>
                     </div>
-                    <div className="flex  my-1">
-                      <h6>Address:</h6>
+                    <div className="flex  my-1 gap-1">
+                      <h6 className='text-[#616161]'>Address:</h6>
                       <p>
-                        {Address.street},{Address.city},{Address.zipcode},{Address.country}
+                        {Address.street}, {Address.city}, {Address.zipcode}, {Address.country}
                       </p>
                     </div>
-                    <div className="flex  my-1">
-                      <h6>Tel:</h6>
+                    <div className="flex  my-1 gap-1">
+                      <h6 className='text-[#616161]'>Tel:</h6>
                       <p>{Address.tel}</p>
                     </div>
-                    <div className="flex  my-1">
-                      <h6>Email:</h6>
+                    <div className="flex  my-1 gap-1">
+                      <h6 className='text-[#616161]'>Email:</h6>
                       <p>{Address.email}</p>
                     </div>
                   </div>
                   <div>
-                    <Link to="/shop">
+                    <Link to="/coffee-shop">
                       <Button
                         variant="outline"
                         className="border border-primary bg-white h-[44px] w-[207px] my-6"
@@ -85,7 +85,7 @@ function ClosedOrder({ status }: IStatus) {
                 </div>
               </div>
             </div>
-            <div className="md:col-span-2 bg-white h-[630px]   md:h-[557px]">
+            <div className="md:w-[30vw] bg-white max-h-max   ">
               <OrderSummary />
             </div>
           </div>

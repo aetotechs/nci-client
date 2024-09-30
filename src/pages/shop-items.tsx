@@ -9,7 +9,6 @@ import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 
 function ShopItems({ status }: IStatus) {
-  const breadcrumbItems = [{ href: '/ShopItems', label: 'Cart' }];
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -21,19 +20,16 @@ function ShopItems({ status }: IStatus) {
       <div className="md:px-[5vw] md:max-w-[100vw]  px-5   ">
       <Header status={status} />
 
-        <div className="mt-10 hidden md:flex">
-          {' '}
-          <BreadCrumb items={breadcrumbItems} />
-        </div>
+        
         <div>
-          <div className=" md:flex md:justify-center w-[100vw] mx-1 my-5 ">
+          <div className=" md:flex md:justify-center   my-10 ">
             <Progress />
           </div>
-          <div className=" flex flex-col  md:grid md:grid-cols-5 gap-3 ">
-            <div className="md:col-span-3">
+          <div className=" flex flex-col md:flex-row ">
+            <div className="w-[60vw]">
               <CartWithItems />
             </div>
-            <div className="col-span-2">
+            <div className="w-[30vw]">
               <Coupon />
               <OrderSummary />
             </div>

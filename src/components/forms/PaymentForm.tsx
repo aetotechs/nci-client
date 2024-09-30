@@ -47,17 +47,17 @@ export function PaymentForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="w-full grid grid-cols-2 gap-3 space-y-4"
+        className="md:w-[90%] grid grid-cols-2 gap-3 space-y-2"
       >
         <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
             <FormItem className="col-span-2">
-              <FormLabel className="font-medium text-base">CardHolder Name</FormLabel>
+              <FormLabel className="font-medium text-[13px]">CardHolder Name</FormLabel>
 
               <FormControl>
-                <Input type="text" placeholder="Name on card" className="h-12 " {...field} />
+                <Input type="text" placeholder="Name on card" className="h-[38px]  placeholder:text-[13px] " {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -68,12 +68,12 @@ export function PaymentForm() {
           name="number"
           render={({ field }) => (
             <FormItem className="my-2 col-span-2">
-              <FormLabel className="font-medium text-base ">Card Number</FormLabel>
+              <FormLabel className="font-medium text-[13px] ">Card Number</FormLabel>
               <FormControl>
                 <Input
                   type="text"
                   placeholder="*** *** ***"
-                  className="h-12  ring-offset-0 focus-visible:ring-0  focus-visible:ring-offset-0  "
+                  className="h-[38px]   ring-offset-0 focus-visible:ring-0  focus-visible:ring-offset-0 placeholder: text-[13px]  "
                   {...field}
                 />
               </FormControl>
@@ -88,10 +88,10 @@ export function PaymentForm() {
           name="expiryDate"
           render={({ field }) => (
             <FormItem className="col-span-1">
-              <FormLabel className="font-medium text-base">Expiration</FormLabel>
+              <FormLabel className="font-medium text-[13px]">Expiration</FormLabel>
 
               <FormControl>
-                <Input type="date" className="h-12 " {...field} />
+                <Input type="date" className="h-[38px]  placeholder: text-[13px]" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -102,21 +102,21 @@ export function PaymentForm() {
           name="cv"
           render={({ field }) => (
             <FormItem className="col-span-1">
-              <FormLabel className="font-medium text-base">Cvv</FormLabel>
+              <FormLabel className="font-medium text-[13px]">Cvv</FormLabel>
 
               <FormControl>
-                <Input type="text" placeholder="000" className="h-12 " {...field} />
+                <Input type="text" placeholder="000" className="h-[38px]  placeholder: text-[13px] " {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
         <div className="flex  m  col-span-2 items-center gap-2">
-          <Checkbox />
-          <span className="text-sm">Save payment details for future purchase</span>
+          <Checkbox className='h-3 w-3' />
+          <span className="text-[12px]">Save payment details for future purchase</span>
         </div>
         <Link to="/close-shop " className="col-span-2">
-          <Button type="submit" className="w-full font-normal text-base col-span-2">
+          <Button type="submit" className="w-full font-normal h-10 text-[13px] col-span-2">
             Place Order
           </Button>
         </Link>

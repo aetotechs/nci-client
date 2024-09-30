@@ -6,10 +6,10 @@ function Hero() {
   return (
     <div className=" grid grid-rows-2   md:flex md:mt-20    md:py-3  gap-[3vw]   rounded-r-3xl id='home ">
       <div className="md:mb-5  md:my-0    md:w-[45vw]  order-last md:order-first  ">
-        <h3 className="font-bold text-3xl leading-10 md:text-[44px] md:leading-[60px]">
+        <h3 className="font-bold text-3xl leading-[38px] md:text-[44px] md:leading-[53px]">
           Experience the Rich Taste of <span className="text-textcolor">Premium </span> Coffee
         </h3>
-        <p className="leading-[32px] font-normal text-[20px] md:leading-10   md:my-4">
+        <p className="leading-[32px] font-normal text-[20px] md:leading-[30px]   md:my-4">
           Discover our diverse range of ethically sourced coffee beans from around the world.Elevate
           your coffee experience from the finest regions
         </p>
@@ -26,7 +26,7 @@ function Hero() {
         </div>
       </div>
 
-      <div className="md:w-[40vw]  max-h-[400px] bg-hero bg-cover bg-center rounded-2xl md:rounded-3xl"></div>
+      <div className="md:w-[40vw]  max-h-[350px] bg-hero bg-cover bg-center rounded-2xl md:rounded-3xl"></div>
     </div>
   );
 }

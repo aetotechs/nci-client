@@ -24,7 +24,7 @@ function CoffeeShop({ status }: IStatus) {
   }, [pathname]);
   return (
     <>
-      <div className="md:px-[5vw] w-[100vw] md:mb-10 overflow-hidden  ">
+      <div className="md:px-[5vw] w-[100vw] md:mb-10   ">
         <Header status={status} />
         <div className="px-4   pt-10 md:pt-0  overflow-hidden">
          
@@ -58,7 +58,7 @@ function CoffeeShop({ status }: IStatus) {
               </div>
             </div>
 
-            <div className="flex justify-center flex-1 ">
+            <div className="flex justify-center w-[70vw] ">
               <Explore status={status} />
             </div>
           </div>

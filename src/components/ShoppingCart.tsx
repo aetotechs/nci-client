@@ -39,20 +39,20 @@ function ShoppingCart() {
   };
 
   return (
-    <div className="md:w-[714px] w-[90vw] mx-5 h-[560px] bg-white p-10  flex flex-col rounded-[8px]">
+    <div className=" mx-5 bg-white px-10 py-5  flex flex-col rounded-[8px]">
       <div className="flex justify-between">
-        <h3 className="font-bold md:text-2xl">Shopping Cart</h3>
-        <div className="flex items-center gap-2">
-          <Checkbox />
-          <p className="text-base font-medium">Select All</p>
+        <h3 className="font-bold md:text-base">Shopping Cart</h3>
+        <div className="flex items-center gap-1">
+          <Checkbox className="h-3 w-3" />
+          <p className="text-[13px] font-medium">Select All</p>
         </div>
       </div>
-      <div className="max-w-[700px] overflow-hidden ">
+      <div className="  ">
         <ItemsTable items={items} />
       </div>
       <div className="flex justify-between mt-4">
         <Link to="/shop">
-          <Button className="flex gap-2 rounded-[10px] w-[109px] h-[43px]" variant="outline">
+          <Button className="flex gap-2 rounded-[10px] w-[109px] h-10" variant="outline">
             <span>
               <ChevronLeft className="w-4 h-4" />
             </span>
@@ -61,13 +61,12 @@ function ShoppingCart() {
         </Link>
         <Button
           onClick={HandleClear}
-          className="flex gap-2 bg-red-500 rounded-[10px] w-[109px] h-[43px] text-white px-3"
-          variant="outline"
-        >
+          className="flex gap-2 bg-red-500 rounded-[10px] h-10 text-white px-3"
+          variant="outline">
           <span>
             <Trash2 className="w-4 h-4" />
           </span>
-          Clear Cart
+          <span className='font-normal'> Clear Cart</span>{' '}
         </Button>
       </div>
     </div>
