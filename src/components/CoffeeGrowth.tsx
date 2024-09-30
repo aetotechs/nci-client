@@ -1,6 +1,6 @@
 function CoffeeGrowth() {
   return (
-    <div className="flex flex-col md:flex-row rounded-[20px] px-5    md:flex md:justify-between md:items-center gap-12   md:h-[398px]   md:my-20 ">
+    <div className="flex flex-col md:flex-row rounded-[20px]     md:flex md:justify-between md:items-center gap-12   md:h-[398px]   md:my-20 ">
       <div className="md:w-[509px] order-last  bg-coffeegrowth h-[311px] bg-cover bg-center rounded-3xl"></div>
       <div className="md:w-[656px]">
         <h3 className="font-semibold text-[26px] leading-[28px] text-black mb-4">

@@ -1,10 +1,10 @@
 function CoffeeHistory() {
   return (
-    <div className="flex flex-col gap-2 md:grid rounded-[20px] mx-5 md:mx-0 md:grid-cols-2 md:gap-12 bg-white min-h-max py-10 md:px-20 my-20">
-      <div className="w-full h-[250px] md:h-[428px] bg-coffeehistory bg-cover bg-center rounded-3xl"></div>
+    <div className="flex flex-col gap-2 md:grid rounded-[20px] mx-5 md:mx-0 md:grid-cols-2 bg-white min-h-max py-10 md:px-20 my-20">
+      <div className="w-full h-[250px] md:h-[350px] bg-coffeehistory bg-cover bg-center rounded-3xl"></div>
 
       <div className="flex flex-col justify-center mt-5 md:mt-0 md:pl-10">
-        <h3 className="font-semibold text-xl md:text-[26px] md:leading-[50px] mb-4">
+        <h3 className="font-semibold text-xl md:text-[26px] md:leading-[50px] mb-1">
           History Of Coffee In Kenya
         </h3>
         <p className="leading-[25px] md:leading-[30px] font-normal text-sm md:text-sm">
