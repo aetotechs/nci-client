@@ -18,9 +18,8 @@ function ShopItems({ status }: IStatus) {
   return (
     <>
       <div className="md:px-[5vw] md:max-w-[100vw]  px-5   ">
-      <Header status={status} />
+        <Header status={status} />
 
-        
         <div>
           <div className=" md:flex md:justify-center   my-10 ">
             <Progress />

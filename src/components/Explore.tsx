@@ -122,7 +122,7 @@ function Explore({ status }: IStatus) {
     }
   };
   return (
-    <div className={`my-10 md:my-0  ${pathname==='/' &&'md:px-5' }`}>
+    <div className={`my-10 md:my-0  ${pathname === '/' && 'md:px-5'}`}>
       {pathname === '/' && (
         <div className="flex justify-center flex-col items-center md:mb-2">
           <h3 className="font-semibold text-xl md:text-[26px] mt-4 md:mt-0">Explore Nile Coffee</h3>
@@ -132,9 +132,7 @@ function Explore({ status }: IStatus) {
         </div>
       )}
       <div className={`${pathname === '/coffee-shop' ? 'py-0 w-[62vw]  ' : 'py-5 md:py-10'}`}>
-        <div
-          className={ 'grid md:grid-cols-2 md:gap-3 lg:grid-cols-3 gap-5 '}
-        >
+        <div className={'grid md:grid-cols-2 md:gap-3 lg:grid-cols-3 gap-5 '}>
           {products.map((product, index) => {
             const isDisabled =
               product.stockAvailable === false &&
@@ -167,19 +165,29 @@ function Explore({ status }: IStatus) {
                   {status && (
                     <div className="flex flex-col gap-2">
                       <div className="flex justify-between">
-                        <p className={`text-primary ${pathname==='/coffee-shop' && 'text-[15px]'} ${isDisabled && 'text-[#b9bbc6]'}`}>${product.unitPrice}/lb</p>
+                        <p
+                          className={`text-primary ${pathname === '/coffee-shop' && 'text-[15px]'} ${isDisabled && 'text-[#b9bbc6]'}`}
+                        >
+                          ${product.unitPrice}/lb
+                        </p>
                         {product.sampleAvailable !== true && (
                           <Badge
                             variant="outline"
                             className={`bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px] `}
                           >
                             <div className="h-[5px] w-[5px] rounded-full bg-[#f44336]"></div>
-                            <p className={`text-destructive ${isDisabled && 'text-[#f44336]'}`}>Not Available</p>
+                            <p className={`text-destructive ${isDisabled && 'text-[#f44336]'}`}>
+                              Not Available
+                            </p>
                           </Badge>
                         )}
                       </div>
                       <div className="flex justify-between">
-                        <p className={`text-primary ${pathname==='/coffee-shop' && 'text-[15px]'} ${isDisabled && 'text-[#b9bbc6]'}`}>${product.unitPrice}/bag</p>
+                        <p
+                          className={`text-primary ${pathname === '/coffee-shop' && 'text-[15px]'} ${isDisabled && 'text-[#b9bbc6]'}`}
+                        >
+                          ${product.unitPrice}/bag
+                        </p>
                         {product.stockAvailable !== true && (
                           <Badge
                             variant="outline"
@@ -206,13 +214,13 @@ function Explore({ status }: IStatus) {
                       onClick={() => {
                         AddCart(product.itemId, product.name);
                       }}
-                      className={`rounded-[6px] bg-primary grow  text-white font-normal text-[15px] md:h-[40px] ${pathname == '/coffee-shop' ? 'max-h-[30px]  text-[12px]':'h-10'} ${isDisabled && 'text-[#585962] bg-primary/20'}`}
+                      className={`rounded-[6px] bg-primary grow  text-white font-normal text-[15px] md:h-[40px] ${pathname == '/coffee-shop' ? 'max-h-[30px]  text-[12px]' : 'h-10'} ${isDisabled && 'text-[#585962] bg-primary/20'}`}
                       disabled={isDisabled || addingStates[product.itemId]}
                     >
                       {addingStates[product.itemId] ? 'Adding...' : 'Add to Cart'}
                     </Button>
                     <Button
-                      className={`rounded-[6px] grow   md:h-[40px] text-primary font-normal text-[15px] bg-white border border-primary  ${pathname == '/coffee-shop' ? 'max-h-[30px]   text-[12px]':'h-10'} ${isDisabled && 'text-[#1d1b20] border-primary/12'}`}
+                      className={`rounded-[6px] grow   md:h-[40px] text-primary font-normal text-[15px] bg-white border border-primary  ${pathname == '/coffee-shop' ? 'max-h-[30px]   text-[12px]' : 'h-10'} ${isDisabled && 'text-[#1d1b20] border-primary/12'}`}
                       disabled={isDisabled}
                     >
                       Request Sample

@@ -16,13 +16,17 @@ function Benefits({ status }: IStatus) {
       <div className="flex flex-col md:flex-row md:gap-3 md:mb-5 md:mt-5 md:pt-10 pb-10 md:px-20  ">
         <div className="md:px-10 text-sm font-normal md:text-base">
           <h4 className="md:font-semibold  text-base text-primary">View Live Pricing</h4>
-          <p className=" text-white py-2 text-[15px] font-normal">Access real-time custom pricing for our full catalog</p>
+          <p className=" text-white py-2 text-[15px] font-normal">
+            Access real-time custom pricing for our full catalog
+          </p>
         </div>
         <Separator orientation="vertical" />
 
         <div className="md:px-10  md:text-base">
           <h4 className="md:font-semibold text-base text-primary">Request Samples</h4>
-          <p className=" text-white py-2 text-[15px] font-normal">Request up to 6 complimentary samples at a time</p>
+          <p className=" text-white py-2 text-[15px] font-normal">
+            Request up to 6 complimentary samples at a time
+          </p>
         </div>
         <Separator orientation="vertical" />
 

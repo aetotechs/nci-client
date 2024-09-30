@@ -19,15 +19,14 @@ function ShopPayment({ status }: IStatus) {
   return (
     <>
       <div className="md:px-[5vw] md:max-w-[100vw]  px-5   ">
-      <Header status={status} />
+        <Header status={status} />
 
         <div>
           <div className=" flex justify-center my-10  ">
             <Progress />
           </div>
           <div className=" flex flex-col gap-5 md:flex-row ">
-          <div className="w-[60vw]">
-          
+            <div className="w-[60vw]">
               <MakePayment />
             </div>
             <div className="w-[30vw]">

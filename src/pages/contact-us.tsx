@@ -27,7 +27,7 @@ function ContactUs({ status }: IStatus) {
   return (
     <>
       <div className="md:px-[5vw] md:max-w-[100vw]   ">
-      <Header status={status} />
+        <Header status={status} />
         <div className=" px-5 py-7 md:pt-0  overflow-hidden">
           <div className="md:my-7 my-4">
             <h3 className="font-semibold text-xl">Contact Us</h3>

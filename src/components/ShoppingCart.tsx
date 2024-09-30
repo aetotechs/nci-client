@@ -62,11 +62,12 @@ function ShoppingCart() {
         <Button
           onClick={HandleClear}
           className="flex gap-2 bg-red-500 rounded-[10px] h-10 text-white px-3"
-          variant="outline">
+          variant="outline"
+        >
           <span>
             <Trash2 className="w-4 h-4" />
           </span>
-          <span className='font-normal'> Clear Cart</span>{' '}
+          <span className="font-normal"> Clear Cart</span>{' '}
         </Button>
       </div>
     </div>

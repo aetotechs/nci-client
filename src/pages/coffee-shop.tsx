@@ -27,7 +27,6 @@ function CoffeeShop({ status }: IStatus) {
       <div className="md:px-[5vw] w-[100vw] md:mb-10   ">
         <Header status={status} />
         <div className="px-4   pt-10 md:pt-0  overflow-hidden">
-         
           <div className="flex flex-col gap-5 mb-10 my-5 md:mb-0 md:flex-row md:justify-between  md:py-5">
             <h3 className="text-[26px] font-semibold">Coffee Shop</h3>
             <div className="md:hidden">

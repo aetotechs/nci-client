@@ -29,7 +29,7 @@ function OriginsPage({ status }: IStatus) {
   return (
     <>
       <div className="md:px-[5vw] md:max-w-[100vw]  px-5   ">
-      <Header status={status} />
+        <Header status={status} />
         <div className="px-4 w-[100vw]  pt-10 md:pt-0 md:w-[1232px] overflow-hidden">
           <div className="mt-10 hidden md:flex">
             {' '}

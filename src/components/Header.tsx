@@ -23,7 +23,8 @@ function Header({ status }: IStatus) {
       <div className="flex items-center gap-2 ">
         <div
           className="border border-[#f4f4e6] flex items-center justify-center px-2 h-10 w-10 rounded-sm"
-          style={{ backgroundColor: 'hsla(60, 88%, 97%, 0.69)' }}>
+          style={{ backgroundColor: 'hsla(60, 88%, 97%, 0.69)' }}
+        >
           <SearchIcon className="text-icon w-5 h-5" />
         </div>
 

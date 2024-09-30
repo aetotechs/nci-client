@@ -26,19 +26,19 @@ function ShippingAddress() {
             <div className="font-medium text-[13px]">{Address.companyName}</div>
             <div className="font-normal text-[12px]">{Address.street}</div>
             <div className="font-normal text-[12px]">
-              <span className='text-[12px]'>
+              <span className="text-[12px]">
                 {Address.city},{Address.zipcode}
               </span>
             </div>
-            <div className='text-[12px]'>{Address.country}</div>
+            <div className="text-[12px]">{Address.country}</div>
           </div>
           <div>
-            <div className='text-[12px]'>
-              <span className='text-[#616161]'>Tel:</span>
+            <div className="text-[12px]">
+              <span className="text-[#616161]">Tel:</span>
               <span>{Address.tel}</span>
             </div>
-            <div className='text-[12px]'>
-              <span className='text-[#616161]'>Email:</span>
+            <div className="text-[12px]">
+              <span className="text-[#616161]">Email:</span>
               <span>{Address.email}</span>
             </div>
           </div>
@@ -70,9 +70,7 @@ function ShippingAddress() {
                 className="flex gap-2 bg-primary rounded-[10px] w-[109px] h-10 text-white px-3"
                 variant="outline"
               >
-                
                 Next
-
                 <span>
                   <ChevronRight className="w-4 h-4" />
                 </span>

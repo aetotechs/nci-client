@@ -23,7 +23,7 @@ function ProductPage({ status }: IStatus) {
   return (
     <>
       <div className="md:px-[5vw] md:max-w-[100vw]  px-5   ">
-      <Header status={status} />
+        <Header status={status} />
 
         <div>
           <div className=" flex flex-col px-5 md:px-0 my-5 ">

@@ -47,9 +47,18 @@ export function ItemsTable({ items }: ITableProps) {
                   <div>
                     <h3 className="font-medium text-[13px]">{item.name}</h3>
                     <div className="mt-2 font-normal text-[12px]">
-                      <p className=""><span className='text-[#616161]'>Lot Number:</span><span>{item.lotNumber}</span></p>
-                      <p className=""><span className='text-[#616161]'>Warehouse:</span><span>{item.warehouse}</span></p>
-                      <p className=""><span className='text-[#616161]'>Quantity:</span><span>{item.quantity}</span></p>
+                      <p className="">
+                        <span className="text-[#616161]">Lot Number:</span>
+                        <span>{item.lotNumber}</span>
+                      </p>
+                      <p className="">
+                        <span className="text-[#616161]">Warehouse:</span>
+                        <span>{item.warehouse}</span>
+                      </p>
+                      <p className="">
+                        <span className="text-[#616161]">Quantity:</span>
+                        <span>{item.quantity}</span>
+                      </p>
                     </div>
                   </div>
                 </TableCell>

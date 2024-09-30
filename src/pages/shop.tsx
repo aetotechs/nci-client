@@ -9,7 +9,7 @@ import { IStatus } from '@/App';
 import { useLocation } from 'react-router-dom';
 import { FetchCartItems } from '@/lib/api-routes';
 import { toast } from 'sonner';
-import {  getUserToken } from '@/lib/cookie';
+import { getUserToken } from '@/lib/cookie';
 
 function Shop({ status }: IStatus) {
   const [cartItems, setCartItems] = useState<any[]>([]);

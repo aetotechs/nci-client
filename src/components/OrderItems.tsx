@@ -37,7 +37,9 @@ function OrderItems() {
   const { pathname } = location;
   return (
     <div>
-      {pathname === '/close-shop' ? null : <h3 className="font-medium text-[14px]">Order Items(2)</h3>}
+      {pathname === '/close-shop' ? null : (
+        <h3 className="font-medium text-[14px]">Order Items(2)</h3>
+      )}
       {pathname === '/shop-payment' ? (
         <div className="mt-7 rounded-[8px] border md:my-4  p-3 flex justify-between ">
           <div>
@@ -51,11 +53,11 @@ function OrderItems() {
             </div>
             <div className="text-[12px] textsecondary">{Address.country}</div>
             <div className="text-[12px]">
-              <span className='text-[#616161]'>Tel:</span>
+              <span className="text-[#616161]">Tel:</span>
               <span>{Address.tel}</span>
             </div>
             <div>
-              <span className='text-[#616161]'>Email:</span>
+              <span className="text-[#616161]">Email:</span>
               <span>{Address.email}</span>
             </div>
           </div>
@@ -64,7 +66,7 @@ function OrderItems() {
           </div>
         </div>
       ) : (
-        <div className={`${pathname==='/close-shop'&& 'px-5'} flex flex-col gap-4 my-6 `}>
+        <div className={`${pathname === '/close-shop' && 'px-5'} flex flex-col gap-4 my-6 `}>
           {myitems.map((item, index) => (
             <div
               key={index}

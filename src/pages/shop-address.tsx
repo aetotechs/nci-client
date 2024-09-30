@@ -18,16 +18,14 @@ function ShopAddress({ status }: IStatus) {
   return (
     <>
       <div className="md:px-[5vw] md:max-w-[100vw]  px-5   ">
-      <Header status={status} />
+        <Header status={status} />
 
-      
         <div>
           <div className=" md:flex  md:justify-center  my-10 ">
             <Progress />
           </div>
           <div className=" flex flex-col gap-5 md:flex-row ">
-          <div className="w-[60vw]">
-          
+            <div className="w-[60vw]">
               <ShippingAddress />
             </div>
             <div className="md:w-[30vw]  max-h-max   ">

@@ -13,7 +13,9 @@ export function DialogDemo() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <p className="text-primary cursor-pointer text-[13px] font-medium">Change Shipping Address</p>
+        <p className="text-primary cursor-pointer text-[13px] font-medium">
+          Change Shipping Address
+        </p>
       </DialogTrigger>
       <DialogContent className="w-[90%] md:w-[700px] ">
         <DialogHeader>

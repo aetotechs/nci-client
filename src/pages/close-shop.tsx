@@ -28,7 +28,7 @@ function ClosedOrder({ status }: IStatus) {
   return (
     <>
       <div className="md:px-[5vw] md:max-w-[100vw]  px-5   ">
-      <Header status={status} />
+        <Header status={status} />
 
         <div>
           <div className="md:h-screen  md:my-10 px-4 flex flex-col md:flex-row  gap-20  md:place-content-center my-5">
@@ -50,25 +50,25 @@ function ClosedOrder({ status }: IStatus) {
                       Shipping Address
                     </h5>
                     <div className="flex my-1 gap-1 ">
-                      <h6 className='text-[#616161]'>Name:</h6>
+                      <h6 className="text-[#616161]">Name:</h6>
                       <p>{Address.name}</p>
                     </div>
                     <div className="flex  my-1 gap-1">
-                      <h6 className='text-[#616161]'>Company:</h6>
+                      <h6 className="text-[#616161]">Company:</h6>
                       <p>{Address.companyName}</p>
                     </div>
                     <div className="flex  my-1 gap-1">
-                      <h6 className='text-[#616161]'>Address:</h6>
+                      <h6 className="text-[#616161]">Address:</h6>
                       <p>
                         {Address.street}, {Address.city}, {Address.zipcode}, {Address.country}
                       </p>
                     </div>
                     <div className="flex  my-1 gap-1">
-                      <h6 className='text-[#616161]'>Tel:</h6>
+                      <h6 className="text-[#616161]">Tel:</h6>
                       <p>{Address.tel}</p>
                     </div>
                     <div className="flex  my-1 gap-1">
-                      <h6 className='text-[#616161]'>Email:</h6>
+                      <h6 className="text-[#616161]">Email:</h6>
                       <p>{Address.email}</p>
                     </div>
                   </div>

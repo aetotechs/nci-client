@@ -57,7 +57,12 @@ export function PaymentForm() {
               <FormLabel className="font-medium text-[13px]">CardHolder Name</FormLabel>
 
               <FormControl>
-                <Input type="text" placeholder="Name on card" className="h-[38px]  placeholder:text-[13px] " {...field} />
+                <Input
+                  type="text"
+                  placeholder="Name on card"
+                  className="h-[38px]  placeholder:text-[13px] "
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -105,14 +110,19 @@ export function PaymentForm() {
               <FormLabel className="font-medium text-[13px]">Cvv</FormLabel>
 
               <FormControl>
-                <Input type="text" placeholder="000" className="h-[38px]  placeholder: text-[13px] " {...field} />
+                <Input
+                  type="text"
+                  placeholder="000"
+                  className="h-[38px]  placeholder: text-[13px] "
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
         <div className="flex  m  col-span-2 items-center gap-2">
-          <Checkbox className='h-3 w-3' />
+          <Checkbox className="h-3 w-3" />
           <span className="text-[12px]">Save payment details for future purchase</span>
         </div>
         <Link to="/close-shop " className="col-span-2">

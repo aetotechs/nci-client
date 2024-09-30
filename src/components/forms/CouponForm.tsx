@@ -37,7 +37,7 @@ export function CouponForm() {
           control={form.control}
           name="discount"
           render={({ field }) => (
-            <FormItem className='grow'>
+            <FormItem className="grow">
               <FormControl>
                 <Input
                   type="text"
