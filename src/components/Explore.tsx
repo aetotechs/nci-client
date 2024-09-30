@@ -227,7 +227,7 @@ function Explore({ status }: IStatus) {
                     </Button>
                   </div>
                 ) : (
-                  <Button className="py-5 h-8 text-[12px] md:h-8 rounded-[6px]  ">
+                  <Button className=" h-[32px] text-[12px] rounded-[6px]  ">
                     <Link to="/login"> Log In To Buy/Sample</Link>
                   </Button>
                 )}

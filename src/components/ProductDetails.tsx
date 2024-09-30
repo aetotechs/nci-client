@@ -109,14 +109,14 @@ function ProductDetails({ product }: { product: any }) {
             <div className="flex flex-col gap-3 md:flex-row    md:justify-between ">
               <Counter className="h-[32px] md:w-[104px] rounded-[6px] text-textcolor" />
               <Button
-                className=" md:w-[157px] bg-primary text-white font-medium text-[17px]"
+                className="h-[32px] md:w-[157px] bg-primary text-white font-medium text-[17px]"
                 onClick={() => {
                   AddCart(product.itemId, product.name);
                 }}
               >
                 {addingStates[product.itemId] ? 'Adding...' : 'Add to Cart'}
               </Button>
-              <Button className=" md:w-[157px] bg-white text-primary font-medium text-[17px] border border-primary">
+              <Button className="h-[32px] md:w-[157px] bg-white text-primary font-medium text-[17px] border border-primary">
                 Request Sample
               </Button>
             </div>

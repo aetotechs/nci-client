@@ -3,10 +3,8 @@ import { Link } from 'react-router-dom';
 function AboutUs() {
   return (
     <div className="my-10 py-6 rounded-2xl px-4 md:flex md:p-10 md:gap-[3vw] bg-white" id="about">
-      {/* Image Section */}
       <div className="w-full h-[250px] mb-6 md:w-[50%] md:h-[350px] bg-about bg-cover bg-center rounded-3xl"></div>
 
-      {/* Text Section */}
       <div className="w-full md:w-[50%] flex flex-col justify-center">
         <h3 className="font-bold text-xl leading-8 md:text-[26px] md:leading-[30px]">About Us</h3>
         <p className="text-base mb-6 font-normal leading-6 md:text-[18px] md:leading-[32px]">
