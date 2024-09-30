@@ -22,8 +22,8 @@ function About({ status }: IStatus) {
           <div className="md:my-7 my-4">
             <h3 className="font-semibold text-xl">About Us</h3>
           </div>
-          <div className="flex flex-col gap-7 md:flex-row ">
-            <div className="bg-white md:h-[480px] md:w-[600px] p-5">
+          <div className="flex flex-col gap-10 md:flex-row ">
+            <div className="bg-white md:h-[480px] md:w-[45vw] p-5">
               <h4 className="font-medium text-xl md:leading-10 md:text-3xl mb-5 text-textcolor">
                 Discover the Story Behind Nile Coffee Imports
               </h4>
@@ -44,8 +44,8 @@ function About({ status }: IStatus) {
                 Contact us
               </Button>
             </div>
-            <div className="md:w-[600px] md:h-[631px] flex flex-col gap-5">
-              <div className="w-[340px] h-[293px] md:h-[260px] md:w-[600px] rounded-[20px] bg-mobileabout md:bg-aboutimage bg-cover bg-center"></div>
+            <div className="md:w-[50vw] md:h-[631px] flex flex-col gap-5">
+              <div className=" h-[293px] md:h-[260px]  rounded-[20px] bg-mobileabout md:bg-aboutimage bg-cover bg-center"></div>
 
               <div className="bg-white h-[300px] p-5 rounded-[20px] flex flex-col gap-4 md:grid  md:grid-cols-2 md:gap-1 md:h-[202px] md:p-5">
                 <div className="col-span-2 h-[70px] bg-primary text-white rounded-[10px] flex justify-center items-center gap-3">
