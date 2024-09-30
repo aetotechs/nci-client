@@ -1,6 +1,5 @@
 import { IStatus } from '@/App';
 import AboutCoffee from '@/components/AboutCoffee';
-import BreadCrumb from '@/components/BreadCrumb';
 import CoffeeGrowth from '@/components/CoffeeGrowth';
 import CoffeeGuide from '@/components/CoffeeGuide';
 import CoffeeHistory from '@/components/CoffeeHistory';
@@ -13,7 +12,6 @@ import { useLocation, useParams } from 'react-router-dom';
 
 function ProductPage({ status }: IStatus) {
   const { productId } = useParams();
-  const breadcrumbItems = [{ href: '/shop', label: 'Shop' }, { label: `${productId}` }];
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -22,44 +20,50 @@ function ProductPage({ status }: IStatus) {
 
   return (
     <>
-      <div className="md:px-[5vw] md:max-w-[100vw]  px-5   ">
+      <div className="md:px-[5vw] md:max-w-[100vw]  ">
         <Header status={status} />
 
-        <div>
-          <div className=" flex flex-col px-5 md:px-0 my-5 ">
-            <div className="font font-semibold md:text-[26px] max-w-[]">{productId}</div>
+        <div className="px-5">
+          <div className="flex flex-col px-5 md:px-0 my-5">
+            <div className="font-bold text-lg md:text-[26px]">{productId}</div>
             <div className="font-normal text-[15px] my-3 flex gap-1 items-center">
               <span>
                 <img src="/icons/coffee-bean.svg" alt="Coffee Bean" />
               </span>
-              <p className="font-normal text-[17px]"> Caramel,Berry,Choclate</p>
+              <p className="font-normal text-[17px]">Caramel, Berry, Chocolate</p>
             </div>
           </div>
-          <div className="grid grid-rows-2 md:grid-cols-5 gap-3  ">
-            <div className="col-span-3 bg-map h-[300px] mx-5 bg-contain bg-no-repeat bg-center relative flex items-center justify-center">
-              <div className=" flex items-center justify-center">
-                <img src="/icons/location.svg" alt="location" className=" z-0" />
-                <span className="font-normal">Nakuru</span>
+
+          <div className="grid grid-rows-2 md:grid-rows-1  md:grid-cols-5 gap-3 md:max-h-[60vh] my-5">
+            <div className="col-span-3 h-full  bg-map bg-contain bg-no-repeat bg-center mx-5 md:mx-0 relative flex items-center justify-center rounded-lg md:rounded-xl">
+              <div className="flex items-center justify-center">
+                <img src="/icons/location.svg" alt="location" className="z-0 w-[30px]" />
+                <span className="font-normal text-lg md:text-xl">Nakuru</span>
               </div>
             </div>
+
             <div className="col-span-2">
-              <ProductDetails />
+              <ProductDetails product={productId} />
             </div>
           </div>
-          <div className="">
-            <AboutCoffee />
-          </div>
-          <div className="">
-            <CoffeeHistory />
-          </div>
-          <div>
-            <CoffeeGrowth />
-          </div>
-          <div>
-            <CoffeeGuide />
+
+          <div className="space-y-10">
+            <div>
+              <AboutCoffee />
+            </div>
+            <div>
+              <CoffeeHistory />
+            </div>
+            <div>
+              <CoffeeGrowth />
+            </div>
+            <div>
+              <CoffeeGuide />
+            </div>
           </div>
         </div>
       </div>
+
       <Footer />
     </>
   );
