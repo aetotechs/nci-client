@@ -66,57 +66,57 @@ function ProductDetails({ product }: { product: any }) {
   return (
     <div className="bg-white rounded-[8px]  md:mx-0 w-[90vw] md:w-full">
       <div className="bg-white px-5">
-        <div className="flex items-center pt-4 ">
+        <div className="flex items-center gap-2 pt-4 ">
           <h3 className="font-semibold text-xl">$2.83/lb</h3>
-          <div className="font-light text-base mt-2">$374/bag</div>
+          <div className="font-light text-[15px] mt-2">$374/bag</div>
         </div>
-        <div className="flex flex-col gap-4 my-3">
+        <div className="flex flex-col gap-1 my-3">
           <div className="flex justify-between">
-            <div className="font-normal text-base text-inactive">Bag Weight</div>
-            <div className="font-medium text-base">60kg Bag</div>
+            <div className="font-normal text-[15px] text-[#585962]">Bag Weight</div>
+            <div className="font-medium text-[15px]">60kg Bag</div>
           </div>
           <div className="flex justify-between">
-            <div className="font-normal text-base text-inactive">Harvest Season</div>
-            <div className="font-medium text-base">2023/24</div>
+            <div className="font-normal text-[15px] text-[#585962]">Harvest Season</div>
+            <div className="font-medium text-[15px]">2023/24</div>
           </div>
           <div className="flex justify-between">
-            <div className="font-normal text-base text-inactive">Status</div>
-            <div className="font-medium text-base">Spot</div>
+            <div className="font-normal text-[15px] text-[#585962]">Status</div>
+            <div className="font-medium text-[15px]">Spot</div>
           </div>
           <div className="flex justify-between">
-            <div className="font-normal text-base text-inactive">Lot Number</div>
-            <div className="font-medium text-base">P611992-2</div>
+            <div className="font-normal text-[15px] text-[#585962]">Lot Number</div>
+            <div className="font-medium text-[15px]">P611992-2</div>
           </div>
           <div className="flex justify-between">
-            <div className="font-normal text-base text-inactive">Warehouse </div>
-            <div className="font-medium text-base">Alameda, CA</div>
+            <div className="font-normal text-[15px] text-[#585962]">Warehouse </div>
+            <div className="font-medium text-[15px]">Alameda, CA</div>
           </div>
           <div className="flex justify-between">
-            <div className="font-normal text-base text-inactive">Availability</div>
+            <div className="font-normal text-[15px] text-[#585962]">Availability</div>
             <div>
               <div className="flex justify-end gap-2">
-                <h5 className="font-medium text-base">Bags</h5>{' '}
+                <h5 className="font-medium text-[15px]">Bags</h5>{' '}
                 <span className="text-green-500">(Available)</span>
               </div>
               <div className="flex gap-2">
-                <h5 className="font-medium text-base">Samples</h5>{' '}
-                <span className="text-destructive">(Not Available)</span>
+                <h5 className="font-medium text-[15px]">Samples</h5>{' '}
+                <span className="text-[#f44336]">(Not Available)</span>
               </div>
             </div>
           </div>
 
           <div>
-            <div className="flex flex-col gap-3 md:flex-row    md:justify-between ">
-              <Counter className="h-[32px] md:w-[104px] rounded-[6px] text-textcolor" />
+            <div className="flex flex-col gap-3 md:flex-row md:my-3 m    md:justify-between ">
+              <Counter className="h-[32px] md:w-[104px] text-[15px] rounded-[6px] text-textcolor" />
               <Button
-                className="h-[32px] md:w-[157px] bg-primary text-white font-medium text-[17px]"
+                className="h-[32px] md:w-[157px] bg-primary text-white font-medium text-[15px]"
                 onClick={() => {
                   AddCart(product.itemId, product.name);
                 }}
               >
                 {addingStates[product.itemId] ? 'Adding...' : 'Add to Cart'}
               </Button>
-              <Button className="h-[32px] md:w-[157px] bg-white text-primary font-medium text-[17px] border border-primary">
+              <Button className="h-[32px] md:w-[157px] bg-white text-primary font-medium text-[15px] border border-primary">
                 Request Sample
               </Button>
             </div>
@@ -128,7 +128,7 @@ function ProductDetails({ product }: { product: any }) {
       </div>
       <div className="text-textcolor flex items-center gap-2 pb-4 px-5">
         <Bookmark className="h-4 w-4" />
-        <span className="font-normal text-sm">Save item for later</span>
+        <span className="font-normal text-[13px]">Save item for later</span>
       </div>
     </div>
   );

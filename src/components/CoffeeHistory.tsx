@@ -1,13 +1,13 @@
 function CoffeeHistory() {
   return (
-    <div className="flex flex-col gap-2 md:grid rounded-[20px] mx-5 md:mx-0 md:grid-cols-2 bg-white min-h-max py-10 md:px-20 my-20">
-      <div className="w-full h-[250px] md:h-[350px] bg-coffeehistory bg-cover bg-center rounded-3xl"></div>
+    <div className="flex flex-col gap-2 md:grid rounded-[20px] mx-5 md:mx-0 md:grid-cols-2 bg-white min-h-max py-10 md:px-20 my-24">
+      <div className="w-full h-[250px] md:h-[340px] bg-coffeehistory bg-cover bg-center rounded-3xl"></div>
 
-      <div className="flex flex-col justify-center mt-5 md:mt-0 md:pl-10">
-        <h3 className="font-semibold text-xl md:text-[26px] md:leading-[50px] mb-1">
+      <div className="flex flex-col  justify-center mt-5 md:mt-0 md:pl-10">
+        <h3 className="font-semibold text-xl md:text-[24px] md:leading-[50px] ">
           History Of Coffee In Kenya
         </h3>
-        <p className="leading-[25px] md:leading-[30px] font-normal text-sm md:text-sm">
+        <p className="leading-[25px] md:leading-[24px]  font-normal text-sm md:text-[15px]">
           Coffee is ancient in Kenya, but coffee farming is not. By the end of the 9th Century,
           coffee was actively being cultivated in Kenya as food, but probably not as a beverage. It
           was the Arab world that developed brewing. Even as coffee became an export for Kenya in

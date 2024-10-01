@@ -30,20 +30,20 @@ function Categories() {
       <div className="flex flex-col md:h-[574px] " id="categories">
         <div className="mb-4 flex my-5 justify-between items-center">
           <div>
-            <h3 className="font-bold leading-[30px] text-[32px]">Categories</h3>
-            <p className="text-sm md:my-4">Available Coffee Brands</p>
+            <h3 className="font-semibold leading-[30px] text-xl md:text-[26px]">Categories</h3>
+            <p className="text-sm my-2">Available Coffee Brands</p>
           </div>
 
           <div className="relative flex gap-2">
             <div
               ref={prevRef}
-              className="   z-10 rounded-full w-[50px] h-[50px] flex justify-center items-center bg-primary/20 cursor-pointer"
+              className="   z-10 rounded-full w-10 h-10 flex justify-center items-center text-[#585962] bg-primary/20 cursor-pointer"
             >
               <ChevronLeft />
             </div>
             <div
               ref={nextRef}
-              className="   z-10 rounded-full w-[50px] h-[50px] flex justify-center items-center bg-primary text-white cursor-pointer"
+              className="   z-10 rounded-full w-10 h-10 flex justify-center items-center bg-primary text-white cursor-pointer"
             >
               <ChevronRight />
             </div>

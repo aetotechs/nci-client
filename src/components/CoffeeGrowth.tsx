@@ -1,13 +1,13 @@
 function CoffeeGrowth() {
   return (
-    <div className="flex flex-col md:flex-row rounded-[20px]     md:flex md:justify-between md:items-center gap-12   md:h-[398px]   md:my-20 ">
-      <div className="md:w-[509px] order-last  bg-coffeegrowth h-[311px] bg-cover bg-center rounded-3xl"></div>
+    <div className="flex flex-col md:flex-row rounded-[20px]     md:flex md:justify-between md:items-center gap-12   md:h-[398px]   md:my-24 ">
+      <div className="md:w-[509px] order-last  bg-coffeegrowth h-[300px] bg-cover bg-center rounded-3xl"></div>
       <div className="md:w-[656px]">
-        <h3 className="font-semibold text-[26px] leading-[28px] text-black mb-4">
+        <h3 className="font-semibold text-[24px] leading-[28px] text-black mb-2">
           {' '}
           Coffee Growth In Kenya
         </h3>
-        <p className="leading-[30px] font-normal text-base text-inactive">
+        <p className="leading-[28px] font-normal text-[15px] text-inactive">
           As the birthplace of coffee, Kenya is home to more species of coffee plants than any place
           on earth, much of it still growing wild, and much of it still undiscovered. All Kenyan
           coffee is Arabica and at least 150 varieties are commercially cultivated. Traditionally,

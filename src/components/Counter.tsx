@@ -38,7 +38,7 @@ function Counter({ className }: CounterProps) {
         -
       </div>
       <Separator orientation="vertical" className="h-4" />
-      <div className="text-[11px] ">{state.count}</div>
+      <div className="text-[15px] ">{state.count}</div>
       <Separator orientation="vertical" className="h-4" />
       <div onClick={() => dispatch({ type: 'increment' })} className="cursor-pointer">
         +
