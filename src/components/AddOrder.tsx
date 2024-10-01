@@ -1,11 +1,8 @@
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetDescription,
   SheetFooter,
   SheetHeader,
   SheetTitle,
@@ -33,7 +30,7 @@ export function OrderSheet() {
         </SheetHeader>
         <SelectCustmerForm />
 
-        <SheetFooter className="border-t mt-10 md:mt-64">
+        <SheetFooter className="border-t mt-10 md:mt-44">
           <SheetClose asChild>
             <Button type="submit" className="mx-3 my-2">
               Proceed

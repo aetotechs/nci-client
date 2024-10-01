@@ -4,7 +4,7 @@ export function OriginsSheet() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <p>Origins</p>
+        <p>Regions</p>
       </PopoverTrigger>
       <PopoverContent className="md:w-[1232px] md:mx-14 md:mt-9 p-0 overflow-hidden">
         <div className="flex flex-col gap-2 md:flex-row md:justify-around mt-5 mb-10">

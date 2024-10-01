@@ -31,18 +31,18 @@ export function CouponForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="md:w-[404px] flex gap-2 md:justify-between items-center"
+        className=" flex gap-2 md:justify-between items-center"
       >
         <FormField
           control={form.control}
           name="discount"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="grow">
               <FormControl>
                 <Input
                   type="text"
                   placeholder="Enter your discount code"
-                  className="h-12 md:w-[303px] w-[220px] "
+                  className="h-10 bg-[#f2f2f2] placeholder:text-[12px]  "
                   {...field}
                 />
               </FormControl>
@@ -53,7 +53,7 @@ export function CouponForm() {
 
         <Button
           type="submit"
-          className=" font-normal text-base border border-primary text-primary md:w-[82px] h-[44px]"
+          className=" font-normal text-[12px] border border-primary text-primary bg-primary/10  h-10"
           variant="outline"
         >
           Apply

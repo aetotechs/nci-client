@@ -15,7 +15,7 @@ export function AccountPopover() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button className="h-[45px] w-[80px] rounded-xl">Profile</Button>
+        <Button className="h-[40px] w-[80px] rounded-[10px]">Profile</Button>
       </PopoverTrigger>
       <PopoverContent className="w-[232px] h-[130px] rouded-[10px] border-none mt-8 mr-24 ">
         <div className="flex flex-col gap-3 px-2">

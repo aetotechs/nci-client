@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 
 function CoffeeGuide() {
   return (
-    <div className="rounded-2xl mx-5 md:h-[286px] py-10  px-5 flex flex-col  items-center bg-benefits md:pt-10  md:mt-28">
+    <div className="rounded-2xl md:h-[286px] py-10  px-5 flex flex-col  items-center bg-benefits md:pt-10  md:mt-28">
       <div className="">
         <h3 className="font-semibold text-[26px] text-white">Sample Roasting Guide</h3>
       </div>
