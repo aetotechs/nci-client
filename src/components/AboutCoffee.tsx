@@ -1,13 +1,13 @@
 function AboutCoffee() {
   return (
-    <div className="w-[full] flex flex-col px-5  md:px-0 md:flex-row gap-10  my-24">
+    <div className="w-[full] flex flex-col px-2 gap-5 my-12  md:px-0 md:flex-row md:gap-10  md:my-24">
       <div className="md:w-[40vw] ">
-        <h3 className="font-semibold text-[24px]">About This Coffee</h3>
-        <p className="py-1 font-normal text-[15px] text-black">
+        <h3 className="font-semibold text-xl md:text-[24px]">About This Coffee</h3>
+        <p className="py-1 font-normal leading-5 md:leading-[22.5px] text-[15px] text-black">
           The Olam Coffee Estate Company in Kenya was started in 2012. It is both the largest coffee
           producer in Kenya and now the largest employer in the country.
         </p>
-        <div className="flex flex-col gap-1 my-2">
+        <div className="flex flex-col gap-1 my-1 md:my-2">
           <div className="flex justify-between">
             <div className="font-normal text-[14px] text-[#585962]">Country of Origin </div>
             <div className="font-medium text-[14px]">Kenya</div>
@@ -50,7 +50,7 @@ function AboutCoffee() {
           </div>
         </div>
       </div>
-      <div className="bg-aboutcoffee bg-cover bg-center h-[300px] md:w-[606px] md:h-[360px] rounded-[8px]"></div>
+      <div className="bg-aboutcoffee bg-cover bg-center h-[200px] md:w-[606px] md:h-[360px] rounded-[8px]"></div>
     </div>
   );
 }

@@ -24,7 +24,7 @@ function CoffeeListings({ Listings }: IListings) {
             <AccordionTrigger className="font-medium text-[15px] md:text-base text-black">
               {listing.title}
             </AccordionTrigger>
-            <AccordionContent className=''>
+            <AccordionContent className="">
               <ul className="flex flex-col gap-3">
                 {listing.items.map((item, idx) => (
                   <li key={idx} className="flex gap-3 items-center font-normal  md:text-base">

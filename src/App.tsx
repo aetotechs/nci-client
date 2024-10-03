@@ -30,6 +30,7 @@ import Settings from './pages/settings';
 
 import { isAuthenticated } from './lib/cookie';
 import AdminRoute from './components/AdminRoute';
+import UserCategoriesPage from './pages/UserCategories';
 export interface IStatus {
   status: boolean;
   user?: User;
@@ -62,7 +63,9 @@ function App() {
           <Route path="/profile" element={<Profile status={loggedIn} />} />
           <Route path="/about" element={<About status={loggedIn} />} />
           <Route path="/contact-us" element={<ContactUs status={loggedIn} />} />
-          <Route path="/origins" element={<OriginsPage status={loggedIn} />} />
+          <Route path="/region/:originId" element={<OriginsPage status={loggedIn} />} />
+          <Route path="/category/:categoryId" element={<UserCategoriesPage status={loggedIn} />} />
+
           <Route
             path="/admin"
             element={

@@ -28,20 +28,20 @@ function ContactUs({ status }: IStatus) {
     <>
       <div className="md:px-[5vw] md:max-w-[100vw]   ">
         <Header status={status} />
-        <div className=" px-5 py-7 md:pt-0  overflow-hidden">
-          <div className="md:my-7 my-4">
-            <h3 className="font-semibold text-xl">Contact Us</h3>
+        <div className=" px-5 md:py-7  md:pt-0  overflow-hidden">
+          <div className="md:mt-10 mt-3 ">
+            <h3 className="font-semibold text-[26px]">Contact Us</h3>
           </div>
           <div className="flex flex-col gap-7 md:flex-row ">
-            <div className="  md:w-[600px] md:p-5">
-              <h4 className="font-normal text-base md:leading-5 md:text-base mb-5 text-textcolor">
+            <div className="  md:w-[60vw] ">
+              <h4 className="font-normal text-base leading-6 md:leading-5 md:text-base mb-5 text-textcolor">
                 Fill the form with your inquiries and a member of our team would reach out to you
               </h4>
               <h5 className="font-semibold text-[18px]">Office Contact Info</h5>
-              <div className="my-4 flex flex-col gap-2">
+              <div className="my-1 flex flex-col gap-2 text-sm">
                 <div className="flex items-center gap-2">
                   <span>
-                    <img src="/icons/location.svg" alt="" />
+                    <img src="/icons/location.svg" alt="" className="w-4 h-4" />
                   </span>
                   415 Elm Street, Suite 2B San Francisco, CA 94102
                 </div>
@@ -59,15 +59,15 @@ function ContactUs({ status }: IStatus) {
                 </div>
               </div>
             </div>
-            <div className="md:w-[541px] w-[339px] h-[266px ] p-5 mb-20 md:mb-0 md:h-[360px] bg-white md:px-20 flex items-center rounded-[20px] ">
+            <div className="md:w-[40vw]  p-5 mb-20 md:mb-0 md:py-10  bg-white md:px-10 flex items-center rounded-[20px] ">
               <ContactUsForm />
             </div>
           </div>
 
-          <div className="bg-white grid md:grid-cols-2 p-10 gap-10 rounded-[20px] md:h-[460px] md:mt-8">
+          <div className="bg-white grid md:grid-cols-2 p-4 md:p-10 md:gap-20 rounded-[20px]  md:mt-20">
             <div className="md:w-[40vw]">
-              <h3 className="font-semibold text-[26px]">Suppliers</h3>
-              <p className="text-base font-normal leading-7 text-textdark">
+              <h3 className="font-semibold text-[24px]">Suppliers</h3>
+              <p className="text-base font-normal leading-6 md:leading-7 text-textdark">
                 We value building new relationships and strengthening existing ones with
                 cooperatives, estates, individual producers, farmer groups, associations, mills, and
                 exporters. If you are interested in sending us a sample offer, please download the
@@ -82,7 +82,7 @@ function ContactUs({ status }: IStatus) {
               </p>
             </div>
             <div>
-              <h3 className="font-semibold text-[26px]">Careers</h3>
+              <h3 className="font-semibold text-[24px]">Careers</h3>
               <p className="text-base font-normal leading-7">
                 We are regularly looking for new talent as we supply more high quality coffee to our
                 roasting customers. Please send all career inquiries, including a cover letter and
@@ -90,43 +90,43 @@ function ContactUs({ status }: IStatus) {
               </p>
             </div>
           </div>
-          <div className="flex  flex-col md:pt-10   md:h-[381px]">
-            <h3 className="md:text-center my-3 font-semibold text-xl md:text-[26px] ">
+          <div className="flex  flex-col md:mt-20 px-2">
+            <h3 className="md:text-center my-3 font-semibold text-xl md:text-[24px] ">
               Frequently Asked Questions
             </h3>
 
             <div className=" md:px-0">
-              <Tabs defaultValue="shipping" className=" md:w-full md:px-5">
-                <TabsList className="md:mx-80 md:my-5 border-none bg-background w-[400px] md:w-[560px] overflow-x-auto">
+              <Tabs defaultValue="shipping" className=" ">
+                <TabsList className="md:my-5 pl-56 md:pl-0 md:mx-0 min-w-[90vw] overflow-x-auto flex justify-center items-center  ">
                   <TabsTrigger
                     value="shipping"
-                    className="data-[state=active]:text-primary data-[state=active]:border border-primary data-[state=active]:bg-primary/30"
+                    className=" text-base data-[state=active]:text-primary data-[state=active]:border  border-primary data-[state=active]:bg-primary/20 data-[state=active]:rounded-[6px] data-[state=active]:font-medium"
                   >
                     Shipping & Tracking
                   </TabsTrigger>
                   <TabsTrigger
                     value="buying"
-                    className="data-[state=active]:text-primary data-[state=active]:border border-primary data-[state=active]:bg-primary/30"
+                    className=" text-base data-[state=active]:text-primary data-[state=active]:border  border-primary data-[state=active]:bg-primary/20 data-[state=active]:rounded-[6px] data-[state=active]:font-medium"
                   >
                     Buying Online
                   </TabsTrigger>
                   <TabsTrigger
                     value="origin"
-                    className="data-[state=active]:text-primary data-[state=active]:border border-primary data-[state=active]:bg-primary/30"
+                    className=" text-base data-[state=active]:text-primary data-[state=active]:border  border-primary data-[state=active]:bg-primary/20 data-[state=active]:rounded-[6px] data-[state=active]:font-medium"
                   >
                     Origin Insights
                   </TabsTrigger>
                   <TabsTrigger
                     value="quality"
-                    className="data-[state=active]:text-primary data-[state=active]:border border-primary data-[state=active]:bg-primary/30"
+                    className=" text-base data-[state=active]:text-primary data-[state=active]:border  border-primary data-[state=active]:bg-primary/20 data-[state=active]:rounded-[6px] data-[state=active]:font-medium"
                   >
                     Quality Control
                   </TabsTrigger>
                 </TabsList>
                 <TabsContent value="shipping" className="w-full">
-                  <Accordion type="single" collapsible className="w-full">
+                  <Accordion type="single" collapsible className="">
                     <AccordionItem value="item-1">
-                      <AccordionTrigger className="md:font-medium md:text-[17px]">
+                      <AccordionTrigger className="md:font-medium text-sm md:text-base">
                         How do I track my green coffee shipment?
                       </AccordionTrigger>
                       <AccordionContent>
@@ -137,7 +137,7 @@ function ContactUs({ status }: IStatus) {
                       </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-2">
-                      <AccordionTrigger className="md:font-medium md:text-[17px]">
+                      <AccordionTrigger className="md:font-medium  text-[13px] md:text-base">
                         How do I pick up green coffee from the warehouse?
                       </AccordionTrigger>
                       <AccordionContent>
@@ -148,7 +148,7 @@ function ContactUs({ status }: IStatus) {
                     </AccordionItem>
 
                     <AccordionItem value="item-3">
-                      <AccordionTrigger className="font-medium text-[17px]">
+                      <AccordionTrigger className="font-medium text-base">
                         How do you ship my coffee?
                       </AccordionTrigger>
                       <AccordionContent>
@@ -162,7 +162,7 @@ function ContactUs({ status }: IStatus) {
                 <TabsContent value="buying" className="w-full">
                   <Accordion type="single" collapsible className="w-full">
                     <AccordionItem value="item-1">
-                      <AccordionTrigger className="md:font-medium md:text-[17px]">
+                      <AccordionTrigger className="md:font-medium md:text-base">
                         What should I consider when choosing the quantity of coffee to buy online?
                       </AccordionTrigger>
                       <AccordionContent>
@@ -172,7 +172,7 @@ function ContactUs({ status }: IStatus) {
                       </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-2">
-                      <AccordionTrigger className="font-medium text-[17px]">
+                      <AccordionTrigger className="font-medium md:text-base">
                         What grind size should I choose when ordering online?
                       </AccordionTrigger>
                       <AccordionContent>
@@ -183,7 +183,7 @@ function ContactUs({ status }: IStatus) {
                     </AccordionItem>
 
                     <AccordionItem value="item-3">
-                      <AccordionTrigger className="font-medium text-[17px]">
+                      <AccordionTrigger className="font-medium text-base">
                         How long does it take to receive coffee ordered online?
                       </AccordionTrigger>
                       <AccordionContent>
@@ -197,7 +197,7 @@ function ContactUs({ status }: IStatus) {
                 <TabsContent value="origin" className="w-full">
                   <Accordion type="single" collapsible className="w-full">
                     <AccordionItem value="item-1">
-                      <AccordionTrigger className="font-medium text-[17px]">
+                      <AccordionTrigger className="font-medium text-base">
                         Is your coffee ethically sourced?
                       </AccordionTrigger>
                       <AccordionContent>
@@ -207,7 +207,7 @@ function ContactUs({ status }: IStatus) {
                       </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-2">
-                      <AccordionTrigger className="font-medium text-[17px]">
+                      <AccordionTrigger className="font-medium text-base">
                         Is your coffee single-origin or a blend?
                       </AccordionTrigger>
                       <AccordionContent>
@@ -218,7 +218,7 @@ function ContactUs({ status }: IStatus) {
                     </AccordionItem>
 
                     <AccordionItem value="item-3">
-                      <AccordionTrigger className="font-medium text-[17px]">
+                      <AccordionTrigger className="font-medium text-base">
                         Where do your coffee beans come from?
                       </AccordionTrigger>
                       <AccordionContent>
@@ -232,7 +232,7 @@ function ContactUs({ status }: IStatus) {
                 <TabsContent value="quality" className="w-full">
                   <Accordion type="single" collapsible className="w-full">
                     <AccordionItem value="item-1">
-                      <AccordionTrigger className="font-medium text-[17px]">
+                      <AccordionTrigger className="font-medium text-sm md:text-base">
                         How often is the coffee tested for quality and flavor consistency?
                       </AccordionTrigger>
                       <AccordionContent>
@@ -241,7 +241,7 @@ function ContactUs({ status }: IStatus) {
                       </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-2">
-                      <AccordionTrigger className="font-medium text-[17px]">
+                      <AccordionTrigger className="font-medium text-sm md:text-base">
                         How do you test your coffee for quality?
                       </AccordionTrigger>
                       <AccordionContent>
@@ -252,7 +252,7 @@ function ContactUs({ status }: IStatus) {
                     </AccordionItem>
 
                     <AccordionItem value="item-3">
-                      <AccordionTrigger className="font-medium text-[17px]">
+                      <AccordionTrigger className="font-medium text-sm md:text-base">
                         What certifications should I look for to ensure the coffee meets
                         high-quality standards?
                       </AccordionTrigger>

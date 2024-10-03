@@ -53,14 +53,17 @@ export function FilterSheet() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline" className="text-primary bg-[#fffff0] h-[40px]  border-primary  gap-2">
+        <Button
+          variant="outline"
+          className="text-primary bg-[#fffff0] h-[40px]  border-primary  gap-2"
+        >
           <span>
-            <img src="/icons/filter.png"  />
+            <img src="/icons/filter.png" />
           </span>
           Filters
         </Button>
       </SheetTrigger>
-      <SheetContent className='overflow-scroll'>
+      <SheetContent className="overflow-scroll">
         <SheetHeader>
           <SheetTitle className="border-b-white shadow-md w-[100%] mb-1 text-left flex items-center p-5 ">
             Filter

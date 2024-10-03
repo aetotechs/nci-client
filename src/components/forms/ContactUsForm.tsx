@@ -36,7 +36,12 @@ export function ContactUsForm() {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input type="email" placeholder="Email" className="h-10 " {...field} />
+                <Input
+                  type="email"
+                  placeholder="Email"
+                  className="h-[34px] placeholder:text-[14px] "
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -51,7 +56,7 @@ export function ContactUsForm() {
                 <Input
                   type="text"
                   placeholder="Full Name"
-                  className="h-10 ring-offset-0 focus-visible:ring-0  focus-visible:ring-offset-0  "
+                  className="h-[34px] ring-offset-0 focus-visible:ring-0  focus-visible:ring-offset-0 placeholder:text-sm  "
                   {...field}
                 />
               </FormControl>
@@ -60,9 +65,9 @@ export function ContactUsForm() {
             </FormItem>
           )}
         />
-        <Textarea placeholder="Message." />
+        <Textarea placeholder="Message" className="h-5" />
 
-        <Button type="submit" className="w-full font-normal text-base">
+        <Button type="submit" className="w-full h-9 font-normal text-sm">
           Send Message
         </Button>
       </form>

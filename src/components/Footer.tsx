@@ -51,21 +51,21 @@ function Footer() {
             <div className="flex items-center gap-2">
               {' '}
               <span>
-                <img src="/icons/call.svg" className='w-4 h-4' alt="Callicon" />
+                <img src="/icons/call.svg" className="w-4 h-4" alt="Callicon" />
               </span>
               <span className="text-sm">+256 708 210 793</span>{' '}
             </div>
             <div className="flex items-center gap-2">
               {' '}
               <span>
-                <img src="/icons/mail.svg" className='w-4 h-4' alt="mailIcon" />
+                <img src="/icons/mail.svg" className="w-4 h-4" alt="mailIcon" />
               </span>
               <span className="text-sm"> support@nilecoffeeimports.com</span>
             </div>
             <div className="flex items-center gap-2">
               {' '}
               <span>
-                <img src="/icons/support.svg" className='w-4 h-4' alt="Support icon" />
+                <img src="/icons/support.svg" className="w-4 h-4" alt="Support icon" />
               </span>
               <span className="text-sm">Talk to support</span>
             </div>

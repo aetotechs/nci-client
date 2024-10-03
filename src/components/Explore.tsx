@@ -122,17 +122,21 @@ function Explore({ status }: IStatus) {
     }
   };
   return (
-    <div className={`w-full mb-[38px] md:mb-0  md:my-0   ${pathname === '/' && ''}`}>
+    <div className={`w-full md:mb-[38px]   md:my-0   ${pathname === '/' && ''}`}>
       {pathname === '/' && (
         <div className="flex flex-col md:justify-center md:items-center  my-5 mb-4">
-          <h3 className="font-semibold text-xl md:text-[26px] mt-4 md:mt-0 justify-self-start">Explore Nile Coffee</h3>
+          <h3 className="font-semibold text-xl md:text-[26px] mt-4 md:mt-0 justify-self-start">
+            Explore Nile Coffee
+          </h3>
           <p className="font-normal text-sm my-2">
             Discover the rich flavors and unique origins of Nile Coffee
           </p>
         </div>
       )}
       <div className={`${pathname === '/coffee-shop' ? 'py-0 md:w-[62vw]     ' : ' md:py-0 '}`}>
-        <div className={`grid md:grid-cols-2 md:gap-3 lg:grid-cols-3 gap-3 ${pathname==='/' &&'lg:grid-cols-4'} `}>
+        <div
+          className={`grid md:grid-cols-2 md:gap-3 lg:grid-cols-3 gap-3 ${pathname === '/' && 'lg:grid-cols-4'} `}
+        >
           {products.map((product, index) => {
             const isDisabled =
               product.stockAvailable === false &&
@@ -157,7 +161,7 @@ function Explore({ status }: IStatus) {
                 </div>
                 <div className="font-normal  mb-3 flex gap-1 items-center">
                   <span>
-                    <img src="icons/coffee-bean.svg" alt="Coffee Bean" />
+                    <img src="/icons/coffee-bean.svg" alt="Coffee Bean" />
                   </span>
                   <span className="font-normal lower-case text-[12px]"> {product.flavor}</span>
                 </div>
