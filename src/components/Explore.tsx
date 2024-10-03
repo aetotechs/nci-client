@@ -122,17 +122,21 @@ function Explore({ status }: IStatus) {
     }
   };
   return (
-    <div className={`my-10 md:my-0  ${pathname === '/' && 'md:px-5'}`}>
+    <div className={`w-full md:mb-[38px]   md:my-0   ${pathname === '/' && ''}`}>
       {pathname === '/' && (
-        <div className="flex justify-center flex-col items-center md:mb-2">
-          <h3 className="font-semibold text-xl md:text-[26px] mt-4 md:mt-0">Explore Nile Coffee</h3>
-          <p className="font-normal text-sm md:my-4">
+        <div className="flex flex-col md:justify-center md:items-center  my-5 mb-4">
+          <h3 className="font-semibold text-xl md:text-[26px] mt-4 md:mt-0 justify-self-start">
+            Explore Nile Coffee
+          </h3>
+          <p className="font-normal text-sm my-2">
             Discover the rich flavors and unique origins of Nile Coffee
           </p>
         </div>
       )}
-      <div className={`${pathname === '/coffee-shop' ? 'py-0 w-[62vw]  ' : 'py-5 md:py-10'}`}>
-        <div className={'grid md:grid-cols-2 md:gap-3 lg:grid-cols-3 gap-5 '}>
+      <div className={`${pathname === '/coffee-shop' ? 'py-0 md:w-[62vw]     ' : ' md:py-0 '}`}>
+        <div
+          className={`grid md:grid-cols-2 md:gap-3 lg:grid-cols-3 gap-3 ${pathname === '/' && 'lg:grid-cols-4'} `}
+        >
           {products.map((product, index) => {
             const isDisabled =
               product.stockAvailable === false &&
@@ -142,9 +146,9 @@ function Explore({ status }: IStatus) {
             return (
               <div
                 key={index}
-                className={`   border rounded-[10px] flex flex-col ${!status && ''}  bg-white ${
+                className={`   border rounded-[10px] flex flex-col   bg-white ${
                   isDisabled ? 'border-gray-300 bg-white text-[#b9bbc6]' : 'border-primary/30'
-                } ${pathname === '/coffee-shop' ? 'grow max-w-[300px]  px-5 py-2 ' : '  px-5  py-2 md:py-5'}
+                } ${pathname === '/coffee-shop' ? 'grow md:max-w-[300px]  px-5 py-2 ' : '  px-5  py-2 md:py-5'}
                   
                   `}
                 style={{ pointerEvents: isDisabled ? 'none' : 'auto' }}
@@ -157,7 +161,7 @@ function Explore({ status }: IStatus) {
                 </div>
                 <div className="font-normal  mb-3 flex gap-1 items-center">
                   <span>
-                    <img src="icons/coffee-bean.svg" alt="Coffee Bean" />
+                    <img src="/icons/coffee-bean.svg" alt="Coffee Bean" />
                   </span>
                   <span className="font-normal lower-case text-[12px]"> {product.flavor}</span>
                 </div>
@@ -227,7 +231,7 @@ function Explore({ status }: IStatus) {
                     </Button>
                   </div>
                 ) : (
-                  <Button className=" h-[32px] text-[12px] rounded-[6px]  ">
+                  <Button className=" h-[32px] text-[13px] md:text-[12px] rounded-[6px]  ">
                     <Link to="/login"> Log In To Buy/Sample</Link>
                   </Button>
                 )}
@@ -237,9 +241,9 @@ function Explore({ status }: IStatus) {
         </div>
       </div>
       {pathname === '/' && (
-        <div className="flex justify-center my-5 md:my-0">
+        <div className="flex justify-center my-5 md:my-8">
           <Link
-            className="flex justify-between items-center p-3 gap-2 border border-primary rounded-md text-primary font-semibold text-[16px] leading-5"
+            className="flex justify-between items-center p-3 max-h-[40px]  gap-2 border border-primary rounded-[10px] text-primary font-semibold text-sm leading-5"
             to="/"
           >
             View More

@@ -33,15 +33,19 @@ export function SubscribeForm() {
           render={({ field }) => (
             <FormItem className="w-[190px] md:w-[350px]">
               <FormControl>
-                <Input placeholder="Enter your email" {...field} />
+                <Input
+                  placeholder="Enter your email "
+                  className="bg-[#f2f2f2] placeholder:text-sm grow"
+                  {...field}
+                />
               </FormControl>
 
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-[30%]">
-          Subscribe
+        <Button type="submit" className="md:w-[20%] ">
+          <span className="text-sm">Subscribe</span>{' '}
         </Button>
       </form>
     </Form>

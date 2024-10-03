@@ -5,15 +5,15 @@ import { Link } from 'react-router-dom';
 function Footer() {
   return (
     <div className="bottom-0 bg-white mx-auto  ">
-      <div className="bg-footer bg-contain bg-no-repeat bg-center bg-white/60 bg-blend-overlay mt-24  pt-20 mb-20">
-        <div className="w-[90%] h-[181px] md:grid grid-cols-2  p-5 md:p-5 md:pt-7 md:items-center rounded-2xl shadow  border md:max-h-[120px]  mx-auto">
-          <div>
-            <h3 className="font-bold text-[18px] ">Subscribe to Our NewsLetter</h3>
-            <p className="my-3 md:my-0">
+      <div className="bg-footer bg-contain bg-no-repeat bg-center bg-white/40 bg-blend-overlay mt-24 md:pt-10  pt-10 md:mb-10 mb-10">
+        <div className="w-[90%]  md:flex gap-10  p-5 md:px-10  md:items-center   rounded-2xl   border md:max-h-[90px]  mx-auto">
+          <div className="  md:w-[50vw]">
+            <h3 className="font-bold text-[17px] ">Subscribe to Our NewsLetter</h3>
+            <p className="my-3 md:my-0 text-sm">
               Stay updated on news, arrivals and all things green coffee
             </p>
           </div>
-          <div>
+          <div className=" md:w-[40vw]">
             <SubscribeForm />
           </div>
         </div>
@@ -25,61 +25,67 @@ function Footer() {
               the globe. Experience the rich flavors and aromas.
             </div>
           </div>
-          <div className="flex flex-col w-[200px]  gap-3 ">
-            <h3 className="font-semibold text-base">Quick Links</h3>
-            <Link to="home" className="font-normal text-[15px]">
+          <div className="flex flex-col w-[200px]  gap-2 ">
+            <h3 className="font-semibold text-[15px]">Quick Links</h3>
+            <Link to="home" className="font-normal text-sm">
               Home
             </Link>
-            <Link to="/about-us" className="font-normal text-[15px]">
+            <Link to="/about-us" className="font-normal text-sm">
               About Us
             </Link>
-            <Link to="/categories" className="font-normal text-[15px]">
+            <Link to="/categories" className="font-normal text-sm">
               Categories
             </Link>
-            <Link to="/shop" className="font-normal text-[15px]">
+            <Link to="/shop" className="font-normal text-sm">
               Shop
             </Link>
-            <Link to="/origins" className="font-normal text-[15px]">
+            <Link to="/origins" className="font-normal text-sm">
               Origins
             </Link>
-            <Link to="/contact-us" className="font-normal text-[15px]">
+            <Link to="/contact-us" className="font-normal text-sm">
               Contact Us
             </Link>
           </div>
-          <div className=" flex flex-col gap-3 md:w-[300px] ">
-            <h3 className="font-semibold text-base">Contact Information</h3>
+          <div className=" flex flex-col gap-2 md:w-[300px] ">
+            <h3 className="font-semibold text-[15px]">Contact Information</h3>
             <div className="flex items-center gap-2">
               {' '}
               <span>
-                <img src="/icons/call.svg" alt="Callicon" />
+                <img src="/icons/call.svg" className="w-4 h-4" alt="Callicon" />
               </span>
-              +256 708 210 793
+              <span className="text-sm">+256 708 210 793</span>{' '}
             </div>
             <div className="flex items-center gap-2">
               {' '}
               <span>
-                <img src="/icons/mail.svg" alt="mailIcon" />
+                <img src="/icons/mail.svg" className="w-4 h-4" alt="mailIcon" />
               </span>
-              <span> support@nilecoffeeimports.com</span>
+              <span className="text-sm"> support@nilecoffeeimports.com</span>
             </div>
             <div className="flex items-center gap-2">
               {' '}
               <span>
-                <img src="/icons/support.svg" alt="Support icon" />
+                <img src="/icons/support.svg" className="w-4 h-4" alt="Support icon" />
               </span>
-              Talk to support
+              <span className="text-sm">Talk to support</span>
             </div>
           </div>
-          <div className="flex flex-col gap-3  ">
-            <h3 className="font-semibold text-base">Legal Information</h3>
-            <Link to="/terms-and-conditions">Terms and Conditions</Link>
-            <Link to="/privacy-policy">Privacy Policy</Link>
-            <Link to="/cookie-policy">Cookie Policy</Link>
+          <div className="flex flex-col gap-2  ">
+            <h3 className="font-semibold text-[15px]">Legal Information</h3>
+            <Link to="/terms-and-conditions" className="text-sm">
+              Terms and Conditions
+            </Link>
+            <Link to="/privacy-policy" className="text-sm">
+              Privacy Policy
+            </Link>
+            <Link to="/cookie-policy" className="text-sm">
+              Cookie Policy
+            </Link>
           </div>
         </div>
       </div>
       <div className="flex bg-footerbackground h-[54px] bottom-0 items-center justify-between px-2 md:px-20">
-        <div className="text-white font-normal text-[15px] ">
+        <div className="text-white font-normal text-sm  md:text-[15px] ">
           &copy;Nile Coffee Imports, Inc. 2024
         </div>
         <div className="flex gap-4">

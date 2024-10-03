@@ -18,13 +18,13 @@ function About({ status }: IStatus) {
     <>
       <div className="md:px-[5vw] md:max-w-[100vw] overflow-x-hidden    ">
         <Header status={status} />
-        <div className="w-[100vw] px-5 py-7 md:pt-0 md:w-[1232px] overflow-hidden">
-          <div className="md:my-7 my-4">
-            <h3 className="font-semibold text-xl">About Us</h3>
+        <div className="w-[100vw] px-5 py-2 md:pt-0 md:w-[1232px] overflow-hidden">
+          <div className="md:mt-10 my-2 ">
+            <h3 className="font-semibold text-[26px]">About Us</h3>
           </div>
           <div className="flex flex-col gap-10 md:flex-row ">
             <div className="bg-white md:h-[480px] md:w-[45vw] p-5">
-              <h4 className="font-medium text-xl md:leading-10 md:text-3xl mb-5 text-textcolor">
+              <h4 className="font-medium text-xl md:leading-8 md:text-3xl mb-5 text-textcolor">
                 Discover the Story Behind Nile Coffee Imports
               </h4>
               <p className="font-normal text-base mb-5 leading-7 text-inactive">
@@ -45,7 +45,7 @@ function About({ status }: IStatus) {
               </Button>
             </div>
             <div className="md:w-[50vw] md:h-[631px] flex flex-col gap-5">
-              <div className=" h-[293px] md:h-[260px]  rounded-[20px] bg-mobileabout md:bg-aboutimage bg-cover bg-center"></div>
+              <div className=" h-[293px] md:h-[260px]  rounded-[20px] bg-aboutimage bg-cover bg-center"></div>
 
               <div className="bg-white h-[300px] p-5 rounded-[20px] flex flex-col gap-4 md:grid  md:grid-cols-2 md:gap-1 md:h-[202px] md:p-5">
                 <div className="col-span-2 h-[70px] bg-primary text-white rounded-[10px] flex justify-center items-center gap-3">

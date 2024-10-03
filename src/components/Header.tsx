@@ -9,9 +9,9 @@ import { IStatus } from '@/App';
 
 function Header({ status }: IStatus) {
   return (
-    <div className="bg-white flex items-center  justify-between p-5 md:rounded-[30px] top-0  md:h-[89px] md:sticky md:top-2 shadow-md z-40 w-[100%] md:w-full">
+    <div className="bg-white flex items-center  justify-between p-5 md:rounded-[30px] top-0  md:h-[89px] sticky md:top-2 shadow-md z-40 w-[100%] md:w-full">
       <Link to="/">
-        <div className="md:w-[199px] w-[100px]  h-14 md:h-[45px] ">
+        <div className="md:w-[199px] w-[180px]  h-14 md:h-[45px] ">
           <img src="/logos/logo.png" alt="coffee logo" className="w-full h-full object-contain" />
         </div>
       </Link>

@@ -25,7 +25,7 @@ export default {
       backgroundImage: {
         logo: "url('/logos/logo.png')",
         brand: "url('/logos/brand.png')",
-        hero: "url('/images/hero-image.png')",
+        hero: "url('/images/hero-image.webp')",
         about: "url('/images/about-image.jpg')",
         footer: "url('/images/footer-background.png')",
         slide1: "url('/images/slide1.png')",
