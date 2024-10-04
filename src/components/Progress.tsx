@@ -25,8 +25,8 @@ function Progress() {
           <div>
             <Link
               to={step.paths[0]}
-              className={clsx('font-semi-bold text-sm', {
-                'text-primary underline': index <= currentStepIndex,
+              className={clsx(' text-sm', {
+                'text-primary underline font-semibold ': index <= currentStepIndex,
                 'text-inactive': index > currentStepIndex
               })}
             >

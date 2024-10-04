@@ -66,7 +66,7 @@ function OrderItems() {
           </div>
         </div>
       ) : (
-        <div className={`${pathname === '/close-shop' && 'px-5'} flex flex-col gap-4 my-6 `}>
+        <div className={`${pathname === '/close-shop' && 'md:px-5'} flex flex-col gap-4 my-6 `}>
           {myitems.map((item, index) => (
             <div
               key={index}

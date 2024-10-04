@@ -13,7 +13,7 @@ export function DialogDemo() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <p className="text-primary cursor-pointer text-[13px] font-medium">
+        <p className="text-primary underline cursor-pointer text-[13px] font-medium">
           Change Shipping Address
         </p>
       </DialogTrigger>

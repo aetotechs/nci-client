@@ -33,7 +33,7 @@ const FormSchema = z
       message: 'Field is required.'
     }),
     lastName: z.string().min(2, { message: 'Field is required' }),
-    email: z.string().email().min(2, { message: 'Field is required.' }),
+    email: z.string().min(2, { message: 'Field is required.' }).email(),
     workPhone: z
       .string()
       .min(2, { message: 'Field is required' })
@@ -163,16 +163,16 @@ export function SignupForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="w-full flex flex-col md:grid md:grid-cols-2 gap-5 "
+        className="w-full flex flex-col md:grid md:grid-cols-2 gap-3  "
       >
         <FormField
           control={form.control}
           name="firstName"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel className="font-medium text-base ">First Name</FormLabel>
+            <FormItem className=" space-y-1 ">
+              <FormLabel className="font-medium text-sm ">First Name</FormLabel>
               <FormControl>
-                <Input type="text" placeholder="Enter your first name" {...field} />
+                <Input type="text" placeholder="Enter your first name" className="" {...field} />
               </FormControl>
 
               <FormMessage />
@@ -183,8 +183,8 @@ export function SignupForm() {
           control={form.control}
           name="lastName"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel className="font-medium text-base ">Last Name</FormLabel>
+            <FormItem className=" p-0 md:h-10 space-y-1 ">
+              <FormLabel className="font-medium text-sm ">Last Name</FormLabel>
               <FormControl>
                 <Input type="text" placeholder="Enter your last name" {...field} />
               </FormControl>
@@ -197,8 +197,8 @@ export function SignupForm() {
           control={form.control}
           name="workPhone"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel className="font-medium text-base ">Work Phone</FormLabel>
+            <FormItem className="p-0    space-y-1 ">
+              <FormLabel className="font-medium text-sm ">Work Phone</FormLabel>
               <FormControl>
                 <Input type="text" placeholder="Enter your contact" {...field} />
               </FormControl>
@@ -211,8 +211,8 @@ export function SignupForm() {
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel className="font-medium text-base ">Work Email</FormLabel>
+            <FormItem className=" md:h-10   space-y-1 ">
+              <FormLabel className="font-medium text-sm ">Work Email</FormLabel>
               <FormControl>
                 <Input type="text" placeholder="Enter your email" {...field} />
               </FormControl>
@@ -225,8 +225,8 @@ export function SignupForm() {
           control={form.control}
           name="position"
           render={({ field }) => (
-            <FormItem className="col-span-2">
-              <FormLabel className="font-medium text-base ">Position</FormLabel>
+            <FormItem className="col-span-2 spce-y-1   ">
+              <FormLabel className="font-medium text-sm ">Position</FormLabel>
               <FormControl>
                 <Input type="text" placeholder="Enter your position at company" {...field} />
               </FormControl>
@@ -239,8 +239,8 @@ export function SignupForm() {
           control={form.control}
           name="company"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel className="font-medium text-base ">Company</FormLabel>
+            <FormItem className="  space-y-1">
+              <FormLabel className="font-medium text-sm ">Company</FormLabel>
               <FormControl>
                 <Input type="text" placeholder="Enter company name" {...field} />
               </FormControl>
@@ -253,8 +253,8 @@ export function SignupForm() {
           control={form.control}
           name="companyWebsiteUrl"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel className="font-medium text-base ">Company Website</FormLabel>
+            <FormItem className="  space-y-1">
+              <FormLabel className="font-medium text-sm ">Company Website</FormLabel>
               <FormControl>
                 <Input type="text" placeholder="Enter company website" {...field} />
               </FormControl>
@@ -266,14 +266,14 @@ export function SignupForm() {
         <div className="col-span-2">
           <Accordion type="single" collapsible>
             <AccordionItem value="item-1">
-              <AccordionTrigger>Address</AccordionTrigger>
-              <AccordionContent className="grid grid-cols-2 gap-2">
+              <AccordionTrigger className="text-sm font-medium">Address</AccordionTrigger>
+              <AccordionContent className="flex flex-col    md:grid md:grid-cols-2 gap-3 ">
                 <FormField
                   control={form.control}
                   name="address.country"
                   render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Country</FormLabel>
+                    <FormItem className="  space-y-1">
+                      <FormLabel className="text-sm font-medium">Country</FormLabel>
                       <FormControl>
                         <Input type="text" placeholder="Enter your country" {...field} />
                       </FormControl>
@@ -286,8 +286,8 @@ export function SignupForm() {
                   control={form.control}
                   name="address.city"
                   render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>City</FormLabel>
+                    <FormItem className="  space-y-1">
+                      <FormLabel className="text-sm font-medium">City</FormLabel>
                       <FormControl>
                         <Input type="text" placeholder="Enter your city" {...field} />
                       </FormControl>
@@ -300,8 +300,8 @@ export function SignupForm() {
                   control={form.control}
                   name="address.state"
                   render={({ field }) => (
-                    <FormItem className="col-span-2">
-                      <FormLabel>State</FormLabel>
+                    <FormItem className="col-span-2 space-y-1 ">
+                      <FormLabel className="text-sm font-medium">State</FormLabel>
                       <FormControl>
                         <Input type="text" placeholder="Enter your   state" {...field} />
                       </FormControl>
@@ -314,8 +314,8 @@ export function SignupForm() {
                   control={form.control}
                   name="address.street"
                   render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Street</FormLabel>
+                    <FormItem className="  space-y-1">
+                      <FormLabel className="text-sm font-medium">Street</FormLabel>
                       <FormControl>
                         <Input type="text" placeholder="Enter your street" {...field} />
                       </FormControl>
@@ -328,8 +328,8 @@ export function SignupForm() {
                   control={form.control}
                   name="address.zip"
                   render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Zip Code</FormLabel>
+                    <FormItem className="  space-y-1">
+                      <FormLabel className="text-sm font-medium">Zip Code</FormLabel>
                       <FormControl>
                         <Input type="text" placeholder="Enter your zipcode" {...field} />
                       </FormControl>
@@ -347,10 +347,10 @@ export function SignupForm() {
           control={form.control}
           name="password"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel className="font-medium text-base ">Password</FormLabel>
+            <FormItem className="  space-y-1">
+              <FormLabel className="font-medium text-sm ">Password</FormLabel>
               <FormControl>
-                <div className="flex border justify-between items-center pr-4 rounded-xl overflow-hidden">
+                <div className="flex border border-input h-10 justify-between items-center pr-4 rounded-md overflow-hidden">
                   <Input
                     type={passwordVisible ? 'text' : 'password'}
                     placeholder="Enter your password"
@@ -359,9 +359,9 @@ export function SignupForm() {
                   />
                   <p onClick={togglePassword}>
                     {passwordVisible ? (
-                      <EyeIcon className="w-4" color="rgba(88, 89, 98, 1)" />
+                      <EyeIcon className="w-[14px]" color="rgba(88, 89, 98, 1)" />
                     ) : (
-                      <EyeOffIcon className="w-4" color="rgba(88, 89, 98, 1)" />
+                      <EyeOffIcon className="w-[14px]" color="rgba(88, 89, 98, 1)" />
                     )}
                   </p>
                 </div>
@@ -375,10 +375,10 @@ export function SignupForm() {
           control={form.control}
           name="confirmPassword"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel className="font-medium text-base ">Confirm Password</FormLabel>
+            <FormItem className="  space-y-1">
+              <FormLabel className="font-medium text-sm ">Confirm Password</FormLabel>
               <FormControl>
-                <div className="flex border justify-between items-center pr-4 rounded-xl overflow-hidden">
+                <div className="flex border border-input h-10 justify-between items-center pr-4 rounded-md overflow-hidden">
                   <Input
                     type={confirmPasswordVisible ? 'text' : 'password'}
                     placeholder="Enter your password"
@@ -387,9 +387,9 @@ export function SignupForm() {
                   />
                   <p onClick={toggleConfirmPassword}>
                     {confirmPasswordVisible ? (
-                      <EyeIcon className="w-4" color="rgba(88, 89, 98, 1)" />
+                      <EyeIcon className="w-[14px]" color="rgba(88, 89, 98, 1)" />
                     ) : (
-                      <EyeOffIcon className="w-4" color="rgba(88, 89, 98, 1)" />
+                      <EyeOffIcon className="w-[14px]" color="rgba(88, 89, 98, 1)" />
                     )}
                   </p>
                 </div>
@@ -400,7 +400,7 @@ export function SignupForm() {
           )}
         />
 
-        <div className="col-span-2">
+        <div className="col-span-2 my-3">
           <CheckboxDemo checked={termsAccepted} onCheckedChange={setTermsAccepted} />
         </div>
         <Button type="submit" className="col-span-2" disabled={isSubmitting}>

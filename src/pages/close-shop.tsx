@@ -27,18 +27,20 @@ function ClosedOrder({ status }: IStatus) {
   }, [pathname]);
   return (
     <>
-      <div className="md:px-[5vw] md:max-w-[100vw]  px-5   ">
+      <div className="md:px-[5vw] md:max-w-[100vw] overflow-x-hidden   ">
         <Header status={status} />
 
         <div>
-          <div className="md:h-screen  md:my-10 px-4 flex flex-col md:flex-row  gap-20  md:place-content-center my-5">
+          <div className="md:h-screen px-5  md:my-10 md:px-4 flex flex-col md:flex-row gap-9 md:gap-20  md:place-content-center my-5">
             <div className="">
               <div className="md:w-[50vw]  ">
                 <div className="flex items-center gap-2 mb-4">
                   <div className="rounded-full w-[40px] h-[40px] bg-iconbackground flex items-center justify-center">
                     <Check className="text-white h-10 w-8" />
                   </div>
-                  <h3 className="font-semibold text-2xl leading-10">Thank you for your order!</h3>
+                  <h3 className="font-semibold text-xl md:text-2xl leading-10">
+                    Thank you for your order!
+                  </h3>
                 </div>
                 <div>
                   <p className="text-sm md:pr-7  mb-4 text-textmuted">
@@ -76,7 +78,7 @@ function ClosedOrder({ status }: IStatus) {
                     <Link to="/coffee-shop">
                       <Button
                         variant="outline"
-                        className="border border-primary bg-white h-[44px] w-[207px] my-6"
+                        className="border border-primary bg-white h-[44px] w-[207px] my-4 md:my-6"
                       >
                         Continue Shopping
                       </Button>

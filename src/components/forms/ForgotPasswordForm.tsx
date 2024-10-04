@@ -34,15 +34,15 @@ export function ForgotPasswordForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-1 md:space-y-6">
         <FormField
           control={form.control}
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-[16px] font-normal">Email</FormLabel>
+              <FormLabel className="text-sm font-medium">Email</FormLabel>
               <FormControl>
-                <Input placeholder="Enter your email" {...field} className="py-5" />
+                <Input placeholder="Enter your email" {...field} className="py-5 " />
               </FormControl>
 
               <FormMessage />
@@ -50,7 +50,7 @@ export function ForgotPasswordForm() {
           )}
         />
         <Link to="/reset-password">
-          <Button type="submit" className="w-full my-4 text-white">
+          <Button type="submit" className="w-full my-5 h-11 text-sm font-normal text-white">
             Reset Password
           </Button>
         </Link>

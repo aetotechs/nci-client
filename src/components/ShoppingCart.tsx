@@ -39,12 +39,12 @@ function ShoppingCart() {
   };
 
   return (
-    <div className=" mx-5 bg-white px-10 py-5  flex flex-col rounded-[8px]">
-      <div className="flex justify-between">
+    <div className=" md:mx-5 bg-white px-2 py-4 md:px-10 md:py-5  flex flex-col rounded-[8px]">
+      <div className="flex justify-between mb-4 md:mb-0">
         <h3 className="font-bold md:text-base">Shopping Cart</h3>
         <div className="flex items-center gap-1">
-          <Checkbox className="h-3 w-3" />
-          <p className="text-[13px] font-medium">Select All</p>
+          <Checkbox className="h-4 w-4" />
+          <p className="text-[13px] font-medium">Select All (2)</p>
         </div>
       </div>
       <div className="  ">

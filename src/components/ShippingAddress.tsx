@@ -18,8 +18,8 @@ const Address = {
 function ShippingAddress() {
   return (
     <div className="">
-      <div className="bg-white  rounded-[8px] max-h-min px-10 pt-5 pb-5 mb-5">
-        <h3 className="mb-5 font-semibold md:text-base leading-6">Shipping Address</h3>
+      <div className="bg-white  rounded-[8px] max-h-min px-5 md:px-10 md:pt-5 pb-5 mb-5">
+        <h3 className="md:mb-5 mb-3 font-semibold md:text-base leading-6">Shipping Address</h3>
         <div className="border border-primary   rounded-[8px] flex gap-2 px-2 flex-col md:flex-row md:justify-between md:px-5 py-2">
           <div>
             <div className="text-primary font-normal text-[13px]">{Address.name}</div>
@@ -43,12 +43,12 @@ function ShippingAddress() {
             </div>
           </div>
         </div>
-        <div className="mt-6">
+        <div className="md:mt-6 my-4 md:my-0">
           <DialogDemo />
         </div>
         <div>
           {' '}
-          <p className="font-medium text-[15px] my-4">Add Delivery Note</p>
+          <p className="font-medium text-[15px] md:my-4">Add Delivery Note</p>
           <Textarea
             className="rounded-[8px] bg-muted  px-5 bg-[#f2f2f2] placeholder:text-[12px]"
             placeholder="Notes about your order eg special notes for delivery "

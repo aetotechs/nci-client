@@ -53,15 +53,15 @@ export function ResetPasswordForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full  md:space-y-4">
         <FormField
           control={form.control}
           name="newPassword"
           render={({ field }) => (
-            <FormItem className="my-4">
-              <FormLabel className="font-medium text-base ">Password</FormLabel>
+            <FormItem className="my-2">
+              <FormLabel className="font-medium text-sm ">Password</FormLabel>
               <FormControl>
-                <div className="flex border justify-between items-center pr-4 rounded-xl overflow-hidden">
+                <div className="flex border border-input justify-between items-center pr-4 rounded-md h-10 overflow-hidden">
                   <Input
                     type={passwordVisible ? 'text' : 'password'}
                     placeholder="Enter your password"
@@ -86,10 +86,10 @@ export function ResetPasswordForm() {
           control={form.control}
           name="confirmPassword"
           render={({ field }) => (
-            <FormItem className="my-4">
-              <FormLabel className="font-medium text-base ">Confirm Password</FormLabel>
+            <FormItem className="my-2">
+              <FormLabel className="font-medium text-sm ">Confirm Password</FormLabel>
               <FormControl>
-                <div className="flex border justify-between items-center pr-4 rounded-xl overflow-hidden">
+                <div className="flex border border-input justify-between items-center h-10 pr-4 rounded-md overflow-hidden">
                   <Input
                     type={confirmPasswordVisible ? 'text' : 'password'}
                     placeholder="Enter your password"
@@ -110,8 +110,7 @@ export function ResetPasswordForm() {
             </FormItem>
           )}
         />
-
-        <Button type="submit" className="w-full font-normal text-base">
+        <Button type="submit" className="w-full font-normal text-sm mt-3  md:mt-6 ">
           <Link to="/login">Reset Password</Link>
         </Button>
       </form>

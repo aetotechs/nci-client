@@ -6,12 +6,14 @@ function OrderSummary() {
   const location = useLocation();
   const { pathname } = location;
   return (
-    <div className={`  md:mx-0 rounded-[8px]  flex flex-col mb-4 py-2 bg-white  `}>
-      <h3 className={` font-semibold text-[15px] my-2 px-5`}>Order Summary</h3>
+    <div
+      className={`  md:mx-0 rounded-[8px] ${pathname === '/shop-payment' && 'pb-2 md:pb-0'} flex flex-col px-5 md:px-0 mb-4 md:py-2 bg-white  `}
+    >
+      <h3 className={` font-semibold text-[15px] my-2 md:px-5`}>Order Summary</h3>
 
       {pathname == '/close-shop' && (
         <div>
-          <div className="flex flex-col gap-1 px-5 text-[12px] ">
+          <div className="flex flex-col gap-1 md:px-5 text-[12px] ">
             <div className="flex justify-between">
               <p className="font-normal  text-textmuted">Order Number</p>
               <h3 className="font-medium  text-texthighlight">5493-90</h3>

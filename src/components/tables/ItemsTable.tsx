@@ -25,7 +25,7 @@ interface ITableProps {
 export function ItemsTable({ items }: ITableProps) {
   return (
     <Table className=" ">
-      <TableHeader>
+      <TableHeader className="hidden md:flex">
         <TableRow className="grid grid-cols-6 text-center text-[12px] font-medium pt-3 px-4 border-none w-full ">
           <TableHead className="col-span-3 flex items-center">Item</TableHead>
           <TableHead className="col-span-1   flex justify-center items-center">Quantity</TableHead>
@@ -41,12 +41,18 @@ export function ItemsTable({ items }: ITableProps) {
             <div>
               <Checkbox />
             </div>
-            <div className="border mb-3 rounded-[8px] grow">
-              <TableRow key={index} className="    grid grid-cols-6 gap-4 ">
-                <TableCell className="font-medium col-span-3 ">
+            <div className="border  max-h-48 mb-3 rounded-[8px] grow">
+              <TableRow key={index} className=" flex flex-col   md:grid md:grid-cols-6 md:gap-4 ">
+                <TableCell className="font-medium  col-span-3 ">
                   <div>
-                    <h3 className="font-medium text-[13px]">{item.name}</h3>
-                    <div className="mt-2 font-normal text-[12px]">
+                    <div className="flex md:hidden">
+                      <h3 className="font-medium text-[13px]">{item.name}</h3>
+
+                      <Trash2 className="w-4 h-4 flex md:hidden text-[#8b8d98]" />
+                    </div>
+                    <h3 className="font-medium text-[13px] hidden md:flex">{item.name}</h3>
+
+                    <div className="md:mt-2 font-normal text-[12px]">
                       <p className="">
                         <span className="text-[#616161]">Lot Number:</span>
                         <span>{item.lotNumber}</span>
@@ -55,20 +61,26 @@ export function ItemsTable({ items }: ITableProps) {
                         <span className="text-[#616161]">Warehouse:</span>
                         <span>{item.warehouse}</span>
                       </p>
-                      <p className="">
-                        <span className="text-[#616161]">Quantity:</span>
-                        <span>{item.quantity}</span>
-                      </p>
                     </div>
                   </div>
                 </TableCell>
-                <TableCell className="col-span-1 flex  items-center -ml-5 ">
+                <div className="flex justify-between  w-full md:hidden px-5">
+                  <span className="text-[#616161]">Quantity</span>
+                  <Counter className="w-[78px] h-[24px]" />
+                </div>
+
+                <div className="flex justify-between my-3  w-full md:hidden px-5">
+                  <span className="text-[#616161]">Subtotal</span>
+                  <span className="font-semibold text-[13px]"> {item.subtotal}</span>
+                </div>
+                <TableCell className="col-span-1   items-center -ml-5 hidden md:flex ">
                   <Counter className="w-[78px] h-[24px]" />
                 </TableCell>
                 <TableCell className="col-span-1 flex items-center font-semibold text-[13px]">
-                  {item.subtotal}
+                  <span className="hidden md:flex"> {item.subtotal}</span>
+                  <span> </span>
                 </TableCell>
-                <TableCell className="col-span-1 flex items-center justify-end">
+                <TableCell className="col-span-1 hidden md:flex items-center justify-end">
                   <Trash2 className="w-4 h-4 text-[#8b8d98]" />
                 </TableCell>
               </TableRow>

@@ -53,7 +53,7 @@ function Shop({ status }: IStatus) {
       <div className="md:px-[5vw] lg:my-4 md:max-w-[100vw] overflow-x-hidden ">
         <Header status={status} />
 
-        <div className="px-5 mt-10 md:px-0 md:mt-20">
+        <div className={`px-5 ${cartItems.length === 0 && 'mt-10'} md:px-0 `}>
           {cartItems.length === 0 ? (
             <div className="flex justify-center items-center  ">
               <EmptyCart status={status} />
@@ -64,10 +64,10 @@ function Shop({ status }: IStatus) {
                 <Progress />
               </div>
               <div className=" flex flex-col md:flex-row ">
-                <div className="w-[60vw]">
+                <div className="md:w-[60vw]">
                   <CartWithItems />
                 </div>
-                <div className="w-[30vw]">
+                <div className="md:w-[30vw]">
                   <Coupon />
                   <OrderSummary />
                 </div>
