@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function Footer() {
   return (
     <div className="bottom-0 bg-white mx-auto  ">
-      <div className="bg-footer bg-contain bg-no-repeat bg-center bg-white/40 bg-blend-overlay mt-24 md:pt-10  pt-10 md:mb-10 mb-10">
+      <div className="bg-footer bg-contain bg-no-repeat bg-center bg-white/40 bg-blend-overlay mt-20 md:pt-10  pt-10 md:mb-10 mb-10">
         <div className="w-[90%]  md:flex gap-10  p-5 md:px-10  md:items-center   rounded-2xl   border md:max-h-[90px]  mx-auto">
           <div className="  md:w-[50vw]">
             <h3 className="font-bold text-[17px] ">Subscribe to Our NewsLetter</h3>

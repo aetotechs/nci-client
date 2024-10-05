@@ -34,13 +34,19 @@ function Counter({ className }: CounterProps) {
         className
       )}
     >
-      <div onClick={() => dispatch({ type: 'decrement' })} className="cursor-pointer">
+      <div
+        onClick={() => dispatch({ type: 'decrement' })}
+        className="cursor-pointer text-xl md:text-lg"
+      >
         -
       </div>
       <Separator orientation="vertical" className="h-4" />
       <div className="text-[15px] ">{state.count}</div>
       <Separator orientation="vertical" className="h-4" />
-      <div onClick={() => dispatch({ type: 'increment' })} className="cursor-pointer">
+      <div
+        onClick={() => dispatch({ type: 'increment' })}
+        className="cursor-pointer text-xl md:text-lg "
+      >
         +
       </div>
     </div>

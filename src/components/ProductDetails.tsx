@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { getAuthUser, getUserToken } from '@/lib/cookie';
 import { toast } from 'sonner';
 import { AddToCart } from '@/lib/api-routes';
+import { Link } from 'react-router-dom';
 
 interface IProductDetails {
   product: any;
@@ -69,10 +70,10 @@ function ProductDetails({ product, status }: IProductDetails) {
     }
   };
   return (
-    <div className="bg-white rounded-[8px]  md:mx-0 w-[90vw] md:w-full">
-      <div className={`bg-white px-5 ${!status && 'pb-2'}`}>
+    <div className=" rounded-[8px] bg-white  md:mx-0 w-[90vw] md:w-full">
+      <div className={` px-5 ${!status && 'pb-2'}`}>
         {status ? (
-          <div className="flex items-center gap-2 pt-4 ">
+          <div className="flex items-center gap-2 md:pt-4 pt-2 ">
             <h3 className="font-semibold text-xl">$2.83/lb</h3>
             <div className="font-light text-[15px] mt-2">$374/bag</div>
           </div>
@@ -122,24 +123,26 @@ function ProductDetails({ product, status }: IProductDetails) {
           </div>
           {status ? (
             <div>
-              <div className="flex flex-col gap-3 md:flex-row md:my-3 m    md:justify-between ">
-                <Counter className="h-[32px] md:w-[104px] text-[15px] rounded-[6px] text-textcolor" />
+              <div className="flex flex-col gap-3 md:flex-row my-3    md:justify-between ">
+                <Counter className="h-10 md:w-[104px] w-[40vw] mx-auto md:mx-0 text-[15px] rounded-[6px] text-textcolor" />
                 <Button
-                  className="h-[32px] md:w-[157px] bg-primary text-white font-medium text-[15px]"
+                  className="h-10 md:w-[157px] bg-primary text-white font-medium text-sm"
                   onClick={() => {
                     AddCart(product.itemId, product.name);
                   }}
                 >
                   {addingStates[product.itemId] ? 'Adding...' : 'Add to Cart'}
                 </Button>
-                <Button className="h-[32px] md:w-[157px] bg-white text-primary font-medium text-[15px] border border-primary">
+                <Button className="h-10 md:w-[157px] bg-white text-primary font-medium text-sm border border-primary">
                   Request Sample
                 </Button>
               </div>
             </div>
           ) : (
             <div>
-              <Button className="w-full my-2">Log In To Buy/ Sample</Button>
+              <Button className="w-full my-2">
+                <Link to="/login">Log In To Buy/ Sample</Link>
+              </Button>
             </div>
           )}
         </div>

@@ -46,13 +46,13 @@ export function ItemsTable({ items }: ITableProps) {
                 <TableCell className="font-medium  col-span-3 ">
                   <div>
                     <div className="flex md:hidden">
-                      <h3 className="font-medium text-[13px]">{item.name}</h3>
+                      <h3 className="font-medium text-[14px]">{item.name}</h3>
 
                       <Trash2 className="w-4 h-4 flex md:hidden text-[#8b8d98]" />
                     </div>
                     <h3 className="font-medium text-[13px] hidden md:flex">{item.name}</h3>
 
-                    <div className="md:mt-2 font-normal text-[12px]">
+                    <div className="md:mt-2 font-normal text-[13px] md:text-[12px]">
                       <p className="">
                         <span className="text-[#616161]">Lot Number:</span>
                         <span>{item.lotNumber}</span>
@@ -64,17 +64,17 @@ export function ItemsTable({ items }: ITableProps) {
                     </div>
                   </div>
                 </TableCell>
-                <div className="flex justify-between  w-full md:hidden px-5">
-                  <span className="text-[#616161]">Quantity</span>
-                  <Counter className="w-[78px] h-[24px]" />
+                <div className="flex justify-between text-sm  w-full md:hidden px-5">
+                  <span className="text-[#616161] font-medium">Quantity</span>
+                  <Counter className="w-[88px] h-[34px] px-3" />
                 </div>
 
-                <div className="flex justify-between my-3  w-full md:hidden px-5">
-                  <span className="text-[#616161]">Subtotal</span>
-                  <span className="font-semibold text-[13px]"> {item.subtotal}</span>
+                <div className="flex justify-between my-3 text-sm  w-full md:hidden px-5">
+                  <span className="text-[#616161] font-medium">Subtotal</span>
+                  <span className="font-semibold text-[14px]"> {item.subtotal}</span>
                 </div>
                 <TableCell className="col-span-1   items-center -ml-5 hidden md:flex ">
-                  <Counter className="w-[78px] h-[24px]" />
+                  <Counter className="w-[88px] h-[34px] px-3" />
                 </TableCell>
                 <TableCell className="col-span-1 flex items-center font-semibold text-[13px]">
                   <span className="hidden md:flex"> {item.subtotal}</span>

@@ -59,16 +59,21 @@ export function EditShippingAddressForm() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="w-full flex flex-col md:grid md:grid-cols-2 gap-5  "
+          className="w-full flex flex-col md:grid md:grid-cols-2 gap-2 md:gap-5  "
         >
           <FormField
             control={form.control}
             name="firstName"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>First Name</FormLabel>
+              <FormItem className="space-y-[3px] md:space-y-2">
+                <FormLabel className="font-normal text-[15px] md:text-base ">First Name</FormLabel>
                 <FormControl>
-                  <Input type="text" placeholder="Enter your first name" {...field} />
+                  <Input
+                    type="text"
+                    placeholder="Enter your first name"
+                    className="placeholder:text-sm"
+                    {...field}
+                  />
                 </FormControl>
 
                 <FormMessage />
@@ -79,10 +84,15 @@ export function EditShippingAddressForm() {
             control={form.control}
             name="lastName"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Last Name</FormLabel>
+              <FormItem className="space-y-[3px] md:space-y-2">
+                <FormLabel className="font-normal text-[15px] md:text-base ">Last Name</FormLabel>
                 <FormControl>
-                  <Input type="text" placeholder="Enter your last name" {...field} />
+                  <Input
+                    type="text"
+                    placeholder="Enter your last name"
+                    className="placeholder:text-sm"
+                    {...field}
+                  />
                 </FormControl>
 
                 <FormMessage />
@@ -93,10 +103,15 @@ export function EditShippingAddressForm() {
             control={form.control}
             name="workPhone"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Work Phone</FormLabel>
+              <FormItem className="space-y-[3px] md:space-y-2">
+                <FormLabel className="font-normal text-[15px] md:text-base ">Work Phone</FormLabel>
                 <FormControl>
-                  <Input type="text" placeholder="Enter your contact" {...field} />
+                  <Input
+                    type="text"
+                    placeholder="Enter your contact"
+                    className="placeholder:text-sm"
+                    {...field}
+                  />
                 </FormControl>
 
                 <FormMessage />
@@ -107,10 +122,15 @@ export function EditShippingAddressForm() {
             control={form.control}
             name="workEmail"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Work Email</FormLabel>
+              <FormItem className="space-y-[3px] md:space-y-2">
+                <FormLabel className="font-normal text-[15px] md:text-base ">Work Email</FormLabel>
                 <FormControl>
-                  <Input type="text" placeholder="Enter your email" {...field} />
+                  <Input
+                    type="text"
+                    placeholder="Enter your email"
+                    className="placeholder:text-sm"
+                    {...field}
+                  />
                 </FormControl>
 
                 <FormMessage />
@@ -122,10 +142,15 @@ export function EditShippingAddressForm() {
             control={form.control}
             name="companyName"
             render={({ field }) => (
-              <FormItem className="col-span-2">
-                <FormLabel>Company</FormLabel>
+              <FormItem className="col-span-2 space-y-1 md:space-y-2 ">
+                <FormLabel className="font-normal text-[15px] md:text-base">Company</FormLabel>
                 <FormControl>
-                  <Input type="text" placeholder="Enter company name" {...field} />
+                  <Input
+                    type="text"
+                    placeholder="Enter company name"
+                    className="placeholder:text-sm"
+                    {...field}
+                  />
                 </FormControl>
 
                 <FormMessage />
@@ -137,10 +162,15 @@ export function EditShippingAddressForm() {
             control={form.control}
             name="country"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Country</FormLabel>
+              <FormItem className="space-y-[3px] md:space-y-2">
+                <FormLabel className="font-normal text-[15px] md:text-base ">Country</FormLabel>
                 <FormControl>
-                  <Input type="text" placeholder="Enter your country" {...field} />
+                  <Input
+                    type="text"
+                    placeholder="Enter your country"
+                    className="placeholder:text-sm"
+                    {...field}
+                  />
                 </FormControl>
 
                 <FormMessage />
@@ -151,10 +181,15 @@ export function EditShippingAddressForm() {
             control={form.control}
             name="city"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>City</FormLabel>
+              <FormItem className="space-y-[3px] md:space-y-2">
+                <FormLabel className="font-normal text-[15px] md:text-base ">City</FormLabel>
                 <FormControl>
-                  <Input type="text" placeholder="Enter your city" {...field} />
+                  <Input
+                    type="text"
+                    placeholder="Enter your city"
+                    className="placeholder:text-sm"
+                    {...field}
+                  />
                 </FormControl>
 
                 <FormMessage />
@@ -165,10 +200,15 @@ export function EditShippingAddressForm() {
             control={form.control}
             name="state"
             render={({ field }) => (
-              <FormItem className="col-span-2">
-                <FormLabel>State</FormLabel>
+              <FormItem className="col-span-2 space-y-1 md:space-y-2 ">
+                <FormLabel className="font-normal text-[15px] md:text-base">State</FormLabel>
                 <FormControl>
-                  <Input type="text" placeholder="Enter your state" {...field} />
+                  <Input
+                    type="text"
+                    placeholder="Enter your state"
+                    className="placeholder:text-sm"
+                    {...field}
+                  />
                 </FormControl>
 
                 <FormMessage />
@@ -179,10 +219,15 @@ export function EditShippingAddressForm() {
             control={form.control}
             name="street"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Street</FormLabel>
+              <FormItem className="space-y-[3px] md:space-y-2">
+                <FormLabel className="font-normal text-[15px] md:text-base ">Street</FormLabel>
                 <FormControl>
-                  <Input type="text" placeholder="Enter your street" {...field} />
+                  <Input
+                    type="text"
+                    placeholder="Enter your street"
+                    className="placeholder:text-sm"
+                    {...field}
+                  />
                 </FormControl>
 
                 <FormMessage />
@@ -193,10 +238,15 @@ export function EditShippingAddressForm() {
             control={form.control}
             name="zipcode"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Zip Code</FormLabel>
+              <FormItem className="space-y-[3px] md:space-y-2">
+                <FormLabel className="font-normal text-[15px] md:text-base ">Zip Code</FormLabel>
                 <FormControl>
-                  <Input type="text" placeholder="Enter your zipcode" {...field} />
+                  <Input
+                    type="text"
+                    placeholder="Enter your zipcode"
+                    className="placeholder:text-sm"
+                    {...field}
+                  />
                 </FormControl>
 
                 <FormMessage />
@@ -204,7 +254,7 @@ export function EditShippingAddressForm() {
             )}
           />
 
-          <Button type="submit" className="col-span-2">
+          <Button type="submit" className="col-span-2 my-2 md:my-0 text-sm  md:text-base">
             Save Changes
           </Button>
         </form>

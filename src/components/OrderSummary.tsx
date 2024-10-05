@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Link, useLocation } from 'react-router-dom';
-import OrderItems from '@/components/OrderItems';
+import OrderItems, { myitems } from '@/components/OrderItems';
 
 function OrderSummary() {
   const location = useLocation();
@@ -29,7 +29,7 @@ function OrderSummary() {
           </div>
         </div>
       )}
-      {pathname === '/close-shop' && <OrderItems />}
+      {pathname === '/close-shop' && <OrderItems items={myitems} />}
       <div className="flex flex-col text-[12px] gap-3 md:px-4 ">
         <div className="flex justify-between">
           <p className="font-normal  text-textmuted">Cart Subtotal</p>
@@ -47,12 +47,12 @@ function OrderSummary() {
           <p className="font-normal  text-textmuted">Order Subtotal</p>
           <h3 className="font-semibold text-[14px]">$265</h3>
         </div>
-        {pathname === '/shipping-address' && <OrderItems />}
-        {pathname === '/shop-payment' && <OrderItems />}
+        {pathname === '/shipping-address' && <OrderItems items={myitems} />}
+        {pathname === '/shop-payment' && <OrderItems items={myitems} />}
         {pathname === '/shop' || pathname === '/shop-items' ? (
           <div>
             <Link to="/shipping-address">
-              <Button className="tet-white w-full h-10 my-2 rounded-xl font-normal  ">
+              <Button className="tet-white w-full h-10 my-2 rounded-[6px] md:rounded-xl font-normal  ">
                 Proceed to Checkout
               </Button>
             </Link>

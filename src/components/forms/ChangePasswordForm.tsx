@@ -61,21 +61,26 @@ export function ChangePasswordForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full ">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="w-full -mt-7   md:-mt-3  md:w-[30vw] "
+      >
         <FormField
           control={form.control}
           name="currentPassword"
           render={({ field }) => (
-            <FormItem className={`my-4 ${pathname === '/settings' && 'flex items-center gap-5'}`}>
+            <FormItem
+              className={`md:my-4 my-2 space-y-[3px] md:space-y-2 ${pathname === '/settings' && 'flex items-center gap-5'}`}
+            >
               <FormLabel className={`&{pathname==='/settings ? 'text-sm':'font-normal text-base} `}>
                 Current Password
               </FormLabel>
               <FormControl>
-                <div className="flex border justify-between items-center pr-4 rounded-[8px] overflow-hidden">
+                <div className="flex border justify-between items-center bg-[#fffff0] pr-4 rounded-[8px] overflow-hidden">
                   <Input
                     type={passwordVisible ? 'text' : 'password'}
                     placeholder="*** *** ***"
-                    className={`h-12 w-[391px] border-none ring-offset-0 focus-visible:ring-0  focus-visible:ring-offset-0 ${pathname === '/settings' && 'h-8 bg-inputbackground'}  `}
+                    className={`h-10 w-[391px] border-none  bg-[#fffff0] ring-offset-0 focus-visible:ring-0   focus-visible:ring-offset-0 ${pathname === '/settings' && 'h-8 bg-inputbackground'}  `}
                     {...field}
                   />
                   <p onClick={togglePassword}>
@@ -96,17 +101,19 @@ export function ChangePasswordForm() {
           control={form.control}
           name="newPassword"
           render={({ field }) => (
-            <FormItem className={`my-4 ${pathname === '/settings' && 'flex items-center gap-10'}`}>
+            <FormItem
+              className={`md:my-4 my-2 space-y-[3px] md:space-y-2 ${pathname === '/settings' && 'flex items-center gap-10'}`}
+            >
               {' '}
               <FormLabel className={`&{pathname==='/settings ? 'text-sm':'font-normal text-base} `}>
                 New Password
               </FormLabel>
               <FormControl>
-                <div className="flex border justify-between items-center pr-4 rounded-[8px] overflow-hidden">
+                <div className="flex border justify-between bg-[#fffff0] items-center pr-4 rounded-[8px] overflow-hidden">
                   <Input
                     type={newPasswordVisible ? 'text' : 'password'}
                     placeholder="*** *** ***"
-                    className={`h-12 w-[391px] border-none ring-offset-0 focus-visible:ring-0  focus-visible:ring-offset-0 ${pathname === '/settings' && 'h-8 bg-inputbackground'}  `}
+                    className={`h-10 w-[391px] border-none  bg-[#fffff0] ring-offset-0 focus-visible:ring-0  focus-visible:ring-offset-0 ${pathname === '/settings' && 'h-8 bg-inputbackground'}  `}
                     {...field}
                   />
                   <p onClick={togglenewPassword}>
@@ -126,17 +133,19 @@ export function ChangePasswordForm() {
           control={form.control}
           name="confirmPassword"
           render={({ field }) => (
-            <FormItem className={`my-4 ${pathname === '/settings' && 'flex items-center gap-5'}`}>
+            <FormItem
+              className={`md:my-4 my-2 space-y-[3px] md:space-y-2 ${pathname === '/settings' && 'flex items-center gap-5'}`}
+            >
               {' '}
               <FormLabel className={`&{pathname==='/settings ? 'text-sm':'font-normal text-base} `}>
                 Confirm Password
               </FormLabel>
               <FormControl>
-                <div className="flex border justify-between items-center pr-4 rounded-[8px] overflow-hidden">
+                <div className="flex border justify-between bg-[#fffff0] items-center pr-4 rounded-[8px] overflow-hidden">
                   <Input
                     type={confirmPasswordVisible ? 'text' : 'password'}
                     placeholder="*** *** ***"
-                    className={`h-12 w-[391px] border-none ring-offset-0 focus-visible:ring-0  focus-visible:ring-offset-0 ${pathname === '/settings' && 'h-8 bg-inputbackground '} `}
+                    className={`h-10 w-[391px] border-none  bg-[#fffff0] ring-offset-0 focus-visible:ring-0  focus-visible:ring-offset-0 ${pathname === '/settings' && 'h-8 bg-inputbackground '} `}
                     {...field}
                   />
                   <p onClick={toggleConfirmPassword}>
@@ -155,7 +164,7 @@ export function ChangePasswordForm() {
 
         <Button
           type="submit"
-          className={` ${pathname === '/settings' ? 'float-end font-normal text-[12px] h-8' : 'w-full font-normal h-[50px] rounded-[6px] text-base my-6 '}`}
+          className={` ${pathname === '/settings' ? 'float-end font-normal text-[12px] h-8' : 'w-full font-normal h-[42px] rounded-[6px] md:text-base text-[15px] my-4 md:my-6 '}`}
         >
           {pathname === '/settings' ? 'Update Password' : 'Save'}
         </Button>

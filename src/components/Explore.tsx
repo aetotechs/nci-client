@@ -216,13 +216,13 @@ function Explore({ status }: IStatus) {
                       onClick={() => {
                         AddCart(product.itemId, product.name);
                       }}
-                      className={`rounded-[6px] bg-primary grow  text-white font-normal text-[15px] md:h-[40px] ${pathname == '/coffee-shop' ? 'max-h-[30px]  text-[12px]' : 'max-h-[30px] text-[12px]'} ${isDisabled && 'text-[#585962] bg-primary/20'}`}
+                      className={`rounded-[6px] bg-primary grow  text-white font-medium md:font-normal text-[15px] md:h-[40px] ${pathname == '/coffee-shop' ? 'md:max-h-[30px] h-[38px] text-sm md:text-[12px]' : 'md:max-h-[30px] h-[38px] md:text-[12px] text-sm'} ${isDisabled && 'text-[#585962] bg-primary/20'}`}
                       disabled={isDisabled || addingStates[product.itemId]}
                     >
                       {addingStates[product.itemId] ? 'Adding...' : 'Add to Cart'}
                     </Button>
                     <Button
-                      className={`rounded-[6px] grow   md:h-[40px] text-primary font-normal text-[15px] bg-white border border-primary  ${pathname == '/coffee-shop' ? 'max-h-[30px]   text-[12px]' : 'max-h-[30px] text-[12px]'} ${isDisabled && 'text-[#1d1b20] border-primary/12'}`}
+                      className={`rounded-[6px] shrink    md:h-[40px] text-primary font-medium md:font-normal text-[15px] bg-white border border-primary  ${pathname == '/coffee-shop' ? 'md:max-h-[30px] h-[38px] text-sm  md:text-[12px]' : 'md:max-h-[30px] h-[38px] text-sm md:tex-[12px]'} ${isDisabled && 'text-[#1d1b20] border-primary/12'}`}
                       disabled={isDisabled}
                     >
                       Request Sample

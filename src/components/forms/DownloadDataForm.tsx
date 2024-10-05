@@ -40,19 +40,21 @@ export function DownloadForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full ">
         <FormField
           control={form.control}
           name="password"
           render={({ field }) => (
             <FormItem className="my-4">
-              <FormLabel className="font-normal text-base ">Current Password</FormLabel>
+              <FormLabel className="font-normal text-sm md:text-[15px] ">
+                Current Password
+              </FormLabel>
               <FormControl>
-                <div className="flex border justify-between items-center pr-4 rounded-xl overflow-hidden">
+                <div className="flex border justify-between  items-center pr-4 rounded-[8px] overflow-hidden">
                   <Input
                     type={visible ? 'text' : 'password'}
                     placeholder="*** *** ***"
-                    className="h-12 border-none ring-offset-0 focus-visible:ring-0  focus-visible:ring-offset-0  "
+                    className="h-10 border-none ring-offset-0 focus-visible:ring-0  bg-[#fffff0]  focus-visible:ring-offset-0  "
                     {...field}
                   />
                   <p onClick={togglePassword}>
@@ -70,7 +72,7 @@ export function DownloadForm() {
           )}
         />
 
-        <Button type="submit" className="w-full font-normal text-base">
+        <Button type="submit" className="w-full font-normal text-sm">
           Download
         </Button>
       </form>

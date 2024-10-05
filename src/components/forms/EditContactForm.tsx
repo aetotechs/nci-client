@@ -26,7 +26,7 @@ const FormSchema = z.object({
 });
 
 export function EditContactForm({ user }: ProfileProps) {
-  const [isSubmitting, setIsSubmitting] = useState(false); // State to track the submission
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -66,7 +66,7 @@ export function EditContactForm({ user }: ProfileProps) {
       console.error(error);
       toast.error('Error updating user details. Please try again.');
     } finally {
-      setIsSubmitting(false); // Reset loading state after submission is complete
+      setIsSubmitting(false);
     }
   }
 
@@ -74,16 +74,21 @@ export function EditContactForm({ user }: ProfileProps) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="w-full flex flex-col md:grid md:grid-cols-2 gap-5 "
+        className="w-full flex flex-col md:grid md:grid-cols-2 gap-3 md:gap-5 "
       >
         <FormField
           control={form.control}
           name="firstName"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel className="font-normal text-base">First Name</FormLabel>
+            <FormItem className="space-y-[3px] md:space-y-2">
+              <FormLabel className="font-normal text-[15px] md:text-base ">First Name</FormLabel>
               <FormControl>
-                <Input type="text" {...field} disabled={isSubmitting} />
+                <Input
+                  type="text"
+                  {...field}
+                  disabled={isSubmitting}
+                  className="placeholder:text-sm"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -94,10 +99,15 @@ export function EditContactForm({ user }: ProfileProps) {
           control={form.control}
           name="lastName"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel className="font-normal text-base">Last Name</FormLabel>
+            <FormItem className="space-y-[3px] md:space-y-2">
+              <FormLabel className="font-normal text-[15px] md:text-base ">Last Name</FormLabel>
               <FormControl>
-                <Input type="text" {...field} disabled={isSubmitting} />
+                <Input
+                  type="text"
+                  {...field}
+                  disabled={isSubmitting}
+                  className="placeholder:text-sm"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -108,17 +118,22 @@ export function EditContactForm({ user }: ProfileProps) {
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem className="col-span-2">
-              <FormLabel className="font-normal text-base">Email</FormLabel>
+            <FormItem className="col-span-2 space-y-[3px] md:space-y-2">
+              <FormLabel className="font-normal text-[15px] md:text-base">Email</FormLabel>
               <FormControl>
-                <Input type="email" {...field} disabled={isSubmitting} />
+                <Input
+                  type="email"
+                  {...field}
+                  disabled={isSubmitting}
+                  className="placeholder:text-sm"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <Button type="submit" className="col-span-2" disabled={isSubmitting}>
+        <Button type="submit" className="col-span-2 my-2 md:my-0" disabled={isSubmitting}>
           {isSubmitting ? 'Saving...' : 'Save Changes'}
         </Button>
       </form>

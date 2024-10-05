@@ -13,6 +13,7 @@ import { useLocation } from 'react-router-dom';
 import { ICustomers } from './tables/CustomersTable';
 import { Edit, EyeIcon } from 'lucide-react';
 import { DeleteUser } from './DeleteUser';
+import { ViewDialog } from './ViewUserOrder';
 
 export interface IActions {
   category?: ICategories;
@@ -71,6 +72,9 @@ export function ActionsPopover({
         </>
       );
     }
+    if (pathname === '/profile') {
+      return <ViewDialog />;
+    }
     if (pathname === '/orders') {
       return (
         <div className="flex items-center -mt-1 gap-2 cursor-pointer">
@@ -123,7 +127,7 @@ export function ActionsPopover({
       <PopoverTrigger asChild className="cursor-pointer">
         <img src="/icons/actions.svg" alt="Actions" />
       </PopoverTrigger>
-      <PopoverContent className="w-[10vw] h-min  text-dark shadow-md absolute right-5">
+      <PopoverContent className="md:w-[10vw] w-[30vw] h-min  text-dark shadow-md absolute right-1">
         <div className="flex flex-col  gap-2 ">{renderContent()}</div>
       </PopoverContent>
     </Popover>

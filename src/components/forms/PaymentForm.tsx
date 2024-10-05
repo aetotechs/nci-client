@@ -16,13 +16,17 @@ import { Link } from 'react-router-dom';
 
 import { Checkbox } from '@/components/ui/checkbox';
 
+// Updated Schema for MM/YY format
 const FormSchema = z.object({
   name: z.string().min(2, {
-    message: 'name must be at least 2 characters.'
+    message: 'Name must be at least 2 characters.'
   }),
-  number: z.string().min(2, { message: 'number must be at least 2 characters.' }),
-  expiryDate: z.string().min(2, { message: 'Date must be at least 2 characters.' }),
-  cv: z.string().min(4, { message: 'cv must be at least 4 characters.' })
+  number: z.string().min(2, { message: 'Number must be at least 2 characters.' }),
+  expiryDate: z
+    .string()
+    .regex(/^(0[1-9]|1[0-2])\/\d{2}$/, { message: 'Date must be in MM/YY format.' })
+    .max(5),
+  cv: z.string().min(3, { message: 'CVV must be at least 3 digits.' })
 });
 
 export function PaymentForm() {
@@ -37,9 +41,6 @@ export function PaymentForm() {
   });
 
   function onSubmit(values: z.infer<typeof FormSchema>) {
-    // toast('Order Placed Successfully...', {
-    //   className: 'border border-primary text-center text-base flex justify-center rounded-lg mb-2'
-    // });
     console.log('values submitted', values);
   }
 
@@ -47,15 +48,14 @@ export function PaymentForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="md:w-[90%] grid grid-cols-2 gap-3 space-y-2"
+        className="md:w-[90%] grid grid-cols-2 gap-3  md:space-y-2"
       >
         <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
-            <FormItem className="col-span-2">
+            <FormItem className="col-span-2 md:space-y-2 space-y-1">
               <FormLabel className="font-medium text-[13px]">CardHolder Name</FormLabel>
-
               <FormControl>
                 <Input
                   type="text"
@@ -72,17 +72,16 @@ export function PaymentForm() {
           control={form.control}
           name="number"
           render={({ field }) => (
-            <FormItem className="my-2 col-span-2">
-              <FormLabel className="font-medium text-[13px] ">Card Number</FormLabel>
+            <FormItem className="md:my-2 col-span-2 md:space-y-2 space-y-1">
+              <FormLabel className="font-medium text-[13px]">Card Number</FormLabel>
               <FormControl>
                 <Input
                   type="text"
                   placeholder="*** *** ***"
-                  className="h-[38px]   ring-offset-0 focus-visible:ring-0  focus-visible:ring-offset-0 placeholder: text-[13px]  "
+                  className="h-[38px] placeholder:text-[13px] "
                   {...field}
                 />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
@@ -92,11 +91,16 @@ export function PaymentForm() {
           control={form.control}
           name="expiryDate"
           render={({ field }) => (
-            <FormItem className="col-span-1">
+            <FormItem className="col-span-1 md:space-y-2 space-y-1">
               <FormLabel className="font-medium text-[13px]">Expiration</FormLabel>
-
               <FormControl>
-                <Input type="date" className="h-[38px]  placeholder: text-[13px]" {...field} />
+                <Input
+                  type="text"
+                  maxLength={5}
+                  placeholder="MM/YY"
+                  className="h-[38px] placeholder:text-[13px]"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -106,14 +110,13 @@ export function PaymentForm() {
           control={form.control}
           name="cv"
           render={({ field }) => (
-            <FormItem className="col-span-1">
-              <FormLabel className="font-medium text-[13px]">Cvv</FormLabel>
-
+            <FormItem className="col-span-1 md:space-y-2 space-y-1">
+              <FormLabel className="font-medium text-[13px]">CVV</FormLabel>
               <FormControl>
                 <Input
                   type="text"
                   placeholder="000"
-                  className="h-[38px]  placeholder: text-[13px] "
+                  className="h-[38px] placeholder:text-[13px]"
                   {...field}
                 />
               </FormControl>
@@ -121,11 +124,11 @@ export function PaymentForm() {
             </FormItem>
           )}
         />
-        <div className="flex  m  col-span-2 items-center gap-2">
+        <div className="flex col-span-2 items-center gap-2 my-2 md:my-0">
           <Checkbox className="h-3 w-3" />
           <span className="text-[12px]">Save payment details for future purchase</span>
         </div>
-        <Link to="/close-shop " className="col-span-2">
+        <Link to="/close-shop" className="col-span-2">
           <Button type="submit" className="w-full font-normal h-10 text-[13px] col-span-2">
             Place Order
           </Button>
