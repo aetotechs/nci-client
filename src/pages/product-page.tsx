@@ -34,19 +34,19 @@ function ProductPage({ status }: IStatus) {
             </div>
           </div>
 
-          <div className="grid grid-rows-2 md:grid-rows-1  md:grid-cols-5 gap-3 md:max-h-[60vh]  ">
-            <div className="col-span-3 h-full  bg-map bg-contain bg-no-repeat bg-center mx-5 md:mx-0 relative flex items-center justify-center rounded-lg md:rounded-xl">
+          <div className="flex flex-col gap-5 md:grid md:grid-rows-1  md:grid-cols-5 md:max-h-[60vh]  ">
+            <div className="col-span-3 h-[313px]  bg-map bg-contain bg-no-repeat bg-center mx-5 md:mx-0 relative flex items-center justify-center rounded-lg md:rounded-xl">
               <div className="flex items-center justify-center">
                 <img
                   src="/icons/location.svg"
                   alt="location"
-                  className="z-0 w-[18px] md:w-[20px]"
+                  className="z-0 w-[10px] md:w-[20px]"
                 />
                 <span className="font-normal text-[sm] md:text-base">Nakuru</span>
               </div>
             </div>
 
-            <div className="col-span-2">
+            <div className="col-span-2 ">
               <ProductDetails product={productId} status={status} />
             </div>
           </div>

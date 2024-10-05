@@ -114,19 +114,19 @@ export function LoginForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-2 md:space-y-4">
         <FormField
           control={form.control}
           name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="font-medium text-base">Email</FormLabel>
+              <FormLabel className="font-medium text-sm">Email</FormLabel>
 
               <FormControl>
                 <Input
                   type="username"
                   placeholder="Enter your email"
-                  className="h-10 "
+                  className="h-10  "
                   {...field}
                 />
               </FormControl>
@@ -139,9 +139,9 @@ export function LoginForm() {
           name="password"
           render={({ field }) => (
             <FormItem className="my-4">
-              <FormLabel className="font-medium text-base ">Password</FormLabel>
+              <FormLabel className="font-medium text-sm ">Password</FormLabel>
               <FormControl>
-                <div className="flex border justify-between items-center pr-4 rounded-xl overflow-hidden">
+                <div className="flex border border-input h-10 justify-between items-center pr-4 rounded-md overflow-hidden">
                   <Input
                     type={visible ? 'text' : 'password'}
                     placeholder="Enter your password"
@@ -163,11 +163,11 @@ export function LoginForm() {
           )}
         />
         <div className="flex justify-end  text-primary">
-          <Link to="/forgot-password " className="text-sm">
+          <Link to="/forgot-password " className="text-[13px] md:text-sm my-2 md:my-0">
             Forgot Password
           </Link>
         </div>
-        <Button type="submit" className="w-full font-normal text-base" disabled={isSubmitting}>
+        <Button type="submit" className="w-full font-normal text-sm" disabled={isSubmitting}>
           {isSubmitting ? 'Submitting...' : 'Login'}
         </Button>
       </form>

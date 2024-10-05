@@ -42,7 +42,7 @@ export function CouponForm() {
                 <Input
                   type="text"
                   placeholder="Enter your discount code"
-                  className="h-10 bg-[#f2f2f2] placeholder:text-[12px]  "
+                  className="h-10 bg-[#f2f2f2] placeholder:text-[12px] border-none  "
                   {...field}
                 />
               </FormControl>

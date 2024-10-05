@@ -2,13 +2,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Checkbox } from '@/components/ui/checkbox';
 
 import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -32,12 +30,10 @@ const FormSchema = z.object({
   state: z.string().min(2, { message: 'Field is required' }),
   street: z.string().min(2, { message: 'Field is required.' }),
   zipcode: z.string().min(2, { message: 'Field is required' }),
-  city: z.string().min(2, { message: 'Field is required' }),
-  shipping: z.boolean().default(false).optional(),
-  billing: z.boolean().default(false).optional()
+  city: z.string().min(2, { message: 'Field is required' })
 });
 
-export function AddAddressForm() {
+export function EditBillingAddressForm() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -50,9 +46,7 @@ export function AddAddressForm() {
       city: '',
       state: '',
       street: '',
-      zipcode: '',
-      shipping: false,
-      billing: false
+      zipcode: ''
     }
   });
 
@@ -65,13 +59,13 @@ export function AddAddressForm() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="w-full flex flex-col md:grid gap-2 md:grid-cols-2 md:gap-5  "
+          className="w-full flex flex-col md:grid md:grid-cols-2 gap-2 md:gap-5  "
         >
           <FormField
             control={form.control}
             name="firstName"
             render={({ field }) => (
-              <FormItem className="space-y-1 md:space-y-2">
+              <FormItem className="space-y-[3px] md:space-y-2">
                 <FormLabel className="font-normal text-[15px] md:text-base ">First Name</FormLabel>
                 <FormControl>
                   <Input
@@ -90,7 +84,7 @@ export function AddAddressForm() {
             control={form.control}
             name="lastName"
             render={({ field }) => (
-              <FormItem className="space-y-1 md:space-y-2">
+              <FormItem className="space-y-[3px] md:space-y-2">
                 <FormLabel className="font-normal text-[15px] md:text-base ">Last Name</FormLabel>
                 <FormControl>
                   <Input
@@ -109,7 +103,7 @@ export function AddAddressForm() {
             control={form.control}
             name="workPhone"
             render={({ field }) => (
-              <FormItem className="space-y-1 md:space-y-2">
+              <FormItem className="space-y-[3px] md:space-y-2">
                 <FormLabel className="font-normal text-[15px] md:text-base ">Work Phone</FormLabel>
                 <FormControl>
                   <Input
@@ -128,7 +122,7 @@ export function AddAddressForm() {
             control={form.control}
             name="workEmail"
             render={({ field }) => (
-              <FormItem className="space-y-1 md:space-y-2">
+              <FormItem className="space-y-[3px] md:space-y-2">
                 <FormLabel className="font-normal text-[15px] md:text-base ">Work Email</FormLabel>
                 <FormControl>
                   <Input
@@ -148,8 +142,8 @@ export function AddAddressForm() {
             control={form.control}
             name="companyName"
             render={({ field }) => (
-              <FormItem className="col-span-2 space-y-1 md:space-y-2">
-                <FormLabel className="font-normal text-[15px] md:text-base ">Company</FormLabel>
+              <FormItem className="col-span-2 space-y-1 md:space-y-2 ">
+                <FormLabel className="font-normal text-[15px] md:text-base">Company</FormLabel>
                 <FormControl>
                   <Input
                     type="text"
@@ -168,7 +162,7 @@ export function AddAddressForm() {
             control={form.control}
             name="country"
             render={({ field }) => (
-              <FormItem className="space-y-1 md:space-y-2">
+              <FormItem className="space-y-[3px] md:space-y-2">
                 <FormLabel className="font-normal text-[15px] md:text-base ">Country</FormLabel>
                 <FormControl>
                   <Input
@@ -187,7 +181,7 @@ export function AddAddressForm() {
             control={form.control}
             name="city"
             render={({ field }) => (
-              <FormItem className="space-y-1 md:space-y-2">
+              <FormItem className="space-y-[3px] md:space-y-2">
                 <FormLabel className="font-normal text-[15px] md:text-base ">City</FormLabel>
                 <FormControl>
                   <Input
@@ -206,8 +200,8 @@ export function AddAddressForm() {
             control={form.control}
             name="state"
             render={({ field }) => (
-              <FormItem className="col-span-2 space-y-1 md:space-y-2">
-                <FormLabel className="font-normal text-[15px] md:text-base ">State</FormLabel>
+              <FormItem className="col-span-2 space-y-1 md:space-y-2 ">
+                <FormLabel className="font-normal text-[15px] md:text-base">State</FormLabel>
                 <FormControl>
                   <Input
                     type="text"
@@ -225,7 +219,7 @@ export function AddAddressForm() {
             control={form.control}
             name="street"
             render={({ field }) => (
-              <FormItem className="space-y-1 md:space-y-2">
+              <FormItem className="space-y-[3px] md:space-y-2">
                 <FormLabel className="font-normal text-[15px] md:text-base ">Street</FormLabel>
                 <FormControl>
                   <Input
@@ -244,7 +238,7 @@ export function AddAddressForm() {
             control={form.control}
             name="zipcode"
             render={({ field }) => (
-              <FormItem className="space-y-1 md:space-y-2">
+              <FormItem className="space-y-[3px] md:space-y-2">
                 <FormLabel className="font-normal text-[15px] md:text-base ">Zip Code</FormLabel>
                 <FormControl>
                   <Input
@@ -259,38 +253,9 @@ export function AddAddressForm() {
               </FormItem>
             )}
           />
-          <div className="col-span-2">
-            <FormField
-              control={form.control}
-              name="shipping"
-              render={({ field }) => (
-                <FormItem className="  flex flex-row items-center space-x-2 space-y-0 rounded-md py-2">
-                  <FormControl>
-                    <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-                  </FormControl>
-                  <div className="space-y-1 leading-none">
-                    <FormDescription>Set as Shipping Address</FormDescription>
-                  </div>
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="billing"
-              render={({ field }) => (
-                <FormItem className="  flex flex-row items-center space-x-2 space-y-0 rounded-md  py-2">
-                  <FormControl>
-                    <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-                  </FormControl>
-                  <div className="space-y-1 leading-none">
-                    <FormDescription>Set as Billing Address</FormDescription>
-                  </div>
-                </FormItem>
-              )}
-            />
-          </div>
-          <Button type="submit" className="col-span-2 text-sm md:text-base">
-            Save
+
+          <Button type="submit" className="col-span-2 my-2 md:my-0 text-sm  md:text-base">
+            Save Changes
           </Button>
         </form>
       </Form>

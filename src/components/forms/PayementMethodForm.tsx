@@ -19,7 +19,10 @@ const FormSchema = z.object({
     message: 'name must be at least 2 characters.'
   }),
   number: z.string().min(2, { message: 'number must be at least 2 characters.' }),
-  expiryDate: z.string().min(2, { message: 'Date must be at least 2 characters.' }),
+  expiryDate: z
+    .string()
+    .regex(/^(0[1-9]|1[0-2])\/\d{2}$/, { message: 'Date must be in MM/YY format.' })
+    .max(5),
   cv: z.string().min(4, { message: 'cv must be at least 4 characters.' }),
   country: z.string().min(2, {
     message: 'email must be at least 2 characters.'
@@ -56,20 +59,23 @@ export function PaymentMethodForm() {
   return (
     <ScrollArea className="h-[400px]  rounded-md border p-4">
       <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="w-full grid grid-cols-2 gap-3 space-y-4"
-        >
-          <div className="font-meduim col-span-2 items-center gap-2">Credit Card Details</div>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="w-full grid grid-cols-2 gap-2 ">
+          <div className="font-medium col-span-2 items-center gap-2">Credit Card Details</div>
           <FormField
             control={form.control}
             name="name"
             render={({ field }) => (
-              <FormItem className="col-span-2">
-                <FormLabel className="font-medium text-base">CardHolder Name</FormLabel>
-
+              <FormItem className="col-span-2 space-y-1 md:space-y-2">
+                <FormLabel className="  text-base font-normal text-[15px] md:text-base  ">
+                  Card Holder Name
+                </FormLabel>
                 <FormControl>
-                  <Input type="text" placeholder="Name on card" className="h-12 " {...field} />
+                  <Input
+                    type="text"
+                    placeholder="Name on card"
+                    className="h-10 placeholder:text-sm "
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -79,13 +85,15 @@ export function PaymentMethodForm() {
             control={form.control}
             name="number"
             render={({ field }) => (
-              <FormItem className="my-2 col-span-2">
-                <FormLabel className="font-medium text-base ">Card Number</FormLabel>
+              <FormItem className=" col-span-2 space-y-1 md:space-y-2">
+                <FormLabel className=" text-base font-normal text-[15px] md:text-base  ">
+                  Card Number
+                </FormLabel>
                 <FormControl>
                   <Input
                     type="text"
                     placeholder="*** *** ***"
-                    className="h-12  ring-offset-0 focus-visible:ring-0  focus-visible:ring-offset-0  "
+                    className="h-10  ring-offset-0 focus-visible:ring-0 placeholder:text-sm  focus-visible:ring-offset-0  "
                     {...field}
                   />
                 </FormControl>
@@ -99,11 +107,19 @@ export function PaymentMethodForm() {
             control={form.control}
             name="expiryDate"
             render={({ field }) => (
-              <FormItem className="col-span-1">
-                <FormLabel className="font-medium text-base">Expiration</FormLabel>
+              <FormItem className="md:col-span-1 col-span-2 space-y-1 md:space-y-2">
+                <FormLabel className=" text-base font-normal text-[15px] md:text-base  ">
+                  Expiration
+                </FormLabel>
 
                 <FormControl>
-                  <Input type="date" className="h-12 " {...field} />
+                  <Input
+                    type="text"
+                    maxLength={5}
+                    placeholder="MM/YY"
+                    className="h-10 placeholder:text-sm"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -113,25 +129,39 @@ export function PaymentMethodForm() {
             control={form.control}
             name="cv"
             render={({ field }) => (
-              <FormItem className="col-span-1">
-                <FormLabel className="font-medium text-base">Cvv</FormLabel>
+              <FormItem className="md:col-span-1 col-span-2 space-y-1 md:space-y-2">
+                <FormLabel className=" text-base font-normal text-[15px] md:text-base  ">
+                  Cvv
+                </FormLabel>
 
                 <FormControl>
-                  <Input type="text" placeholder="000" className="h-12 " {...field} />
+                  <Input
+                    type="text"
+                    placeholder="000"
+                    className="h-10 placeholder:text-sm "
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <div className="font-meduim col-span-2 items-center gap-2">Card Holder Address</div>
+          <div className="font-medium col-span-2 items-center gap-2">Card Holder Address</div>
           <FormField
             control={form.control}
             name="country"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Country</FormLabel>
+              <FormItem className="space-y-1 md:space-y-2 col-span-2 md:col-span-1">
+                <FormLabel className=" text-base font-normal text-[15px] md:text-base  ">
+                  Country
+                </FormLabel>
                 <FormControl>
-                  <Input type="text" placeholder="Enter your country" {...field} />
+                  <Input
+                    type="text"
+                    placeholder="Enter your country "
+                    className="placeholder:text-sm"
+                    {...field}
+                  />
                 </FormControl>
 
                 <FormMessage />
@@ -142,10 +172,17 @@ export function PaymentMethodForm() {
             control={form.control}
             name="city"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>City</FormLabel>
+              <FormItem className="space-y-1 md:space-y-2 col-span-2 md:col-span-1">
+                <FormLabel className=" text-base font-normal text-[15px] md:text-base  ">
+                  City
+                </FormLabel>
                 <FormControl>
-                  <Input type="text" placeholder="Enter your city" {...field} />
+                  <Input
+                    type="text"
+                    placeholder="Enter your city "
+                    className="placeholder:text-sm"
+                    {...field}
+                  />
                 </FormControl>
 
                 <FormMessage />
@@ -156,10 +193,17 @@ export function PaymentMethodForm() {
             control={form.control}
             name="state"
             render={({ field }) => (
-              <FormItem className="col-span-2">
-                <FormLabel>State</FormLabel>
+              <FormItem className="col-span-2 space-y-1 md:space-y-2">
+                <FormLabel className=" text-base font-normal text-[15px] md:text-base  ">
+                  State
+                </FormLabel>
                 <FormControl>
-                  <Input type="text" placeholder="Enter your   state" {...field} />
+                  <Input
+                    type="text"
+                    placeholder="Enter your state"
+                    className="placeholder:text-sm"
+                    {...field}
+                  />
                 </FormControl>
 
                 <FormMessage />
@@ -170,10 +214,17 @@ export function PaymentMethodForm() {
             control={form.control}
             name="street"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Street</FormLabel>
+              <FormItem className="space-y-1 col-span-2 md:col-span-1 md:space-y-2">
+                <FormLabel className=" text-base font-normal text-[15px] md:text-base  ">
+                  Street
+                </FormLabel>
                 <FormControl>
-                  <Input type="text" placeholder="Enter your street" {...field} />
+                  <Input
+                    type="text"
+                    placeholder="Enter your street"
+                    className="placeholder:text-sm"
+                    {...field}
+                  />
                 </FormControl>
 
                 <FormMessage />
@@ -184,10 +235,17 @@ export function PaymentMethodForm() {
             control={form.control}
             name="zipcode"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Zip Code</FormLabel>
+              <FormItem className="space-y-1 col-span-2 md:col-span-1 md:space-y-2">
+                <FormLabel className=" text-base font-normal text-[15px] md:text-base  ">
+                  Zip Code
+                </FormLabel>
                 <FormControl>
-                  <Input type="text" placeholder="Enter your zipcode" {...field} />
+                  <Input
+                    type="text"
+                    placeholder="Enter your zipcode"
+                    className="placeholder:text-sm"
+                    {...field}
+                  />
                 </FormControl>
 
                 <FormMessage />
@@ -195,7 +253,7 @@ export function PaymentMethodForm() {
             )}
           />
 
-          <Button type="submit" className="w-full font-normal text-base col-span-2">
+          <Button type="submit" className="w-full font-normal text-sm md:text-base col-span-2">
             Save
           </Button>
         </form>

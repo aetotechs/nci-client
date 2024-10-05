@@ -19,14 +19,14 @@ function Progress() {
   const currentStepIndex = getStepIndex();
 
   return (
-    <div className="flex items-center md:gap-2">
+    <div className="flex items-center  md:gap-2">
       {steps.map((step, index) => (
         <React.Fragment key={step.label}>
           <div>
             <Link
               to={step.paths[0]}
-              className={clsx('font-semi-bold text-sm', {
-                'text-primary underline': index <= currentStepIndex,
+              className={clsx('text-sm  ', {
+                'text-primary underline font-semibold ': index <= currentStepIndex,
                 'text-inactive': index > currentStepIndex
               })}
             >
@@ -35,7 +35,7 @@ function Progress() {
           </div>
           {index < steps.length - 1 && (
             <Separator
-              className={clsx('w-20 md:w-44', {
+              className={clsx('w-[70px] h-[2px] mx-2  md:w-44', {
                 'bg-primary': index < currentStepIndex
               })}
             />

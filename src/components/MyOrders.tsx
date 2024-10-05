@@ -41,11 +41,13 @@ function MyOrders({ user }: ProfileProps) {
     setOrders(fetchedOrders);
   }, [orders]);
   return (
-    <div className="md:w-[865px] w-[90%] px-4 ">
-      <div>
-        <h3 className="font-medium text-2xl text-textdark my-4 md:mt-0 md:mb-4">My Orders</h3>
+    <div className=" w-full px-4 ">
+      <div className="">
+        <h3 className="md:font-medium font-semibold md:text-[22px] text-[17px] text-textdark my-4 md:mt-0 md:mb-0">
+          My Orders
+        </h3>
       </div>
-      <div>
+      <div className=" ">
         <OrdersTable orders={orders} />
       </div>
     </div>

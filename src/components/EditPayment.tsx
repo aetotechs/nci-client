@@ -14,16 +14,16 @@ export function EditPaymentDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="flex tems-center gap-3 w-[89px] h-[34px] rounded-[8px] bg-primary text-white p-5">
+        <Button className="flex tems-center gap-3 w-[89px] mt-4 h-[30px] rounded-[6px] md:rounded-[8px] bg-primary text-white ">
           <span>
-            <Edit className="h-[18px] w-[18px]" />
+            <Edit className="h-4 w-4" />
           </span>{' '}
           Edit
         </Button>
       </DialogTrigger>
       <DialogContent className=" w-[90%] rounded-[10px] sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle className="font-medium text-base">Edit Payment Method</DialogTitle>
+          <DialogTitle className="font-medium text-base text-left">Edit Payment Method</DialogTitle>
         </DialogHeader>
 
         <EditMethodForm />

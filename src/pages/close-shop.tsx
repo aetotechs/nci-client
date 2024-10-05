@@ -27,18 +27,20 @@ function ClosedOrder({ status }: IStatus) {
   }, [pathname]);
   return (
     <>
-      <div className="md:px-[5vw] md:max-w-[100vw]  px-5   ">
+      <div className="md:px-[5vw] md:max-w-[100vw]    ">
         <Header status={status} />
 
-        <div>
-          <div className="md:h-screen  md:my-10 px-4 flex flex-col md:flex-row  gap-20  md:place-content-center my-5">
+        <div className="overflow-hidden">
+          <div className=" px-5  md:my-10 md:px-4 flex flex-col md:flex-row gap-9 md:gap-20  md:place-content-center my-5">
             <div className="">
               <div className="md:w-[50vw]  ">
                 <div className="flex items-center gap-2 mb-4">
                   <div className="rounded-full w-[40px] h-[40px] bg-iconbackground flex items-center justify-center">
                     <Check className="text-white h-10 w-8" />
                   </div>
-                  <h3 className="font-semibold text-2xl leading-10">Thank you for your order!</h3>
+                  <h3 className="font-semibold text-xl md:text-2xl leading-10">
+                    Thank you for your order!
+                  </h3>
                 </div>
                 <div>
                   <p className="text-sm md:pr-7  mb-4 text-textmuted">
@@ -46,7 +48,7 @@ function ClosedOrder({ status }: IStatus) {
                     been shipped
                   </p>
                   <div className="w-[416px] text-sm ">
-                    <h5 className="font-semibold text-[18px] leading-tight mb-2">
+                    <h5 className="md:font-semibold font-medium text-base md:text-[18px] leading-tight mb-2">
                       Shipping Address
                     </h5>
                     <div className="flex my-1 gap-1 ">
@@ -76,7 +78,7 @@ function ClosedOrder({ status }: IStatus) {
                     <Link to="/coffee-shop">
                       <Button
                         variant="outline"
-                        className="border border-primary bg-white h-[44px] w-[207px] my-6"
+                        className="border border-primary bg-white h-[44px] md:w-[207px] mt-2 md:my-6 font-medium text-primary"
                       >
                         Continue Shopping
                       </Button>
@@ -91,7 +93,6 @@ function ClosedOrder({ status }: IStatus) {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

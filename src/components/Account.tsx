@@ -15,9 +15,9 @@ export function AccountPopover() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button className="h-[40px] w-[80px] rounded-[10px]">Profile</Button>
+        <Button className=" w-full rounded-[10px]">Profile</Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[232px] h-[130px] rouded-[10px] border-none mt-8 mr-24 ">
+      <PopoverContent className="w-[232px]  text-sm rouded-[10px] border-none mt-6 mr-16 ">
         <div className="flex flex-col gap-3 px-2">
           <Link to="/profile">My Account</Link>
           <Link to="/profile">Wishlist</Link>

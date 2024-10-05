@@ -24,11 +24,11 @@ export function MobileNav({ status }: IStatus) {
       </PopoverTrigger>
       <PopoverContent className="z-50 mt-10 w-[100vw] bg-white py-2 overflow-scroll">
         <NavItems />
-        <div className="flex justify-center mt-5 md:mt-5">
+        <div className="flex justify-center mt-5 md:mt-5 px-4">
           {status ? (
             <AccountPopover />
           ) : (
-            <Link to="/login" className="w-full px-4">
+            <Link to="/login" className="w-full ">
               <Button className="h-[45px] w-full md:w-[100%] rounded-xl">Login</Button>
             </Link>
           )}

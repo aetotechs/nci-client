@@ -13,13 +13,13 @@ export function AddAdressDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="w-[166px] h-[42px] my-4 rounded-[10px] text-sm font-medium">
+        <Button className=" h-[40px] my-4 rounded-[10px] text-sm font-medium">
           Add New Address
         </Button>
       </DialogTrigger>
       <DialogContent className="rounded-md w-[90%]">
         <DialogHeader>
-          <DialogTitle className="font-medium text-base">Add New Address</DialogTitle>
+          <DialogTitle className="font-medium text-base text-left">Add New Address</DialogTitle>
         </DialogHeader>
 
         <AddAddressForm />

@@ -24,22 +24,28 @@ export function DeleteConscent() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
         <FormField
           control={form.control}
           name="delete"
           render={({ field }) => (
-            <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md  py-4">
+            <FormItem className="flex flex-row items-center space-x-2 space-y-0 rounded-md  py-4">
               <FormControl>
-                <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                <Checkbox
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                  className="border-[#9b9da8]  "
+                />
               </FormControl>
               <div className="space-y-1 leading-none">
-                <FormDescription>I understand and I want to delete my account</FormDescription>
+                <FormDescription className="text-black md:text-sm text-[13px]">
+                  I understand and I want to delete my account
+                </FormDescription>
               </div>
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full font-normal text-base">
+        <Button type="submit" className="w-full font-normal text-sm">
           Submit Request
         </Button>
       </form>

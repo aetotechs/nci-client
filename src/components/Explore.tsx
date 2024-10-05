@@ -170,7 +170,7 @@ function Explore({ status }: IStatus) {
                     <div className="flex flex-col gap-2">
                       <div className="flex justify-between">
                         <p
-                          className={`text-primary ${pathname === '/coffee-shop' && 'text-[15px]'} ${isDisabled && 'text-[#b9bbc6]'}`}
+                          className={` ${pathname === '/coffee-shop' && 'text-[15px]'} ${isDisabled ? 'text-[#b9bbc6]' : 'text-primary'}`}
                         >
                           ${product.unitPrice}/lb
                         </p>
@@ -180,15 +180,13 @@ function Explore({ status }: IStatus) {
                             className={`bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px] `}
                           >
                             <div className="h-[5px] w-[5px] rounded-full bg-[#f44336]"></div>
-                            <p className={`text-destructive ${isDisabled && 'text-[#f44336]'}`}>
-                              Not Available
-                            </p>
+                            <p className="text-[#f44336]">Not Available</p>
                           </Badge>
                         )}
                       </div>
                       <div className="flex justify-between">
                         <p
-                          className={`text-primary ${pathname === '/coffee-shop' && 'text-[15px]'} ${isDisabled && 'text-[#b9bbc6]'}`}
+                          className={` ${pathname === '/coffee-shop' && 'text-[15px]'} ${isDisabled ? 'text-[#b9bbc6]' : 'text-primary'}`}
                         >
                           ${product.unitPrice}/bag
                         </p>
@@ -211,20 +209,20 @@ function Explore({ status }: IStatus) {
                 </div>
                 {status ? (
                   <div
-                    className={`  ${pathname == '/coffee-shop' ? '  flex gap-2   md:flex-row  ' : 'flex flex-col md:flex-row justify-between  gap-3'}`}
+                    className={`  ${pathname == '/coffee-shop' ? '  flex gap-2   md:flex-row  ' : 'flex flex-col md:flex-row justify-between gap-3'}`}
                   >
                     <Button
                       type="submit"
                       onClick={() => {
                         AddCart(product.itemId, product.name);
                       }}
-                      className={`rounded-[6px] bg-primary grow  text-white font-normal text-[15px] md:h-[40px] ${pathname == '/coffee-shop' ? 'max-h-[30px]  text-[12px]' : 'h-10'} ${isDisabled && 'text-[#585962] bg-primary/20'}`}
+                      className={`rounded-[6px] bg-primary grow  text-white font-medium md:font-normal text-[15px] md:h-[40px] ${pathname == '/coffee-shop' ? 'md:max-h-[30px] h-[38px] text-sm md:text-[12px]' : 'md:max-h-[30px] h-[38px] md:text-[12px] text-sm'} ${isDisabled && 'text-[#585962] bg-primary/20'}`}
                       disabled={isDisabled || addingStates[product.itemId]}
                     >
                       {addingStates[product.itemId] ? 'Adding...' : 'Add to Cart'}
                     </Button>
                     <Button
-                      className={`rounded-[6px] grow   md:h-[40px] text-primary font-normal text-[15px] bg-white border border-primary  ${pathname == '/coffee-shop' ? 'max-h-[30px]   text-[12px]' : 'h-10'} ${isDisabled && 'text-[#1d1b20] border-primary/12'}`}
+                      className={`rounded-[6px] shrink    md:h-[40px] text-primary font-medium md:font-normal text-[15px] bg-white border border-primary  ${pathname == '/coffee-shop' ? 'md:max-h-[30px] h-[38px] text-sm  md:text-[12px]' : 'md:max-h-[30px] h-[38px] text-sm md:tex-[12px]'} ${isDisabled && 'text-[#1d1b20] border-primary/12'}`}
                       disabled={isDisabled}
                     >
                       Request Sample

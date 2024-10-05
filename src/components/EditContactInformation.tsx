@@ -15,16 +15,18 @@ export function EditDialog({ user }: ProfileProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="flex tems-center gap-3 w-[89px] h-[34px] rounded-[8px] bg-primary text-white p-5">
+        <Button className="flex tems-center gap-3 w-[89px] h-[32px]  md:h-[34px] rounded-[6px] md:rounded-[8px] bg-primary text-white md:p-5">
           <span>
-            <Edit className="h-[18px] w-[18px]" />
+            <Edit className="md:h-[18px] md:w-[18px] h-4 w-4" />
           </span>{' '}
-          Edit
+          <span className="text-sm md:text-base">Edit</span>
         </Button>
       </DialogTrigger>
       <DialogContent className=" w-[90%] rounded-[10px] sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle className="font-semibold text-xl">Edit Contact Information</DialogTitle>
+          <DialogTitle className="font-semibold text-[17px] md:text-xl text-left">
+            Edit Contact Information
+          </DialogTitle>
         </DialogHeader>
 
         <EditContactForm user={user} />

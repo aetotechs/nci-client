@@ -8,9 +8,9 @@ import {
 } from '@/components/ui/dialog';
 import { Edit } from 'lucide-react';
 
-import { EditShippingAddressForm } from './forms/EditShippingAddressForm';
+import { EditBillingAddressForm } from './forms/EditBillingAddressForm';
 
-export function EditAddressDialog() {
+export function EditBillingAddressDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -24,10 +24,10 @@ export function EditAddressDialog() {
       <DialogContent className="rounded-md w-[90%]">
         <DialogHeader>
           <DialogTitle className="md:font-medium font-semibold text-left md:text-center md:text-base text-[17px]">
-            Edit Shipping Address
+            Edit Billing Address
           </DialogTitle>
         </DialogHeader>
-        <EditShippingAddressForm />
+        <EditBillingAddressForm />
       </DialogContent>
     </Dialog>
   );

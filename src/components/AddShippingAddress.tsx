@@ -13,14 +13,14 @@ export function DialogDemo() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <p className="text-primary cursor-pointer text-[13px] font-medium">
+        <p className="text-texthighlight underline cursor-pointer text-sm md:text-[13px] font-medium">
           Change Shipping Address
         </p>
       </DialogTrigger>
       <DialogContent className="w-[90%] md:w-[700px] ">
         <DialogHeader>
-          <DialogTitle className="font-bold text-base">Add Shipping Address</DialogTitle>
-          <DialogDescription className="font-normal text-[13px]">
+          <DialogTitle className="font-bold text-base text-left ">Add Shipping Address</DialogTitle>
+          <DialogDescription className="font-normal text-[13px] hidden md:flex">
             Ensure accurate and timely delivery by providing a complete address.
           </DialogDescription>
         </DialogHeader>

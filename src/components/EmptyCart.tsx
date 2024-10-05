@@ -5,13 +5,13 @@ import { IStatus } from '@/App';
 
 function EmptyCart({ status }: IStatus) {
   return (
-    <div className="w-[400px]">
-      <div className="flex justify-center flex-col items-center">
+    <div className="">
+      <div className="flex justify-center  flex-col items-center">
         <div className="w-[100px] h-[100px]">
           <img src="./icons/shoppingtrolley.svg" alt="ShoppingTrolley" />
         </div>
-        <h3 className="font-semibold my-2 text-2xl">Your shopping cart is empty</h3>
-        <p className="font-normal text-base text-textmuted">
+        <h3 className="font-semibold md:my-2 text-xl md:text-2xl">Your shopping cart is empty</h3>
+        <p className="font-normal text-sm md:text-base text-textmuted">
           Add items to your cart and order to enjoy great coffee at the best prices.
         </p>
         {!status ? (
