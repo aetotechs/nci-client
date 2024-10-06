@@ -1,9 +1,12 @@
 import ShoppingCart from '@/components/ShoppingCart';
+import { ITableProps } from './tables/ItemsTable';
 
-function CartWithItems() {
+
+
+function CartWithItems({items}:ITableProps) {
   return (
     <div>
-      <ShoppingCart />
+      <ShoppingCart items={items} />
     </div>
   );
 }

@@ -8,7 +8,6 @@ import Shop from '@/pages/shop';
 import ShopAddress from '@/pages/shop-address';
 import ShopPayment from '@/pages/shop-payment';
 import ClosedOrder from '@/pages/close-shop';
-import ShopItems from '@/pages/shop-items';
 import { useEffect, useState } from 'react';
 import CoffeeShop from '@/pages/coffee-shop';
 import ProductPage from '@/pages/product-page';
@@ -55,7 +54,6 @@ function App() {
           <Route path="/reset-password" element={<ResetPasswordPage />} />
           <Route path="/shop" element={<Shop status={loggedIn} />} />
           <Route path="/coffee-shop" element={<CoffeeShop status={loggedIn} />} />
-          <Route path="/shop-items" element={<ShopItems status={loggedIn} />} />
           <Route path="/shipping-address" element={<ShopAddress status={loggedIn} />} />
           <Route path="/shop-payment" element={<ShopPayment status={loggedIn} />} />
           <Route path="/close-shop" element={<ClosedOrder status={loggedIn} />} />

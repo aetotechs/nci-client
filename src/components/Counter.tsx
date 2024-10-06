@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useReducer, useEffect } from 'react';
 import { Separator } from '@/components/ui/separator';
 import clsx from 'clsx';
 
@@ -6,7 +6,10 @@ type State = {
   count: number;
 };
 
-type Action = { type: 'increment' } | { type: 'decrement' };
+type Action = 
+  | { type: 'increment' }
+  | { type: 'decrement' }
+  | { type: 'set'; payload: number };
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
@@ -14,6 +17,8 @@ const reducer = (state: State, action: Action): State => {
       return { count: state.count + 1 };
     case 'decrement':
       return { count: Math.max(0, state.count - 1) };
+    case 'set':
+      return { count: action.payload }; 
     default:
       return state;
   }
@@ -21,16 +26,20 @@ const reducer = (state: State, action: Action): State => {
 
 type CounterProps = {
   className?: string;
+  onValueChange: (newValue: number) => void; 
 };
 
-function Counter({ className }: CounterProps) {
-  const [state, dispatch] = useReducer(reducer, { count: 0 });
+function Counter({ className, onValueChange }: CounterProps) {
+  const [state, dispatch] = useReducer(reducer, { count: 1 }); 
+
+  useEffect(() => {
+    onValueChange(state.count);
+  }, [state.count, onValueChange]);
 
   return (
     <div
       className={clsx(
-        'flex rounded-xl bg-[#f2f2f2] px-1 items-center justify-around  border border-[#dbdcdf]',
-
+        'flex rounded-xl bg-[#f2f2f2] px-1 items-center justify-around border border-[#dbdcdf]',
         className
       )}
     >
@@ -41,11 +50,11 @@ function Counter({ className }: CounterProps) {
         -
       </div>
       <Separator orientation="vertical" className="h-4" />
-      <div className="text-[15px] ">{state.count}</div>
+      <div className="text-[15px]">{state.count}</div>
       <Separator orientation="vertical" className="h-4" />
       <div
         onClick={() => dispatch({ type: 'increment' })}
-        className="cursor-pointer text-xl md:text-lg "
+        className="cursor-pointer text-xl md:text-lg"
       >
         +
       </div>

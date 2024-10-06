@@ -61,7 +61,7 @@ function ShippingAddress() {
         <div></div>
         <div>
           <div className="flex justify-between mt-5 md:mt-4">
-            <Link to="/shop-items">
+            <Link to="/shop">
               <Button
                 className="flex gap-2 rounded-[6px] md:rounded-[10px]  md:w-[109px] h-8 md:h-10"
                 variant="outline"
