@@ -29,7 +29,7 @@ interface ICoffeeListingsTable {
 export function CoffeeListingsTable({ listings, listing }: ICoffeeListingsTable) {
   return (
     <Table>
-      <TableHeader className=" h-9 bg-primary/10 ">
+      <TableHeader className=" h-10 bg-primary/10 ">
         <TableRow>
           <TableHead className="text-dark font-medium ">Coffee Brand</TableHead>
           <TableHead className="text-dark font-medium">Region</TableHead>
@@ -41,14 +41,14 @@ export function CoffeeListingsTable({ listings, listing }: ICoffeeListingsTable)
           </TableHead>
         </TableRow>
       </TableHeader>
-      <TableBody>
+      <TableBody className='bg-white'>
         {listings.map((listing, index) => (
-          <TableRow key={index} className="border-b h-10 ">
+          <TableRow key={index} className="border-b border-[#5859624D] h-[30px] ">
             <TableCell className="font-medium ">{listing.brand}</TableCell>
-            <TableCell className="font-medium">{listing.region}</TableCell>
-            <TableCell className="flex flex-col gap-2 text-[15px]">
-              <span className="font-normal text-textdark"> ${listing.samplePrice}/lb</span>
-              <span className="font-mormal text-gray-500"> ${listing.bagPrice}/bag</span>
+            <TableCell className="font-medium ">{listing.region}</TableCell>
+            <TableCell className="flex flex-col text-[15px] ">
+              <span className="font-normal text-textdark "> ${listing.samplePrice}/lb</span>
+              <span className="font-mormal text-gray-500 "> ${listing.bagPrice}/bag</span>
             </TableCell>
             <TableCell className="">{listing.bagWeight}</TableCell>
             <TableCell className="">
@@ -62,7 +62,7 @@ export function CoffeeListingsTable({ listings, listing }: ICoffeeListingsTable)
                 {listing.bagStock} bags
               </span>
             </TableCell>
-            <TableCell>
+            <TableCell className=''>
               <ActionsPopover listing={listing} />
             </TableCell>
           </TableRow>
