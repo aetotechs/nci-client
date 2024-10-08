@@ -10,7 +10,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Trash2 } from 'lucide-react';
 import Counter from '@/components/Counter';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import {  useState } from 'react';
+import { useState } from 'react';
 
 interface productDetails {
   name: string;
@@ -18,32 +18,64 @@ interface productDetails {
   bags: string;
   lotNumber: string;
   wareHouse: string;
-  quantity: number; 
+  quantity: number;
 }
 
 export interface IItems {
   productDetails: productDetails;
 }
+export interface ITable {
+  items: IItems[];
+}
 
 export interface ITableProps {
   items: IItems[];
-
+  checkedStates: boolean[];
+  setCheckedStates: React.Dispatch<React.SetStateAction<boolean[]>>;
 }
 
-export function ItemsTable({ items }: ITableProps) {
+export function ItemsTable({ items, checkedStates, setCheckedStates }: ITableProps) {
   const [quantities, setQuantities] = useState<number[]>(new Array(items.length).fill(1));
+  const [preferredItems, setPreferredItems] = useState<IItems[]>([]);
+
+  const calculateTotalSubtotal = () => {
+    const totalSubtotal = items.reduce((sum, item, index) => {
+      if (checkedStates[index]) {
+        return sum + item.productDetails.unitPrice * quantities[index];
+      }
+      return sum;
+    }, 0);
+
+    localStorage.setItem('totalSubtotal', totalSubtotal.toFixed(2));
+  };
 
   const handleQuantityChange = (index: number, newQuantity: number) => {
     const updatedQuantities = [...quantities];
     updatedQuantities[index] = newQuantity;
     setQuantities(updatedQuantities);
+    calculateTotalSubtotal();
   };
 
- 
+  const handleClick = (item: IItems, index: number) => {
+    setCheckedStates((prevState) => {
+      const newState = [...prevState];
+      newState[index] = !prevState[index];
+
+      if (newState[index]) {
+        setPreferredItems((prev) => [...prev, item]);
+      } else {
+        setPreferredItems((prev) =>
+          prev.filter((i) => i.productDetails.name !== item.productDetails.name)
+        );
+      }
+
+      return newState;
+    });
+  };
 
   return (
-    <ScrollArea className="md:h-[400px] p-4">
-      <Table className="">
+    <ScrollArea className="md:h-[250px] p-4">
+      <Table>
         <TableHeader className="hidden md:flex">
           <TableRow className="grid grid-cols-6 text-center text-[12px] font-medium pt-3 px-4 border-none w-full ">
             <TableHead className="col-span-3 flex items-center">Item</TableHead>
@@ -57,8 +89,11 @@ export function ItemsTable({ items }: ITableProps) {
         <TableBody>
           {items.map((item, index) => (
             <div key={index} className="flex items-center gap-2">
-              <div>
-                <Checkbox />
+              <div
+                onClick={() => {
+                  handleClick(item, index);
+                }}>
+                <Checkbox checked={checkedStates[index]} />{' '}
               </div>
               <div className="border max-h-48 mb-3 rounded-[8px] grow">
                 <TableRow className="flex flex-col md:grid md:grid-cols-6 md:gap-4">
@@ -68,7 +103,9 @@ export function ItemsTable({ items }: ITableProps) {
                         <h3 className="font-medium text-[14px]">{item?.productDetails?.name}</h3>
                         <Trash2 className="w-4 h-4 flex md:hidden text-[#8b8d98]" />
                       </div>
-                      <h3 className="font-medium text-[13px] hidden md:flex">{item?.productDetails?.name}</h3>
+                      <h3 className="font-medium text-[13px] hidden md:flex">
+                        {item?.productDetails?.name}
+                      </h3>
                       <div className="md:mt-2 font-normal text-[13px] md:text-[12px]">
                         <p>
                           <span className="text-[#616161]">Lot Number:</span>
@@ -102,7 +139,9 @@ export function ItemsTable({ items }: ITableProps) {
                     />
                   </TableCell>
                   <TableCell className="col-span-1 flex items-center justify-center font-semibold text-[13px]">
-                    <span className="hidden md:flex">${item?.productDetails?.unitPrice * quantities[index]}</span>
+                    <span className="hidden md:flex">
+                      ${item?.productDetails?.unitPrice * quantities[index]}
+                    </span>
                   </TableCell>
                   <TableCell className="col-span-1 hidden md:flex items-center justify-end">
                     <Trash2 className="w-4 h-4 text-[#8b8d98]" />

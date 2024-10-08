@@ -13,6 +13,8 @@ import { getUserToken } from '@/lib/cookie';
 function Shop({ status }: IStatus) {
   const [cartItems, setCartItems] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [cartSubtotal, setCartSubtotal] = useState<number | undefined>(undefined); 
+
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -68,10 +70,12 @@ function Shop({ status }: IStatus) {
     fetchCart();
   }, [cartItems]);
 
+  
+  
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
- 
 
   return (
     <>
@@ -79,7 +83,7 @@ function Shop({ status }: IStatus) {
         <Header status={status} />
 
         <div className={`px-5 ${cartItems.length === 0 && 'mt-10'} md:px-0`}>
-          {cartItems.length === 0 ? (
+          {loading ? (
             <div className="flex justify-center items-center">
               <p>Loading...</p>
             </div>
@@ -94,13 +98,11 @@ function Shop({ status }: IStatus) {
               </div>
               <div className="flex flex-col md:flex-row">
                 <div className="md:w-[60vw]">
-                  <CartWithItems
-                    items={cartItems}
-                  />
+                  <CartWithItems items={cartItems} />
                 </div>
                 <div className="md:w-[30vw]">
                   <Coupon />
-                  <OrderSummary />
+                  <OrderSummary  />
                 </div>
               </div>
             </>
