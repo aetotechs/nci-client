@@ -1,14 +1,23 @@
 import { Button } from '@/components/ui/button';
 import { Link, useLocation } from 'react-router-dom';
-import OrderItems, { myitems } from '@/components/OrderItems';
-const VAT = 50;
-const Shipping = 100;
+import OrderItems from '@/components/OrderItems';
+import { useEffect, useState } from 'react';
+import { IItems } from './tables/ItemsTable';
+const VAT = 0;
+const Shipping =null;
 function OrderSummary() {
+  const [myitems, setMyItems] = useState<IItems[]>([]);
+
   const getSubTotal = localStorage.getItem('totalSubtotal');
   const cartSubtotal = parseFloat(getSubTotal!);
-  const OrderSubtotal = VAT + Shipping + cartSubtotal;
+  const OrderSubtotal = VAT + Shipping! + cartSubtotal;
+
   const location = useLocation();
   const { pathname } = location;
+  useEffect(() => {
+    const storedItems = localStorage.getItem('preferredItems');
+    setMyItems(JSON.parse(storedItems || '[]') as IItems[]);
+  }, []); 
   return (
     <div
       className={`  md:mx-0 rounded-[8px] ${pathname === '/shop-payment' && 'pb-2 md:pb-0'} flex flex-col px-5 md:px-0 mb-4 md:py-2 bg-white  `}>
@@ -40,7 +49,7 @@ function OrderSummary() {
         </div>
         <div className="flex justify-between">
           <p className="font-normal  text-textmuted">Shipping</p>
-          <h3 className="font-medium ">${Shipping}</h3>
+          <h3 className="font-medium ">{Shipping}</h3>
         </div>
         <div className="flex justify-between">
           <p className="font-normal  text-textmuted">Standard VAT</p>

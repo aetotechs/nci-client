@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import EmptyCart from '@/components/EmptyCart';
 import Header from '@/components/Header';
 import CartWithItems from '@/components/CartWithItems';
@@ -7,68 +7,32 @@ import OrderSummary from '@/components/OrderSummary';
 import Progress from '@/components/Progress';
 import { IStatus } from '@/App';
 import { useLocation } from 'react-router-dom';
-import { FetchCartItems, FetchProductById } from '@/lib/api-routes';
-import { getUserToken } from '@/lib/cookie';
+import { IItems, ITable } from '@/components/tables/ItemsTable';
 
 function Shop({ status }: IStatus) {
-  const [cartItems, setCartItems] = useState<any[]>([]);
+  const [cartItems, setCartItems] = useState<IItems[]>([]);
   const [loading, setLoading] = useState(true);
-  const [cartSubtotal, setCartSubtotal] = useState<number | undefined>(undefined); 
 
   const { pathname } = useLocation();
-
   useEffect(() => {
     const fetchCart = async () => {
-      const cartId = localStorage.getItem('cartId');
-      const token = getUserToken();
-
       try {
-        const response = await fetch(FetchCartItems(cartId), {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
-          }
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch cart items');
-        }
-
-        const data = await response.json();
-        const cartItemIds = data.cartItems;
-
-        const detailedCartItems = await Promise.all(
-          cartItemIds.map(async (item: any) => {
-            const productResponse = await fetch(FetchProductById(item.productId), {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`
-              }
-            });
-
-            if (!productResponse.ok) {
-              throw new Error(`Failed to fetch product details for ${item.productId}`);
-            }
-
-            const productData = await productResponse.json();
-            return {
-              ...item,
-              productDetails: productData
-            };
-          })
-        );
-        setCartItems(detailedCartItems);
+        const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]'); 
+  
+        
+  
+        setCartItems(cartItems); 
+        console.log(cartItems)
+  
       } catch (error) {
         console.error('Error fetching cart items:', error);
       } finally {
         setLoading(false);
       }
     };
-
+  
     fetchCart();
-  }, [cartItems]);
+  }, []); 
 
   
   

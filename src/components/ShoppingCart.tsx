@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import { IItems, ITable, ITableProps, ItemsTable } from '@/components/tables/ItemsTable';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Link } from 'react-router-dom';
 import { DeleteDialog } from './ClearCartDialog';
+import { IItems, ITable, ITableProps, ItemsTable } from './tables/ItemsTable';
 
-function ShoppingCart({ items }: ITable) {
-  const [Items, setItems] = useState<IItems[]>([]);
+function ShoppingCart({ items }:ITable) {
+  const [Items, setItems] = useState<ITable[]>([]);
   const [preferredItems, setPreferredItems] = useState<IItems[]>([]);
   const [checkedStates, setCheckedStates] = useState<boolean[]>(
     new Array(items.length).fill(false)
@@ -17,7 +17,18 @@ function ShoppingCart({ items }: ITable) {
   useEffect(() => {
     const fetchedItems = items;
     setItems(fetchedItems);
+
+    const storedCheckedStates = localStorage.getItem('checkedStates');
+    if (storedCheckedStates) {
+      setCheckedStates(JSON.parse(storedCheckedStates));
+    } else {
+      setCheckedStates(new Array(items.length).fill(false)); 
+    }
   }, [items]);
+  useEffect(() => {
+  
+    setSelectAll(checkedStates.every(state => state));
+  }, [checkedStates]); 
 
   const handleClear = () => {
     setItems([]);
@@ -29,13 +40,17 @@ function ShoppingCart({ items }: ITable) {
 
     const newCheckedStates = new Array(items.length).fill(newSelectAll);
     setCheckedStates(newCheckedStates);
+    localStorage.setItem('checkedStates', JSON.stringify(newCheckedStates));
 
     if (newSelectAll) {
       setPreferredItems(items);
+      localStorage.setItem('preferredItems', JSON.stringify(items));
     } else {
       setPreferredItems([]);
+      localStorage.setItem('preferredItems', JSON.stringify([]));
     }
   };
+  
 
 
   return (

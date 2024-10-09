@@ -10,22 +10,43 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Trash2 } from 'lucide-react';
 import Counter from '@/components/Counter';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-interface productDetails {
-  name: string;
-  unitPrice: number;
-  bags: string;
-  lotNumber: string;
-  wareHouse: string;
-  quantity: number;
-}
+// interface {
+//   flavor: string;
+//   name: string;
+//   lotNumber: string;
+//   stockAvailable: boolean;
+//   stockCount: number;
+//   unitPrice: number;
+//   wareHouse: string;
+//   sampleCount: number;
+//   sampleUnitPrice: number;
+//   sampleAvailable: boolean;
+//   quantity: number;
+//   itemId: string;
+// }
+// export interface CartItems {
+//   
+// }
 
 export interface IItems {
-  productDetails: productDetails;
+  flavor: string;
+  name: string;
+  lotNumber: string;
+  stockAvailable: boolean;
+  stockCount: number;
+  unitPrice: number;
+  wareHouse: string;
+  sampleCount: number;
+  sampleUnitPrice: number;
+  sampleAvailable: boolean;
+  quantity: number;
+  itemId: string;
 }
 export interface ITable {
   items: IItems[];
+ 
 }
 
 export interface ITableProps {
@@ -35,13 +56,14 @@ export interface ITableProps {
 }
 
 export function ItemsTable({ items, checkedStates, setCheckedStates }: ITableProps) {
+  
   const [quantities, setQuantities] = useState<number[]>(new Array(items.length).fill(1));
   const [preferredItems, setPreferredItems] = useState<IItems[]>([]);
 
   const calculateTotalSubtotal = () => {
     const totalSubtotal = items.reduce((sum, item, index) => {
       if (checkedStates[index]) {
-        return sum + item.productDetails.unitPrice * quantities[index];
+        return sum + item.unitPrice * quantities[index];
       }
       return sum;
     }, 0);
@@ -53,6 +75,14 @@ export function ItemsTable({ items, checkedStates, setCheckedStates }: ITablePro
     const updatedQuantities = [...quantities];
     updatedQuantities[index] = newQuantity;
     setQuantities(updatedQuantities);
+
+    setPreferredItems((prevPreferredItems) => {
+      const updatedPreferredItems = prevPreferredItems.map((item, i) =>
+        i === index ? { ...item, quantity: newQuantity } : item
+      );
+      localStorage.setItem('preferredItems', JSON.stringify(updatedPreferredItems));
+      return updatedPreferredItems;
+    });
     calculateTotalSubtotal();
   };
 
@@ -61,17 +91,37 @@ export function ItemsTable({ items, checkedStates, setCheckedStates }: ITablePro
       const newState = [...prevState];
       newState[index] = !prevState[index];
 
-      if (newState[index]) {
-        setPreferredItems((prev) => [...prev, item]);
-      } else {
-        setPreferredItems((prev) =>
-          prev.filter((i) => i.productDetails.name !== item.productDetails.name)
-        );
-      }
+      setPreferredItems((prevPreferredItems) => {
+        let updatedPreferredItems;
+        if (newState[index]) {
+          updatedPreferredItems = [...prevPreferredItems, { ...item, quantity: quantities[index] }];
+        } else {
+          updatedPreferredItems = prevPreferredItems.filter((i) => i.name !== item.name);
+        }
+
+        localStorage.setItem('preferredItems', JSON.stringify(updatedPreferredItems));
+
+        localStorage.setItem('checkedStates', JSON.stringify(newState));
+
+        return updatedPreferredItems;
+      });
 
       return newState;
     });
   };
+
+  useEffect(() => {
+    const storedCheckedStates = localStorage.getItem('checkedStates');
+    const storedPreferredItems = localStorage.getItem('preferredItems');
+
+    if (storedCheckedStates) {
+      setCheckedStates(JSON.parse(storedCheckedStates));
+    }
+
+    if (storedPreferredItems) {
+      setPreferredItems(JSON.parse(storedPreferredItems));
+    }
+  }, []);
 
   return (
     <ScrollArea className="md:h-[250px] p-4">
@@ -100,20 +150,18 @@ export function ItemsTable({ items, checkedStates, setCheckedStates }: ITablePro
                   <TableCell className="font-medium col-span-3">
                     <div>
                       <div className="flex md:hidden">
-                        <h3 className="font-medium text-[14px]">{item?.productDetails?.name}</h3>
+                        <h3 className="font-medium text-[14px]">{item?.name}</h3>
                         <Trash2 className="w-4 h-4 flex md:hidden text-[#8b8d98]" />
                       </div>
-                      <h3 className="font-medium text-[13px] hidden md:flex">
-                        {item?.productDetails?.name}
-                      </h3>
+                      <h3 className="font-medium text-[13px] hidden md:flex">{item?.name}</h3>
                       <div className="md:mt-2 font-normal text-[13px] md:text-[12px]">
                         <p>
                           <span className="text-[#616161]">Lot Number:</span>
-                          <span>{item?.productDetails?.lotNumber}</span>
+                          <span>{item?.lotNumber}</span>
                         </p>
                         <p>
                           <span className="text-[#616161]">Warehouse:</span>
-                          <span>{item?.productDetails?.wareHouse}</span>
+                          <span>{item?.wareHouse}</span>
                         </p>
                       </div>
                     </div>
@@ -129,7 +177,7 @@ export function ItemsTable({ items, checkedStates, setCheckedStates }: ITablePro
                   <div className="flex justify-between my-3 text-sm w-full md:hidden px-5">
                     <span className="text-[#616161] font-medium">Subtotal</span>
                     <span className="font-semibold text-[14px]">
-                      ${item?.productDetails?.unitPrice * quantities[index]}
+                      ${item?.unitPrice * quantities[index]}
                     </span>
                   </div>
                   <TableCell className="col-span-1 items-center -ml-5 hidden md:flex">
@@ -139,9 +187,7 @@ export function ItemsTable({ items, checkedStates, setCheckedStates }: ITablePro
                     />
                   </TableCell>
                   <TableCell className="col-span-1 flex items-center justify-center font-semibold text-[13px]">
-                    <span className="hidden md:flex">
-                      ${item?.productDetails?.unitPrice * quantities[index]}
-                    </span>
+                    <span className="hidden md:flex">${item?.unitPrice * quantities[index]}</span>
                   </TableCell>
                   <TableCell className="col-span-1 hidden md:flex items-center justify-end">
                     <Trash2 className="w-4 h-4 text-[#8b8d98]" />

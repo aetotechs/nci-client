@@ -4,16 +4,11 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { DialogDemo } from '@/components/AddShippingAddress';
 import { Link } from 'react-router-dom';
-const Address = {
-  name: 'Rahmah Nanyonga',
-  companyName: 'LTA Farm Logistics ltd',
-  tel: '0709742563',
-  email: 'nanah@nanah.com',
-  street: 'Speke Road',
-  country: 'Uganda',
-  city: 'Enttebe',
-  zipcode: '12345'
-};
+import { getAuthUser } from '@/lib/cookie';
+
+const user = getAuthUser();
+export const Address=user
+
 
 function ShippingAddress() {
   return (
@@ -23,21 +18,22 @@ function ShippingAddress() {
         <div className="border border-primary   rounded-[8px] flex gap-2 px-2 flex-col md:flex-row md:justify-between md:px-5 py-2">
           <div>
             <div className="text-primary font-medium md:font-normal text-sm md:text-[13px]">
-              {Address.name}
+              {Address.lastName}
+              <span className='mx-1'>{Address.firstName}</span>
             </div>
-            <div className="font-medium text-sm md:text-[13px]">{Address.companyName}</div>
-            <div className="font-normal text-[13px] md:text-[12px]">{Address.street}</div>
+            <div className="font-medium text-sm md:text-[13px]">{Address?.company}</div>
+            <div className="font-normal text-[13px] md:text-[12px]">{Address?.address?.street}</div>
             <div className="font-normal text-[13px] md:text-[12px]">
               <span className="text-[13px] md:text-[12px]">
-                {Address.city},{Address.zipcode}
+                {Address?.address?.city},{Address?.address?.zipcode}
               </span>
             </div>
-            <div className="text-[13px] md:text-[12px]">{Address.country}</div>
+            <div className="text-[13px] md:text-[12px]">{Address?.address?.country}</div>
           </div>
           <div>
             <div className=" text-[13px] md:text-[12px]">
               <span className="text-[#616161]">Tel:</span>
-              <span>{Address.tel}</span>
+              <span>{Address.workPhone}</span>
             </div>
             <div className="text-[13px] md:text-[12px]">
               <span className="text-[#616161]">Email:</span>
@@ -60,12 +56,11 @@ function ShippingAddress() {
         </div>
         <div></div>
         <div>
-          <div className="flex justify-between mt-5 md:mt-4">
+          <div className="flex justify-between mt-5 md:mt-4  md:pb-2">
             <Link to="/shop">
               <Button
                 className="flex gap-2 rounded-[6px] md:rounded-[10px]  md:w-[109px] h-8 md:h-10"
-                variant="outline"
-              >
+                variant="outline">
                 <span>
                   <ChevronLeft className="w-4 h-4" />
                 </span>
@@ -75,8 +70,7 @@ function ShippingAddress() {
             <Link to="/shop-payment">
               <Button
                 className="flex gap-2 bg-primary rounded-[6px] h-8 md:rounded-[10px] md:w-[109px] md:h-10 text-white px-3"
-                variant="outline"
-              >
+                variant="outline">
                 Next
                 <span>
                   <ChevronRight className="w-4 h-4" />
