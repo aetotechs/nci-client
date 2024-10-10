@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 import { DeleteDialog } from './ClearCartDialog';
 import { IItems, ITable, ITableProps, ItemsTable } from './tables/ItemsTable';
 
-function ShoppingCart({ items }:ITable) {
-  const [Items, setItems] = useState<ITable[]>([]);
+function ShoppingCart({ items }:ITableProps) {
+  const [Items, setItems] = useState<IItems[]>([]);
   const [preferredItems, setPreferredItems] = useState<IItems[]>([]);
   const [checkedStates, setCheckedStates] = useState<boolean[]>(
     new Array(items.length).fill(false)

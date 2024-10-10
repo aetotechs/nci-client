@@ -27,7 +27,7 @@ import { useEffect, useState } from 'react';
 //   itemId: string;
 // }
 // export interface CartItems {
-//   
+//
 // }
 
 export interface IItems {
@@ -46,23 +46,21 @@ export interface IItems {
 }
 export interface ITable {
   items: IItems[];
- 
 }
 
 export interface ITableProps {
   items: IItems[];
-  checkedStates: boolean[];
-  setCheckedStates: React.Dispatch<React.SetStateAction<boolean[]>>;
+  checkedStates?: boolean[];
+  setCheckedStates?: React.Dispatch<React.SetStateAction<boolean[]>>;
 }
 
 export function ItemsTable({ items, checkedStates, setCheckedStates }: ITableProps) {
-  
   const [quantities, setQuantities] = useState<number[]>(new Array(items.length).fill(1));
   const [preferredItems, setPreferredItems] = useState<IItems[]>([]);
 
   const calculateTotalSubtotal = () => {
     const totalSubtotal = items.reduce((sum, item, index) => {
-      if (checkedStates[index]) {
+      if (checkedStates && checkedStates[index]) {
         return sum + item.unitPrice * quantities[index];
       }
       return sum;
@@ -87,27 +85,32 @@ export function ItemsTable({ items, checkedStates, setCheckedStates }: ITablePro
   };
 
   const handleClick = (item: IItems, index: number) => {
-    setCheckedStates((prevState) => {
-      const newState = [...prevState];
-      newState[index] = !prevState[index];
+    if (setCheckedStates) {
+      setCheckedStates((prevState) => {
+        const newState = [...prevState];
+        newState[index] = !prevState[index];
 
-      setPreferredItems((prevPreferredItems) => {
-        let updatedPreferredItems;
-        if (newState[index]) {
-          updatedPreferredItems = [...prevPreferredItems, { ...item, quantity: quantities[index] }];
-        } else {
-          updatedPreferredItems = prevPreferredItems.filter((i) => i.name !== item.name);
-        }
+        setPreferredItems((prevPreferredItems) => {
+          let updatedPreferredItems;
+          if (newState[index]) {
+            updatedPreferredItems = [
+              ...prevPreferredItems,
+              { ...item, quantity: quantities[index] }
+            ];
+          } else {
+            updatedPreferredItems = prevPreferredItems.filter((i) => i.name !== item.name);
+          }
 
-        localStorage.setItem('preferredItems', JSON.stringify(updatedPreferredItems));
+          localStorage.setItem('preferredItems', JSON.stringify(updatedPreferredItems));
 
-        localStorage.setItem('checkedStates', JSON.stringify(newState));
+          localStorage.setItem('checkedStates', JSON.stringify(newState));
 
-        return updatedPreferredItems;
+          return updatedPreferredItems;
+        });
+
+        return newState;
       });
-
-      return newState;
-    });
+    }
   };
 
   useEffect(() => {
@@ -115,7 +118,9 @@ export function ItemsTable({ items, checkedStates, setCheckedStates }: ITablePro
     const storedPreferredItems = localStorage.getItem('preferredItems');
 
     if (storedCheckedStates) {
-      setCheckedStates(JSON.parse(storedCheckedStates));
+      if (setCheckedStates) {
+        setCheckedStates(JSON.parse(storedCheckedStates));
+      }
     }
 
     if (storedPreferredItems) {
@@ -124,7 +129,7 @@ export function ItemsTable({ items, checkedStates, setCheckedStates }: ITablePro
   }, []);
 
   return (
-    <ScrollArea className="md:h-[250px] p-4">
+    <ScrollArea className=" p-4">
       <Table>
         <TableHeader className="hidden md:flex">
           <TableRow className="grid grid-cols-6 text-center text-[12px] font-medium pt-3 px-4 border-none w-full ">
@@ -143,7 +148,7 @@ export function ItemsTable({ items, checkedStates, setCheckedStates }: ITablePro
                 onClick={() => {
                   handleClick(item, index);
                 }}>
-                <Checkbox checked={checkedStates[index]} />{' '}
+                <Checkbox checked={checkedStates ? checkedStates[index] : false} />
               </div>
               <div className="border max-h-48 mb-3 rounded-[8px] grow">
                 <TableRow className="flex flex-col md:grid md:grid-cols-6 md:gap-4">

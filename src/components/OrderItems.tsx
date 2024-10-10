@@ -3,16 +3,15 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 
 import { useLocation } from 'react-router-dom';
 import { IItems } from './tables/ItemsTable';
-import { useEffect, useState } from 'react';
+import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useEffect, useState } from 'react';
 import { Address } from './ShippingAddress';
+import { ShoppAdressProps } from '@/pages/shop-address';
 
 
-interface OrderProps {
-  items: IItems[];
-}
 
 
-function OrderItems({ items }: OrderProps) {
+
+function OrderItems({ items }: ShoppAdressProps) {
 
   const [myitems, setMyItems] = useState<IItems[]>([]);
   useEffect(() => {
@@ -57,11 +56,11 @@ function OrderItems({ items }: OrderProps) {
           </div>
         </div>
       ) : (
-        <ScrollArea className="h-[160px] ">
+        <ScrollArea className="max-h-[160px] ">
           <div
             className={`${pathname === '/close-shop' && 'md:px-5'} flex flex-col gap-2 md:gap-4 my-2 md:my-6  `}
           >
-            {items.map((item, index) => (
+            {items.map((item: { productDetails: { name: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; unitPrice: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }; quantity: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }, index: Key | null | undefined) => (
               <div
                 key={index}
                 className="border flex rounded-[8px] max-h-[90px] items-center  px-5 py-2 justify-between"
