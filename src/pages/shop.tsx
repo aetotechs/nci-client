@@ -17,25 +17,19 @@ function Shop({ status }: IStatus) {
   useEffect(() => {
     const fetchCart = async () => {
       try {
-        const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]'); 
-  
-        
-  
-        setCartItems(cartItems); 
-        console.log(cartItems)
-  
+        const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+
+        setCartItems(cartItems);
+        console.log(cartItems);
       } catch (error) {
         console.error('Error fetching cart items:', error);
       } finally {
         setLoading(false);
       }
     };
-  
-    fetchCart();
-  }, []); 
 
-  
-  
+    fetchCart();
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -66,7 +60,7 @@ function Shop({ status }: IStatus) {
                 </div>
                 <div className="md:w-[30vw]">
                   <Coupon />
-                  <OrderSummary  />
+                  <OrderSummary />
                 </div>
               </div>
             </>

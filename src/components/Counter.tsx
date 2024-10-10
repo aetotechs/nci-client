@@ -6,10 +6,7 @@ type State = {
   count: number;
 };
 
-type Action = 
-  | { type: 'increment' }
-  | { type: 'decrement' }
-  | { type: 'set'; payload: number };
+type Action = { type: 'increment' } | { type: 'decrement' } | { type: 'set'; payload: number };
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
@@ -18,7 +15,7 @@ const reducer = (state: State, action: Action): State => {
     case 'decrement':
       return { count: Math.max(0, state.count - 1) };
     case 'set':
-      return { count: action.payload }; 
+      return { count: action.payload };
     default:
       return state;
   }
@@ -26,11 +23,11 @@ const reducer = (state: State, action: Action): State => {
 
 type CounterProps = {
   className?: string;
-  onValueChange: (newValue: number) => void; 
+  onValueChange: (newValue: number) => void;
 };
 
 function Counter({ className, onValueChange }: CounterProps) {
-  const [state, dispatch] = useReducer(reducer, { count: 1 }); 
+  const [state, dispatch] = useReducer(reducer, { count: 1 });
 
   useEffect(() => {
     onValueChange(state.count);

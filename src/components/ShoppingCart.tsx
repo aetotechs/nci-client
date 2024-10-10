@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { DeleteDialog } from './ClearCartDialog';
 import { IItems, ITable, ITableProps, ItemsTable } from './tables/ItemsTable';
 
-function ShoppingCart({ items }:ITableProps) {
+function ShoppingCart({ items }: ITableProps) {
   const [Items, setItems] = useState<IItems[]>([]);
   const [preferredItems, setPreferredItems] = useState<IItems[]>([]);
   const [checkedStates, setCheckedStates] = useState<boolean[]>(
@@ -22,13 +22,12 @@ function ShoppingCart({ items }:ITableProps) {
     if (storedCheckedStates) {
       setCheckedStates(JSON.parse(storedCheckedStates));
     } else {
-      setCheckedStates(new Array(items.length).fill(false)); 
+      setCheckedStates(new Array(items.length).fill(false));
     }
   }, [items]);
   useEffect(() => {
-  
-    setSelectAll(checkedStates.every(state => state));
-  }, [checkedStates]); 
+    setSelectAll(checkedStates.every((state) => state));
+  }, [checkedStates]);
 
   const handleClear = () => {
     setItems([]);
@@ -50,8 +49,6 @@ function ShoppingCart({ items }:ITableProps) {
       localStorage.setItem('preferredItems', JSON.stringify([]));
     }
   };
-  
-
 
   return (
     <div className="md:mx-5 bg-white px-2 py-4 md:px-10 md:py-5 flex flex-col rounded-[8px]">
@@ -75,7 +72,8 @@ function ShoppingCart({ items }:ITableProps) {
         <Link to="/coffee-shop">
           <Button
             className="flex gap-2 rounded-[6px] md:rounded-[10px] md:w-[109px] h-8 md:h-10"
-            variant="outline">
+            variant="outline"
+          >
             <span>
               <ChevronLeft className="w-4 h-4" />
             </span>

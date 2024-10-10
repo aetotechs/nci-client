@@ -27,23 +27,8 @@ function Explore({ status }: IStatus) {
           const data = await response.json();
           setProducts(data);
         } else {
-          // toast.error('Failed to fetch products', {
-          //   style: {
-          //     backgroundColor: '#F443361A',
-          //     color: '#F44336',
-          //     border: '1px solid #F4433680'
-          //   }
-          // });
         }
-      } catch (error) {
-        // toast.error('Error fetching products', {
-        //   style: {
-        //     backgroundColor: '#F443361A',
-        //     color: '#F44336',
-        //     border: '1px solid #F4433680'
-        //   }
-        // });
-      }
+      } catch (error) {}
     };
 
     fetchProducts();
@@ -111,7 +96,8 @@ function Explore({ status }: IStatus) {
       )}
       <div className={`${pathname === '/coffee-shop' ? 'py-0 md:w-[62vw]     ' : ' md:py-0 '}`}>
         <div
-          className={`grid md:grid-cols-2 md:gap-3 lg:grid-cols-3 gap-3 ${pathname === '/' && 'lg:grid-cols-4'} `}>
+          className={`grid md:grid-cols-2 md:gap-3 lg:grid-cols-3 gap-3 ${pathname === '/' && 'lg:grid-cols-4'} `}
+        >
           {products.map((product, index) => {
             const isDisabled =
               product.stockAvailable === false &&
@@ -126,10 +112,12 @@ function Explore({ status }: IStatus) {
                 } ${pathname === '/coffee-shop' ? 'grow md:max-w-[300px]  px-5 py-2 ' : '  px-5  py-2 md:py-5'}
                   
                   `}
-                style={{ pointerEvents: isDisabled ? 'none' : 'auto' }}>
+                style={{ pointerEvents: isDisabled ? 'none' : 'auto' }}
+              >
                 <div
                   className={`font-medium text-base mb-3 cursor-pointer `}
-                  onClick={() => HandleClick(product.name)}>
+                  onClick={() => HandleClick(product.name)}
+                >
                   {product.name}
                 </div>
                 <div className="font-normal  mb-3 flex gap-1 items-center">
@@ -143,13 +131,15 @@ function Explore({ status }: IStatus) {
                     <div className="flex flex-col gap-2">
                       <div className="flex justify-between">
                         <p
-                          className={` ${pathname === '/coffee-shop' && 'text-[15px]'} ${isDisabled ? 'text-[#b9bbc6]' : 'text-primary'}`}>
+                          className={` ${pathname === '/coffee-shop' && 'text-[15px]'} ${isDisabled ? 'text-[#b9bbc6]' : 'text-primary'}`}
+                        >
                           ${product.sampleUnitPrice}/lb
                         </p>
                         {product.sampleAvailable !== true && (
                           <Badge
                             variant="outline"
-                            className={`bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px] `}>
+                            className={`bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px] `}
+                          >
                             <div className="h-[5px] w-[5px] rounded-full bg-[#f44336]"></div>
                             <p className="text-[#f44336]">Not Available</p>
                           </Badge>
@@ -157,13 +147,15 @@ function Explore({ status }: IStatus) {
                       </div>
                       <div className="flex justify-between">
                         <p
-                          className={` ${pathname === '/coffee-shop' && 'text-[15px]'} ${isDisabled ? 'text-[#b9bbc6]' : 'text-primary'}`}>
+                          className={` ${pathname === '/coffee-shop' && 'text-[15px]'} ${isDisabled ? 'text-[#b9bbc6]' : 'text-primary'}`}
+                        >
                           ${product.unitPrice}/bag
                         </p>
                         {product.stockAvailable !== true && (
                           <Badge
                             variant="outline"
-                            className="bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px]">
+                            className="bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px]"
+                          >
                             <div className="h-[5px] w-[5px] rounded-full bg-[#f44336]"></div>
                             <p className="text-[#f44336]">Not Available</p>
                           </Badge>
@@ -178,19 +170,22 @@ function Explore({ status }: IStatus) {
                 </div>
                 {status ? (
                   <div
-                    className={`  ${pathname == '/coffee-shop' ? '  flex gap-2   md:flex-row  ' : 'flex flex-col md:flex-row justify-between gap-3'}`}>
+                    className={`  ${pathname == '/coffee-shop' ? '  flex gap-2   md:flex-row  ' : 'flex flex-col md:flex-row justify-between gap-3'}`}
+                  >
                     <Button
                       type="submit"
                       onClick={() => {
                         AddCart(product, product.name);
                       }}
                       className={`rounded-[6px] bg-primary grow  text-white font-medium md:font-normal text-[15px] md:h-[40px] ${pathname == '/coffee-shop' ? 'md:max-h-[30px] h-[38px] text-sm md:text-[12px]' : 'md:max-h-[30px] h-[38px] md:text-[12px] text-sm'} ${isDisabled && 'text-[#585962] bg-primary/20'}`}
-                      disabled={isDisabled || addingStates[product.itemId]}>
+                      disabled={isDisabled || addingStates[product.itemId]}
+                    >
                       {addingStates[product.itemId] ? 'Adding...' : 'Add to Cart'}
                     </Button>
                     <Button
                       className={`rounded-[6px] shrink md:max-w-[129px]    md:h-[40px] text-primary font-medium md:font-normal text-[15px] bg-white border border-primary  ${pathname == '/coffee-shop' ? 'md:max-h-[30px] h-[38px] text-sm  md:text-[12px]' : 'md:max-h-[30px] h-[38px] text-sm md:tex-[12px]'} ${isDisabled && 'text-[#1d1b20] border-primary/12'}`}
-                      disabled={isDisabled}>
+                      disabled={isDisabled}
+                    >
                       Request Sample
                     </Button>
                   </div>
@@ -208,7 +203,8 @@ function Explore({ status }: IStatus) {
         <div className="flex justify-center my-5 md:my-8">
           <Link
             className="flex justify-between items-center p-3 max-h-[40px]  gap-2 border border-primary rounded-[10px] text-primary font-semibold text-sm leading-5"
-            to="/">
+            to="/"
+          >
             View More
             <span>
               <ChevronRight />

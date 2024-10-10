@@ -14,7 +14,7 @@ export function DeleteDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-      <Button
+        <Button
           className="flex gap-2 bg-red-500 border-none rounded-[6px] md:rounded-[10px] h-8 md:h-10 text-white px-3"
           variant="outline"
         >
@@ -39,7 +39,7 @@ export function DeleteDialog() {
           </div>
           <span className="text-[12px] font-normal">
             {' '}
-            By clearing this cart, all its items  will also be permanently deleted.
+            By clearing this cart, all its items will also be permanently deleted.
           </span>
         </div>
 

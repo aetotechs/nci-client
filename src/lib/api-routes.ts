@@ -11,7 +11,10 @@ export const FetchUser = (email: string | null) =>
   `${import.meta.env.VITE_USERAPI_URL}/users/${email}`;
 export const FetchCartItems = (cartId: string | null) =>
   `${import.meta.env.VITE_USERORDER_URL}/carts?cartId=${cartId}`;
-export const FetchProductById = (itemId: string | null) =>`${import.meta.env.VITE_FETCHITEMS_URL}/items/${itemId}`;
-export const DeleteCart=(cartId: string | null) =>`${import.meta.env.VITE_USERORDER_URL}carts/items?cartId=${cartId}`;
-export const DeleteProductById = (cartItemId: string | null,cartId:string | null) =>`${import.meta.env.VITE_USERORDER_URL}carts/${cartId}?cartItemId=${cartItemId}}`;
-export const CreateOrder=`${import.meta.env.VITE_USERORDER_URL}/orders`
+export const FetchProductById = (itemId: string | null) =>
+  `${import.meta.env.VITE_FETCHITEMS_URL}/items/${itemId}`;
+export const DeleteCart = (cartId: string | null) =>
+  `${import.meta.env.VITE_USERORDER_URL}carts/items?cartId=${cartId}`;
+export const DeleteProductById = (cartItemId: string | null, cartId: string | null) =>
+  `${import.meta.env.VITE_USERORDER_URL}carts/${cartId}?cartItemId=${cartItemId}}`;
+export const CreateOrder = `${import.meta.env.VITE_USERORDER_URL}/orders`;

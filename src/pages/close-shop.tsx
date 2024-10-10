@@ -54,7 +54,9 @@ function ClosedOrder({ status }: IStatus) {
                     </h5>
                     <div className="flex my-1 gap-1 ">
                       <h6 className="text-[#616161]">Name:</h6>
-                      <p>{Address?.lastName} <span>{Address?.firstName}</span></p>
+                      <p>
+                        {Address?.lastName} <span>{Address?.firstName}</span>
+                      </p>
                     </div>
                     <div className="flex  my-1 gap-1">
                       <h6 className="text-[#616161]">Company:</h6>
@@ -62,8 +64,9 @@ function ClosedOrder({ status }: IStatus) {
                     </div>
                     <div className="flex  my-1 gap-1">
                       <h6 className="text-[#616161]">Address:</h6>
-                      <p className='flex gap-1'>
-                        {Address?.address?.street} {Address?.address?.city} {Address?.address?.zipcode} {Address?.address?.country}
+                      <p className="flex gap-1">
+                        {Address?.address?.street} {Address?.address?.city}{' '}
+                        {Address?.address?.zipcode} {Address?.address?.country}
                       </p>
                     </div>
                     <div className="flex  my-1 gap-1">

@@ -11,9 +11,11 @@ import { useEffect, useState } from 'react';
 import { CartItems } from './shop-address';
 import { FetchCartItems, FetchProductById } from '@/lib/api-routes';
 import { getUserToken } from '@/lib/cookie';
+import PaymentComponent from '@/components/PaymentComponent';
+export const OrderId = localStorage.getItem('orderId');
 
 function ShopPayment({ status }: IStatus) {
-  const [cartItems, setCartItems] = useState<CartItems[]>([]); // Add cartItems state
+  const [cartItems, setCartItems] = useState<CartItems[]>([]);
 
   const { pathname } = useLocation();
 
@@ -22,7 +24,6 @@ function ShopPayment({ status }: IStatus) {
   }, [pathname]);
 
   useEffect(() => {
-    
     const fetchCart = async () => {
       const cartId = localStorage.getItem('cartId');
 
@@ -93,10 +94,10 @@ function ShopPayment({ status }: IStatus) {
           </div>
           <div className=" flex flex-col gap-5 md:flex-row ">
             <div className="md:w-[60vw]">
-              <MakePayment />
+              <PaymentComponent orderId={OrderId || ''} />
             </div>
             <div className="md:w-[30vw]">
-            <OrderSummary items={{ items: cartItems }} /> 
+              <OrderSummary items={{ items: cartItems }} />
             </div>
           </div>
         </div>

@@ -32,9 +32,8 @@ export interface CartItems {
 
 export interface ShoppAdressProps {
   items: CartItems[];
-  
 }
-function ShopAddress({status}:IStatus) {
+function ShopAddress({ status }: IStatus) {
   const [cartItems, setCartItems] = useState<CartItems[]>([]);
   const [loading, setIsLoading] = useState(false);
   const { pathname } = useLocation();
@@ -116,7 +115,7 @@ function ShopAddress({status}:IStatus) {
               <ShippingAddress />
             </div>
             <div className="md:w-[30vw]  max-h-max   ">
-            <OrderSummary items={{ items: cartItems }} /> 
+              <OrderSummary items={{ items: cartItems }} />
             </div>
           </div>
         </div>

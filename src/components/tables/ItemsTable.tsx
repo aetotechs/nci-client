@@ -147,7 +147,8 @@ export function ItemsTable({ items, checkedStates, setCheckedStates }: ITablePro
               <div
                 onClick={() => {
                   handleClick(item, index);
-                }}>
+                }}
+              >
                 <Checkbox checked={checkedStates ? checkedStates[index] : false} />
               </div>
               <div className="border max-h-48 mb-3 rounded-[8px] grow">

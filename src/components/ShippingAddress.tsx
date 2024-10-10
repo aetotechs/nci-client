@@ -13,7 +13,7 @@ const user = getAuthUser();
 export const Address = user;
 
 function ShippingAddress() {
-  const orderInstructionsRef = useRef<HTMLTextAreaElement>(null); // Create a ref
+  const orderInstructionsRef = useRef<HTMLTextAreaElement>(null);
 
   const [isOrdering, setIsOrdering] = useState(false);
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ function ShippingAddress() {
       customerId: user.userId,
       shippingFee: 0,
       totalAmount: 0,
-      orderInstructions: orderInstructionsRef.current?.value || "" 
+      orderInstructions: orderInstructionsRef.current?.value || ''
     };
 
     try {
@@ -42,11 +42,12 @@ function ShippingAddress() {
         },
         body: JSON.stringify(orderData)
       });
-console.log(orderData);
-console.log(response);
+
       if (response.ok) {
         const data = await response.json();
-        console.log('Order created:', data);
+
+        const getOrderId = data.orderId;
+        localStorage.setItem('orderId', getOrderId);
 
         toast.success('Order placed successfully!');
         setTimeout(() => {
@@ -54,15 +55,12 @@ console.log(response);
         }, 1000);
       } else {
         const errorData = await response.text();
-        console.log(errorData);
-      
 
         toast.error(errorData);
       }
     } catch (error) {
-      console.error('Error creating order:', error);
       toast.error('Failed to create order. Please try again.');
-    } finally{
+    } finally {
       setIsOrdering(false);
     }
   };
@@ -108,8 +106,7 @@ console.log(response);
           <Textarea
             className="rounded-[8px] h-[80px] md:h-[60px] bg-muted bordr-none  p-5 bg-[#f2f2f2] placeholder:text-[12px] placeholder:leading-4 md:placeholder:leading-5"
             placeholder="Notes about your order eg special notes for delivery "
-            ref={orderInstructionsRef} 
-
+            ref={orderInstructionsRef}
           />
         </div>
         <div></div>
@@ -118,7 +115,8 @@ console.log(response);
             <Link to="/shop">
               <Button
                 className="flex gap-2 rounded-[6px] md:rounded-[10px]  md:w-[109px] h-8 md:h-10"
-                variant="outline">
+                variant="outline"
+              >
                 <span>
                   <ChevronLeft className="w-4 h-4" />
                 </span>
@@ -130,7 +128,8 @@ console.log(response);
               onClick={MakeOrder}
               className="flex gap-2 bg-primary rounded-[6px] h-8 md:rounded-[10px] md:min-w-[109px] md:h-10 text-white px-3"
               variant="outline"
-              disabled={isOrdering}>
+              disabled={isOrdering}
+            >
               {isOrdering ? 'Placing Order...' : 'Next'}
 
               <span>
