@@ -12,23 +12,6 @@ import Counter from '@/components/Counter';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useEffect, useState } from 'react';
 
-// interface {
-//   flavor: string;
-//   name: string;
-//   lotNumber: string;
-//   stockAvailable: boolean;
-//   stockCount: number;
-//   unitPrice: number;
-//   wareHouse: string;
-//   sampleCount: number;
-//   sampleUnitPrice: number;
-//   sampleAvailable: boolean;
-//   quantity: number;
-//   itemId: string;
-// }
-// export interface CartItems {
-//
-// }
 
 export interface IItems {
   flavor: string;

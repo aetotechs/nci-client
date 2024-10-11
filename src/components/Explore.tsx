@@ -47,7 +47,7 @@ function Explore({ status }: IStatus) {
       let cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
 
       const existingItemIndex = cartItems.findIndex(
-        (item: any) => item.product.itemId === product.itemId
+        (item: IItems) => item.itemId === product.itemId
       );
       if (existingItemIndex !== -1) {
         toast.info(`${productName} already exists in your cart.`, {});
@@ -56,7 +56,7 @@ function Explore({ status }: IStatus) {
       }
 
       cartItems.push(product);
-      console.log(cartItems);
+    
       localStorage.setItem('cartItems', JSON.stringify(cartItems));
 
       toast.success(

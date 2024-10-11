@@ -42,6 +42,7 @@ function ShippingAddress() {
         },
         body: JSON.stringify(orderData)
       });
+      
 
       if (response.ok) {
         const data = await response.json();

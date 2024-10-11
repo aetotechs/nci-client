@@ -3,10 +3,11 @@ import Counter from './Counter';
 import { Button } from './ui/button';
 import { Bookmark } from 'lucide-react';
 import { useState } from 'react';
-import { getAuthUser, getUserToken } from '@/lib/cookie';
+
 import { toast } from 'sonner';
-import { AddToCart } from '@/lib/api-routes';
+
 import { Link } from 'react-router-dom';
+import { IItems } from './tables/ItemsTable';
 
 interface IProductDetails {
   product: any;
@@ -15,60 +16,64 @@ interface IProductDetails {
 
 function ProductDetails({ product, status }: IProductDetails) {
   const [addingStates, setAddingStates] = useState<{ [key: string]: boolean }>({});
+  const [quantities, setQuantities] = useState<number[]>(new Array());
+  const [preferredItems, setPreferredItems] = useState<IItems[]>([]);
 
-  const AddCart = async (productId: string, productName: string) => {
-    setAddingStates((prev) => ({ ...prev, [productId]: true }));
-    const user = getAuthUser();
-    const customerId = user.userId;
-    const token = getUserToken();
+  const handleQuantityChange = (newQuantity: number) => {
+    setQuantities([newQuantity]);
 
-    const cartData = {
-      customerId,
-      cartItems: [
-        {
-          productId,
-          quantity: 0
-        }
-      ]
-    };
+    setPreferredItems((prevPreferredItems) => {
+      const updatedPreferredItems = [{ ...prevPreferredItems[0], quantity: newQuantity }];
+
+      localStorage.setItem('preferredItems', JSON.stringify(updatedPreferredItems));
+      return updatedPreferredItems;
+    });
+  };
+  const AddCart = async (product: IItems, productName: string) => {
+    setAddingStates((prev) => ({ ...prev, [product.itemId]: true }));
+
     try {
-      const response = await fetch(AddToCart, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify(cartData)
-      });
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      if (response.ok) {
-        const data = await response.json();
-        const cartId = data.cartId;
-        localStorage.setItem('cartId', cartId);
+      let cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
 
-        toast.success(
-          <div className="flex gap-1 items-center">
-            <span>
-              <img src="/icons/cartsuccess.svg" alt="cart" />
-            </span>
-            <span className="font-bold">{productName}</span> has been added to your cart.
-          </div>,
-          {
-            style: {
-              background: '#009A681A',
-
-              color: '#009A68',
-              border: '1px solid #009A6880'
-            }
-          }
-        );
-      } else {
+      const existingItemIndex = cartItems.findIndex(
+        (item: any) => item.product.itemId === product.itemId
+      );
+      if (existingItemIndex !== -1) {
+        toast.info(`${productName} already exists in your cart.`, {});
+        setAddingStates((prev) => ({ ...prev, [product.itemId]: false }));
+        return;
       }
+
+      cartItems.push(product);
+     
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+      toast.success(
+        <div className="flex gap-1 items-center">
+          <span>
+            <img src="/icons/cartsuccess.svg" alt="cart" />
+          </span>
+          <span className="font-bold">{productName}</span> has been added to your cart.
+        </div>,
+
+        {
+          style: {
+            background: '#009A681A',
+
+            color: '#009A68',
+
+            border: '1px solid #009A6880'
+          }
+        }
+      );
     } catch (error) {
     } finally {
-      setAddingStates((prev) => ({ ...prev, [productId]: false }));
+      setAddingStates((prev) => ({ ...prev, [product.itemId]: false }));
     }
   };
+
   return (
     <div className=" rounded-[8px] bg-white  md:mx-0 w-[90vw] md:w-full">
       <div className={` px-5 ${!status && 'pb-2'}`}>
@@ -124,13 +129,15 @@ function ProductDetails({ product, status }: IProductDetails) {
           {status ? (
             <div>
               <div className="flex flex-col gap-3 md:flex-row my-3    md:justify-between ">
-                <Counter className="h-10 md:w-[104px] w-[40vw] mx-auto md:mx-0 text-[15px] rounded-[6px] text-textcolor" />
+                <Counter
+                  className="h-10 md:w-[104px] w-[40vw] mx-auto md:mx-0 text-[15px] rounded-[6px] text-textcolor"
+                  onValueChange={(newQuantity) => handleQuantityChange(newQuantity)}
+                />
                 <Button
                   className="h-10 md:w-[157px] bg-primary text-white font-medium text-sm"
                   onClick={() => {
                     AddCart(product.itemId, product.name);
-                  }}
-                >
+                  }}>
                   {addingStates[product.itemId] ? 'Adding...' : 'Add to Cart'}
                 </Button>
                 <Button className="h-10 md:w-[157px] bg-white text-primary font-medium text-sm border border-primary">
