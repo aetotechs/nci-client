@@ -8,7 +8,7 @@ function NavItems() {
   const location = useLocation();
   const { pathname } = location;
   return (
-    <nav className="flex flex-col md:flex-row px-4 lg:px-0 lg:items-center gap-3 list-none md:gap-8 text-[16px] ">
+    <nav className="flex flex-col md:flex-row px-4 lg:px-0 lg:items-center gap-3 list-none md:gap-2 lg:gap-8 text-[16px] ">
       <li
         className={`cursor-pointer text-textcolor ${pathname === '/about' && 'text-texthighlight font-semibold'} active:text-primary   `}
       >

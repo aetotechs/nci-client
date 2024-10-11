@@ -12,7 +12,6 @@ import Counter from '@/components/Counter';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useEffect, useState } from 'react';
 
-
 export interface IItems {
   flavor: string;
   name: string;

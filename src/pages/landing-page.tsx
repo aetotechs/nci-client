@@ -12,9 +12,9 @@ import Header from '@/components/Header';
 function LandingPage({ status }: IStatus) {
   return (
     <>
-      <div className="md:px-[5vw] md:max-w-[100vw]     ">
+      <div className="lg:px-[4vw] md:px-[2vw] md:max-w-[100vw]     ">
         <Header status={status} />
-        <main className="px-5 ">
+        <main className="px-[5vw] lg:px-0 ">
           <Hero />
           <AboutUs />
           <Categories />

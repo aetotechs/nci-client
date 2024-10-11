@@ -102,7 +102,8 @@ function OrderSummary({ items }: { items?: ShoppAdressProps }) {
 
   return (
     <div
-      className={`  md:mx-0 rounded-[8px] ${pathname === '/shop-payment' && 'pb-2 md:pb-0'} flex flex-col px-5 md:px-0 mb-4 md:py-2 bg-white  `}>
+      className={`  md:mx-0 rounded-[8px] ${pathname === '/shop-payment' && 'pb-2 md:pb-0'} flex flex-col px-5 md:px-0 mb-4 md:py-2 bg-white  `}
+    >
       <h3 className={` font-semibold text-[15px] my-2 md:px-5`}>Order Summary</h3>
 
       {pathname == '/close-shop' && (
@@ -147,7 +148,8 @@ function OrderSummary({ items }: { items?: ShoppAdressProps }) {
           <div>
             <Button
               onClick={() => AddCart()}
-              className="tet-white w-full h-10 my-2 rounded-[6px] md:rounded-xl font-normal">
+              className="tet-white w-full h-10 my-2 rounded-[6px] md:rounded-xl font-normal"
+            >
               {addingStates ? 'Adding...' : 'Proceed to Checkout'}
             </Button>
           </div>

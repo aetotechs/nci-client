@@ -56,7 +56,7 @@ function Explore({ status }: IStatus) {
       }
 
       cartItems.push(product);
-    
+
       localStorage.setItem('cartItems', JSON.stringify(cartItems));
 
       toast.success(
@@ -96,7 +96,7 @@ function Explore({ status }: IStatus) {
       )}
       <div className={`${pathname === '/coffee-shop' ? 'py-0 md:w-[62vw]     ' : ' md:py-0 '}`}>
         <div
-          className={`grid md:grid-cols-2 md:gap-3 lg:grid-cols-3 gap-3 ${pathname === '/' && 'lg:grid-cols-4'} `}
+          className={`grid md:grid-cols-2 md:gap-3 lg:grid-cols-3 gap-3 ${pathname === '/' && 'lg:grid-cols-4 grid-cols-2'} `}
         >
           {products.map((product, index) => {
             const isDisabled =
@@ -116,7 +116,7 @@ function Explore({ status }: IStatus) {
               >
                 <div
                   className={`font-medium text-base mb-3 cursor-pointer `}
-                  onClick={() => HandleClick(product.name)}
+                  onClick={() => HandleClick(product.itemId)}
                 >
                   {product.name}
                 </div>

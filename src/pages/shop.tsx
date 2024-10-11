@@ -20,7 +20,6 @@ function Shop({ status }: IStatus) {
         const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
 
         setCartItems(cartItems);
-      
       } catch (error) {
         console.error('Error fetching cart items:', error);
       } finally {

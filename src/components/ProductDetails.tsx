@@ -8,46 +8,65 @@ import { toast } from 'sonner';
 
 import { Link } from 'react-router-dom';
 import { IItems } from './tables/ItemsTable';
-
+export interface IProduct {
+  flavor: string;
+  name: string;
+  lotNumber: string;
+  stockAvailable: boolean;
+  description: string;
+  stockCount: number;
+  unitPrice: number;
+  wareHouse: string;
+  status: string;
+  sampleCount: number;
+  sampleUnitPrice: number;
+  processingMode: string;
+  sampleAvailable: boolean;
+  quantity: number;
+  specie: string;
+  bagType: string;
+  variety: string;
+  farmName: string;
+  producerType: string;
+  itemId: string;
+}
 interface IProductDetails {
-  product: any;
+  product: IProduct;
   status: boolean;
 }
 
 function ProductDetails({ product, status }: IProductDetails) {
-  const [addingStates, setAddingStates] = useState<{ [key: string]: boolean }>({});
+  console.log(product);
+  const [Adding, setIsAdding] = useState(false);
   const [quantities, setQuantities] = useState<number[]>(new Array());
   const [preferredItems, setPreferredItems] = useState<IItems[]>([]);
 
   const handleQuantityChange = (newQuantity: number) => {
-    setQuantities([newQuantity]);
-
-    setPreferredItems((prevPreferredItems) => {
-      const updatedPreferredItems = [{ ...prevPreferredItems[0], quantity: newQuantity }];
-
-      localStorage.setItem('preferredItems', JSON.stringify(updatedPreferredItems));
-      return updatedPreferredItems;
-    });
+    // setQuantities([newQuantity]);
+    // setPreferredItems((prevPreferredItems) => {
+    //   const updatedPreferredItems = [{ ...prevPreferredItems[0], quantity: newQuantity }];
+    //   localStorage.setItem('preferredItems', JSON.stringify(updatedPreferredItems));
+    //   return updatedPreferredItems;
+    // });
   };
-  const AddCart = async (product: IItems, productName: string) => {
-    setAddingStates((prev) => ({ ...prev, [product.itemId]: true }));
-
+  const AddCart = async (product: IProduct, productName: string) => {
+    setIsAdding(true);
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       let cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
 
       const existingItemIndex = cartItems.findIndex(
-        (item: any) => item.product.itemId === product.itemId
+        (item: IProduct) => item.itemId === product.itemId
       );
       if (existingItemIndex !== -1) {
         toast.info(`${productName} already exists in your cart.`, {});
-        setAddingStates((prev) => ({ ...prev, [product.itemId]: false }));
+        setIsAdding(false);
         return;
       }
 
       cartItems.push(product);
-     
+
       localStorage.setItem('cartItems', JSON.stringify(cartItems));
 
       toast.success(
@@ -70,17 +89,17 @@ function ProductDetails({ product, status }: IProductDetails) {
       );
     } catch (error) {
     } finally {
-      setAddingStates((prev) => ({ ...prev, [product.itemId]: false }));
+      setIsAdding(false);
     }
   };
 
   return (
-    <div className=" rounded-[8px] bg-white  md:mx-0 w-[90vw] md:w-full">
+    <div className=" rounded-[8px] bg-white  md:mx-0 md:w-full">
       <div className={` px-5 ${!status && 'pb-2'}`}>
         {status ? (
           <div className="flex items-center gap-2 md:pt-4 pt-2 ">
-            <h3 className="font-semibold text-xl">$2.83/lb</h3>
-            <div className="font-light text-[15px] mt-2">$374/bag</div>
+            <h3 className="font-semibold text-xl">${product?.sampleUnitPrice}/lb</h3>
+            <div className="font-light text-[15px] mt-2">${product?.unitPrice}/bag</div>
           </div>
         ) : (
           <h3 className="md:text-lg text-base font-medium text-textcolor pt-4">
@@ -101,15 +120,15 @@ function ProductDetails({ product, status }: IProductDetails) {
           </div>
           <div className="flex justify-between">
             <div className="font-normal text-[13px] md:text-[15px] text-[#585962]">Status</div>
-            <div className="font-medium text-[13px] md:text-[15px]">Spot</div>
+            <div className="font-medium text-[13px] md:text-[15px]">{product?.status}</div>
           </div>
           <div className="flex justify-between">
             <div className="font-normal text-[13px] md:text-[15px] text-[#585962]">Lot Number</div>
-            <div className="font-medium text-[13px] md:text-[15px]">P611992-2</div>
+            <div className="font-medium text-[13px] md:text-[15px]">{product?.lotNumber}</div>
           </div>
           <div className="flex justify-between">
             <div className="font-normal text-[13px] md:text-[15px] text-[#585962]">Warehouse </div>
-            <div className="font-medium text-[13px] md:text-[15px]">Alameda, CA</div>
+            <div className="font-medium text-[13px] md:text-[15px]">{product?.wareHouse}</div>
           </div>
           <div className="flex justify-between">
             <div className="font-normal text-[13px] md:text-[15px] text-[#585962]">
@@ -118,11 +137,19 @@ function ProductDetails({ product, status }: IProductDetails) {
             <div>
               <div className="flex justify-end gap-2">
                 <h5 className="font-medium text-[13px] md:text-[15px]">Bags</h5>{' '}
-                <span className="text-green-500 text-[13px] md:text-[15px]">(Available)</span>
+                <span
+                  className={`${product?.stockAvailable ? 'text-green-500 ' : 'text-[#f44336]'}text-[13px] md:text-[15px]`}
+                >
+                  {product?.stockAvailable ? 'Available' : 'Not Available'}
+                </span>
               </div>
               <div className="flex gap-2">
                 <h5 className="font-medium text-[13px] md:text-[15px]">Samples</h5>{' '}
-                <span className="text-[#f44336] text-[13px] md:text-[15px]">(Not Available)</span>
+                <span
+                  className={`${product?.sampleAvailable ? 'text-green-500' : 'text-[#f44336]'}  text-[13px] md:text-[15px]`}
+                >
+                  {product?.sampleAvailable ? 'Available' : 'Not Available'}
+                </span>
               </div>
             </div>
           </div>
@@ -136,9 +163,11 @@ function ProductDetails({ product, status }: IProductDetails) {
                 <Button
                   className="h-10 md:w-[157px] bg-primary text-white font-medium text-sm"
                   onClick={() => {
-                    AddCart(product.itemId, product.name);
-                  }}>
-                  {addingStates[product.itemId] ? 'Adding...' : 'Add to Cart'}
+                    AddCart(product, product.name);
+                  }}
+                  disabled={Adding}
+                >
+                  {Adding ? 'Adding...' : 'Add to Cart'}
                 </Button>
                 <Button className="h-10 md:w-[157px] bg-white text-primary font-medium text-sm border border-primary">
                   Request Sample
