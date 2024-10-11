@@ -7,8 +7,11 @@ interface PaymentComponentProps {
   orderId: string;
 }
 const stripePromise = loadStripe('call the env stripe public key here.');
-const userEmail = getAuthUser().email;
-const fullNames = getAuthUser().firstName + ' ' + getAuthUser().lastName;
+
+const user = getAuthUser();
+
+const userEmail = user?.email;
+const fullNames = user?.firstName + ' ' + user?.lastName;
 
 const PaymentComponent: React.FC<PaymentComponentProps> = ({ orderId }) => {
   return (

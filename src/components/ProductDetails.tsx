@@ -8,6 +8,7 @@ import { toast } from 'sonner';
 
 import { Link } from 'react-router-dom';
 import { IItems } from './tables/ItemsTable';
+
 export interface IProduct {
   flavor: string;
   name: string;
@@ -30,24 +31,18 @@ export interface IProduct {
   producerType: string;
   itemId: string;
 }
-interface IProductDetails {
+export interface IProductDetails {
   product: IProduct;
   status: boolean;
 }
 
 function ProductDetails({ product, status }: IProductDetails) {
-  console.log(product);
   const [Adding, setIsAdding] = useState(false);
   const [quantities, setQuantities] = useState<number[]>(new Array());
   const [preferredItems, setPreferredItems] = useState<IItems[]>([]);
 
   const handleQuantityChange = (newQuantity: number) => {
-    // setQuantities([newQuantity]);
-    // setPreferredItems((prevPreferredItems) => {
-    //   const updatedPreferredItems = [{ ...prevPreferredItems[0], quantity: newQuantity }];
-    //   localStorage.setItem('preferredItems', JSON.stringify(updatedPreferredItems));
-    //   return updatedPreferredItems;
-    // });
+   
   };
   const AddCart = async (product: IProduct, productName: string) => {
     setIsAdding(true);

@@ -38,7 +38,7 @@ export function EditContactForm({ user }: ProfileProps) {
 
   async function onSubmit(values: z.infer<typeof FormSchema>) {
     try {
-      setIsSubmitting(true); // Set loading state to true when submitting
+      setIsSubmitting(true);
 
       const updatedUser = {
         ...user,
@@ -54,7 +54,7 @@ export function EditContactForm({ user }: ProfileProps) {
         },
         body: JSON.stringify(updatedUser)
       });
-
+      console.log(response);
       if (!response.ok) {
         throw new Error('Failed to update user details');
       }

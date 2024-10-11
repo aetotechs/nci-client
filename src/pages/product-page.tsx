@@ -4,14 +4,14 @@ import CoffeeGrowth from '@/components/CoffeeGrowth';
 import CoffeeGuide from '@/components/CoffeeGuide';
 import CoffeeHistory from '@/components/CoffeeHistory';
 import Footer from '@/components/Footer';
-import Header from '@/components/Header';
+import Header, { HeaderProps } from '@/components/Header';
 import ProductDetails, { IProduct } from '@/components/ProductDetails';
 import { FetchProductById } from '@/lib/api-routes';
 
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
-function ProductPage({ status }: IStatus) {
+function ProductPage({ status, handleSearch }: HeaderProps) {
   const [product, setproduct] = useState<IProduct>();
   const { productId } = useParams();
   const { pathname } = useLocation();

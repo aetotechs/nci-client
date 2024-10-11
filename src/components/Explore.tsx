@@ -6,56 +6,42 @@ import { Button } from './ui/button';
 import { ChevronRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
-import { FetchItems } from '@/lib/api-routes';
 import { IItems } from './tables/ItemsTable';
+import { IProduct, IProductDetails } from './ProductDetails';
 export const truncate = (lotNumber: string) => {
   return lotNumber.length > 10 ? lotNumber.slice(0, 10) + '...' : lotNumber;
 };
 
-function Explore({ status }: IStatus) {
+export interface ExploreProps {
+  product: IProduct[];
+  status: boolean;
+}
+function Explore({ status, product }: ExploreProps) {
   const [addingStates, setAddingStates] = useState<{ [key: string]: boolean }>({});
-  const [products, setProducts] = useState<IItems[]>([]);
   const location = useLocation();
   const { pathname } = location;
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch(FetchItems);
-        if (response.ok) {
-          const data = await response.json();
-          setProducts(data);
-        } else {
-        }
-      } catch (error) {}
-    };
-
-    fetchProducts();
-  }, [products]);
-
   const HandleClick = (name: string) => {
-    navigate(`/product/${name}`);
+    navigate(`/p/${name}`);
   };
 
-  const AddCart = async (product: IItems, productName: string) => {
-    setAddingStates((prev) => ({ ...prev, [product.itemId]: true }));
+  const AddCart = async (p: IItems, pName: string) => {
+    setAddingStates((prev) => ({ ...prev, [p.itemId]: true }));
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       let cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
 
-      const existingItemIndex = cartItems.findIndex(
-        (item: IItems) => item.itemId === product.itemId
-      );
+      const existingItemIndex = cartItems.findIndex((item: IItems) => item.itemId === p.itemId);
       if (existingItemIndex !== -1) {
-        toast.info(`${productName} already exists in your cart.`, {});
-        setAddingStates((prev) => ({ ...prev, [product.itemId]: false }));
+        toast.info(`${pName} already exists in your cart.`, {});
+        setAddingStates((prev) => ({ ...prev, [p.itemId]: false }));
         return;
       }
 
-      cartItems.push(product);
+      cartItems.push(p);
 
       localStorage.setItem('cartItems', JSON.stringify(cartItems));
 
@@ -64,7 +50,7 @@ function Explore({ status }: IStatus) {
           <span>
             <img src="/icons/cartsuccess.svg" alt="cart" />
           </span>
-          <span className="font-bold">{productName}</span> has been added to your wishlist.
+          <span className="font-bold">{pName}</span> has been added to your wishlist.
         </div>,
 
         {
@@ -79,7 +65,7 @@ function Explore({ status }: IStatus) {
       );
     } catch (error) {
     } finally {
-      setAddingStates((prev) => ({ ...prev, [product.itemId]: false }));
+      setAddingStates((prev) => ({ ...prev, [p.itemId]: false }));
     }
   };
   return (
@@ -96,13 +82,11 @@ function Explore({ status }: IStatus) {
       )}
       <div className={`${pathname === '/coffee-shop' ? 'py-0 md:w-[62vw]     ' : ' md:py-0 '}`}>
         <div
-          className={`grid md:grid-cols-2 md:gap-3 lg:grid-cols-3 gap-3 ${pathname === '/' && 'lg:grid-cols-4 grid-cols-2'} `}
+          className={`grid md:grid-cols-2 grid-cols-2 md:gap-3 lg:grid-cols-3 gap-3 ${pathname === '/' && 'lg:grid-cols-4 grid-cols-2'} `}
         >
-          {products.map((product, index) => {
+          {product.map((p, index) => {
             const isDisabled =
-              product.stockAvailable === false &&
-              product.sampleAvailable === false &&
-              status === true;
+              p.stockAvailable === false && p.sampleAvailable === false && status === true;
 
             return (
               <div
@@ -116,15 +100,15 @@ function Explore({ status }: IStatus) {
               >
                 <div
                   className={`font-medium text-base mb-3 cursor-pointer `}
-                  onClick={() => HandleClick(product.itemId)}
+                  onClick={() => HandleClick(p.itemId)}
                 >
-                  {product.name}
+                  {p.name}
                 </div>
                 <div className="font-normal  mb-3 flex gap-1 items-center">
                   <span>
                     <img src="/icons/coffee-bean.svg" alt="Coffee Bean" />
                   </span>
-                  <span className="font-normal lower-case text-[12px]"> {product.flavor}</span>
+                  <span className="font-normal lower-case text-[12px]"> {p.flavor}</span>
                 </div>
                 <div className="font-normal mb-3">
                   {status && (
@@ -133,9 +117,9 @@ function Explore({ status }: IStatus) {
                         <p
                           className={` ${pathname === '/coffee-shop' && 'text-[15px]'} ${isDisabled ? 'text-[#b9bbc6]' : 'text-primary'}`}
                         >
-                          ${product.sampleUnitPrice}/lb
+                          ${p.sampleUnitPrice}/lb
                         </p>
-                        {product.sampleAvailable !== true && (
+                        {p.sampleAvailable !== true && (
                           <Badge
                             variant="outline"
                             className={`bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px] `}
@@ -149,9 +133,9 @@ function Explore({ status }: IStatus) {
                         <p
                           className={` ${pathname === '/coffee-shop' && 'text-[15px]'} ${isDisabled ? 'text-[#b9bbc6]' : 'text-primary'}`}
                         >
-                          ${product.unitPrice}/bag
+                          ${p.unitPrice}/bag
                         </p>
-                        {product.stockAvailable !== true && (
+                        {p.stockAvailable !== true && (
                           <Badge
                             variant="outline"
                             className="bg-badgebackground border-none font-normal flex items-center gap-1 h-[20px] text-[11px] rounded-[7px]"
@@ -165,8 +149,8 @@ function Explore({ status }: IStatus) {
                   )}
                 </div>
                 <div className="flex text-[12px] justify-between mb-4">
-                  <p className="font-medium ">{product.wareHouse}</p>
-                  <p className="font-normal  text-inactive">{truncate(product.lotNumber)}</p>
+                  <p className="font-medium ">{p.wareHouse}</p>
+                  <p className="font-normal  text-inactive">{truncate(p.lotNumber)}</p>
                 </div>
                 {status ? (
                   <div
@@ -175,12 +159,12 @@ function Explore({ status }: IStatus) {
                     <Button
                       type="submit"
                       onClick={() => {
-                        AddCart(product, product.name);
+                        AddCart(p, p.name);
                       }}
                       className={`rounded-[6px] bg-primary grow  text-white font-medium md:font-normal text-[15px] md:h-[40px] ${pathname == '/coffee-shop' ? 'md:max-h-[30px] h-[38px] text-sm md:text-[12px]' : 'md:max-h-[30px] h-[38px] md:text-[12px] text-sm'} ${isDisabled && 'text-[#585962] bg-primary/20'}`}
-                      disabled={isDisabled || addingStates[product.itemId]}
+                      disabled={isDisabled || addingStates[p.itemId]}
                     >
-                      {addingStates[product.itemId] ? 'Adding...' : 'Add to Cart'}
+                      {addingStates[p.itemId] ? 'Adding...' : 'Add to Cart'}
                     </Button>
                     <Button
                       className={`rounded-[6px] shrink md:max-w-[129px]    md:h-[40px] text-primary font-medium md:font-normal text-[15px] bg-white border border-primary  ${pathname == '/coffee-shop' ? 'md:max-h-[30px] h-[38px] text-sm  md:text-[12px]' : 'md:max-h-[30px] h-[38px] text-sm md:tex-[12px]'} ${isDisabled && 'text-[#1d1b20] border-primary/12'}`}

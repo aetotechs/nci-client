@@ -16,7 +16,9 @@ import {
 import { Input } from '@/components/ui/input';
 
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { PasswordReset } from '@/lib/api-routes';
+import { toast } from 'sonner';
 
 const FormSchema = z
   .object({
@@ -29,8 +31,12 @@ const FormSchema = z
   });
 
 export function ResetPasswordForm() {
+  const [submitting, setIsSubmitting] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+  const navigate = useNavigate();
+
+  const email = localStorage.getItem('email');
 
   const togglePassword = () => {
     setPasswordVisible(!passwordVisible);
@@ -47,9 +53,61 @@ export function ResetPasswordForm() {
     }
   });
 
-  function onSubmit(values: z.infer<typeof FormSchema>) {
-    console.log(values);
-  }
+  const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+    setIsSubmitting(true);
+    try {
+      const response = await fetch(PasswordReset(email, values.newPassword), {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+      });
+
+      if (response.status === 200) {
+        toast.success(
+          <div className="flex gap-1 items-center">
+            <span>
+              <img src="/icons/signupemail.svg" alt="Email" />
+            </span>
+            <span>Success!</span> Password Changed Successfully.
+          </div>,
+          {
+            style: {
+              background: '#007BFF1A',
+
+              color: '#007BFF',
+              border: '1px solid #007BFF80'
+            }
+          }
+        );
+        localStorage.removeItem('email');
+
+        setTimeout(() => {
+          navigate('/login');
+        }, 5000);
+      } else {
+        const errorData = await response.text();
+        toast.error(errorData, {
+          style: {
+            backgroundColor: '#F443361A',
+            color: '#F44336',
+            border: '1px solid #F4433680'
+          }
+        });
+      }
+    } catch (error) {
+      toast.error('Try Again Later', {
+        style: {
+          backgroundColor: '#F443361A',
+          color: '#FFE6E6',
+          border: '1px solid #F4433680'
+        }
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <Form {...form}>
@@ -110,8 +168,12 @@ export function ResetPasswordForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full font-normal text-sm mt-3  md:mt-6 ">
-          <Link to="/login">Reset Password</Link>
+        <Button
+          type="submit"
+          className="w-full font-normal text-sm mt-3  md:mt-6 "
+          disabled={submitting}
+        >
+          {submitting ? 'Submitting...' : 'Reset Password'}
         </Button>
       </form>
     </Form>

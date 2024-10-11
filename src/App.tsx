@@ -30,6 +30,7 @@ import Settings from './pages/settings';
 import { isAuthenticated } from './lib/cookie';
 import AdminRoute from './components/AdminRoute';
 import UserCategoriesPage from './pages/UserCategories';
+import VerifyOtp from './pages/verify-otp';
 export interface IStatus {
   status: boolean;
   user?: User;
@@ -51,6 +52,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/verify-email" element={<VerifyEmail />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/verify-otp" element={<VerifyOtp />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
           <Route path="/shop" element={<Shop status={loggedIn} />} />
           <Route path="/coffee-shop" element={<CoffeeShop status={loggedIn} />} />

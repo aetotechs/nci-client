@@ -8,9 +8,11 @@ export function AccountPopover() {
   const navigate = useNavigate();
   const HandleClick = () => {
     logout();
-    window.location.reload();
 
-    navigate('/');
+    setTimeout(() => {
+      navigate('/');
+      window.location.reload();
+    }, 2000);
   };
   return (
     <Popover>
