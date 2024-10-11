@@ -64,7 +64,7 @@ function Explore({ status }: IStatus) {
           <span>
             <img src="/icons/cartsuccess.svg" alt="cart" />
           </span>
-          <span className="font-bold">{productName}</span> has been added to your cart.
+          <span className="font-bold">{productName}</span> has been added to your wishlist.
         </div>,
 
         {
