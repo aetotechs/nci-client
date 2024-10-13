@@ -15,9 +15,9 @@ const CheckoutForm = ({ orderId, userEmail, fullNames }: CheckoutProps) => {
   const token: string | null = getUserToken();
   const stripe = useStripe();
   const elements = useElements();
-  const [errorMessage, setErrorMessage] = useState('');
-  const [isPaymentProcessing, setPaymentProcessing] = useState(false);
-  const [isPaymentComplete, setPaymentComplete] = useState(false);
+  const [ errorMessage, setErrorMessage ] = useState('');
+  const [ isPaymentProcessing, setPaymentProcessing ] = useState(false);
+  const [ isPaymentComplete, setPaymentComplete ] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
