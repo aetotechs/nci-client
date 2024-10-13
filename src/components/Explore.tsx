@@ -8,16 +8,21 @@ import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import { IItems } from './tables/ItemsTable';
 import { IProduct, IProductDetails } from './ProductDetails';
+
+// Isolate this to the utils file
 export const truncate = (lotNumber: string) => {
   return lotNumber.length > 10 ? lotNumber.slice(0, 10) + '...' : lotNumber;
 };
 
+// These type declarations can also be in the interfaces file
 export interface ExploreProps {
   product: IProduct[];
   status: boolean;
 }
+
 function Explore({ status, product }: ExploreProps) {
-  const [addingStates, setAddingStates] = useState<{ [key: string]: boolean }>({});
+  
+  const [ addingStates, setAddingStates ] = useState<{ [key: string]: boolean }>({});
   const location = useLocation();
   const { pathname } = location;
   const navigate = useNavigate();
