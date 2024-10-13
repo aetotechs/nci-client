@@ -6,7 +6,8 @@ import { getAuthUser } from '@/lib/cookie';
 interface PaymentComponentProps {
   orderId: string;
 }
-const stripePromise = loadStripe('call the env stripe public key here.');
+
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 const user = getAuthUser();
 

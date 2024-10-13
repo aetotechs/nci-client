@@ -12,11 +12,12 @@ import { CartItems } from './shop-address';
 import { FetchCartItems, FetchProductById } from '@/lib/api-routes';
 import { getUserToken } from '@/lib/cookie';
 import PaymentComponent from '@/components/PaymentComponent';
+
 export const OrderId = localStorage.getItem('orderId');
 
 function ShopPayment({ status }: IStatus) {
-  const [cartItems, setCartItems] = useState<CartItems[]>([]);
-
+  
+  const [ cartItems, setCartItems ] = useState<CartItems[]>([]);
   const { pathname } = useLocation();
 
   useEffect(() => {
