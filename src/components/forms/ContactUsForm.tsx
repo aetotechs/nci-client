@@ -65,7 +65,7 @@ export function ContactUsForm() {
             </FormItem>
           )}
         />
-        <Textarea placeholder="Message" className="h-5" />
+        <Textarea placeholder="Message" className="h-5 border" />
 
         <Button type="submit" className="w-full h-9 font-normal text-sm">
           Send Message

@@ -5,15 +5,102 @@ import ShippingAddress from '@/components/ShippingAddress';
 import Progress from '@/components/Progress';
 
 import { IStatus } from '@/App';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { getUserToken } from '@/lib/cookie';
+import { FetchCartItems, FetchProductById } from '@/lib/api-routes';
 
+interface ProductDetails {
+  flavor: string;
+  name: string;
+  lotNumber: string;
+  stockAvailable: boolean;
+  stockCount: number;
+  unitPrice: number;
+  wareHouse: string;
+  sampleCount: number;
+  sampleUnitPrice: number;
+  sampleAvailable: boolean;
+  quantity: number;
+  itemId: string;
+}
+export interface CartItems {
+  productDetails: ProductDetails;
+  productId: string;
+  quantity: number;
+}
+
+export interface ShoppAdressProps {
+  items: CartItems[];
+}
 function ShopAddress({ status }: IStatus) {
+  const [cartItems, setCartItems] = useState<CartItems[]>([]);
+  const [loading, setIsLoading] = useState(false);
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+  useEffect(() => {
+    setIsLoading(true);
+    const fetchCart = async () => {
+      const cartId = localStorage.getItem('cartId');
 
+      const token = getUserToken();
+
+      try {
+        const response = await fetch(FetchCartItems(cartId), {
+          method: 'GET',
+
+          headers: {
+            'Content-Type': 'application/json',
+
+            Authorization: `Bearer ${token}`
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch cart items');
+        }
+
+        const data = await response.json();
+
+        const cartItemIds = data.cartItems;
+
+        const detailedCartItems = await Promise.all(
+          cartItemIds.map(async (item: any) => {
+            const productResponse = await fetch(FetchProductById(item.productId), {
+              method: 'GET',
+
+              headers: {
+                'Content-Type': 'application/json',
+
+                Authorization: `Bearer ${token}`
+              }
+            });
+
+            if (!productResponse.ok) {
+              throw new Error(`Failed to fetch product details for ${item.productId}`);
+            }
+
+            const productData = await productResponse.json();
+
+            return {
+              ...item,
+
+              productDetails: productData
+            };
+          })
+        );
+        setCartItems(detailedCartItems);
+      } catch (error) {
+        console.error('Error fetching cart items:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchCart();
+  }, [cartItems]);
   return (
     <>
       <div className="md:px-[5vw] md:max-w-[100vw]     ">
@@ -28,7 +115,7 @@ function ShopAddress({ status }: IStatus) {
               <ShippingAddress />
             </div>
             <div className="md:w-[30vw]  max-h-max   ">
-              <OrderSummary />
+              <OrderSummary items={{ items: cartItems }} />
             </div>
           </div>
         </div>

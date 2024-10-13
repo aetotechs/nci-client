@@ -75,7 +75,6 @@ export function LoginForm() {
             window.location.reload();
           }, 5000);
         } else {
-          console.log(userRole);
           toast.success('Login Successful Redirecting...', {
             style: {
               background: '#007BFF1A',

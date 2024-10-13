@@ -1,4 +1,3 @@
-import { Button } from '@/components/ui/button';
 import { AddAdressDialog } from '@/components/AddNewAddress';
 import { EditAddressDialog } from './EditShipping';
 import { ProfileProps } from '@/pages/profile';
@@ -6,26 +5,10 @@ import { EditBillingAddressDialog } from './EditBilling';
 
 const MyAddresses = [
   {
-    name: 'Rahmah Nanyonga',
-    companyName: 'LTA Farm Logistics ltd',
-    tel: '0709742563',
-    title: 'Billing Address',
-    email: 'nanah@nanah.',
-    street: 'Speke Road',
-    country: 'Uganda',
-    city: 'Enttebe',
-    zipcode: '12345'
+    title: 'Billing Address'
   },
   {
-    name: 'Rahmah Nanyonga',
-    companyName: 'LTA Farm Logistics ltd',
-    title: 'Shipping Address',
-    tel: '0709742563',
-    email: 'nanah@nanah.',
-    street: 'Speke Road',
-    country: 'Uganda',
-    city: 'Enttebe',
-    zipcode: '12345'
+    title: 'Shipping Address'
   }
 ];
 
@@ -37,25 +20,25 @@ function Addresses({ user }: ProfileProps) {
       </div>
       <div className="flex flex-col md:grid grid-cols-2 gap-5 md:gap-10">
         {MyAddresses.map((address, index) => (
-          <div key={index} className="md:w-[407px]  border border-border rounded-[8px] pt-4 px-5 ">
+          <div key={index} className="  border border-border rounded-[8px] pt-4 px-5 ">
             <div className="md:font-semibold md:text-[17px] text-[15px] font-medium ">
               Default {address.title}
             </div>
 
             <div className="flex flex-col text-sm  my-1">
               <span className="text-texthighlight font-normal md:font-medium text-sm md:text-[15px]">
-                {address.name}
+                {user?.lastName} {user?.firstName}
               </span>
               <span className="md:font-medium font-normal text-sm md:text-[15px]">
-                {address.companyName}
+                {user?.company}
               </span>
-              <span>{address.street}</span>
+              <span>{user?.address.street}</span>
               <span>
-                {address.city},{address.zipcode}
+                {user?.address.city} {user?.address.zip}
               </span>
-              <span>{address.country}</span>
+              <span>{user?.address.country}</span>
               <span>
-                Tel:<span className="text-texthighlight">{address.tel}</span>
+                Tel:<span className="text-texthighlight">{user?.workPhone}</span>
               </span>
             </div>
             {address.title === 'Shipping Address' ? (
