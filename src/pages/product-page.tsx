@@ -4,15 +4,33 @@ import CoffeeGrowth from '@/components/CoffeeGrowth';
 import CoffeeGuide from '@/components/CoffeeGuide';
 import CoffeeHistory from '@/components/CoffeeHistory';
 import Footer from '@/components/Footer';
-import Header from '@/components/Header';
-import ProductDetails from '@/components/ProductDetails';
+import Header, { HeaderProps } from '@/components/Header';
+import ProductDetails, { IProduct } from '@/components/ProductDetails';
+import { FetchProductById } from '@/lib/api-routes';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
-function ProductPage({ status }: IStatus) {
+function ProductPage({ status, handleSearch }: HeaderProps) {
+  const [product, setproduct] = useState<IProduct>();
   const { productId } = useParams();
   const { pathname } = useLocation();
+  console.log(productId);
+
+  useEffect(() => {
+    const FetchProduct = async () => {
+      try {
+        const response = await fetch(FetchProductById(productId!));
+        const data = await response.json();
+        const FetchedProduct = data;
+        console.log(response);
+
+        setproduct(FetchedProduct);
+      } catch (error) {}
+    };
+
+    FetchProduct();
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -23,14 +41,14 @@ function ProductPage({ status }: IStatus) {
       <div className="md:px-[5vw] md:max-w-[100vw]  ">
         <Header status={status} />
 
-        <div className="px-4">
+        <div className="px-4 ">
           <div className="flex flex-col md:px-0 my-5 md:my-10 md:mb-1">
-            <div className="font-semibold text-2xl md:text-[26px]">{productId}</div>
+            <div className="font-semibold text-2xl md:text-[26px]">{product?.name}</div>
             <div className="font-normal text-[15px]  flex gap-1 items-center">
               <span>
                 <img src="/icons/coffee-bean.svg" alt="Coffee Bean" />
               </span>
-              <p className="font-normal text-[15px] py-1">Caramel, Berry, Chocolate</p>
+              <p className="font-normal text-[15px] py-1">{product?.flavor}</p>
             </div>
           </div>
 
@@ -47,13 +65,13 @@ function ProductPage({ status }: IStatus) {
             </div>
 
             <div className="col-span-2 ">
-              <ProductDetails product={productId} status={status} />
+              <ProductDetails product={product!} status={status} />
             </div>
           </div>
 
           <div className="">
             <div>
-              <AboutCoffee />
+              <AboutCoffee product={product!} />
             </div>
             <div>
               <CoffeeHistory />

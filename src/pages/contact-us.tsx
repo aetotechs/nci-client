@@ -97,7 +97,7 @@ function ContactUs({ status }: IStatus) {
 
             <div className=" md:px-0">
               <Tabs defaultValue="shipping" className=" ">
-                <TabsList className="md:my-5 pl-56 md:pl-0 md:mx-0 min-w-[90vw] overflow-x-auto flex justify-center items-center  ">
+                <TabsList className="md:my-5 pl-[76vw] md:pl-0 md:mx-0 min-w-[90vw] overflow-x-auto flex justify-center items-center  ">
                   <TabsTrigger
                     value="shipping"
                     className=" text-base data-[state=active]:text-primary data-[state=active]:border  border-primary data-[state=active]:bg-primary/20 data-[state=active]:rounded-[6px] data-[state=active]:font-medium"
@@ -126,7 +126,7 @@ function ContactUs({ status }: IStatus) {
                 <TabsContent value="shipping" className="w-full">
                   <Accordion type="single" collapsible className="">
                     <AccordionItem value="item-1">
-                      <AccordionTrigger className="md:font-medium text-sm md:text-base">
+                      <AccordionTrigger className="md:font-medium text-left text-sm md:text-base">
                         How do I track my green coffee shipment?
                       </AccordionTrigger>
                       <AccordionContent>
@@ -137,7 +137,7 @@ function ContactUs({ status }: IStatus) {
                       </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-2">
-                      <AccordionTrigger className="md:font-medium  text-[13px] md:text-base">
+                      <AccordionTrigger className="md:font-medium text-left  text-[13px] md:text-base">
                         How do I pick up green coffee from the warehouse?
                       </AccordionTrigger>
                       <AccordionContent>
@@ -148,7 +148,7 @@ function ContactUs({ status }: IStatus) {
                     </AccordionItem>
 
                     <AccordionItem value="item-3">
-                      <AccordionTrigger className="font-medium text-base">
+                      <AccordionTrigger className="md:font-medium text-[13px] md:text-base text-left">
                         How do you ship my coffee?
                       </AccordionTrigger>
                       <AccordionContent>
@@ -162,7 +162,7 @@ function ContactUs({ status }: IStatus) {
                 <TabsContent value="buying" className="w-full">
                   <Accordion type="single" collapsible className="w-full">
                     <AccordionItem value="item-1">
-                      <AccordionTrigger className="md:font-medium md:text-base">
+                      <AccordionTrigger className="md:font-medium text-[13px] md:text-base text-left">
                         What should I consider when choosing the quantity of coffee to buy online?
                       </AccordionTrigger>
                       <AccordionContent>
@@ -172,7 +172,7 @@ function ContactUs({ status }: IStatus) {
                       </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-2">
-                      <AccordionTrigger className="font-medium md:text-base">
+                      <AccordionTrigger className="md:font-medium text-[13px] md:text-base text-left">
                         What grind size should I choose when ordering online?
                       </AccordionTrigger>
                       <AccordionContent>
@@ -183,7 +183,7 @@ function ContactUs({ status }: IStatus) {
                     </AccordionItem>
 
                     <AccordionItem value="item-3">
-                      <AccordionTrigger className="font-medium text-base">
+                      <AccordionTrigger className="md:font-medium text-[13px] md:text-base text-left">
                         How long does it take to receive coffee ordered online?
                       </AccordionTrigger>
                       <AccordionContent>
@@ -197,7 +197,7 @@ function ContactUs({ status }: IStatus) {
                 <TabsContent value="origin" className="w-full">
                   <Accordion type="single" collapsible className="w-full">
                     <AccordionItem value="item-1">
-                      <AccordionTrigger className="font-medium text-base">
+                      <AccordionTrigger className="md:font-medium text-[13px] md:text-base text-left">
                         Is your coffee ethically sourced?
                       </AccordionTrigger>
                       <AccordionContent>
@@ -207,7 +207,7 @@ function ContactUs({ status }: IStatus) {
                       </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-2">
-                      <AccordionTrigger className="font-medium text-base">
+                      <AccordionTrigger className="md:font-medium text-[13px] md:text-base text-left">
                         Is your coffee single-origin or a blend?
                       </AccordionTrigger>
                       <AccordionContent>
@@ -218,7 +218,7 @@ function ContactUs({ status }: IStatus) {
                     </AccordionItem>
 
                     <AccordionItem value="item-3">
-                      <AccordionTrigger className="font-medium text-base">
+                      <AccordionTrigger className="md:font-medium text-[13px] md:text-base text-left">
                         Where do your coffee beans come from?
                       </AccordionTrigger>
                       <AccordionContent>
@@ -232,7 +232,7 @@ function ContactUs({ status }: IStatus) {
                 <TabsContent value="quality" className="w-full">
                   <Accordion type="single" collapsible className="w-full">
                     <AccordionItem value="item-1">
-                      <AccordionTrigger className="font-medium text-sm md:text-base">
+                      <AccordionTrigger className="md:font-medium text-[13px] md:text-base text-left">
                         How often is the coffee tested for quality and flavor consistency?
                       </AccordionTrigger>
                       <AccordionContent>
@@ -241,7 +241,7 @@ function ContactUs({ status }: IStatus) {
                       </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-2">
-                      <AccordionTrigger className="font-medium text-sm md:text-base">
+                      <AccordionTrigger className="md:font-medium text-[13px] md:text-base text-left">
                         How do you test your coffee for quality?
                       </AccordionTrigger>
                       <AccordionContent>
@@ -252,7 +252,7 @@ function ContactUs({ status }: IStatus) {
                     </AccordionItem>
 
                     <AccordionItem value="item-3">
-                      <AccordionTrigger className="font-medium text-sm md:text-base">
+                      <AccordionTrigger className="md:font-medium text-[13px] md:text-base text-left">
                         What certifications should I look for to ensure the coffee meets
                         high-quality standards?
                       </AccordionTrigger>

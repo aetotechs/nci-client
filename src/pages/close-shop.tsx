@@ -7,17 +7,18 @@ import { Link, useLocation } from 'react-router-dom';
 import Footer from '@/components/Footer';
 import { IStatus } from '@/App';
 import { useEffect } from 'react';
+import { Address } from '@/components/ShippingAddress';
 
-const Address = {
-  name: 'Rahmah Nanyonga',
-  companyName: 'LTA Farm Logistics ltd',
-  tel: '0709742563',
-  email: 'nanah@nanah.',
-  street: 'Speke Road',
-  country: 'Uganda',
-  city: 'Enttebe',
-  zipcode: '12345'
-};
+// const Address = {
+//   name: 'Rahmah Nanyonga',
+//   companyName: 'LTA Farm Logistics ltd',
+//   tel: '0709742563',
+//   email: 'nanah@nanah.',
+//   street: 'Speke Road',
+//   country: 'Uganda',
+//   city: 'Enttebe',
+//   zipcode: '12345'
+// };
 
 function ClosedOrder({ status }: IStatus) {
   const { pathname } = useLocation();
@@ -53,21 +54,24 @@ function ClosedOrder({ status }: IStatus) {
                     </h5>
                     <div className="flex my-1 gap-1 ">
                       <h6 className="text-[#616161]">Name:</h6>
-                      <p>{Address.name}</p>
+                      <p>
+                        {Address?.lastName} <span>{Address?.firstName}</span>
+                      </p>
                     </div>
                     <div className="flex  my-1 gap-1">
                       <h6 className="text-[#616161]">Company:</h6>
-                      <p>{Address.companyName}</p>
+                      <p>{Address?.company}</p>
                     </div>
                     <div className="flex  my-1 gap-1">
                       <h6 className="text-[#616161]">Address:</h6>
-                      <p>
-                        {Address.street}, {Address.city}, {Address.zipcode}, {Address.country}
+                      <p className="flex gap-1">
+                        {Address?.address?.street} {Address?.address?.city}{' '}
+                        {Address?.address?.zipcode} {Address?.address?.country}
                       </p>
                     </div>
                     <div className="flex  my-1 gap-1">
                       <h6 className="text-[#616161]">Tel:</h6>
-                      <p>{Address.tel}</p>
+                      <p>{Address.workPhone}</p>
                     </div>
                     <div className="flex  my-1 gap-1">
                       <h6 className="text-[#616161]">Email:</h6>
