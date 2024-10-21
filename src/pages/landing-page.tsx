@@ -9,10 +9,14 @@ import CoffeeJourney from '@/components/CoffeeJourney';
 import Header, { HeaderProps } from '@/components/Header';
 import { FetchProducts } from '@/lib/hooks/FetchProducts';
 import { IStatus } from '@/App';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IProduct } from '@/components/ProductDetails';
+import { useLocation } from 'react-router-dom';
 
 function LandingPage({ status }: IStatus) {
+  const { pathname } = useLocation();
+
+ 
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
 
@@ -38,7 +42,9 @@ function LandingPage({ status }: IStatus) {
 
     setFilteredProducts(filtered);
   };
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
   return (
     <>
       <div className="lg:px-[4vw] md:px-[2vw] md:max-w-[100vw]     ">

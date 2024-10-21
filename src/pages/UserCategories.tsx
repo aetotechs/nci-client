@@ -15,10 +15,13 @@ import {
 
 import { FilterSheet, Listings } from '@/components/FilterMobile';
 import CoffeeListings from '@/components/CoffeeListings';
+import { FetchProducts } from '@/lib/hooks/FetchProducts';
 
 function UserCategoriesPage({ status }: IStatus) {
   const { pathname } = useLocation();
   const { categoryId } = useParams();
+  const products = FetchProducts();
+
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -68,7 +71,7 @@ function UserCategoriesPage({ status }: IStatus) {
             </div>
 
             <div className="flex justify-center  md:w-[70vw] ">
-              <Explore status={status} />
+              <Explore status={status} product={products} />
             </div>
           </div>
         </div>

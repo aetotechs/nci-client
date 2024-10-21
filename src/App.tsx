@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 
 import LoginPage from '@/pages/login';
 import ForgotPasswordPage from '@/pages/forgot-password';
@@ -46,7 +46,7 @@ function App() {
   return (
     <>
       <Toaster />
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route index element={<LandingPage status={loggedIn} />} />
           <Route path="/login" element={<LoginPage />} />
@@ -139,7 +139,7 @@ function App() {
             }
           />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </>
   );
 }
