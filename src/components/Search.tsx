@@ -1,14 +1,15 @@
 import { Input } from '@/components/ui/input';
 interface SearchProps {
-  handleSearch?: (searchTerm: string) => void; // Optional prop
+  handleSearch?: (searchTerm: string) => void;
+  className?: string;
 }
 
-function Search({ handleSearch }: SearchProps) {
+function Search({ handleSearch,className }: SearchProps) {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const searchQuery = event.target.value.toLowerCase();
 
     if (handleSearch) {
-      handleSearch(searchQuery); // Only call handleSearch if it exists
+      handleSearch(searchQuery); 
     }
   };
   return (

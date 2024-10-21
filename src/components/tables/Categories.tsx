@@ -14,10 +14,10 @@ export interface ICategories {
   id: string;
   name: string;
   description: string;
-  subcategories: string[];
+  subCategories: string[];
 }
 
-interface ICategoriesTable {
+export interface ICategoriesTable {
   categories: ICategories[];
   category?: ICategories;
 }
@@ -30,7 +30,7 @@ export function CategoriesTable({ categories, category }: ICategoriesTable) {
           <TableHead className="text-dark font-medium ">ID</TableHead>
           <TableHead className="text-dark font-medium">Name</TableHead>
           <TableHead className="text-dark font-medium">Description</TableHead>
-          <TableHead className="text-dark font-medium">Subcategories</TableHead>
+          <TableHead className="text-dark font-medium">subCategories</TableHead>
           <TableHead>
             <span className="flex md:hidden">Actions</span>
           </TableHead>
@@ -44,7 +44,7 @@ export function CategoriesTable({ categories, category }: ICategoriesTable) {
             <TableCell>{category.description}</TableCell>
             <TableCell>
               <div className="flex gap-2 flex-wrap">
-                {category.subcategories.map((subcategory, subIndex) => (
+                {category.subCategories.map((subcategory, subIndex) => (
                   <Badge
                     variant="outline"
                     key={subIndex}

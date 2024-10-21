@@ -4,6 +4,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 import { CategoryForm } from './forms/AddCategoryForm';
 import { Plus } from 'lucide-react';
 
+
 export function AddCategory() {
   return (
     <Sheet>
