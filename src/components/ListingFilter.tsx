@@ -11,7 +11,7 @@ export function ListingFilter() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="outline" className="text-primary border-primary w-[111px] gap-2">
+        <Button variant="outline" className="text-primary border-primary bg-transparent hover:bg-transparent hover:text-primary w-[111px] gap-2">
           <span>
             <img src="/icons/filter.png" />
           </span>

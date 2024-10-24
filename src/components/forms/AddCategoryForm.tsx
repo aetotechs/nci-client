@@ -16,33 +16,66 @@ import { Input } from '@/components/ui/input';
 
 import { toast } from 'sonner';
 import { Textarea } from '../ui/textarea';
+import { AddCategory } from '@/lib/api-routes';
+import { useState } from 'react';
 
 const FormSchema = z.object({
   name: z.string().min(2, { message: 'Field is required' }),
   description: z.string().min(2, { message: 'Field is required' }),
-  subcategories: z.string().min(2, { message: 'Field is required' })
+  subCategories: z.array(z.string()).nonempty({ message: 'Subcategories are required' })
 });
 
 export function CategoryForm() {
+  const [submitting, setIsSubmitting] = useState(false);
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
       name: '',
       description: '',
-      subcategories: ''
+      subCategories: []
     }
   });
 
-  function onSubmit(values: z.infer<typeof FormSchema>) {
-    toast('Category Added Successfulyy ...', {
-      className: 'border border-primary text-center text-base flex justify-center rounded-lg mb-2'
-    });
-    console.log('values submitted', values);
-  }
+  const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+    setIsSubmitting(true);
+    try {
+      const response = await fetch(AddCategory, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+      });
+      if (response.status === 200) {
+        toast.success(<div className="flex gap-1 items-center">Category added Successfully.</div>, {
+          style: {
+            background: '#007BFF1A',
+
+            color: '#007BFF',
+            border: '1px solid #007BFF80'
+          }
+        });
+
+        form.reset();
+      } else {
+        const errorData = await response.text();
+        toast.error("Category already exists", {
+          style: {
+            backgroundColor: '#F443361A',
+            color: '#F44336',
+            border: '1px solid #F4433680'
+          }
+        });
+      }
+    } catch (error) {
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className=" flex flex-col gap-6 ">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4">
         <FormField
           control={form.control}
           name="name"
@@ -50,7 +83,7 @@ export function CategoryForm() {
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input type="text" placeholder="" className="h-10 " {...field} />
+                <Input type="text" placeholder="" className="h-10" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -63,7 +96,11 @@ export function CategoryForm() {
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <Textarea placeholder="Type description for category here" />
+                <Textarea
+                  placeholder="Type description for category here"
+                  className="border"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -71,26 +108,29 @@ export function CategoryForm() {
         />
         <FormField
           control={form.control}
-          name="subcategories"
+          name="subCategories"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>SubCategories</FormLabel>
+              <FormLabel>Subcategories</FormLabel>
               <FormControl>
-                <Input type="text" placeholder="" className=" " {...field} />
+                <Input
+                  type="text"
+                  placeholder="Separate subcategories by commas"
+                  className=""
+                  {...field}
+                  onChange={(e) => field.onChange(e.target.value.split(',').map((s) => s.trim()))} // Convert input to array
+                />
               </FormControl>
-              <FormDescription>
-                Separate words with a comma, space bar, or enter key .
-              </FormDescription>
+              <FormDescription>Separate subcategories with commas.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <div className="border-t mt-5 flex justify-end ">
+        <div className="border-t mt-5 flex justify-end">
           <Button
             type="submit"
-            className=" font-normal my-2 text-sm border border-primary text-white md:w-[82px] h-[44px]"
-          >
-            Save
+            className="font-normal my-2 text-sm border border-primary text-white  h-[44px]">
+            {submitting ? 'Submitting...' : 'Save'}
           </Button>
         </div>
       </form>

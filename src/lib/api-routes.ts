@@ -23,5 +23,8 @@ export const DeleteCart = (cartId: string | null) =>
 export const DeleteProductById = (cartItemId: string | null, cartId: string | null) =>
   `${import.meta.env.VITE_ORDER_API_URL}carts/${cartId}?cartItemId=${cartItemId}}`;
 export const CreateOrder = `${import.meta.env.VITE_ORDER_API_URL}/orders`;
-export const CreatePayment = `${import.meta.env.VITE_PAYMENT_API_URL}/payments`
-export const ConfirmPayment = `${import.meta.env.VITE_PAYMENT_API_URL}/payments/confirm`
+export const CreatePayment = `${import.meta.env.VITE_PAYMENT_API_URL}/payments`;
+export const ConfirmPayment = `${import.meta.env.VITE_PAYMENT_API_URL}/payments/confirm`;
+export const AddRegion = `${import.meta.env.VITE_INVENTORY_API_URL}/regions`;
+export const AddCategory =`${import.meta.env.VITE_INVENTORY_API_URL}/categories`
+export const FetchCategories =`${import.meta.env.VITE_INVENTORY_API_URL}/categories`;

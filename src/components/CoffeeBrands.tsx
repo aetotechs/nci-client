@@ -41,13 +41,13 @@ const brands = [
 
 function CoffeeBrands() {
   return (
-    <div className="px-4 bg-white py-4 ">
-      <div className="flex justify-between">
-        <h3 className="font-semibold">Top Coffee Brands Ordered</h3>
+    <div className="px-4  py-5 ">
+      <div className="flex justify-between mb-5 items-center">
+        <h3 className="font-semibold text-base">Top Coffee Brands Ordered</h3>
         <div>
           <Select>
-            <SelectTrigger className="  border border-selectborder outline-none rounded-[5px] w-[100px] h-[33px] ">
-              <SelectValue placeholder="7 days" className="p-5 text-base font-bold " />
+            <SelectTrigger className="  border border-[#b9bbc6] outline-none rounded-[5px] text-[13px] w-[100px] h-[28px] ">
+              <SelectValue placeholder="7 days" className="p-5  font-bold " />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="7 days">7 days </SelectItem>
@@ -58,17 +58,17 @@ function CoffeeBrands() {
           </Select>
         </div>
       </div>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-5">
         {brands.map((brand, index) => (
-          <div className="flex flex-col my-2 " key={index}>
+          <div className="flex flex-col  gap-1 " key={index}>
             <div className="flex justify-between">
               <div>
-                <h4>{brand.name}</h4>
+                <h4 className='font-medium text-sm text-[#18181b]'>{brand.name}</h4>
               </div>
-              <div>{brand.orders} orders</div>
+              <div className='font-medium text-sm text-[#585962]'>{brand.orders} orders</div>
             </div>
             <div>
-              <Progress value={brand.percentage} />
+              <Progress value={brand.percentage} className='h-2' />
             </div>
           </div>
         ))}

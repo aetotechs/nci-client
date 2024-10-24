@@ -16,18 +16,21 @@ import { Input } from '@/components/ui/input';
 import { toast } from 'sonner';
 import { Textarea } from '../ui/textarea';
 import { ScrollArea } from '../ui/scroll-area';
+import { AddRegion } from '@/lib/api-routes';
+import { useState } from 'react';
 
 const FormSchema = z.object({
   name: z.string().min(2, { message: 'Field is required' }),
   description: z.string().min(2, { message: 'Field is required' }),
-  country: z.string().min(2, { message: 'Field is required' }),
-  soil: z.string().min(2, { message: 'Field is required' }),
-  altitude: z.string().min(2, { message: 'Field is required' }),
-  history: z.string().min(2, { message: 'Field is required' }),
-  coffeegrowth: z.string().min(2, { message: 'Field is required ' })
+  country: z.string().optional(),
+  soil: z.string().optional(),
+  altitude: z.string().optional(),
+  history: z.string().optional(),
+  coffeegrowth: z.string().optional()
 });
 
 export function RegionForm() {
+  const [submitting, setIsSubmitting] = useState(false);
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -41,12 +44,22 @@ export function RegionForm() {
     }
   });
 
-  function onSubmit(values: z.infer<typeof FormSchema>) {
-    toast('Category Added Successfulyy ...', {
-      className: 'border border-primary text-center text-base flex justify-center rounded-lg mb-2'
-    });
-    console.log('values submitted', values);
-  }
+  const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+    setIsSubmitting(true);
+    try {
+      const response = await fetch(AddRegion, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+      });
+      console.log(response);
+    } catch (error) {
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <ScrollArea className="h-[90vh] w-full ">
@@ -61,7 +74,7 @@ export function RegionForm() {
                 <FormControl>
                   <Input
                     type="text"
-                    placeholder="Enter Name of Country"
+                    placeholder="Enter name of the region"
                     className="h-10 "
                     {...field}
                   />
@@ -87,7 +100,7 @@ export function RegionForm() {
           <div className="flex items-center gap-2">
             <FormField
               control={form.control}
-              name="name"
+              name="altitude"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Altitude(m)</FormLabel>
@@ -120,7 +133,7 @@ export function RegionForm() {
               <FormItem>
                 <FormLabel>Short Description</FormLabel>
                 <FormControl>
-                  <Textarea placeholder="Type description for origin here" />
+                  <Textarea placeholder="Type description for origin here" className='border'/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -133,7 +146,7 @@ export function RegionForm() {
               <FormItem>
                 <FormLabel>History of Coffee *</FormLabel>
                 <FormControl>
-                  <Textarea placeholder="Type description for origin here" />
+                  <Textarea placeholder="Type description for origin here" className='border' />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -146,7 +159,7 @@ export function RegionForm() {
               <FormItem>
                 <FormLabel>Growing Cofffee *</FormLabel>
                 <FormControl>
-                  <Textarea placeholder="Type description for origin here" />
+                  <Textarea placeholder="Type description for origin here" className='border' />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -156,9 +169,9 @@ export function RegionForm() {
           <div className="border-t md:mt-54 flex justify-end">
             <Button
               type="submit"
-              className=" font-normal my-2 text-sm border border-primary text-white md:w-[82px] h-[44px]"
-            >
-              Save
+              className=" font-normal my-2 text-sm border border-primary text-white  h-[44px]"
+              disabled={submitting}>
+              {submitting ? 'Submitting' : 'Save'}
             </Button>
           </div>
         </form>

@@ -67,7 +67,7 @@ export function OriginForm() {
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <Textarea placeholder="Type description for origin here" />
+                <Textarea placeholder="Type description for origin here" className='border' />
               </FormControl>
               <FormMessage />
             </FormItem>
