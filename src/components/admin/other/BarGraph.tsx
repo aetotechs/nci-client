@@ -1,5 +1,4 @@
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
-
+import { Bar, BarChart, XAxis, YAxis } from 'recharts';
 import {
   ChartConfig,
   ChartContainer,

@@ -1,5 +1,4 @@
 import { Download } from 'lucide-react';
-
 import RecentCustomers from './RecentCustomers';
 import SalesGraph from './SalesGraph';
 import { StockTable } from '../tables/StockTable';
