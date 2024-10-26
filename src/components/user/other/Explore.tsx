@@ -28,7 +28,7 @@ function Explore({ status, product }: ExploreProps) {
   const navigate = useNavigate();
 
   const HandleClick = (name: string) => {
-    navigate(`/p/${name}`);
+    navigate(`/product/${name}`);
   };
 
   const AddCart = async (p: IItems, pName: string) => {
