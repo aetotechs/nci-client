@@ -133,7 +133,7 @@ export function ItemsTable({ items, checkedStates, setCheckedStates }: ITablePro
               >
                 <Checkbox checked={checkedStates ? checkedStates[index] : false} />
               </div>
-              <div className="border max-h-48 mb-3 rounded-[8px] grow">
+              <div className="border lg:h-[100px] mb-3 rounded-[8px] grow">
                 <TableRow className="flex flex-col md:grid md:grid-cols-6 md:gap-4">
                   <TableCell className="font-medium col-span-3">
                     <div>

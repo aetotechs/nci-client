@@ -59,7 +59,7 @@ function App() {
           <Route path="/shipping-address" element={<ShopAddress status={loggedIn} />} />
           <Route path="/shop-payment" element={<ShopPayment status={loggedIn} />} />
           <Route path="/close-shop" element={<ClosedOrder status={loggedIn} />} />
-          <Route path="/product/:productId" element={<ProductPage status={loggedIn} />} />
+          <Route path="/p/:productId" element={<ProductPage status={loggedIn} />} />
           <Route path="/profile" element={<Profile status={loggedIn} />} />
           <Route path="/about" element={<About status={loggedIn} />} />
           <Route path="/contact-us" element={<ContactUs status={loggedIn} />} />
