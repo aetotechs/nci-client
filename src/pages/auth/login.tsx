@@ -16,7 +16,7 @@ function LoginPage() {
           </div>
           <div className=" w-full px-5 md:px-10 py-2">
             <Tabs defaultValue="login">
-              <TabsList className="  flex justify-around p-1   mb-4 rounded-[10px]  bg-[#f5f5f5] ">
+              <TabsList className="flex justify-around p-1 mb-4 rounded-[10px] bg-[#f5f5f5] ">
                 <TabsTrigger
                   value="login"
                   className="py-2 font-normal grow  text-sm md:w-[20vw] data-[state=active]:bg-primary data-[state=active]:rounded-[5px] "

@@ -22,6 +22,7 @@ function VerifyOtp() {
       });
 
       const message = await response.text();
+      
       if (response.ok) {
         toast.success(`OTP ${message} to ${email}`, {
           style: {
@@ -33,13 +34,7 @@ function VerifyOtp() {
         });
         window.location.reload();
       } else {
-        toast.error(message, {
-          style: {
-            backgroundColor: '#F443361A',
-            color: '#F44336',
-            border: '1px solid #F4433680'
-          }
-        });
+        toast.error(message);
       }
     } catch (error) {
       console.error('Error resending OTP:', error);
