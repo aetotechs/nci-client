@@ -1,9 +1,7 @@
 import { useState } from 'react';
-
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-
 import { Button } from '@/components/common/ui/button';
 import {
   Form,
@@ -14,16 +12,15 @@ import {
   FormMessage
 } from '@/components/common/ui/form';
 import { Input } from '@/components/common/ui/input';
-
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { PasswordReset } from '@/utils/hooks/api-routes';
-import { toast } from 'sonner';
+import { ErrorToast, SuccessToast } from '../ui/Toasts';
 
 const FormSchema = z
   .object({
-    newPassword: z.string().min(8, { message: 'Field is required' }),
-    confirmPassword: z.string().min(8, { message: 'Field is required' })
+    newPassword: z.string().min(8, { message: 'Password must have atleast 8 alphanumerics' }),
+    confirmPassword: z.string()
   })
   .refine((data) => data.newPassword === data.confirmPassword, {
     message: "Passwords don't match",
@@ -65,45 +62,28 @@ export function ResetPasswordForm() {
       });
 
       if (response.status === 200) {
-        toast.success(
+        
+        SuccessToast(
           <div className="flex gap-1 items-center">
             <span>
               <img src="/icons/signupemail.svg" alt="Email" />
             </span>
             <span>Success!</span> Password Changed Successfully.
-          </div>,
-          {
-            style: {
-              background: '#007BFF1A',
-
-              color: '#007BFF',
-              border: '1px solid #007BFF80'
-            }
-          }
+          </div>
         );
+        
         localStorage.removeItem('email');
 
         setTimeout(() => {
           navigate('/login');
         }, 5000);
+
       } else {
         const errorData = await response.text();
-        toast.error(errorData, {
-          style: {
-            backgroundColor: '#F443361A',
-            color: '#F44336',
-            border: '1px solid #F4433680'
-          }
-        });
+        ErrorToast(errorData)
       }
     } catch (error) {
-      toast.error('Try Again Later', {
-        style: {
-          backgroundColor: '#F443361A',
-          color: '#FFE6E6',
-          border: '1px solid #F4433680'
-        }
-      });
+      ErrorToast("Error resseting password");
     } finally {
       setIsSubmitting(false);
     }

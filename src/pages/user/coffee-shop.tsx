@@ -1,6 +1,5 @@
 import { IStatus } from '@/App';
 import CoffeeListings from '@/components/user/other/CoffeeListings';
-import Explore from '@/components/user/other/Explore';
 import Footer from '@/components/user/other/Footer';
 import Header from '@/components/user/other/Header';
 import { useEffect, useState } from 'react';
@@ -12,17 +11,15 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/common/ui/select';
-
 import { FilterSheet, Listings } from '@/components/user/other/FilterMobile';
 import { IProduct } from '@/components/user/other/ProductDetails';
 import { FetchProducts } from '@/utils/services/FetchProducts';
+import Product from '@/components/user/other/Product';
 
 function CoffeeShop({ status }: IStatus) {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
-
   const products = FetchProducts();
-
+  const [ availableProducts, setAvailableProducts] = useState<IProduct[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
   const { pathname } = useLocation();
 
   const handleSearch = (searchQuery: string) => {
@@ -43,17 +40,18 @@ function CoffeeShop({ status }: IStatus) {
         <p className="text-primary">No Results Found</p>
       </div>;
     }
-
     setFilteredProducts(filtered);
+    return;
   };
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
   return (
     <>
       <div className="md:px-[5vw] w-[100vw] md:mb-10   ">
-        <Header status={status} handleSearch={handleSearch} />
+        <Header status={status} handleSearch={() => {}} />
         <div className="px-4  md:pt-0  overflow-hidden">
           <div className="flex flex-col gap-5  my-5  md:mb-0 md:flex-row md:justify-between  md:py-5">
             <h3 className="text-[26px] font-semibold mb-4 md:mb-0">Coffee Shop</h3>
@@ -87,11 +85,16 @@ function CoffeeShop({ status }: IStatus) {
               </div>
             </div>
 
-            <div className="flex justify-center md:w-[70vw] ">
-              <Explore
+            <div className="grid gap-4 grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 w-full">
+              { products?.map((product, index) => (
+                <>
+                  <Product key={index} product={product}/>
+                </>
+              ))}
+              {/* <Explore
                 status={status}
                 product={filteredProducts.length > 0 ? filteredProducts : products}
-              />
+              /> */}
             </div>
           </div>
         </div>

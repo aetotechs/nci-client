@@ -18,7 +18,7 @@ function Hero() {
         <div className="w-[40vw] md:w-[15vw] mt-7 md:mt-6">
           <Link
             className="flex justify-center items-center gap-2 bg-primary h-[48px] py-3 rounded-[8px] text-white font-semibold text-[16px]"
-            to="/shop"
+            to="/coffee-shop"
           >
             Shop Now
             <ChevronRight />

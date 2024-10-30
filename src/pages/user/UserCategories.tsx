@@ -1,5 +1,4 @@
 import { IStatus } from '@/App';
-import BreadCrumb from '@/components/common/other/BreadCrumb';
 import Explore from '@/components/user/other/Explore';
 import Footer from '@/components/user/other/Footer';
 import Header from '@/components/user/other/Header';
@@ -28,11 +27,13 @@ function UserCategoriesPage({ status }: IStatus) {
   }, [pathname]);
   return (
     <>
-      <div className="md:px-[5vw] md:max-w-[100vw]     ">
+      <div className='px-[5vw]'>
         <Header status={status} />
-        <div className="px-4 w-[100vw] py-5  md:pt-0 md:w-[1232px] overflow-hidden">
-          <div className="flex flex-col  mb-4 md:mb-0  md:justify-between  md:py-5">
-            <h3 className="text-[26px] font-semibold md:mt-5  md:mb-0">{categoryId}</h3>
+      </div>
+      <div className="md:px-[5vw]">
+        <div className="px-4 w-[100vw] py-5 md:pt-0">
+          <div className="flex flex-col mb-4 md:mb-0 md:justify-between md:py-5">
+            <h3 className="text-[26px] font-semibold md:mt-5 md:mb-0">{categoryId}</h3>
             <p className="">
               If coffee was born in Africa, growing wild in Ethiopia and harvested for a variety of
               uses since "time immemorial" (as the history writers seem inclined to phrase it), then
@@ -41,11 +42,12 @@ function UserCategoriesPage({ status }: IStatus) {
           </div>
 
           <div className="flex justify-between items-center my-2">
-            <div className="md:hidden ">
+            
+            {/* <div className="md:hidden">
               <FilterSheet />
-            </div>
+            </div> */}
 
-            <div className="flex md:justify-end   md:w-full items-center gap-3 my-2">
+            <div className="flex md:justify-end md:w-full items-center gap-3 my-2">
               <div className="font-medium text-base">Sort by:</div>
               <div>
                 <Select>
@@ -61,22 +63,26 @@ function UserCategoriesPage({ status }: IStatus) {
                 </Select>
               </div>
             </div>
+
           </div>
-          <div className="md:flex   gap-3">
-            <div className="w-[372px] bg-white h-max px-10 hidden md:flex md:flex-col">
+
+          <div className="md:flex gap-3">
+            <div className="bg-white h-max px-10 hidden md:flex md:flex-col">
               <h5 className="font-bold my-5">Filter</h5>
               <div>
                 <CoffeeListings Listings={Listings} />
               </div>
             </div>
 
-            <div className="flex justify-center  md:w-[70vw] ">
+            <div className="">
               <Explore status={status} product={products} />
             </div>
           </div>
         </div>
       </div>
-      <Footer />
+      <div>
+        <Footer />
+      </div>
     </>
   );
 }

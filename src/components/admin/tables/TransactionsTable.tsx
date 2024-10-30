@@ -6,9 +6,8 @@ import {
   TableHeader,
   TableRow
 } from '@/components/common/ui/table';
-
 import { ActionsPopover } from '../other/Actions';
-import { truncate } from '../../user/other/Explore';
+import { truncate } from '@/utils/commons/Truncate';
 
 export interface ITransactions {
   transactionId: string;
@@ -22,6 +21,7 @@ interface ITransactionTableProps {
   transactions: ITransactions[];
   transactionId?: ITransactions;
 }
+
 export function checkStatus(status: string) {
   switch (status) {
     case 'Completed':

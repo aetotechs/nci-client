@@ -1,7 +1,7 @@
 import { HashRouter, Routes, Route } from 'react-router-dom';
 
-import LoginPage from '@/pages/auth/commons/login';
-import ForgotPasswordPage from '@/pages/auth/commons/forgot-password';
+import LoginPage from '@/pages/auth/login';
+import ForgotPasswordPage from '@/pages/auth/forgot-password';
 import LandingPage from '@/pages/user/landing-page';
 import { Toaster } from '@/components/common/ui/sonner';
 import Shop from '@/pages/user/shop';
@@ -12,8 +12,8 @@ import { useEffect, useState } from 'react';
 import CoffeeShop from '@/pages/user/coffee-shop';
 import ProductPage from '@/pages/user/product-page';
 import Profile, { User } from '@/pages/user/profile';
-import ResetPasswordPage from '@/pages/auth/commons/reset-password';
-import VerifyEmail from '@/pages/auth/commons/verify-email';
+import ResetPasswordPage from '@/pages/auth/reset-password';
+import VerifyEmail from '@/pages/auth/verify-email';
 import About from '@/pages/user/about-us';
 import ContactUs from '@/pages/user/contact-us';
 import OriginsPage from '@/pages/admin/origins';
@@ -30,7 +30,8 @@ import Settings from './pages/user/settings';
 import { isAuthenticated } from './utils/cookies/UserCookies';
 import AdminRoute from './components/admin/other/AdminRoute';
 import UserCategoriesPage from './pages/user/UserCategories';
-import VerifyOtp from './pages/auth/commons/verify-otp';
+import VerifyOtp from './pages/auth/verify-otp';
+import NotFound from './pages/auth/NotFound';
 export interface IStatus {
   status: boolean;
   user?: User;
@@ -59,15 +60,17 @@ function App() {
           <Route path="/shipping-address" element={<ShopAddress status={loggedIn} />} />
           <Route path="/shop-payment" element={<ShopPayment status={loggedIn} />} />
           <Route path="/close-shop" element={<ClosedOrder status={loggedIn} />} />
-          <Route path="/p/:productId" element={<ProductPage status={loggedIn} />} />
+          <Route path="/product/:productId" element={<ProductPage status={loggedIn} />} />
           <Route path="/profile" element={<Profile status={loggedIn} />} />
           <Route path="/about" element={<About status={loggedIn} />} />
           <Route path="/contact-us" element={<ContactUs status={loggedIn} />} />
           <Route path="/region/:originId" element={<OriginsPage status={loggedIn} />} />
           <Route path="/category/:categoryId" element={<UserCategoriesPage status={loggedIn} />} />
 
+          <Route path="*" element={<NotFound/>} />
+
           <Route
-            path="/admin"
+            path="/dashboard"
             element={
               <AdminRoute>
                 <Admin />

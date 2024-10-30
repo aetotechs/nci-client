@@ -1,26 +1,37 @@
 import { SearchIcon, ShoppingCart } from 'lucide-react';
 import NavItems from '@/components/common/other/NavItems';
 import { Button } from '@/components/common/ui/button';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AccountPopover } from '@/components/user/other/Account';
-
 import { MobileNav } from '../../common/other/MobileNav';
 import { useState } from 'react';
 import Search from './Search';
+import { getNavigationUrl } from '@/utils/redirects/NavigationUtils';
+
+
 export interface HeaderProps {
   status: boolean;
   handleSearch?: (searchTerm: string) => void;
 }
 
 function Header({ status, handleSearch }: HeaderProps) {
-  const [isSearchActive, setIsSearchActive] = useState(false);
+  const [ isSearchActive, setIsSearchActive ] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleLoginNavigation = () => {
+    const redirectUrl = getNavigationUrl(location, "login");
+    navigate(redirectUrl);
+  }; 
 
   const handleSearchClick = () => {
     setIsSearchActive(true);
   };
+
   const handleCloseSearch = () => {
     setIsSearchActive(false);
   };
+
   return (
     <div
       className={`bg-white flex items-center ${isSearchActive ? 'justify-center' : 'justify-between'} p-5 md:p-5 lg:p-5 md:rounded-[30px] top-0  md:h-[89px] sticky md:top-2 shadow-md z-40 w-[100%] md:w-full`}
@@ -66,9 +77,9 @@ function Header({ status, handleSearch }: HeaderProps) {
               {status ? (
                 <AccountPopover />
               ) : (
-                <Link to="/login">
+                <div onClick={handleLoginNavigation}>
                   <Button className="h-[40px] w-[80px] rounded-[10px]">Login</Button>
-                </Link>
+                </div>
               )}
             </div>
 

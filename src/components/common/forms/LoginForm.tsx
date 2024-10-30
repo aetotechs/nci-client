@@ -1,9 +1,7 @@
 import { useState } from 'react';
-
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-
 import { Button } from '@/components/common/ui/button';
 import {
   Form,
@@ -14,27 +12,30 @@ import {
   FormMessage
 } from '@/components/common/ui/form';
 import { Input } from '@/components/common/ui/input';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { Login } from '@/utils/hooks/api-routes';
-import { toast } from 'sonner';
 import { getAuthUser, setAuthUser, setUserToken } from '@/utils/cookies/UserCookies';
+import { ErrorToast, SuccessToast } from '../ui/Toasts';
+
 
 const FormSchema = z.object({
   username: z.string().min(2, {
     message: 'username must be at least 2 characters.'
   }),
-  password: z.string().min(2, { message: 'password must be at least 2 characters.' })
+  password: z.string().min(6, { message: 'password must be at least 6 characters.' })
 });
 
 export function LoginForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
+  const [searchParams] = useSearchParams();
+  const redirectUrl = searchParams.get('redirect_url') || '#/';
 
   const togglePassword = () => {
     setVisible(!visible);
   };
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -45,6 +46,7 @@ export function LoginForm() {
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
     setIsSubmitting(true);
+    
     try {
       const response = await fetch(Login, {
         method: 'POST',
@@ -56,56 +58,27 @@ export function LoginForm() {
       const user = await response.json();
 
       if (response.ok) {
+        
         setUserToken(user.token);
         setAuthUser(user.user);
         const userRole = getAuthUser();
         const role = userRole.role;
 
-        if (role === 'USER') {
-          toast.success('Login Successful Redirecting...', {
-            style: {
-              background: '#007BFF1A',
+        SuccessToast('Login Successful, Redirecting you...');
 
-              color: '#007BFF',
-              border: '1px solid #007BFF80'
-            }
-          });
-          setTimeout(() => {
-            navigate('/');
-            window.location.reload();
-          }, 5000);
-        } else {
-          toast.success('Login Successful Redirecting...', {
-            style: {
-              background: '#007BFF1A',
+        const destination = role === 'ADMIN' ? '#/dashboard' : redirectUrl;
 
-              color: '#007BFF',
-              border: '1px solid #007BFF80'
-            }
-          });
-          setTimeout(() => {
-            navigate('/admin');
-          }, 2000);
-        }
+        setTimeout(() => {
+          window.location.href = destination;
+        }, 2000);
+
       } else {
         const data = await response.text();
-
-        toast.error(data, {
-          style: {
-            backgroundColor: '#F443361A',
-            color: '#F44336',
-            border: '1px solid #F4433680'
-          }
-        });
+        ErrorToast(data);
       }
+
     } catch (error) {
-      toast.error('Try Again Later', {
-        style: {
-          backgroundColor: '#F443361A',
-          color: '#F44336',
-          border: '1px solid #F4433680'
-        }
-      });
+      ErrorToast("Error logging you in, try again");
     } finally {
       setIsSubmitting(false);
     }
