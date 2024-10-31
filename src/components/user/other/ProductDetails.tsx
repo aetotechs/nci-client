@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 import { Link } from 'react-router-dom';
 import { IItems } from '../../admin/tables/ItemsTable';
+import { ErrorToast, SuccessToast } from '@/components/common/ui/Toasts';
 
 export interface IProduct {
   flavor: string;
@@ -35,13 +36,14 @@ export interface IProductDetails {
 }
 
 function ProductDetails({ product, status }: IProductDetails) {
-  const [Adding, setIsAdding] = useState(false);
+  const [isAdding, setIsAdding] = useState(false);
   const [quantities, setQuantities] = useState<number[]>(new Array());
   const [preferredItems, setPreferredItems] = useState<IItems[]>([]);
 
   const handleQuantityChange = (newQuantity: number) => {
-   
+   // Gona add the logic for increment and decrement here.
   };
+  
   const AddCart = async (product: IProduct, productName: string) => {
     setIsAdding(true);
     try {
@@ -62,25 +64,15 @@ function ProductDetails({ product, status }: IProductDetails) {
 
       localStorage.setItem('cartItems', JSON.stringify(cartItems));
 
-      toast.success(
+      SuccessToast(
         <div className="flex gap-1 items-center">
           <span>
             <img src="/icons/cartsuccess.svg" alt="cart" />
           </span>
           <span className="font-bold">{productName}</span> has been added to your cart.
-        </div>,
-
-        {
-          style: {
-            background: '#009A681A',
-
-            color: '#009A68',
-
-            border: '1px solid #009A6880'
-          }
-        }
-      );
+        </div>);
     } catch (error) {
+      ErrorToast(error);
     } finally {
       setIsAdding(false);
     }
@@ -100,48 +92,44 @@ function ProductDetails({ product, status }: IProductDetails) {
           </h3>
         )}
 
-        <div className="flex flex-col gap-1 my-2 md:my-3">
+        <div className="flex flex-col gap-2 my-2 md:my-3">
           <div className="flex justify-between">
             <div className="font-normal text-[13px] md:text-[15px] text-[#585962]">Bag Weight</div>
-            <div className="font-medium text-[13px] md:text-[15px]">60kg Bag</div>
+            <div className="font-medium text-[13px] md:text-sm">60kg Bag</div>
           </div>
           <div className="flex justify-between">
-            <div className="font-normal text-[13px] md:text-[15px] text-[#585962]">
-              Harvest Season
-            </div>
-            <div className="font-medium text-[13px] md:text-[15px]">2023/24</div>
+            <div className="font-normal text-[13px] md:text-[15px] text-[#585962]">Harvest Season</div>
+            <div className="font-medium text-[13px] md:text-sm">2023/24</div>
           </div>
           <div className="flex justify-between">
             <div className="font-normal text-[13px] md:text-[15px] text-[#585962]">Status</div>
-            <div className="font-medium text-[13px] md:text-[15px]">{product?.status}</div>
+            <div className="font-medium text-[13px] md:text-sm">{product?.status}</div>
           </div>
           <div className="flex justify-between">
             <div className="font-normal text-[13px] md:text-[15px] text-[#585962]">Lot Number</div>
-            <div className="font-medium text-[13px] md:text-[15px]">{product?.lotNumber}</div>
+            <div className="font-medium text-[13px] md:text-sm">{product?.lotNumber}</div>
           </div>
           <div className="flex justify-between">
             <div className="font-normal text-[13px] md:text-[15px] text-[#585962]">Warehouse </div>
-            <div className="font-medium text-[13px] md:text-[15px]">{product?.wareHouse}</div>
+            <div className="font-medium text-[13px] md:text-sm">{product?.wareHouse}</div>
           </div>
           <div className="flex justify-between">
-            <div className="font-normal text-[13px] md:text-[15px] text-[#585962]">
-              Availability
-            </div>
+            <div className="font-normal text-[13px] md:text-[15px] text-[#585962]">Availability</div>
             <div>
               <div className="flex justify-end gap-2">
                 <h5 className="font-medium text-[13px] md:text-[15px]">Bags</h5>{' '}
                 <span
-                  className={`${product?.stockAvailable ? 'text-green-500 ' : 'text-[#f44336]'}text-[13px] md:text-[15px]`}
+                  className={`${product?.stockAvailable ? 'text-green-500 ' : 'text-[#f44336]'} text-[13px] md:text-sm`}
                 >
-                  {product?.stockAvailable ? 'Available' : 'Not Available'}
+                  {product?.stockAvailable ? '(Available)' : '(Not Available)'}
                 </span>
               </div>
               <div className="flex gap-2">
                 <h5 className="font-medium text-[13px] md:text-[15px]">Samples</h5>{' '}
                 <span
-                  className={`${product?.sampleAvailable ? 'text-green-500' : 'text-[#f44336]'}  text-[13px] md:text-[15px]`}
+                  className={`${product?.sampleAvailable ? 'text-green-500' : 'text-[#f44336]'}  text-[13px] md:text-sm`}
                 >
-                  {product?.sampleAvailable ? 'Available' : 'Not Available'}
+                  {product?.sampleAvailable ? '(Available)' : '(Not Available)'}
                 </span>
               </div>
             </div>
@@ -158,9 +146,9 @@ function ProductDetails({ product, status }: IProductDetails) {
                   onClick={() => {
                     AddCart(product, product.name);
                   }}
-                  disabled={Adding}
+                  disabled={isAdding}
                 >
-                  {Adding ? 'Adding...' : 'Add to Cart'}
+                  {isAdding ? 'Adding...' : 'Add to Cart'}
                 </Button>
                 <Button className="h-10 md:w-[157px] bg-white text-primary font-medium text-sm border border-primary">
                   Request Sample

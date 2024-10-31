@@ -1,4 +1,3 @@
-import { IStatus } from '@/App';
 import AboutCoffee from '@/components/user/other/AboutCoffee';
 import CoffeeGrowth from '@/components/user/other/CoffeeGrowth';
 import CoffeeGuide from '@/components/user/other/CoffeeGuide';
@@ -52,19 +51,19 @@ function ProductPage({ status, handleSearch }: HeaderProps) {
             </div>
           </div>
 
-          <div className="flex flex-col gap-5 md:grid md:grid-rows-1  md:grid-cols-5 md:max-h-[60vh]  ">
-            <div className="col-span-3 h-[313px]  bg-map bg-contain bg-no-repeat bg-center mx-5 md:mx-0 relative flex items-center justify-center rounded-lg md:rounded-xl">
+          <div className="grid md:grid-cols-2">
+            <div className="h-full bg-map p-16 bg-contain bg-no-repeat bg-center flex items-center justify-center rounded-lg md:rounded-xl">
               <div className="flex items-center justify-center">
                 <img
                   src="/icons/location.svg"
                   alt="location"
-                  className="z-0 w-[10px] md:w-[20px]"
+                  className="z-0 w-full"
                 />
-                <span className="font-normal text-[sm] md:text-base">Nakuru</span>
+                <span className="font-normal text-[sm] md:text-base">Naguru</span>
               </div>
             </div>
 
-            <div className="col-span-2 ">
+            <div className="mt-4 md:mt-0">
               <ProductDetails product={product!} status={status} />
             </div>
           </div>

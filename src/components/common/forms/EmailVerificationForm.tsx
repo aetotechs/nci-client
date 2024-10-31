@@ -121,7 +121,7 @@ export function EmailOtpForm({ resetTimer }: { resetTimer: boolean }) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className=" w-full px-4 md:w-full flex flex-col justify-center items-center space-y-6 "
+        className="w-full px-4 md:w-full flex flex-col justify-center items-center space-y-6 "
       >
         <FormField
           control={form.control}
@@ -130,7 +130,7 @@ export function EmailOtpForm({ resetTimer }: { resetTimer: boolean }) {
             <FormItem>
               <FormControl>
                 <InputOTP maxLength={5} {...field} value={value} onChange={handleOtpChange}>
-                  <InputOTPGroup className=" ">
+                  <InputOTPGroup className="">
                     <InputOTPSlot index={0} className="w-10 h-10" />
                     <InputOTPSlot index={1} className="w-10 h-10" />
                     <InputOTPSlot index={2} className="w-10 h-10" />

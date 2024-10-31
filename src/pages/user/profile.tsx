@@ -95,8 +95,8 @@ function Profile({ status }: IStatus) {
         return <Wishlist status={status} />;
       case 'Addresses':
         return <Addresses user={user} />;
-      case 'Payment Methods':
-        return <PaymentMethods user={user} />;
+      // case 'Payment Methods':
+      //   return <PaymentMethods user={user} />;
       case 'Privacy':
         return <Privacy user={user} />;
       default:
@@ -155,12 +155,12 @@ function Profile({ status }: IStatus) {
                 >
                   Addresses
                 </div>
-                <div
+                {/* <div
                   onClick={() => setActiveLink('Payment Methods')}
                   className={`${activeLink === 'Payment Methods' ? 'text-primary w-[155px] h-[38px] md:border-l-4 px-1 py-2 rounded-[5px] md:w-[275px] md:rounded-none border-primary bg-outline font-medium ' : 'font-normal w-[150px]  '} text-[15px] md:text-base cursor-pointer `}
                 >
                   Payment Methods
-                </div>
+                </div> */}
                 <div
                   onClick={() => setActiveLink('Privacy')}
                   className={`${activeLink === 'Privacy' ? 'text-primary w-[116px] text-center md:text-left   md:w-[275px] h-[38px] rounded-[5px] md:rounded-none md:border-l-4 md:px-5 py-2 border-primary bg-outline font-medium ' : 'font-normal w-[60px]  '} text-[15px] md:text-base cursor-pointer  `}
@@ -174,7 +174,7 @@ function Profile({ status }: IStatus) {
             </div>
           </div>
 
-          <div className="md:w-[60vw]  pb-4">{renderActiveComponent()}</div>
+          <div className="md:w-[60vw] pb-4">{renderActiveComponent()}</div>
         </div>
       </div>
       <Footer />

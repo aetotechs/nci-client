@@ -1,19 +1,19 @@
 import { Button } from '@/components/common/ui/button';
-
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/common/ui/popover';
 import { logout } from '@/utils/cookies/UserCookieManager';
 import { Link, useNavigate } from 'react-router-dom';
 
 export function AccountPopover() {
   const navigate = useNavigate();
+  
   const HandleClick = () => {
     logout();
-
     setTimeout(() => {
       navigate('/');
       window.location.reload();
-    }, 2000);
+    }, 1000);
   };
+
   return (
     <Popover>
       <PopoverTrigger asChild>

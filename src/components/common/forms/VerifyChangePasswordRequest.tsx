@@ -29,12 +29,14 @@ export function VerifyOtPForm({ resetTimer }: { resetTimer: boolean }) {
   const email = localStorage.getItem('email');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
+  
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
       pin: ''
     }
   });
+
   useEffect(() => {
     if (timeLeft > 0) {
       const timerId = setInterval(() => {
@@ -44,6 +46,7 @@ export function VerifyOtPForm({ resetTimer }: { resetTimer: boolean }) {
       return () => clearInterval(timerId);
     }
   }, [timeLeft]);
+
   useEffect(() => {
     if (resetTimer) {
       setTimeLeft(600);
@@ -60,6 +63,7 @@ export function VerifyOtPForm({ resetTimer }: { resetTimer: boolean }) {
     setValue(value);
     form.setValue('pin', value);
   }
+
   const onSubmit = async (data: z.infer<typeof FormSchema>) => {
     setIsSubmitting(true);
     try {
@@ -121,7 +125,7 @@ export function VerifyOtPForm({ resetTimer }: { resetTimer: boolean }) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className=" w-full px-4 md:w-full flex flex-col justify-center items-center space-y-6 "
+        className="w-full px-4 md:w-full flex flex-col justify-center items-center space-y-6 "
       >
         <FormField
           control={form.control}
@@ -130,7 +134,7 @@ export function VerifyOtPForm({ resetTimer }: { resetTimer: boolean }) {
             <FormItem>
               <FormControl>
                 <InputOTP maxLength={5} {...field} value={value} onChange={handleOtpChange}>
-                  <InputOTPGroup className=" ">
+                  <InputOTPGroup className="">
                     <InputOTPSlot index={0} className="w-10 h-10" />
                     <InputOTPSlot index={1} className="w-10 h-10" />
                     <InputOTPSlot index={2} className="w-10 h-10" />
