@@ -7,7 +7,7 @@ import Progress from '@/components/user/other/Progress';
 import { IStatus } from '@/App';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { getUserToken } from '@/utils/cookies/UserCookies';
+import { getUserToken } from '@/utils/cookies/UserCookieManager';
 import { FetchCartItems, FetchProductById } from '@/utils/hooks/api-routes';
 
 interface ProductDetails {

@@ -18,7 +18,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { Login } from '@/utils/hooks/api-routes';
 import { toast } from 'sonner';
-import { getAuthUser, setAuthUser, setUserToken } from '@/utils/cookies/UserCookies';
+import { getAuthUser, setAuthUser, setUserToken } from '@/utils/cookies/UserCookieManager';
 
 const FormSchema = z.object({
   username: z.string().min(2, {

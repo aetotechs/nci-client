@@ -10,7 +10,7 @@ import PaymentMethods from '@/components/user/other/PaymentMethods';
 import Privacy from '@/components/user/other/Privacy';
 import Wishlist from '@/components/user/other/Wishlist';
 import { FetchUser } from '@/utils/hooks/api-routes';
-import { getAuthUser } from '@/utils/cookies/UserCookies';
+import { getAuthUser } from '@/utils/cookies/UserCookieManager';
 
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';

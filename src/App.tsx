@@ -27,7 +27,7 @@ import Customers from './pages/admin/customers';
 import Analytics from './pages/admin/analytics';
 import Settings from './pages/user/settings';
 
-import { isAuthenticated } from './utils/cookies/UserCookies';
+import { isAuthenticated } from './utils/cookies/UserCookieManager';
 import AdminRoute from './components/admin/other/AdminRoute';
 import UserCategoriesPage from './pages/user/UserCategories';
 import VerifyOtp from './pages/auth/commons/verify-otp';

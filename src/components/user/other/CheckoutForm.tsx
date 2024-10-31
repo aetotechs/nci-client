@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import axios, { AxiosError } from 'axios';
-import { getUserToken } from '@/utils/cookies/UserCookies';
+import { getUserToken } from '@/utils/cookies/UserCookieManager';
 import { ConfirmPayment, CreatePayment } from '@/utils/hooks/api-routes';
 
 interface CheckoutProps {

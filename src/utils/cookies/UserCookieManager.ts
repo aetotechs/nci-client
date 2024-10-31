@@ -1,15 +1,19 @@
 import { jwtDecode } from 'jwt-decode';
+
 const setUserToken = (accessToken: string) => {
-  localStorage.setItem('idm_user_tkn', accessToken);
+  localStorage.setItem('nci_user_tkn', accessToken);
 };
+
 const setAuthUser = (userData: any) => {
-  localStorage.setItem('i_user', JSON.stringify(userData));
+  localStorage.setItem('nci_user', JSON.stringify(userData));
 };
+
 const getUserToken = () => {
-  return localStorage.getItem('idm_user_tkn') ?? null;
+  return localStorage.getItem('nci_user_tkn') ?? null;
 };
+
 const getAuthUser = () => {
-  const user = typeof window !== 'undefined' && localStorage.getItem('i_user');
+  const user = typeof window !== 'undefined' && localStorage.getItem('nci_user');
 
   if (user) {
     try {
@@ -22,28 +26,34 @@ const getAuthUser = () => {
 
   return null;
 };
+
 const deleteUserToken = () => {
-  localStorage.removeItem('idm_user_tkn');
+  localStorage.removeItem('nci_user_tkn');
 };
+
 const deleteAuthUser = () => {
-  localStorage.removeItem('i_user');
+  localStorage.removeItem('nci_user');
 };
+
 const logout = () => {
-  localStorage.removeItem('idm_user_tkn');
-  localStorage.removeItem('i_user');
-  localStorage.removeItem('i_cart');
+  localStorage.removeItem('nci_user_tkn');
+  localStorage.removeItem('nci_user');
+  localStorage.removeItem('nci_user_cart');
 };
+
 const isAuthTokenExpired = (expirationTime: number) => {
   const currentTime = Math.floor(Date.now() / 1000);
 
   return expirationTime < currentTime;
 };
+
 const decodeToken = (token: any) => {
   return jwtDecode(token);
 };
+
 const isAuthenticated = () => {
   if (typeof window !== 'undefined') {
-    const token = localStorage.getItem('idm_user_tkn') ?? null;
+    const token = localStorage.getItem('nci_user_tkn') ?? null;
     if (token) {
       const decodedToken = decodeToken(token);
       if (decodedToken.exp !== undefined) {
@@ -54,6 +64,7 @@ const isAuthenticated = () => {
   }
   return false;
 };
+
 export {
   setUserToken,
   isAuthenticated,

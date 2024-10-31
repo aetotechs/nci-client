@@ -1,7 +1,7 @@
 import { Button } from '@/components/common/ui/button';
 
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/common/ui/popover';
-import { logout } from '@/utils/cookies/UserCookies';
+import { logout } from '@/utils/cookies/UserCookieManager';
 import { Link, useNavigate } from 'react-router-dom';
 
 export function AccountPopover() {

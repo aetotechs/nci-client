@@ -4,7 +4,7 @@ import OrderItems from '@/components/user/other/OrderItems';
 import { useEffect, useState } from 'react';
 import { IItems } from '../../admin/tables/ItemsTable';
 import { AddToCart } from '@/utils/hooks/api-routes';
-import { getAuthUser, getUserToken } from '@/utils/cookies/UserCookies';
+import { getAuthUser, getUserToken } from '@/utils/cookies/UserCookieManager';
 import { toast } from 'sonner';
 import { ShoppAdressProps } from '@/pages/user/shop-address';
 import { OrderId } from '@/pages/user/shop-payment';

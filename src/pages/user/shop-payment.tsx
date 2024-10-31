@@ -10,7 +10,7 @@ import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { CartItems } from './shop-address';
 import { FetchCartItems, FetchProductById } from '@/utils/hooks/api-routes';
-import { getUserToken } from '@/utils/cookies/UserCookies';
+import { getUserToken } from '@/utils/cookies/UserCookieManager';
 import PaymentComponent from '@/components/user/other/PaymentComponent';
 
 export const OrderId = localStorage.getItem('orderId');

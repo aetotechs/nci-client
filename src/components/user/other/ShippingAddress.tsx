@@ -4,7 +4,7 @@ import { Button } from '@/components/common/ui/button';
 import { Textarea } from '@/components/common/ui/textarea';
 import { DialogDemo } from '@/components/user/other/AddShippingAddress';
 import { Link, useNavigate } from 'react-router-dom';
-import { getAuthUser, getUserToken } from '@/utils/cookies/UserCookies';
+import { getAuthUser, getUserToken } from '@/utils/cookies/UserCookieManager';
 import { CreateOrder } from '@/utils/hooks/api-routes';
 import { toast } from 'sonner';
 import { useRef, useState } from 'react';
