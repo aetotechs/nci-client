@@ -1,6 +1,6 @@
 import { AddAdressDialog } from '@/components/user/other/AddNewAddress';
 import { EditAddressDialog } from './EditShipping';
-import { ProfileProps } from '@/pages/user/profile';
+import { ProfileProps } from '@/pages/user/Profile';
 import { EditBillingAddressDialog } from './EditBilling';
 
 const MyAddresses = [

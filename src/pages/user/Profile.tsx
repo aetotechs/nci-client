@@ -1,59 +1,29 @@
 import { IStatus } from '@/App';
 import Addresses from '@/components/user/other/Addresses';
-import BreadCrumb from '@/components/common/other/BreadCrumb';
 import Footer from '@/components/user/other/Footer';
 import Header from '@/components/user/other/Header';
 import MyAccount from '@/components/user/other/MyAccount';
 import MyOrders from '@/components/user/other/MyOrders';
 import PasswordSecurity from '@/components/common/other/PasswordSecurity';
-import PaymentMethods from '@/components/user/other/PaymentMethods';
 import Privacy from '@/components/user/other/Privacy';
 import Wishlist from '@/components/user/other/Wishlist';
 import { FetchUser } from '@/utils/hooks/api-routes';
 import { getAuthUser } from '@/utils/cookies/UserCookieManager';
-
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { IUser } from '@/utils/commons/TypeInterfaces';
 
-interface Address {
-  id: number;
-  street: string;
-  city: string;
-  state: string;
-  zip: string;
-  country: string;
-  updatedAt: string | null;
-}
 
-export interface User {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  position: string;
-  company: string;
-  companyWebsiteUrl: string;
-  createdAt: string;
-  updatedAt: string;
-  role: string;
-  userId: string;
-  verified: boolean;
-  workPhone: string;
-  address: Address;
-}
 export interface ProfileProps {
-  user?: User | null;
+  user?: IUser | any;
 }
 
 function Profile({ status }: IStatus) {
-  const [activeLink, setActiveLink] = useState('My Account');
-  const [user, setUser] = useState<User | null>();
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const breadcrumbItems = [{ href: '/profile', label: 'Profile' }];
+  const [ activeLink, setActiveLink ] = useState('My Account');
+  const [ user, setUser ] = useState<IUser | null>();
+  const [ loading, setLoading ] = useState(true);
+  const [ error, setError ] = useState<string | null>(null);
   const { pathname } = useLocation();
-
   const email = getAuthUser().email;
 
   useEffect(() => {
@@ -114,9 +84,8 @@ function Profile({ status }: IStatus) {
 
   return (
     <>
+      <Header status={status} />
       <div className="md:px-[5vw] md:max-w-[100vw]  ">
-        <Header status={status} />
-
         <div className="flex md:justify-between px-5 md:py-9 md:px-0 py-5 bg-white md:bg-[#fffff0]">
           <h3 className="text-[26px]  font-semibold">Profile</h3>
         </div>

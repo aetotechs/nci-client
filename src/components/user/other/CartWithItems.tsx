@@ -1,7 +1,6 @@
 import ShoppingCart from '@/components/user/other/ShoppingCart';
-import { ITable, ITableProps } from '../../admin/tables/ItemsTable';
 
-function CartWithItems({ items }: ITable) {
+function CartWithItems({ items }: any) {
   return (
     <div>
       <ShoppingCart items={items} />

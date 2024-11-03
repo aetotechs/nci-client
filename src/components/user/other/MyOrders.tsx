@@ -1,5 +1,5 @@
 import { IOrder, OrdersTable } from '@/components/admin/tables/OrdersTable';
-import { ProfileProps } from '@/pages/user/profile';
+import { ProfileProps } from '@/pages/user/Profile';
 import { useEffect, useState } from 'react';
 const Orders = [
   {

@@ -1,24 +1,11 @@
 import Header from '@/components/user/other/Header';
-
 import OrderSummary from '@/components/user/other/OrderSummary';
 import { Button } from '@/components/common/ui/button';
 import { Check } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import Footer from '@/components/user/other/Footer';
 import { IStatus } from '@/App';
 import { useEffect } from 'react';
 import { Address } from '@/components/user/other/ShippingAddress';
-
-// const Address = {
-//   name: 'Rahmah Nanyonga',
-//   companyName: 'LTA Farm Logistics ltd',
-//   tel: '0709742563',
-//   email: 'nanah@nanah.',
-//   street: 'Speke Road',
-//   country: 'Uganda',
-//   city: 'Enttebe',
-//   zipcode: '12345'
-// };
 
 function ClosedOrder({ status }: IStatus) {
   const { pathname } = useLocation();
@@ -26,11 +13,11 @@ function ClosedOrder({ status }: IStatus) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+  
   return (
     <>
+      <Header status={status} />
       <div className="md:px-[5vw] md:max-w-[100vw]    ">
-        <Header status={status} />
-
         <div className="overflow-hidden">
           <div className=" px-5  md:my-10 md:px-4 flex flex-col md:flex-row gap-9 md:gap-20  md:place-content-center my-5">
             <div className="">

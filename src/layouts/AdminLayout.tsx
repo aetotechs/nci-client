@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getAuthUser } from '@/utils/cookies/UserCookies';
+import { getAuthUser } from '@/utils/cookies/UserCookieManager';
 
 import Admin from '@/pages/admin/admin-dashboard';
 import Categories from '@/pages/admin/categories';
@@ -10,7 +10,7 @@ import Orders from '@/pages/admin/Orders';
 import Transactions from '@/pages/admin/transactions';
 import Customers from '@/pages/admin/customers';
 import Analytics from '@/pages/admin/analytics';
-import Settings from '@/pages/user/settings';
+import Settings from '@/pages/user/Settings';
 
 const getUserRole = () => {
   const userRole = getAuthUser();

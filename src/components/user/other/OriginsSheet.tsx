@@ -22,9 +22,9 @@ export const fetchCountries = async () => {
   ];
 };
 
-export function OriginsSheet() {
+export function RegionsSheet() {
   const navigate = useNavigate();
-  const [countries, setCountries] = useState<{ id: number; name: string }[]>([]);
+  const [countries, setCountries] = useState<any[]>([]);
 
   useEffect(() => {
     async function loadCountries() {
@@ -43,8 +43,8 @@ export function OriginsSheet() {
       <PopoverTrigger asChild>
         <p>Regions</p>
       </PopoverTrigger>
-      <PopoverContent className="md:w-[1232px] md:mx-14 md:mt-9 p-0 overflow-hidden">
-        <div className="flex flex-col gap-2 md:grid md:grid-cols-3 mt-5 mb-10 place-items-center">
+      <PopoverContent className="md:w-[90vw] md:mx-14 md:mt-9 p-0 overflow-auto max-h-[80vh]">
+        <div className="flex flex-col gap-2 md:grid md:grid-cols-4 mt-5 mb-10 md:mx-[10%]">
           {countries.map((country) => (
             <div key={country.id} className="text-textcolor flex flex-col gap-1">
               <p className="cursor-pointer" onClick={() => HandleClick(country.name)}>
@@ -54,10 +54,10 @@ export function OriginsSheet() {
           ))}
         </div>
 
-        <div className="py-1 fixed bottom-0 bg-muted w-[1230px] rounded-bl-md rounded-br-md text-center text-textcolor">
+        {/* <div className="py-1 fixed bottom-0 bg-muted w-[80vw] rounded-bl-md rounded-br-md text-center text-textcolor">
           <span className="font-semibold">C-Market: $2.43 USD </span>
           <span className="font-normal">as of 03/05/2024</span>
-        </div>
+        </div> */}
       </PopoverContent>
     </Popover>
   );

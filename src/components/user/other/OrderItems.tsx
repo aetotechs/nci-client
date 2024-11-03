@@ -13,7 +13,7 @@ import {
   useState
 } from 'react';
 import { Address } from './ShippingAddress';
-import { ShoppAdressProps } from '@/pages/user/shop-address';
+import { ShoppAdressProps } from '@/pages/user/ShopAddress';
 
 function OrderItems({ items }: ShoppAdressProps) {
   const [myitems, setMyItems] = useState<IItems[]>([]);

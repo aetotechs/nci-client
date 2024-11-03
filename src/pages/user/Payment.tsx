@@ -1,21 +1,17 @@
 import Header from '@/components/user/other/Header';
-
 import OrderSummary from '@/components/user/other/OrderSummary';
-
-import MakePayment from '@/components/user/other/MakePayment';
 import Progress from '@/components/user/other/Progress';
-
 import { IStatus } from '@/App';
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { CartItems } from './shop-address';
-import { FetchCartItems, FetchProductById } from '@/utils/hooks/api-routes';
+import { CartItems } from './ShopAddress';
+import { FetchCartItems, fetchProductByIdRoute } from '@/utils/hooks/api-routes';
 import { getUserToken } from '@/utils/cookies/UserCookieManager';
 import PaymentComponent from '@/components/user/other/PaymentComponent';
 
 export const OrderId = localStorage.getItem('orderId');
 
-function ShopPayment({ status }: IStatus) {
+function Payment({ status }: IStatus) {
   
   const [ cartItems, setCartItems ] = useState<CartItems[]>([]);
   const { pathname } = useLocation();
@@ -51,7 +47,7 @@ function ShopPayment({ status }: IStatus) {
 
         const detailedCartItems = await Promise.all(
           cartItemIds.map(async (item: any) => {
-            const productResponse = await fetch(FetchProductById(item.productId), {
+            const productResponse = await fetch(fetchProductByIdRoute(item.productId), {
               method: 'GET',
 
               headers: {
@@ -107,4 +103,4 @@ function ShopPayment({ status }: IStatus) {
   );
 }
 
-export default ShopPayment;
+export default Payment;

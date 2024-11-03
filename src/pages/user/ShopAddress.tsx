@@ -8,7 +8,7 @@ import { IStatus } from '@/App';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getUserToken } from '@/utils/cookies/UserCookieManager';
-import { FetchCartItems, FetchProductById } from '@/utils/hooks/api-routes';
+import { FetchCartItems, fetchProductByIdRoute } from '@/utils/hooks/api-routes';
 
 interface ProductDetails {
   flavor: string;
@@ -68,7 +68,7 @@ function ShopAddress({ status }: IStatus) {
 
         const detailedCartItems = await Promise.all(
           cartItemIds.map(async (item: any) => {
-            const productResponse = await fetch(FetchProductById(item.productId), {
+            const productResponse = await fetch(fetchProductByIdRoute(item.productId), {
               method: 'GET',
 
               headers: {

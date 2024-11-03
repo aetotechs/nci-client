@@ -9,7 +9,7 @@ import {
 
 import { EditContactForm } from '@/components/user/forms/EditContactForm';
 import { Edit } from 'lucide-react';
-import { ProfileProps, User } from '@/pages/user/profile';
+import { ProfileProps, User } from '@/pages/user/Profile';
 
 export function EditDialog({ user }: ProfileProps) {
   return (

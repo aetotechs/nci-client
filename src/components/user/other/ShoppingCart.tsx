@@ -4,15 +4,13 @@ import { ChevronLeft } from 'lucide-react';
 import { Checkbox } from '@/components/common/ui/checkbox';
 import { Link } from 'react-router-dom';
 import { DeleteDialog } from './ClearCartDialog';
-import { IItems, ITable, ITableProps, ItemsTable } from '../../admin/tables/ItemsTable';
+import { IItems, ITableProps, ItemsTable } from '../../admin/tables/ItemsTable';
 
 function ShoppingCart({ items }: ITableProps) {
-  const [Items, setItems] = useState<IItems[]>([]);
-  const [preferredItems, setPreferredItems] = useState<IItems[]>([]);
-  const [checkedStates, setCheckedStates] = useState<boolean[]>(
-    new Array(items.length).fill(false)
-  );
-  const [selectAll, setSelectAll] = useState<boolean>(false);
+  const [ Items, setItems ] = useState<IItems[]>([]);
+  const [ preferredItems, setPreferredItems ] = useState<IItems[]>([]);
+  const [ checkedStates, setCheckedStates ] = useState<boolean[]>(new Array(items.length).fill(false));
+  const [ selectAll, setSelectAll ] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchedItems = items;
@@ -25,6 +23,7 @@ function ShoppingCart({ items }: ITableProps) {
       setCheckedStates(new Array(items.length).fill(false));
     }
   }, [items]);
+  
   useEffect(() => {
     setSelectAll(checkedStates.every((state) => state));
   }, [checkedStates]);

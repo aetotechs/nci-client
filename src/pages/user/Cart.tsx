@@ -7,28 +7,13 @@ import OrderSummary from '@/components/user/other/OrderSummary';
 import Progress from '@/components/user/other/Progress';
 import { IStatus } from '@/App';
 import { useLocation } from 'react-router-dom';
-import { IItems, ITable } from '@/components/admin/tables/ItemsTable';
+import { useCart } from '@/utils/hooks/CartHook';
 
-function Shop({ status }: IStatus) {
-  const [cartItems, setCartItems] = useState<IItems[]>([]);
-  const [loading, setLoading] = useState(true);
-
+function Cart({ status }: IStatus) {
+  const { cart } = useCart();
+  const [ cartItems, setCartItems ] = useState<any[]>(cart);
+  const [ loading, setLoading ] = useState(false);
   const { pathname } = useLocation();
-  useEffect(() => {
-    const fetchCart = async () => {
-      try {
-        const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
-
-        setCartItems(cartItems);
-      } catch (error) {
-        console.error('Error fetching cart items:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCart();
-  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -36,9 +21,8 @@ function Shop({ status }: IStatus) {
 
   return (
     <>
+      <Header status={status} />
       <div className="md:px-[5vw] lg:my-4 md:max-w-[100vw] overflow-x-hidden">
-        <Header status={status} />
-
         <div className={`px-5 ${cartItems.length === 0 && 'mt-10'} md:px-0`}>
           {loading ? (
             <div className="flex justify-center items-center">
@@ -55,7 +39,7 @@ function Shop({ status }: IStatus) {
               </div>
               <div className="flex flex-col md:flex-row">
                 <div className="md:w-[60vw]">
-                  <CartWithItems items={cartItems} />
+                  <CartWithItems items={cart} />
                 </div>
                 <div className="md:w-[30vw]">
                   <Coupon />
@@ -70,4 +54,4 @@ function Shop({ status }: IStatus) {
   );
 }
 
-export default Shop;
+export default Cart;
