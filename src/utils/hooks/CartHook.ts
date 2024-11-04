@@ -1,9 +1,20 @@
 import { useState, useEffect } from 'react';
-import { addToCart, clearCart, removeFromCart, updateCartQuantity } from '../cookies/CartCookieManager';
+import { 
+    addToCart, 
+    clearCart, 
+    removeFromCart, 
+    updateCartQuantity, 
+    incrementCartQuantity, 
+    decrementCartQuantity, 
+    selectCartItem_, 
+    selectAllCartItems_ 
+} from '../cookies/CartCookieManager';
+import { IProduct } from '../commons/TypeInterfaces';
 
 interface CartItem {
-  product: any;
+  product: IProduct;
   quantity: number;
+  selected: boolean;
 }
 
 const CART_STORAGE_KEY = 'nci_user_cart';
@@ -36,15 +47,51 @@ export function useCart() {
         setCart(currentCart => updateCartQuantity(currentCart, productId, quantity));
     };
 
+    const incrementProductQuantity = (productId: string) => {
+        setCart(currentCart => incrementCartQuantity(currentCart, productId));
+    };
+
+    const decrementProductQuantity = (productId: string) => {
+        setCart(currentCart => decrementCartQuantity(currentCart, productId));
+    };
+
     const clearCartItems = () => {
         setCart(clearCart());
     };
+
+    function selectAllCartItems(selectAll: boolean) {
+        setCart(prevCart =>
+        prevCart.map(item => ({ ...item, selected: selectAll }))
+        );
+    }
+  
+    function selectCartItem(itemId: string, isSelected: boolean) {
+        setCart(prevCart =>
+        prevCart.map(item =>
+            item.product.itemId === itemId ? { ...item, selected: isSelected } : item
+        )
+    );
+    }
+
+    const calculateSubtotal = () => {
+        return cart
+            .filter(item => item.selected)
+            .reduce((subtotal, item) => subtotal + item.quantity * item.product.unitPrice, 0);
+    };
+
+    const areAllSelected = cart.length > 0 && cart.every(item => item.selected);
 
     return {
         cart,
         addProductToCart,
         removeProductFromCart,
         updateProductQuantity,
+        incrementProductQuantity,
+        decrementProductQuantity,
         clearCartItems,
+        selectCartItem,
+        selectAllCartItems,
+        calculateSubtotal,
+        areAllSelected
     };
 }

@@ -2,7 +2,6 @@ import { Button } from '@/components/common/ui/button';
 import { useLocation, useNavigate } from 'react-router-dom';
 import OrderItems from '@/components/user/other/OrderItems';
 import { useEffect, useState } from 'react';
-import { IItems } from '../../admin/tables/ItemsTable';
 import { AddToCart } from '@/utils/hooks/api-routes';
 import { getAuthUser, getUserToken } from '@/utils/cookies/UserCookieManager';
 import { toast } from 'sonner';
@@ -11,26 +10,26 @@ import { OrderId } from '@/pages/user/Payment';
 import { truncate } from '@/utils/commons/Truncate';
 import { ErrorToast, SuccessToast } from '@/components/common/ui/Toasts';
 
-const vat = 0;
-const shippingFee = null;
+const vat = 0.0;
+const shippingFee = 0.0;
 
-function OrderSummary({ items }: { items?: ShoppAdressProps }) {
-  const [cartSubTotal, setcartSubTotal] = useState<number>();
-  const [addingStates, setAddingStates] = useState(false);
+function OrderSummary({ items, cart, calculateSubtotal }: { items?: ShoppAdressProps, cart?: any, calculateSubtotal?: () => any } | any) {
   const navigate = useNavigate();
-  const orderSubTotal = vat + shippingFee! + cartSubTotal!;
   const location = useLocation();
+  const [ cartSubTotal, setcartSubTotal ] = useState<number>();
+  const [ submitting, setSubmitting ] = useState(false);
   const { pathname } = location;
-  
+  let orderSubTotal;
+
   useEffect(() => {
-    const getSubTotal = localStorage.getItem('totalSubtotal');
-    const cartSubtotal = parseFloat(getSubTotal!);
+    orderSubTotal = vat + shippingFee! + parseFloat(calculateSubtotal().toFixed(2)!);
+    const cartSubtotal = parseFloat(calculateSubtotal().toFixed(2)!);
     setcartSubTotal(cartSubtotal);
-  });
+  }, [cart]);
 
 
   const submitCart = async () => {
-    const preferredItems = JSON.parse(localStorage.getItem('preferredItems') || '[]') as IItems[];
+    const preferredItems = cart.filter((item) => item.selected);
 
     if (preferredItems.length === 0) {
       toast.info('Please select items to add to cart.', {
@@ -43,7 +42,7 @@ function OrderSummary({ items }: { items?: ShoppAdressProps }) {
       return;
     }
 
-    setAddingStates(true);
+    setSubmitting(true);
 
     const user = getAuthUser();
     const customerId = user.userId;
@@ -51,8 +50,8 @@ function OrderSummary({ items }: { items?: ShoppAdressProps }) {
 
     const cartData = {
       customerId,
-      cartItems: preferredItems.map((item) => ({
-        productId: item.itemId,
+      cartItems: preferredItems.map((item: any) => ({
+        productId: item.product.itemId,
         quantity: item.quantity
       }))
     };
@@ -83,14 +82,14 @@ function OrderSummary({ items }: { items?: ShoppAdressProps }) {
 
         setTimeout(() => {
           navigate('/shipping-address');
-        }, 5000);
+        }, 1000);
       } else {
         ErrorToast(response.text())
       }
     } catch (error) {
         ErrorToast(error);
     } finally {
-      setAddingStates(false);
+        setSubmitting(false);
     }
   };
 
@@ -98,7 +97,7 @@ function OrderSummary({ items }: { items?: ShoppAdressProps }) {
     <div className={`  md:mx-0 rounded-[8px] ${pathname === '/shop-payment' && 'pb-2 md:pb-0'} flex flex-col px-5 md:px-0 mb-4 md:py-2 bg-white  `}>
       <h3 className={` font-semibold text-[15px] my-2 md:px-5`}>Order Summary</h3>
 
-      { pathname == '/close-shop' && (
+      { pathname == '/checkout' && (
         <div>
           <div className="flex flex-col gap-1 md:px-5 text-[12px] ">
             <div className="flex justify-between">
@@ -117,9 +116,9 @@ function OrderSummary({ items }: { items?: ShoppAdressProps }) {
         </div>
       )}
 
-      { pathname === '/close-shop' && items && <OrderItems items={items.items} />}
+      { pathname === '/checkout' && items && <OrderItems items={items.items} />}
         <div className="flex flex-col text-[12px] gap-3 md:px-4 ">
-          <div className={`flex justify-between ${pathname === '/close-shop' && 'px-1 mt-1'}`}>
+          <div className={`flex justify-between ${pathname === '/checkout' && 'px-1 mt-1'}`}>
             <p className="font-normal  text-textmuted">Cart Subtotal</p>
             <h3 className="font-medium ">${cartSubTotal || 0} </h3>
           </div>
@@ -133,17 +132,17 @@ function OrderSummary({ items }: { items?: ShoppAdressProps }) {
           </div>
           <div className="flex justify-between">
             <p className="font-normal  text-textmuted">Order Subtotal</p>
-            <h3 className="font-semibold text-[14px]">${orderSubTotal || 0}</h3>
+            <h3 className="font-semibold text-[14px]">${cartSubTotal || 0}</h3>
           </div>
           {pathname === '/shipping-address' && items && <OrderItems items={items.items} />}
           {pathname === '/shop-payment' && items && <OrderItems items={items.items} />}
-          {pathname === '/shop' || pathname === '/shop-items' ? (
+          {pathname === '/cart' || pathname === '/shop-items' ? (
             <div>
               <Button
                 onClick={() => submitCart()}
                 className="tet-white w-full h-10 my-2 rounded-[6px] md:rounded-xl font-normal"
               >
-                {addingStates ? 'Adding...' : 'Proceed to Checkout'}
+                { submitting ? 'Adding...' : 'Proceed to Checkout'}
               </Button>
             </div>
           ) : (

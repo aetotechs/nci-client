@@ -7,7 +7,7 @@ function Progress() {
   const location = useLocation();
 
   const steps = [
-    { paths: ['/shop'], label: 'Cart' },
+    { paths: ['/cart'], label: 'Cart' },
     { paths: ['/shipping-address'], label: 'Address' },
     { paths: ['/shop-payment'], label: 'Payment' }
   ];
@@ -19,7 +19,7 @@ function Progress() {
   const currentStepIndex = getStepIndex();
 
   return (
-    <div className="flex items-center  md:gap-2">
+    <div className="flex items-center md:gap-2">
       {steps.map((step, index) => (
         <React.Fragment key={step.label}>
           <div>

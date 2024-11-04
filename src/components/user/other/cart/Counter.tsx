@@ -22,16 +22,17 @@ const reducer = (state: State, action: Action): State => {
 };
 
 type CounterProps = {
+  quantity: number;
   className?: string;
   onValueChange: (newValue: number) => void;
 };
 
-function Counter({ className, onValueChange }: CounterProps) {
-  const [state, dispatch] = useReducer(reducer, { count: 1 });
+function Counter({ quantity, className, onValueChange }: CounterProps) {
+  const [state, dispatch] = useReducer(reducer, { count: quantity | 1 });
 
   useEffect(() => {
     onValueChange(state.count);
-  }, [state.count, onValueChange]);
+  }, [state.count]);
 
   return (
     <div
@@ -42,16 +43,16 @@ function Counter({ className, onValueChange }: CounterProps) {
     >
       <div
         onClick={() => dispatch({ type: 'decrement' })}
-        className="cursor-pointer text-xl md:text-lg"
+        className="cursor-pointer text-xl md:text-lg px-1"
       >
         -
       </div>
       <Separator orientation="vertical" className="h-4" />
-      <div className="text-[15px]">{state.count}</div>
+      <div className="text-[15px] px-1">{state.count}</div>
       <Separator orientation="vertical" className="h-4" />
       <div
         onClick={() => dispatch({ type: 'increment' })}
-        className="cursor-pointer text-xl md:text-lg"
+        className="cursor-pointer text-xl md:text-lg px-1"
       >
         +
       </div>

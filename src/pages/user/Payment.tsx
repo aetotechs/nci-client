@@ -1,6 +1,6 @@
 import Header from '@/components/user/other/Header';
-import OrderSummary from '@/components/user/other/OrderSummary';
-import Progress from '@/components/user/other/Progress';
+import OrderSummary from '@/components/user/other/cart/CartSummary';
+import Progress from '@/components/user/other/cart/Progress';
 import { IStatus } from '@/App';
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';

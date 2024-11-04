@@ -128,7 +128,7 @@ export function PaymentForm() {
           <Checkbox className="h-3 w-3" />
           <span className="text-[12px]">Save payment details for future purchase</span>
         </div>
-        <Link to="/close-shop" className="col-span-2">
+        <Link to="/checkout" className="col-span-2">
           <Button type="submit" className="w-full font-normal h-10 text-[13px] col-span-2">
             Place Order
           </Button>

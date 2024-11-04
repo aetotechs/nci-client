@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 import { toast } from 'sonner';
-import { IItems } from '../../admin/tables/ItemsTable';
+import { IItems } from './cart/ItemsTable';
 import Product from './Product';
 import { ErrorToast, SuccessToast } from '@/components/common/ui/Toasts';
 import { IProduct } from '@/utils/commons/TypeInterfaces';

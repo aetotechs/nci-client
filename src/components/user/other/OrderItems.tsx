@@ -2,7 +2,6 @@ import { Edit } from 'lucide-react';
 import { ScrollArea } from '@/components/common/ui/scroll-area';
 
 import { useLocation } from 'react-router-dom';
-import { IItems } from '../../admin/tables/ItemsTable';
 import {
   JSXElementConstructor,
   Key,
@@ -16,17 +15,17 @@ import { Address } from './ShippingAddress';
 import { ShoppAdressProps } from '@/pages/user/ShopAddress';
 
 function OrderItems({ items }: ShoppAdressProps) {
-  const [myitems, setMyItems] = useState<IItems[]>([]);
+  const [myitems, setMyItems] = useState<any[]>([]);
   useEffect(() => {
     const storedItems = localStorage.getItem('preferredItems');
-    setMyItems(JSON.parse(storedItems || '[]') as IItems[]);
+    setMyItems(JSON.parse(storedItems || '[]') as any[]);
   }, []);
 
   const location = useLocation();
   const { pathname } = location;
   return (
     <div>
-      {pathname === '/close-shop' || pathname === '/profile' ? null : (
+      {pathname === '/checkout' || pathname === '/profile' ? null : (
         <h3 className="font-medium text-[14px]">Order Items({myitems.length})</h3>
       )}
       {pathname === '/shop-payment' ? (
@@ -62,7 +61,7 @@ function OrderItems({ items }: ShoppAdressProps) {
       ) : (
         <ScrollArea className="max-h-[160px] ">
           <div
-            className={`${pathname === '/close-shop' && 'md:px-5'} flex flex-col gap-2 md:gap-4 my-2 md:my-6  `}
+            className={`${pathname === '/checkout' && 'md:px-5'} flex flex-col gap-2 md:gap-4 my-2 md:my-6  `}
           >
             {items.map(
               (

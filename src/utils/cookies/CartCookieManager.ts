@@ -1,7 +1,9 @@
+import { IProduct } from "../commons/TypeInterfaces";
 
 interface CartItem {
-  product: any;
+  product: IProduct;
   quantity: number;
+  selected: boolean;
 }
 
 export const addToCart = (cart: CartItem[], newItem: CartItem): CartItem[] => {
@@ -24,6 +26,28 @@ export const updateCartQuantity = (cart: CartItem[], productId: string, quantity
   return cart.map(item =>
       item.product.itemId === productId ? { ...item, quantity } : item
   );
+};
+
+export const incrementCartQuantity = (cart: CartItem[], productId: string): CartItem[] => {
+  return cart.map(item =>
+      item.product.itemId === productId ? { ...item, quantity: item.quantity + 1 } : item
+  );
+};
+
+export const decrementCartQuantity = (cart: CartItem[], productId: string): CartItem[] => {
+  return cart.map(item =>
+      item.product.itemId === productId ? { ...item, quantity: Math.max(0, item.quantity - 1) } : item
+  );
+};
+
+export const selectCartItem_ = (cart: CartItem[], productId: string, selected: boolean): CartItem[] => {
+  return cart.map(item =>
+      item.product.itemId === productId ? { ...item, selected } : item
+  );
+};
+
+export const selectAllCartItems_ = (cart: CartItem[], selected: boolean): CartItem[] => {
+  return cart.map(item => ({ ...item, selected }));
 };
 
 export const clearCart = (): CartItem[] => {
