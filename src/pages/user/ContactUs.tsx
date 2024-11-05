@@ -26,8 +26,8 @@ function ContactUs({ status }: IStatus) {
 
   return (
     <>
+      <Header status={status} />
       <div className="md:px-[5vw] md:max-w-[100vw]   ">
-        <Header status={status} />
         <div className=" px-5 md:py-7  md:pt-0  overflow-hidden">
           <div className="md:mt-10 mt-3 ">
             <h3 className="font-semibold text-[26px]">Contact Us</h3>
@@ -95,8 +95,8 @@ function ContactUs({ status }: IStatus) {
               Frequently Asked Questions
             </h3>
 
-            <div className=" md:px-0">
-              <Tabs defaultValue="shipping" className=" ">
+            <div className="md:px-0">
+              <Tabs defaultValue="shipping" className="">
                 <TabsList className="md:my-5 pl-[76vw] md:pl-0 md:mx-0 min-w-[90vw] overflow-x-auto flex justify-center items-center  ">
                   <TabsTrigger
                     value="shipping"

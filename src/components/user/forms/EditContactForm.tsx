@@ -12,7 +12,7 @@ import {
   FormMessage
 } from '@/components/common/ui/form';
 import { Input } from '@/components/common/ui/input';
-import { ProfileProps } from '@/pages/user/profile';
+import { ProfileProps } from '@/pages/user/Profile';
 
 import { Register } from '@/utils/hooks/api-routes';
 import { toast } from 'sonner';

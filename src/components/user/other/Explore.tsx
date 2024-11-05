@@ -1,10 +1,10 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 import { toast } from 'sonner';
-import { IItems } from '../../admin/tables/ItemsTable';
-import { IProduct } from './ProductDetails';
+import { IItems } from './cart/ItemsTable';
 import Product from './Product';
-import { ErrorToast } from '@/components/common/ui/Toasts';
+import { ErrorToast, SuccessToast } from '@/components/common/ui/Toasts';
+import { IProduct } from '@/utils/commons/TypeInterfaces';
 
 export interface ExploreProps {
   product: IProduct[];
@@ -16,7 +16,7 @@ function Explore({ status, product }: ExploreProps) {
   const location = useLocation();
   const { pathname } = location;
 
-  const AddCart = async (p: IItems, pName: string) => {
+  const addCart = async (p: IItems, pName: string) => {
 
     try {
       let cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
@@ -31,26 +31,15 @@ function Explore({ status, product }: ExploreProps) {
 
       localStorage.setItem('cartItems', JSON.stringify(cartItems));
 
-      toast.success(
+      SuccessToast(
         <div className="flex gap-1 items-center">
           <span>
             <img src="/icons/cartsuccess.svg" alt="cart" />
           </span>
           <span className="font-bold">{pName}</span> has been added to your wishlist.
-        </div>,
-
-        {
-          style: {
-            background: '#009A681A',
-
-            color: '#009A68',
-
-            border: '1px solid #009A6880'
-          }
-        }
-      );
+        </div>);
     } catch (error) {
-      ErrorToast(error);
+        ErrorToast(error);
     } finally {
     }
   };
@@ -67,12 +56,14 @@ function Explore({ status, product }: ExploreProps) {
           </p>
         </div>
       )}
-      <div className={`${pathname === '/listing' ? 'py-0 md:w-[62vw]     ' : ' md:py-0 '}`}>
+      <div className={`${pathname === '/listing' ? 'py-0 md:w-[62vw]' : ' md:py-0 '}`}>
         <div className={`grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5`}>
           {product.map((product, index) => {
             return (
               <>
-                <Product product={product} index={index}/>
+                <div key={index}>
+                  <Product product={product} skeleton={true}/>
+                </div>
               </>
             );
           })}

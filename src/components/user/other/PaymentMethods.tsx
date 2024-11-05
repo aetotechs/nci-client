@@ -1,5 +1,5 @@
 import { EditPaymentDialog } from '@/components/user/other/EditPayment';
-import { ProfileProps } from '@/pages/user/profile';
+import { ProfileProps } from '@/pages/user/Profile';
 import { AddPayementDialog } from './AddPaymentMethod';
 
 function PaymentMethods({ user }: ProfileProps) {

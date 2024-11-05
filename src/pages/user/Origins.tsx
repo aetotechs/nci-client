@@ -1,49 +1,59 @@
 import { IStatus } from '@/App';
-import BreadCrumb from '@/components/common/other/BreadCrumb';
-import Explore from '@/components/user/other/Explore';
 import Footer from '@/components/user/other/Footer';
 import Header from '@/components/user/other/Header';
-import { useEffect } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from '@/components/common/ui/select';
-
-import { FilterSheet, Listings } from '@/components/user/other/FilterMobile';
 import CoffeeListings from '@/components/user/other/CoffeeListings';
-import { FetchProducts } from '@/utils/services/FetchProducts';
+import { useEffect, useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/common/ui/select';
+import { FilterSheet, Listings } from '@/components/user/other/FilterMobile';
+import { IProduct } from '@/utils/commons/TypeInterfaces';
+import { ErrorToast } from '@/components/common/ui/Toasts';
+import { fetchItemsRoute } from '@/utils/hooks/api-routes';
+import Product from '@/components/user/other/Product';
 
 function OriginsPage({ status }: IStatus) {
   const { pathname } = useLocation();
   const { originId } = useParams();
-  const products = FetchProducts();
+  const [ products, setProducts ] = useState<IProduct[] | any>(Array(8).fill({}));
+  const [ loading, setLoading ] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(fetchItemsRoute);
+        if (response.ok) {
+          const data = await response.json();
+          setProducts(data);
+        } else {
+          ErrorToast(response.text())
+        }
+      } catch (error) {
+        ErrorToast(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, [setProducts]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
   return (
     <>
-      <div className="md:px-[5vw] md:max-w-[100vw]     ">
-        <Header status={status} />
-        <div className="px-4 w-[100vw] pt-4  md:pt-0 md:w-[1232px] overflow-hidden ">
-          <div className="flex flex-col  mb-4 md:mb-0  md:justify-between  md:py-5">
-            <h3 className="text-[26px] font-semibold  md:mt-5 md:mb-0">{originId}</h3>
-            <p className="">
+      <Header status={status} />
+      <div className="lg:px-[4vw] md:px-[2vw] w-full md:mb-10">
+        <div className="px-4 w-full pt-4 md:pt-0 overflow-hidden ">
+          <div className="flex mb-4 mflex-cold:mb-0 md:justify-between mt-4">
+            <h3 className="text-2xl font-semibold md:mt-5 md:mb-0 pb-3">{originId}</h3>
+            {/* <p className="">
               If coffee was born in Africa, growing wild in Ethiopia and harvested for a variety of
               uses since "time immemorial" (as the history writers seem inclined to phrase it), then
               coffee came of age on the Arabian Peninsula.
-            </p>
-          </div>
-
-          <div className="flex justify-between items-center my-2">
-            <div className="md:hidden ">
-              <FilterSheet />
-            </div>
-
+              </p> */}
             <div className="flex md:justify-end   md:w-full items-center gap-3 my-2">
               <div className="font-medium text-base">Sort by:</div>
               <div>
@@ -61,18 +71,30 @@ function OriginsPage({ status }: IStatus) {
               </div>
             </div>
           </div>
-          <div className="md:flex   gap-3">
+
+          <div className="flex justify-between items-center my-2">
+            <div className="md:hidden ">
+              <FilterSheet />
+            </div>
+
+          </div>
+          
+          <div className="md:flex gap-3">
             <div className="w-[372px] bg-white h-max px-10 hidden md:flex md:flex-col">
               <h5 className="font-bold my-5">Filter</h5>
               <div>
                 <CoffeeListings Listings={Listings} />
               </div>
             </div>
-
-            <div className="flex justify-center  md:w-[70vw]  ">
-              <Explore status={status} product={products} />
+            <div className="grid gap-4 grid-cols-1 lg:grid-cols-3 xl:grid-cols-4">
+              { products?.map((product: IProduct | any, index: any) => (
+                  <div key={index}>
+                    <Product product={product} skeleton={loading}/>
+                  </div>
+              ))}
             </div>
           </div>
+
         </div>
       </div>
       <Footer />

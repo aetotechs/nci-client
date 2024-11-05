@@ -1,39 +1,14 @@
 import { Separator } from '@/components/common/ui/separator';
-import Counter from './Counter';
+import Counter from './cart/Counter';
 import { Button } from '../../common/ui/button';
 import { Bookmark } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { Link } from 'react-router-dom';
-import { IItems } from '../../admin/tables/ItemsTable';
+import { IItems } from './cart/ItemsTable';
 import { ErrorToast, SuccessToast } from '@/components/common/ui/Toasts';
+import { IProduct, IProductDetails } from '@/utils/commons/TypeInterfaces';
 
-export interface IProduct {
-  flavor: string;
-  name: string;
-  lotNumber: string;
-  stockAvailable: boolean;
-  description: string;
-  stockCount: number;
-  unitPrice: number;
-  wareHouse: string;
-  status: string;
-  sampleCount: number;
-  sampleUnitPrice: number;
-  processingMode: string;
-  sampleAvailable: boolean;
-  quantity: number;
-  specie: string;
-  bagType: string;
-  variety: string;
-  farmName: string;
-  producerType: string;
-  itemId: string;
-}
-export interface IProductDetails {
-  product: IProduct;
-  status: boolean;
-}
 
 function ProductDetails({ product, status }: IProductDetails) {
   const [isAdding, setIsAdding] = useState(false);

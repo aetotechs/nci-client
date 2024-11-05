@@ -1,7 +1,7 @@
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import CheckoutForm from './CheckoutForm';
-import { getAuthUser } from '@/utils/cookies/UserCookies';
+import { getAuthUser } from '@/utils/cookies/UserCookieManager';
 
 interface PaymentComponentProps {
   orderId: string;

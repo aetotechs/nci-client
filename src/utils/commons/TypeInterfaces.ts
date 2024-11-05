@@ -22,13 +22,49 @@ type IProduct = {
     itemId: string;
   }
 
-  interface ProductProps {
-    index?: any,
-    product: IProduct
-  }
+interface ProductProps {
+  product: IProduct,
+  skeleton?: boolean
+}
+
+interface IProductDetails {
+  product: IProduct;
+  status: boolean;
+}
+
+interface IAddress {
+  id: number;
+  street: string;
+  city: string;
+  state: string;
+  zip: string;
+  country: string;
+  updatedAt: string | null;
+}
+
+interface IUser {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  position: string;
+  company: string;
+  companyWebsiteUrl: string;
+  createdAt: string;
+  updatedAt: string;
+  role: string;
+  userId: string;
+  verified: boolean;
+  workPhone: string;
+  address: IAddress;
+}
 
 
 export type{
     IProduct,
-    ProductProps
+    ProductProps,
+    IProductDetails,
+    IAddress,
+    IUser
 }

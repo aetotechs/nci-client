@@ -4,9 +4,9 @@ import CoffeeGuide from '@/components/user/other/CoffeeGuide';
 import CoffeeHistory from '@/components/user/other/CoffeeHistory';
 import Footer from '@/components/user/other/Footer';
 import Header, { HeaderProps } from '@/components/user/other/Header';
-import ProductDetails, { IProduct } from '@/components/user/other/ProductDetails';
-import { FetchProductById } from '@/utils/hooks/api-routes';
-
+import ProductDetails from '@/components/user/other/ProductDetails';
+import { IProduct } from '@/utils/commons/TypeInterfaces';
+import { fetchProductByIdRoute } from '@/utils/hooks/api-routes';
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
@@ -19,7 +19,7 @@ function ProductPage({ status, handleSearch }: HeaderProps) {
   useEffect(() => {
     const FetchProduct = async () => {
       try {
-        const response = await fetch(FetchProductById(productId!));
+        const response = await fetch(fetchProductByIdRoute(productId!));
         const data = await response.json();
         const FetchedProduct = data;
         console.log(response);
@@ -37,9 +37,8 @@ function ProductPage({ status, handleSearch }: HeaderProps) {
 
   return (
     <>
+      <Header status={status} />
       <div className="md:px-[5vw] md:max-w-[100vw]  ">
-        <Header status={status} />
-
         <div className="px-4 ">
           <div className="flex flex-col md:px-0 my-5 md:my-10 md:mb-1">
             <div className="font-semibold text-2xl md:text-[26px]">{product?.name}</div>

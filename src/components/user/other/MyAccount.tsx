@@ -1,6 +1,6 @@
 import { Switch } from '@/components/common/ui/switch';
 import { EditDialog } from '@/components/user/other/EditContactInformation';
-import { ProfileProps } from '@/pages/user/profile';
+import { ProfileProps } from '@/pages/user/Profile';
 function MyAccount({ user }: ProfileProps) {
   return (
     <div className=" md:px-3 px-5 ">

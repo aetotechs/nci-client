@@ -1,16 +1,11 @@
 import { Button } from '@/components/common/ui/button';
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger
-} from '@/components/common/ui/dialog';
-
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/common/ui/dialog';
+import { useCart } from '@/utils/hooks/CartHook';
 import { Trash2 } from 'lucide-react';
 
 export function DeleteDialog() {
+  const { clearCartItems } = useCart();
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -44,8 +39,8 @@ export function DeleteDialog() {
         </div>
 
         <DialogFooter>
-          <Button type="submit" variant={'outline'} className="text-white bg-red-400">
-            Delete
+          <Button type="submit" onClick={clearCartItems} variant={'outline'} className="text-white bg-red-400">
+            Clear
           </Button>
         </DialogFooter>
       </DialogContent>

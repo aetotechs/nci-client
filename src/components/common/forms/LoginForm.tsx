@@ -15,7 +15,7 @@ import { Input } from '@/components/common/ui/input';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { Login } from '@/utils/hooks/api-routes';
-import { getAuthUser, setAuthUser, setUserToken } from '@/utils/cookies/UserCookies';
+import { getAuthUser, setAuthUser, setUserToken } from '@/utils/cookies/UserCookieManager';
 import { ErrorToast, SuccessToast } from '../ui/Toasts';
 
 

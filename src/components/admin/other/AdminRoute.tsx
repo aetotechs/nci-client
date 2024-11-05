@@ -1,4 +1,4 @@
-import { getAuthUser } from '@/utils/cookies/UserCookies';
+import { getAuthUser } from '@/utils/cookies/UserCookieManager';
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 

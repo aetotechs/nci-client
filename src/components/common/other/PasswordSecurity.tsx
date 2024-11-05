@@ -1,4 +1,4 @@
-import { ProfileProps } from '@/pages/user/profile';
+import { ProfileProps } from '@/pages/user/Profile';
 import { ChangePasswordForm } from '../forms/ChangePasswordForm';
 
 function PasswordSecurity({ user }: ProfileProps) {

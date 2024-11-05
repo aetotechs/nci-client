@@ -1,6 +1,6 @@
 import { DownloadForm } from '@/components/user/forms/DownloadDataForm';
 import { DeleteConscent } from '@/components/common/forms/DeleteConscent';
-import { ProfileProps } from '@/pages/user/profile';
+import { ProfileProps } from '@/pages/user/Profile';
 
 function Privacy({ user }: ProfileProps) {
   return (

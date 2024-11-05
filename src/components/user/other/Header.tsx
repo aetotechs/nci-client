@@ -4,10 +4,9 @@ import { Button } from '@/components/common/ui/button';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AccountPopover } from '@/components/user/other/Account';
 import { MobileNav } from '../../common/other/MobileNav';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Search from './Search';
 import { getNavigationUrl } from '@/utils/redirects/NavigationUtils';
-
 
 export interface HeaderProps {
   status: boolean;
@@ -16,6 +15,8 @@ export interface HeaderProps {
 
 function Header({ status, handleSearch }: HeaderProps) {
   const [ isSearchActive, setIsSearchActive ] = useState(false);
+  const [ scrollDirection, setScrollDirection ] = useState<'up' | 'down' | null>(null);
+  const [ lastScrollY, setLastScrollY ] = useState(0);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -32,25 +33,48 @@ function Header({ status, handleSearch }: HeaderProps) {
     setIsSearchActive(false);
   };
 
+  const handleScroll = () => {
+    const currentScrollY = window.screenY;
+
+    if(currentScrollY > lastScrollY){
+      setScrollDirection('down');
+    } else {
+      setScrollDirection('up');
+    }
+
+    setLastScrollY(currentScrollY);
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    }
+  }, [lastScrollY]);
+
   return (
-    <div
-      className={`bg-white flex items-center ${isSearchActive ? 'justify-center' : 'justify-between'} p-5 md:p-5 lg:p-5 md:rounded-[30px] top-0  md:h-[89px] sticky md:top-2 shadow-md z-40 w-[100%] md:w-full`}
-    >
+    <div className={`bg-white flex items-center ${isSearchActive ? 'justify-center' : 'justify-between'} md:mx-[4vw] p-5 md:p-5 lg:p-5 md:rounded-[30px] top-0 sticky md:h-[89px] md:top-2 shadow-md z-40`}>
       {isSearchActive ? (
-        <div className="flex items-center gap-2 cursor-pointer">
-          <Search handleSearch={handleSearch} />
-          <span className="text-sm text-primary" onClick={handleCloseSearch}>
-            Close Search
-          </span>
-        </div>
+      <div className={`flex items-center gap-2 cursor-pointer`}>
+        <Search handleSearch={handleSearch} />
+        <span className="text-sm text-primary" onClick={handleCloseSearch}>
+          Close Search
+        </span>
+      </div>
       ) : (
         <>
           <Link to="/">
-            <div className="md:w-[199px] w-[180px]  h-14 md:h-[45px] ">
+            <div className="h-14 md:h-[45px]">
               <img
                 src="/logos/logo.png"
                 alt="coffee logo"
-                className="w-full h-full object-contain"
+                className="hidden md:block w-full h-full object-contain"
+              />
+              <img
+                src="/logos/brand.png"
+                alt="coffee logo"
+                className="block md:hidden w-full h-full object-contain"
               />
             </div>
           </Link>
@@ -68,7 +92,7 @@ function Header({ status, handleSearch }: HeaderProps) {
             </div>
 
             <div className="border border-[#f4f4e6] flex items-center justify-center h-10 w-10 px-2 rounded-sm">
-              <Link to="/shop">
+              <Link to="/cart">
                 <ShoppingCart className="text-icon w-5 h-5" />
               </Link>
             </div>

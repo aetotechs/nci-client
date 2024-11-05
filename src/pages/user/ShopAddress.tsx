@@ -1,14 +1,15 @@
 import Header from '@/components/user/other/Header';
 
-import OrderSummary from '@/components/user/other/OrderSummary';
+import OrderSummary from '@/components/user/other/cart/CartSummary';
 import ShippingAddress from '@/components/user/other/ShippingAddress';
-import Progress from '@/components/user/other/Progress';
+import Progress from '@/components/user/other/cart/Progress';
 
 import { IStatus } from '@/App';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { getUserToken } from '@/utils/cookies/UserCookies';
-import { FetchCartItems, FetchProductById } from '@/utils/hooks/api-routes';
+import { getUserToken } from '@/utils/cookies/UserCookieManager';
+import { FetchCartItems, fetchProductByIdRoute } from '@/utils/hooks/api-routes';
+import { ErrorToast } from '@/components/common/ui/Toasts';
 
 interface ProductDetails {
   flavor: string;
@@ -50,16 +51,15 @@ function ShopAddress({ status }: IStatus) {
       try {
         const response = await fetch(FetchCartItems(cartId), {
           method: 'GET',
-
           headers: {
             'Content-Type': 'application/json',
-
             Authorization: `Bearer ${token}`
           }
         });
 
         if (!response.ok) {
-          throw new Error('Failed to fetch cart items');
+          ErrorToast(response.text());
+          return;
         }
 
         const data = await response.json();
@@ -68,12 +68,10 @@ function ShopAddress({ status }: IStatus) {
 
         const detailedCartItems = await Promise.all(
           cartItemIds.map(async (item: any) => {
-            const productResponse = await fetch(FetchProductById(item.productId), {
+            const productResponse = await fetch(fetchProductByIdRoute(item.productId), {
               method: 'GET',
-
               headers: {
                 'Content-Type': 'application/json',
-
                 Authorization: `Bearer ${token}`
               }
             });
@@ -86,16 +84,15 @@ function ShopAddress({ status }: IStatus) {
 
             return {
               ...item,
-
               productDetails: productData
             };
           })
         );
         setCartItems(detailedCartItems);
       } catch (error) {
-        console.error('Error fetching cart items:', error);
+          console.error('Error fetching cart items:', error);
       } finally {
-        setIsLoading(false);
+          setIsLoading(false);
       }
     };
 

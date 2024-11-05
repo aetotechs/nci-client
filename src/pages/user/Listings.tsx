@@ -1,28 +1,42 @@
-
 import { IStatus } from '@/App';
 import CoffeeListings from '@/components/user/other/CoffeeListings';
 import Footer from '@/components/user/other/Footer';
 import Header from '@/components/user/other/Header';
 import { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from '@/components/common/ui/select';
-import { FilterSheet, Listings } from '@/components/user/other/FilterMobile';
+import { useLocation } from 'react-router-dom';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/common/ui/select';
+import { FilterSheet } from '@/components/user/other/FilterMobile';
 import Product from '@/components/user/other/Product';
 import { fetchItemsRoute } from '@/utils/hooks/api-routes';
 import { ErrorToast } from '@/components/common/ui/Toasts';
 import { IProduct } from '@/utils/commons/TypeInterfaces';
 
-function UserCategoriesPage({ status }: IStatus) {
+function Listings({ status }: IStatus) {
   const [ products, setProducts ] = useState<IProduct[] | any>(Array(8).fill({}));
   const [ loading, setLoading ] = useState(false);
   const { pathname } = useLocation();
-  const { categoryId } = useParams();
+
+  // const handleSearch = (searchQuery: string) => {
+  //   setSearchTerm(searchQuery.toLowerCase());
+
+  //   const filtered = products?.filter(
+  //     (product) =>
+  //       product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  //       product.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  //       product.flavor.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  //       product.status.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  //       product.wareHouse.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  //       product.unitPrice.toString().includes(searchQuery)
+  //   );
+
+  //   if (filtered.length === 0) {
+  //     <div className="bg-white rounded-[6px]">
+  //       <p className="text-primary">No Results Found</p>
+  //     </div>;
+  //   }
+  //   setFilteredProducts(filtered);
+  //   return;
+  // };
 
   useEffect(() => {
     setLoading(true);
@@ -55,7 +69,7 @@ function UserCategoriesPage({ status }: IStatus) {
       <div className="lg:px-[4vw] md:px-[2vw] w-[100vw] md:mb-10">
         <div className="px-4 md:pt-0 overflow-hidden">
           <div className="flex flex-col gap-5 my-5 md:mb-0 md:flex-row md:justify-between md:py-5">
-            <h3 className="text-[26px] font-semibold mb-4 md:mb-0">{ categoryId }</h3>
+            <h3 className="text-[26px] font-semibold mb-4 md:mb-0">Coffee Shop</h3>
             <div className="flex justify-between ">
               <div className="md:hidden ">
                 <FilterSheet />
@@ -82,7 +96,7 @@ function UserCategoriesPage({ status }: IStatus) {
             <div className="lg:min-w-[25vw] md:min-w-[40vw] h-max bg-white px-10 hidden md:flex md:flex-col">
               <h5 className="font-bold my-5">Filter</h5>
               <div>
-                <CoffeeListings Listings={Listings} />
+                {/* <CoffeeListings Listings={Listings} /> */}
               </div>
             </div>
 
@@ -102,4 +116,4 @@ function UserCategoriesPage({ status }: IStatus) {
   );
 }
 
-export default UserCategoriesPage;
+export default Listings;
