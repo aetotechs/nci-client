@@ -59,7 +59,7 @@ export function ItemsTable({ cart, selectCartItem, updateProductQuantity, remove
                     <span className="hidden md:flex">${item?.product?.unitPrice * item?.quantity}</span>
                   </TableCell>
                   <TableCell className="col-span-1 hidden md:flex items-center justify-end">
-                    <Trash2 className="w-4 h-4 text-[#8b8d98]" />
+                    <Trash2 className="w-4 h-4 text-[#8b8d98]" onClick={() => removeProductFromCart(item?.product?.itemId)}/>
                   </TableCell>
                 </TableRow>
               </div>

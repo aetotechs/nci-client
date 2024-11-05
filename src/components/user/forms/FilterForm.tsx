@@ -1,7 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-
 import { Button } from '@/components/common/ui/button';
 import {
   Form,
@@ -20,6 +19,8 @@ import {
 import { Input } from '../../common/ui/input';
 import CoffeeListings from '../other/CoffeeListings';
 import { Checkbox } from '../../common/ui/checkbox';
+import { filterItems } from '@/utils/commons/constants';
+
 const Listings = [
   {
     title: 'Category',
@@ -101,7 +102,7 @@ export function FilterForm() {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <CoffeeListings Listings={Listings} />
+                  <CoffeeListings Listings={filterItems} />
                 </FormControl>
 
                 <FormMessage />

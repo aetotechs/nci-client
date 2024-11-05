@@ -56,7 +56,7 @@ export function useCart() {
     };
 
     const clearCartItems = () => {
-        setCart(clearCart());
+        setCart([]);
     };
 
     function selectAllCartItems(selectAll: boolean) {

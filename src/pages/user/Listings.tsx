@@ -10,6 +10,7 @@ import Product from '@/components/user/other/Product';
 import { fetchItemsRoute } from '@/utils/hooks/api-routes';
 import { ErrorToast } from '@/components/common/ui/Toasts';
 import { IProduct } from '@/utils/commons/TypeInterfaces';
+import { filterItems } from '@/utils/commons/constants';
 
 function Listings({ status }: IStatus) {
   const [ products, setProducts ] = useState<IProduct[] | any>(Array(8).fill({}));
@@ -96,7 +97,7 @@ function Listings({ status }: IStatus) {
             <div className="lg:min-w-[25vw] md:min-w-[40vw] h-max bg-white px-10 hidden md:flex md:flex-col">
               <h5 className="font-bold my-5">Filter</h5>
               <div>
-                {/* <CoffeeListings Listings={Listings} /> */}
+                <CoffeeListings Listings={filterItems} />
               </div>
             </div>
 

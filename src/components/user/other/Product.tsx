@@ -22,15 +22,19 @@ const Product = ({ product, skeleton }: ProductProps) => {
     navigate(redirectUrl);
   }; 
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     setAddingToCart(true);
     
     const cartItem = {
       product,
       quantity: 1,
+      selected: false
     };
 
-    addProductToCart(cartItem);
+    await new Promise((resolve: any) => {
+      addProductToCart(cartItem);
+      resolve();
+    });
 
     SuccessToast(
       <div className="flex gap-1 items-center">
