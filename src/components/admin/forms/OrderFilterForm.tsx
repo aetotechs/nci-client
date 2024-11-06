@@ -1,7 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-
 import { Button } from '@/components/common/ui/button';
 import {
   Form,
@@ -19,7 +18,8 @@ import {
 } from '@/components/common/ui/accordion';
 import { Input } from '../../common/ui/input';
 import CoffeeListings from '../../user/other/CoffeeListings';
-import { Checkbox } from '../../common/ui/checkbox';
+
+
 const Listings = [
   {
     title: 'Order Status',
@@ -57,7 +57,7 @@ export function OrderFilterForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className=" w-[60vw] md:w-full space-y-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-[60vw] md:w-full space-y-4">
         <h3 className="font-semibold text-xl">Filters</h3>
         <div>
           <Accordion type="single" collapsible className="md:w-full">

@@ -7,6 +7,7 @@ import { MobileNav } from '../../common/other/MobileNav';
 import { useEffect, useState } from 'react';
 import Search from './Search';
 import { getNavigationUrl } from '@/utils/redirects/NavigationUtils';
+import { useCart } from '@/utils/hooks/CartHook';
 
 export interface HeaderProps {
   status: boolean;
@@ -19,6 +20,7 @@ function Header({ status, handleSearch }: HeaderProps) {
   const [ lastScrollY, setLastScrollY ] = useState(0);
   const location = useLocation();
   const navigate = useNavigate();
+  const { cart } = useCart();
 
   const handleLoginNavigation = () => {
     const redirectUrl = getNavigationUrl(location, "login");
@@ -91,11 +93,15 @@ function Header({ status, handleSearch }: HeaderProps) {
               <SearchIcon className="text-icon w-5 h-5" onClick={handleSearchClick} />
             </div>
 
-            <div className="border border-[#f4f4e6] flex items-center justify-center h-10 w-10 px-2 rounded-sm">
+            <div className="border border-[#f4f4e6] flex items-center justify-center h-10 w-10 px-2 rounded-sm relative">
               <Link to="/cart">
                 <ShoppingCart className="text-icon w-5 h-5" />
               </Link>
+              <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                {cart.length}
+              </span>
             </div>
+
 
             <div className="hidden md:flex md:ml-4">
               {status ? (

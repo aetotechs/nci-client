@@ -11,7 +11,7 @@ import { useCart } from '@/utils/hooks/CartHook';
 
 const Product = ({ product, skeleton }: ProductProps) => {
   const navigate = useNavigate();
-  const { addProductToCart } = useCart();
+  const { cart, addProductToCart, updateProductQuantity } = useCart();
   const [ addingToCart, setAddingToCart ] = useState(false);
   const user = getAuthUser();
   const location = useLocation();
@@ -22,26 +22,41 @@ const Product = ({ product, skeleton }: ProductProps) => {
     navigate(redirectUrl);
   }; 
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     setAddingToCart(true);
     
     const cartItem = {
       product,
       quantity: 1,
+      selected: false
     };
 
-    addProductToCart(cartItem);
+    const productAlreadyInCart = cart.filter((_cartItem) => _cartItem.product.itemId === product.itemId);
 
-    SuccessToast(
-      <div className="flex gap-1 items-center">
-        <span>
-          <img src="/icons/cartsuccess.svg" alt="cart" />
-        </span>
-        <span className="font-bold">{product.name}</span> has been added to your cart.
-      </div>
-    );
+    if(productAlreadyInCart.length > 0){
+      let newQuantity = productAlreadyInCart[0].quantity + 1;
+      setTimeout(() => {
+        updateProductQuantity(product.itemId, newQuantity);
+        SuccessToast(`${product.name} already exists in cart, quantity has been updated to ${newQuantity} bags`);
+        setAddingToCart(false);
+      }, 2000);
+      return;
+    } else {
+      setTimeout(() => {
+        addProductToCart(cartItem);
+        SuccessToast(`${1} bag(s) of ${product.name} added to cart`);
+        setAddingToCart(false);
+      }, 2000);
+    }
 
-    setAddingToCart(false);
+    // SuccessToast(
+    //   <div className="flex gap-1 items-center">
+    //     <span>
+    //       <img src="/icons/cartsuccess.svg" alt="cart" />
+    //     </span>
+    //     <span className="font-bold">{product.name}</span> has been added to your cart.
+    //   </div>
+    // );
   };
 
   const handleOrderSample = () => {

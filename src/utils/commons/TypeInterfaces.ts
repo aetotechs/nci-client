@@ -60,11 +60,17 @@ interface IUser {
   address: IAddress;
 }
 
+interface ICartItem {
+  product: IProduct;
+  quantity: number;
+  selected: boolean;
+}
 
 export type{
     IProduct,
     ProductProps,
     IProductDetails,
     IAddress,
-    IUser
+    IUser,
+    ICartItem
 }
