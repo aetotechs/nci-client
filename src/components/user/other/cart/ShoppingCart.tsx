@@ -8,7 +8,7 @@ import { useCart } from '@/utils/hooks/CartHook';
 
 function ShoppingCart() {
   const { cart, areAllSelected, selectAllCartItems, selectCartItem, updateProductQuantity, removeProductFromCart } = useCart();
-  console.log(cart);
+  // console.log(cart);
 
   return (
     <div className="md:mx-5 bg-white px-2 py-4 md:px-10 md:py-5 flex flex-col rounded-[8px]">

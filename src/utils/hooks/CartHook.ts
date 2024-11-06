@@ -1,41 +1,64 @@
 import { useState, useEffect } from 'react';
 import { 
     addToCart, 
-    clearCart, 
     removeFromCart, 
     updateCartQuantity, 
     incrementCartQuantity, 
-    decrementCartQuantity, 
-    selectCartItem_, 
-    selectAllCartItems_ 
+    decrementCartQuantity,  
 } from '../cookies/CartCookieManager';
-import { IProduct } from '../commons/TypeInterfaces';
-
-interface CartItem {
-  product: IProduct;
-  quantity: number;
-  selected: boolean;
-}
+import { ErrorToast } from '@/components/common/ui/Toasts';
+import { getUserToken } from '../cookies/UserCookieManager';
+import { ICartItem } from '../commons/TypeInterfaces';
 
 const CART_STORAGE_KEY = 'nci_user_cart';
+const user_token = getUserToken();
 
-const loadCartFromStorage = (): CartItem[] => {
+const loadCartFromStorage = (): ICartItem[] => {
     const storedCart = localStorage.getItem(CART_STORAGE_KEY);
     return storedCart ? JSON.parse(storedCart) : [];
 };
 
-const saveCartToStorage = (cart: CartItem[]) => {
+const saveCartToStorage = (cart: ICartItem[]) => {
     localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
 };
 
+const fetchServerCart = async () => {
+    try {
+        const response = await fetch('', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${user_token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        if (!response.ok) {
+            const errorMessage = await response.text();
+            ErrorToast(errorMessage);
+            return;
+        }
+        
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        ErrorToast("Error fetching server cart: " + error);
+        return null;
+    }
+};
+
+
 export function useCart() {
-    const [cart, setCart] = useState<CartItem[]>(loadCartFromStorage);
+    const [ cart, setCart ] = useState<ICartItem[]>(loadCartFromStorage);
 
     useEffect(() => {
         saveCartToStorage(cart);
-    }, [cart]);
+    }, []);
 
-    const addProductToCart = (newItem: CartItem) => {
+    useEffect(() => {
+        // merge server cart items with local cart items here
+    },[])
+
+    const addProductToCart = (newItem: ICartItem) => {
         setCart(currentCart => addToCart(currentCart, newItem));
     };
 
@@ -60,17 +83,15 @@ export function useCart() {
     };
 
     function selectAllCartItems(selectAll: boolean) {
-        setCart(prevCart =>
-        prevCart.map(item => ({ ...item, selected: selectAll }))
-        );
+        setCart( prevCart => prevCart.map(item => ({ ...item, selected: selectAll })));
+        // window.location.reload()
     }
   
     function selectCartItem(itemId: string, isSelected: boolean) {
-        setCart(prevCart =>
-        prevCart.map(item =>
+        setCart(prevCart => prevCart.map(item =>
             item.product.itemId === itemId ? { ...item, selected: isSelected } : item
-        )
-    );
+        ));
+        // window.location.reload();
     }
 
     const calculateSubtotal = () => {

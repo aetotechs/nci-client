@@ -40,16 +40,6 @@ export const decrementCartQuantity = (cart: CartItem[], productId: string): Cart
   );
 };
 
-export const selectCartItem_ = (cart: CartItem[], productId: string, selected: boolean): CartItem[] => {
-  return cart.map(item =>
-      item.product.itemId === productId ? { ...item, selected } : item
-  );
-};
-
-export const selectAllCartItems_ = (cart: CartItem[], selected: boolean): CartItem[] => {
-  return cart.map(item => ({ ...item, selected }));
-};
-
 export const clearCart = (): CartItem[] => {
   return [];
 };

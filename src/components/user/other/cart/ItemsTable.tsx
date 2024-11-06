@@ -32,19 +32,19 @@ export function ItemsTable({ cart, selectCartItem, updateProductQuantity, remove
                       <div className="flex items-center justify-between md:hidden">
                         <h3 className="font-medium text-[14px]">{item?.product?.name}</h3>
                         <Trash2
-                          className="w-4 h-4 flex md:hidden text-[#8b8d98]"
+                          className="w-4 h-4 flex md:hidden text-[#8b8d98] pointer"
                           onClick={() => removeProductFromCart(item?.product?.itemId)}
                         />
                       </div>
                       <h3 className="font-medium text-[13px] hidden md:flex">{item?.product?.name}</h3>
                       <div className="md:mt-2 font-normal text-[13px] md:text-[12px]">
-                        <p>
+                        <p className='overflow-hidden truncate'>
                           <span className="text-[#616161]">Lot Number:</span>
-                          <span>{item?.product?.lotNumber}</span>
+                          <span>{" " + item?.product?.lotNumber}</span>
                         </p>
-                        <p>
+                        <p className='overflow-hidden truncate'>
                           <span className="text-[#616161]">Warehouse:</span>
-                          <span>{item?.product?.wareHouse}</span>
+                          <span>{" " + item?.product?.wareHouse}</span>
                         </p>
                       </div>
                     </div>

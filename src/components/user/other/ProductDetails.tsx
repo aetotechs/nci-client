@@ -3,53 +3,52 @@ import Counter from './cart/Counter';
 import { Button } from '../../common/ui/button';
 import { Bookmark } from 'lucide-react';
 import { useState } from 'react';
-import { toast } from 'sonner';
 import { Link } from 'react-router-dom';
-import { IItems } from './cart/ItemsTable';
 import { ErrorToast, SuccessToast } from '@/components/common/ui/Toasts';
 import { IProduct, IProductDetails } from '@/utils/commons/TypeInterfaces';
+import { useCart } from '@/utils/hooks/CartHook';
 
 
 function ProductDetails({ product, status }: IProductDetails) {
-  const [isAdding, setIsAdding] = useState(false);
-  const [quantities, setQuantities] = useState<number[]>(new Array());
-  const [preferredItems, setPreferredItems] = useState<IItems[]>([]);
-
-  const handleQuantityChange = (newQuantity: number) => {
-   // Gona add the logic for increment and decrement here.
-  };
+  const [ isAdding, setIsAdding] = useState(false);
+  const [ productQuantity, setProductQuantity ] = useState<number | any>(1);
+  const { cart, addProductToCart, updateProductQuantity } = useCart();
   
-  const AddCart = async (product: IProduct, productName: string) => {
+  const handleAddToCart = async () => {
     setIsAdding(true);
+    
+    let cartItem = {
+      product: product,
+      quantity: productQuantity,
+      selected: false
+    }
+
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      let cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+      // const existingItemIndex = cart.findIndex((item: IProduct) => item.itemId === product.itemId);
+      const productAlreadyExists = cart.some((_cartItem) => _cartItem.product.itemId === product.itemId);
 
-      const existingItemIndex = cartItems.findIndex(
-        (item: IProduct) => item.itemId === product.itemId
-      );
-      if (existingItemIndex !== -1) {
-        toast.info(`${productName} already exists in your cart.`, {});
+      if(productAlreadyExists){
+        updateProductQuantity(product.itemId, productQuantity);
+        SuccessToast(`${product.name} already exists in cart, quantity has been updated with the new one`);
         setIsAdding(false);
         return;
       }
 
-      cartItems.push(product);
-
-      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      addProductToCart(cartItem);
 
       SuccessToast(
         <div className="flex gap-1 items-center">
           <span>
             <img src="/icons/cartsuccess.svg" alt="cart" />
           </span>
-          <span className="font-bold">{productName}</span> has been added to your cart.
+          <span className="font-bold">{product.name}</span> has been added to your cart.
         </div>);
     } catch (error) {
-      ErrorToast(error);
+        ErrorToast(error);
     } finally {
-      setIsAdding(false);
+        setIsAdding(false);
     }
   };
 
@@ -114,13 +113,12 @@ function ProductDetails({ product, status }: IProductDetails) {
               <div className="flex flex-col gap-3 md:flex-row my-3    md:justify-between ">
                 <Counter
                   className="h-10 md:w-[104px] w-[40vw] mx-auto md:mx-0 text-[15px] rounded-[6px] text-textcolor"
-                  onValueChange={(newQuantity) => handleQuantityChange(newQuantity)}
+                  quantity={product?.quantity}
+                  onValueChange={(newQuantity) => setProductQuantity(newQuantity)}
                 />
                 <Button
                   className="h-10 md:w-[157px] bg-primary text-white font-medium text-sm"
-                  onClick={() => {
-                    AddCart(product, product.name);
-                  }}
+                  onClick={handleAddToCart}
                   disabled={isAdding}
                 >
                   {isAdding ? 'Adding...' : 'Add to Cart'}

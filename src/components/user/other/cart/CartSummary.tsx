@@ -9,30 +9,36 @@ import { ShoppAdressProps } from '@/pages/user/ShopAddress';
 import { OrderId } from '@/pages/user/Payment';
 import { truncate } from '@/utils/commons/Truncate';
 import { ErrorToast, SuccessToast } from '@/components/common/ui/Toasts';
+import { useCart } from '@/utils/hooks/CartHook';
 
 const vat = 0.0;
 const shippingFee = 0.0;
+let openCart = localStorage.getItem('open_cart');
 
-function OrderSummary({ items, cart, calculateSubtotal }: { items?: ShoppAdressProps, cart?: any, calculateSubtotal?: () => any } | any) {
+let orderSubTotal;
+
+function OrderSummary({ items, cart }: { items?: ShoppAdressProps } | any) {
   const navigate = useNavigate();
   const location = useLocation();
   const [ cartSubTotal, setcartSubTotal ] = useState<number>();
   const [ submitting, setSubmitting ] = useState(false);
   const { pathname } = location;
-  let orderSubTotal;
+  const { calculateSubtotal, clearCartItems } = useCart();
 
   useEffect(() => {
-    orderSubTotal = vat + shippingFee! + parseFloat(calculateSubtotal().toFixed(2)!);
     const cartSubtotal = parseFloat(calculateSubtotal().toFixed(2)!);
     setcartSubTotal(cartSubtotal);
   }, [cart]);
-
+  
+  useEffect(() => {
+    orderSubTotal = vat + shippingFee! + parseFloat(calculateSubtotal().toFixed(2)!);
+  },[]);
 
   const submitCart = async () => {
-    const preferredItems = cart.filter((item) => item.selected);
+    const preferredItems = cart.filter((item: any) => item.selected);
 
     if (preferredItems.length === 0) {
-      toast.info('Please select items to add to cart.', {
+      toast.info('Please select items to checkout cart', {
         style: {
           background: '#2196F31A',
           color: '#2196F3',
@@ -68,8 +74,7 @@ function OrderSummary({ items, cart, calculateSubtotal }: { items?: ShoppAdressP
 
       if (response.ok) {
         const data = await response.json();
-        const cartId = data.cartId;
-        localStorage.setItem('cartId', cartId);
+        localStorage.setItem('open_cart', data);
 
         SuccessToast(
           <div className="flex gap-1 items-center">
@@ -78,7 +83,9 @@ function OrderSummary({ items, cart, calculateSubtotal }: { items?: ShoppAdressP
             </span>
             <span className="font-bold">{preferredItems.length} item(s) added to your cart.</span>
           </div>);
-        localStorage.setItem('preferredItems', JSON.stringify([]));
+        
+        clearCartItems();
+        // insert all the unselected cart items to wishlist from here
 
         setTimeout(() => {
           navigate('/shipping-address');
