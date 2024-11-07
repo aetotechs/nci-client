@@ -25,7 +25,7 @@ const FormSchema = z.object({
   subCategories: z.array(z.string()).nonempty({ message: 'Subcategories are required' })
 });
 
-export function CategoryForm() {
+export function CategoryForm({ onClose }: { onClose: () => void }) {
   const [submitting, setIsSubmitting] = useState(false);
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -56,9 +56,9 @@ export function CategoryForm() {
         });
 
         form.reset();
+        onClose();
       } else {
-        // const errorData = await response.text();
-        toast.error("Category already exists", {
+        toast.error('Category already exists', {
           style: {
             backgroundColor: '#F443361A',
             color: '#F44336',

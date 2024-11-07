@@ -3,36 +3,17 @@ import AdminHeader from '@/components/admin/other/AdminHeader';
 import AdminMobileNav from '@/components/admin/other/AdminMobileNav';
 import AdminSideBarDesktop from '@/components/admin/other/AdminSideBarDesktop';
 import Search from '@/components/user/other/Search';
-import { CategoriesTable, ICategories } from '@/components/admin/tables/Categories';
+import { CategoriesTable } from '@/components/admin/tables/Categories';
 import { FetchCategories } from '@/utils/hooks/api-routes';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { GetCategories } from '@/utils/services/FetchAdminCategories';
 
 function Categories() {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [categories, setCategories] = useState<ICategories[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const getCategories = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(FetchCategories);
-        if (!response.ok) {
-          throw new Error('Failed to fetch categories');
-        }
-        const data = await response.json();
-        setCategories(data);
-      } catch (error) {
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getCategories();
-  }, []);
-  
+  const categories = GetCategories();
 
   const toggleCollapse = () => setIsCollapsed(!isCollapsed);
 
@@ -62,12 +43,8 @@ function Categories() {
             </div>
           </div>
 
-          {loading ? (
-            <div className="my-10">Loading categories...</div>
-          ) : error ? (
-            <div className="my-10 text-red-500">Error: {error}</div>
-          ) : (
-            <>
+         
+          
               <div className="border my-10 rounded-t-[8px] overflow-hidden">
                 <CategoriesTable categories={categories} />
               </div>
@@ -76,8 +53,8 @@ function Categories() {
                   Showing: {categories.length} of {categories.length}
                 </span>
               </div>
-            </>
-          )}
+           
+          
         </div>
       </div>
     </div>

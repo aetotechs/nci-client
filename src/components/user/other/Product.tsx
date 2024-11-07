@@ -130,7 +130,7 @@ const Product = ({ product, skeleton }: ProductProps) => {
                 type="submit"
                 size="sm"
                 onClick={handleOrderSample}
-                className="w-full h-[45px] md:h-[25px] md:text-[10px] rounded-[6px] text-primary text-xs bg-white border border-primary truncate"
+                className="w-full h-[45px] md:h-[25px] lg:grow md:text-[10px] rounded-[6px] text-primary text-xs bg-white border border-primary truncate"
                 disabled={!product.stockAvailable}
               >
                 Request Sample

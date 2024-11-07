@@ -1,4 +1,5 @@
 import { IProduct } from "../commons/TypeInterfaces";
+import { useCart } from "../hooks/CartHook";
 
 interface CartItem {
   product: IProduct;

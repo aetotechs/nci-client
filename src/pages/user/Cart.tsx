@@ -16,7 +16,7 @@ function Cart({ status }: IStatus) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
-
+  console.log(cart);
   return (
     <>
       <Header status={status} />
@@ -33,7 +33,7 @@ function Cart({ status }: IStatus) {
               </div>
               <div className="flex flex-col md:flex-row">
                 <div className="md:w-[60vw]">
-                  <ShoppingCart/>
+                  <ShoppingCart />
                 </div>
                 <div className="md:w-[30vw]">
                   <Coupon />

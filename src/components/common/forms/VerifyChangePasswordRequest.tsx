@@ -106,7 +106,9 @@ export function VerifyOtPForm({ resetTimer }: { resetTimer: boolean }) {
           }
         });
 
-        form.reset();
+        setValue('');  
+      form.setValue('pin', '');  
+      form.reset();
       }
     } catch (error) {
       toast.error('Try Again Later', {

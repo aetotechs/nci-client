@@ -33,7 +33,7 @@ export function OriginForm() {
   });
 
   function onSubmit(values: z.infer<typeof FormSchema>) {
-    toast('Category Added Successfulyy ...', {
+    toast('origin Added Successfulyy ...', {
       className: 'border border-primary text-center text-base flex justify-center rounded-lg mb-2'
     });
     console.log('values submitted', values);

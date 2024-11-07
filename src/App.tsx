@@ -44,7 +44,7 @@ function App() {
   useEffect(() => {
     const UserLoggedIn = isAuthenticated();
     setLoggedIn(UserLoggedIn);
-  }, []);
+  }, [loggedIn]);
 
   return (
     <>
