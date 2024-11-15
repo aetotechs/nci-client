@@ -1,12 +1,24 @@
 import { Button } from '@/components/common/ui/button';
 
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/common/ui/sheet';
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger
+} from '@/components/common/ui/sheet';
 import { Plus } from 'lucide-react';
 import { OriginForm } from '../forms/AddOriginForm';
+import { useState } from 'react';
 
 export function AddOrigin() {
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
+
+  const handleClose = () => {
+    setIsSheetOpen(false);
+  };
   return (
-    <Sheet>
+    <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
       <SheetTrigger asChild>
         <Button className="gap-2">
           <span>
@@ -20,7 +32,7 @@ export function AddOrigin() {
           <SheetTitle className="mt-6 mb-2 font-semibold text-base">Add Origin</SheetTitle>
         </SheetHeader>
         <div>
-          <OriginForm />
+          <OriginForm onClose={handleClose} />
         </div>
       </SheetContent>
     </Sheet>

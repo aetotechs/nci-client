@@ -18,7 +18,6 @@ import { Login } from '@/utils/hooks/api-routes';
 import { getAuthUser, setAuthUser, setUserToken } from '@/utils/cookies/UserCookieManager';
 import { ErrorToast, SuccessToast } from '../ui/Toasts';
 
-
 const FormSchema = z.object({
   username: z.string().min(2, {
     message: 'username must be at least 2 characters.'
@@ -46,7 +45,7 @@ export function LoginForm() {
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
     setIsSubmitting(true);
-    
+
     try {
       const response = await fetch(Login, {
         method: 'POST',
@@ -55,10 +54,9 @@ export function LoginForm() {
         },
         body: JSON.stringify(values)
       });
-      const user = await response.json();
 
+      const user = await response.json();
       if (response.ok) {
-        
         setUserToken(user.token);
         setAuthUser(user.user);
         const userRole = getAuthUser();
@@ -71,14 +69,12 @@ export function LoginForm() {
         setTimeout(() => {
           window.location.href = destination;
         }, 2000);
-
       } else {
         const data = await response.text();
         ErrorToast(data);
       }
-
     } catch (error) {
-      ErrorToast("Error logging you in, try again");
+      ErrorToast('Error logging you in, try again');
     } finally {
       setIsSubmitting(false);
     }

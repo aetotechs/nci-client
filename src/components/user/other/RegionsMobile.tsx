@@ -1,4 +1,9 @@
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/common/ui/accordion';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger
+} from '@/components/common/ui/accordion';
 import { useNavigate } from 'react-router-dom';
 
 const countries = [
@@ -32,7 +37,7 @@ export function RegionsMobile() {
         <AccordionTrigger>
           <p>Regions</p>
         </AccordionTrigger>
-        <AccordionContent className=''>
+        <AccordionContent className="">
           {countries.map((country) => (
             <div key={country.id} className="text-textcolor flex flex-col ">
               <p className="cursor-pointer py-[2px]" onClick={() => HandleClick(country.name)}>

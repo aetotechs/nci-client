@@ -13,7 +13,7 @@ function ClosedOrder({ status }: IStatus) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
-  
+
   return (
     <>
       <Header status={status} />

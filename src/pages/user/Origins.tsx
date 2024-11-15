@@ -4,7 +4,13 @@ import Header from '@/components/user/other/Header';
 import CoffeeListings from '@/components/user/other/CoffeeListings';
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/common/ui/select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@/components/common/ui/select';
 import { FilterSheet, Listings } from '@/components/user/other/FilterMobile';
 import { IProduct } from '@/utils/commons/TypeInterfaces';
 import { ErrorToast } from '@/components/common/ui/Toasts';
@@ -14,8 +20,8 @@ import Product from '@/components/user/other/Product';
 function OriginsPage({ status }: IStatus) {
   const { pathname } = useLocation();
   const { originId } = useParams();
-  const [ products, setProducts ] = useState<IProduct[] | any>(Array(8).fill({}));
-  const [ loading, setLoading ] = useState(false);
+  const [products, setProducts] = useState<IProduct[] | any>(Array(8).fill({}));
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -26,7 +32,7 @@ function OriginsPage({ status }: IStatus) {
           const data = await response.json();
           setProducts(data);
         } else {
-          ErrorToast(response.text())
+          ErrorToast(response.text());
         }
       } catch (error) {
         ErrorToast(error);
@@ -76,9 +82,8 @@ function OriginsPage({ status }: IStatus) {
             <div className="md:hidden ">
               <FilterSheet />
             </div>
-
           </div>
-          
+
           <div className="md:flex gap-3">
             <div className="w-[372px] bg-white h-max px-10 hidden md:flex md:flex-col">
               <h5 className="font-bold my-5">Filter</h5>
@@ -87,14 +92,13 @@ function OriginsPage({ status }: IStatus) {
               </div>
             </div>
             <div className="grid gap-4 grid-cols-1 lg:grid-cols-3 xl:grid-cols-4">
-              { products?.map((product: IProduct | any, index: any) => (
-                  <div key={index}>
-                    <Product product={product} skeleton={loading}/>
-                  </div>
+              {products?.map((product: IProduct | any, index: any) => (
+                <div key={index}>
+                  <Product product={product} skeleton={loading} />
+                </div>
               ))}
             </div>
           </div>
-
         </div>
       </div>
       <Footer />

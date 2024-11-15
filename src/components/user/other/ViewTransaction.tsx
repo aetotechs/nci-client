@@ -1,4 +1,10 @@
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/common/ui/sheet';
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger
+} from '@/components/common/ui/sheet';
 
 import { IActions } from '../../admin/other/Actions';
 import { ArrowDown, EyeIcon } from 'lucide-react';

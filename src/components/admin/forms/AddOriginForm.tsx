@@ -6,7 +6,6 @@ import { Button } from '@/components/common/ui/button';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -14,16 +13,19 @@ import {
 } from '@/components/common/ui/form';
 import { Input } from '@/components/common/ui/input';
 
-import { toast } from 'sonner';
 import { Textarea } from '../../common/ui/textarea';
+import { useRef, useState } from 'react';
+import { AddOrigin } from '@/utils/hooks/api-routes';
+import { ErrorToast, SuccessToast } from '@/components/common/ui/Toasts';
 
 const FormSchema = z.object({
   name: z.string().min(2, { message: 'Field is required' }),
-  description: z.string().min(2, { message: 'Field is required' }),
-  subcategories: z.string().min(2, { message: 'Field is required' })
+  description: z.string().min(2, { message: 'Field is required' })
 });
 
-export function OriginForm() {
+export function OriginForm({ onClose }: { onClose: () => void }) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -32,12 +34,34 @@ export function OriginForm() {
     }
   });
 
-  function onSubmit(values: z.infer<typeof FormSchema>) {
-    toast('origin Added Successfulyy ...', {
-      className: 'border border-primary text-center text-base flex justify-center rounded-lg mb-2'
-    });
-    console.log('values submitted', values);
-  }
+  const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch(AddOrigin, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+      });
+      const data = await response.json();
+      console.log(data);
+
+      if (response.ok) {
+        SuccessToast('Origin Added Successfully,..');
+        form.reset();
+        onClose();
+      } else {
+        const data = await response.text();
+        ErrorToast(data);
+      }
+    } catch (error) {
+      ErrorToast('Error logging you in, try again');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <Form {...form}>
@@ -67,7 +91,11 @@ export function OriginForm() {
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <Textarea placeholder="Type description for origin here" className='border' />
+                <Textarea
+                  placeholder="Type description for origin here"
+                  className="border"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -77,9 +105,10 @@ export function OriginForm() {
         <div className="border-t md:mt-60 flex justify-end">
           <Button
             type="submit"
-            className=" font-normal my-2 text-sm border border-primary text-white md:w-[82px] h-[44px]"
+            className=" font-normal my-2 text-sm border border-primary text-white px-4 h-[44px]"
+            disabled={isSubmitting}
           >
-            Save
+            {isSubmitting ? 'Submitting...' : 'Save'}
           </Button>
         </div>
       </form>

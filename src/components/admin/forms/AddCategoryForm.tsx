@@ -128,7 +128,8 @@ export function CategoryForm({ onClose }: { onClose: () => void }) {
         <div className="border-t mt-5 flex justify-end">
           <Button
             type="submit"
-            className="font-normal my-2 text-sm border border-primary text-white  h-[44px]">
+            className="font-normal my-2 text-sm border border-primary text-white  h-[44px]"
+          >
             {submitting ? 'Submitting...' : 'Save'}
           </Button>
         </div>

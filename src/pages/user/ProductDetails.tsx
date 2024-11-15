@@ -53,11 +53,7 @@ function ProductPage({ status, handleSearch }: HeaderProps) {
           <div className="grid md:grid-cols-2">
             <div className="h-full bg-map p-16 bg-contain bg-no-repeat bg-center flex items-center justify-center rounded-lg md:rounded-xl">
               <div className="flex items-center justify-center">
-                <img
-                  src="/icons/location.svg"
-                  alt="location"
-                  className="z-0 w-full"
-                />
+                <img src="/icons/location.svg" alt="location" className="z-0 w-full" />
                 <span className="font-normal text-[sm] md:text-base">Naguru</span>
               </div>
             </div>

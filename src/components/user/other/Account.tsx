@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 export function AccountPopover() {
   const navigate = useNavigate();
-  
+
   const HandleClick = () => {
     logout();
     setTimeout(() => {

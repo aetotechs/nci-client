@@ -44,6 +44,10 @@ export const ConfirmPayment = `${import.meta.env.VITE_PAYMENT_API_URL}/payments/
 
 export const AddRegion = `${import.meta.env.VITE_INVENTORY_API_URL}/regions`;
 
-export const AddCategory =`${import.meta.env.VITE_INVENTORY_API_URL}/categories`
+export const AddOrigin = `${import.meta.env.VITE_INVENTORY_API_URL}/origins`;
 
-export const FetchCategories =`${import.meta.env.VITE_INVENTORY_API_URL}/categories`;
+export const FetchOrigins = `${import.meta.env.VITE_INVENTORY_API_URL}/origins`;
+
+export const AddCategory = `${import.meta.env.VITE_INVENTORY_API_URL}/categories`;
+
+export const FetchCategories = `${import.meta.env.VITE_INVENTORY_API_URL}/categories`;

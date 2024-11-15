@@ -133,7 +133,7 @@ export function RegionForm() {
               <FormItem>
                 <FormLabel>Short Description</FormLabel>
                 <FormControl>
-                  <Textarea placeholder="Type description for origin here" className='border'/>
+                  <Textarea placeholder="Type description for origin here" className="border" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -146,7 +146,7 @@ export function RegionForm() {
               <FormItem>
                 <FormLabel>History of Coffee *</FormLabel>
                 <FormControl>
-                  <Textarea placeholder="Type description for origin here" className='border' />
+                  <Textarea placeholder="Type description for origin here" className="border" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -159,7 +159,7 @@ export function RegionForm() {
               <FormItem>
                 <FormLabel>Growing Cofffee *</FormLabel>
                 <FormControl>
-                  <Textarea placeholder="Type description for origin here" className='border' />
+                  <Textarea placeholder="Type description for origin here" className="border" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -170,7 +170,8 @@ export function RegionForm() {
             <Button
               type="submit"
               className=" font-normal my-2 text-sm border border-primary text-white  h-[44px]"
-              disabled={submitting}>
+              disabled={submitting}
+            >
               {submitting ? 'Submitting' : 'Save'}
             </Button>
           </div>

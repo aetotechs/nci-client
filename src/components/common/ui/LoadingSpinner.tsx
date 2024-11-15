@@ -2,7 +2,15 @@ import logo from '/logos/spin-logo.png';
 
 const LoadingSpinner = () => {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh', backgroundColor: 'transparent' }}>
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100vh',
+        backgroundColor: 'transparent'
+      }}
+    >
       <img
         src={logo}
         alt="Loading..."

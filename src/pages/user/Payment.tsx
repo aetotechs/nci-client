@@ -12,8 +12,7 @@ import PaymentComponent from '@/components/user/other/PaymentComponent';
 export const OrderId = localStorage.getItem('orderId');
 
 function Payment({ status }: IStatus) {
-  
-  const [ cartItems, setCartItems ] = useState<CartItems[]>([]);
+  const [cartItems, setCartItems] = useState<CartItems[]>([]);
   const { pathname } = useLocation();
 
   useEffect(() => {

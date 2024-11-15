@@ -63,12 +63,12 @@ function CoffeeBrands() {
           <div className="flex flex-col  gap-1 " key={index}>
             <div className="flex justify-between">
               <div>
-                <h4 className='font-medium text-sm text-[#18181b]'>{brand.name}</h4>
+                <h4 className="font-medium text-sm text-[#18181b]">{brand.name}</h4>
               </div>
-              <div className='font-medium text-sm text-[#585962]'>{brand.orders} orders</div>
+              <div className="font-medium text-sm text-[#585962]">{brand.orders} orders</div>
             </div>
             <div>
-              <Progress value={brand.percentage} className='h-2' />
+              <Progress value={brand.percentage} className="h-2" />
             </div>
           </div>
         ))}

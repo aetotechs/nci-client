@@ -68,18 +68,84 @@ function App() {
             <Route path="/about" element={<About status={loggedIn} />} />
             <Route path="/contact-us" element={<ContactUs status={loggedIn} />} />
             <Route path="/region/:originId" element={<OriginsPage status={loggedIn} />} />
-            <Route path="/category/:categoryId" element={<UserCategoriesPage status={loggedIn} />} />
+            <Route
+              path="/category/:categoryId"
+              element={<UserCategoriesPage status={loggedIn} />}
+            />
             <Route path="*" element={<NotFound />} />
 
-            <Route path="/dashboard" element={<AdminRoute><Admin /></AdminRoute>} />
-            <Route path="/categories" element={<AdminRoute><Categories /></AdminRoute>} />
-            <Route path="/admin-origins" element={<AdminRoute><AdminOrigins /></AdminRoute>} />
-            <Route path="/coffee-listings" element={<AdminRoute><CoffeeListings /></AdminRoute>} />
-            <Route path="/orders" element={<AdminRoute><Orders /></AdminRoute>} />
-            <Route path="/transactions" element={<AdminRoute><Transactions /></AdminRoute>} />
-            <Route path="/customers" element={<AdminRoute><Customers /></AdminRoute>} />
-            <Route path="/analytics" element={<AdminRoute><Analytics /></AdminRoute>} />
-            <Route path="/settings" element={<AdminRoute><Settings /></AdminRoute>} />
+            <Route
+              path="/dashboard"
+              element={
+                <AdminRoute>
+                  <Admin />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/categories"
+              element={
+                <AdminRoute>
+                  <Categories />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/admin-origins"
+              element={
+                <AdminRoute>
+                  <AdminOrigins />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/coffee-listings"
+              element={
+                <AdminRoute>
+                  <CoffeeListings />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/orders"
+              element={
+                <AdminRoute>
+                  <Orders />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/transactions"
+              element={
+                <AdminRoute>
+                  <Transactions />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/customers"
+              element={
+                <AdminRoute>
+                  <Customers />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/analytics"
+              element={
+                <AdminRoute>
+                  <Analytics />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/settings"
+              element={
+                <AdminRoute>
+                  <Settings />
+                </AdminRoute>
+              }
+            />
           </Routes>
         </Suspense>
       </HashRouter>

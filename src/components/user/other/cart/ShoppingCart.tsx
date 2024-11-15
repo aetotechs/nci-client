@@ -7,7 +7,14 @@ import { DeleteDialog } from './ClearCartDialog';
 import { useCart } from '@/utils/hooks/CartHook';
 
 function ShoppingCart() {
-  const { cart, areAllSelected, selectAllCartItems, selectCartItem, updateProductQuantity, removeProductFromCart } = useCart();
+  const {
+    cart,
+    areAllSelected,
+    selectAllCartItems,
+    selectCartItem,
+    updateProductQuantity,
+    removeProductFromCart
+  } = useCart();
   // console.log(cart);
 
   return (
@@ -15,17 +22,24 @@ function ShoppingCart() {
       <div className="flex justify-between mb-4 md:mb-0">
         <h3 className="font-bold text-base">Shopping Cart</h3>
         <div className="flex items-center gap-1">
-          <Checkbox className="h-4 w-4" checked={areAllSelected} onCheckedChange={() => selectAllCartItems(!areAllSelected)} />
-          <p className="text-[13px] font-medium"> Select All <span>({cart.length})</span> </p>
+          <Checkbox
+            className="h-4 w-4"
+            checked={areAllSelected}
+            onCheckedChange={() => selectAllCartItems(!areAllSelected)}
+          />
+          <p className="text-[13px] font-medium">
+            {' '}
+            Select All <span>({cart.length})</span>{' '}
+          </p>
         </div>
       </div>
       <div className="">
-        <ItemsTable 
+        <ItemsTable
           cart={cart}
           selectCartItem={selectCartItem}
           updateProductQuantity={updateProductQuantity}
           removeProductFromCart={removeProductFromCart}
-          />
+        />
       </div>
       <div className="flex justify-between mt-3 md:mt-4">
         <Link to="/coffee-shop">
@@ -39,7 +53,7 @@ function ShoppingCart() {
             <span className="text-sm">Back</span>
           </Button>
         </Link>
-        <DeleteDialog/>
+        <DeleteDialog />
       </div>
     </div>
   );

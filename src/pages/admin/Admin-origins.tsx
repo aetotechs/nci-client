@@ -8,15 +8,16 @@ import { AddOrigin } from '@/components/admin/other/AddOrigin';
 import { AddRegion } from '@/components/admin/other/AddRegion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import AdminMobileNav from '@/components/admin/other/AdminMobileNav';
+import { GetOrigins } from '@/utils/services/FetchAdminOrigins';
 
-const origins = [
-  {
-    id: '1',
-    name: 'Uganda',
-    numberOfRegions: 4,
-    regions: ['Mount Elgon', 'Rwenzori', 'Buduuda']
-  }
-];
+// const origins = [
+//   {
+//     id: '1',
+//     name: 'Uganda',
+//     numberOfRegions: 4,
+//     regions: ['Mount Elgon', 'Rwenzori', 'Buduuda']
+//   }
+// ];
 
 const regions = [
   {
@@ -40,6 +41,8 @@ const regions = [
 ];
 
 function AdminOrigins() {
+  const origins = GetOrigins();
+  console.log(origins);
   const [activeTab, setActiveTab] = useState<'origins' | 'regions'>('origins');
 
   const [isCollapsed, setIsCollapsed] = useState(false);

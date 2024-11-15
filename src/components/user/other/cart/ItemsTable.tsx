@@ -1,10 +1,22 @@
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, } from '@/components/common/ui/table';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow
+} from '@/components/common/ui/table';
 import { Checkbox } from '@/components/common/ui/checkbox';
 import { Trash2 } from 'lucide-react';
 import { ScrollArea } from '@/components/common/ui/scroll-area';
 import Counter from './Counter';
 
-export function ItemsTable({ cart, selectCartItem, updateProductQuantity, removeProductFromCart }: any) {
+export function ItemsTable({
+  cart,
+  selectCartItem,
+  updateProductQuantity,
+  removeProductFromCart
+}: any) {
   return (
     <ScrollArea className="p-4">
       <Table>
@@ -22,7 +34,7 @@ export function ItemsTable({ cart, selectCartItem, updateProductQuantity, remove
           {cart.map((item: any, index: any) => (
             <div key={index} className="flex items-center gap-2">
               <Checkbox
-                onCheckedChange={() => selectCartItem(item?.product?.itemId, !item?.selected)}
+                onCheckedChange={() => selectCartItem(item?.p?.itemId, !item?.selected)}
                 checked={item.selected}
               />
               <div className="border lg:h-[100px] h-44 py-2 mb-3 rounded-[8px] grow">
@@ -30,21 +42,21 @@ export function ItemsTable({ cart, selectCartItem, updateProductQuantity, remove
                   <TableCell className="font-medium col-span-3">
                     <div>
                       <div className="flex items-center justify-between md:hidden">
-                        <h3 className="font-medium text-[14px]">{item?.product?.name}</h3>
+                        <h3 className="font-medium text-[14px]">{item?.p?.name}</h3>
                         <Trash2
                           className="w-4 h-4 flex md:hidden text-[#8b8d98] pointer"
-                          onClick={() => removeProductFromCart(item?.product?.itemId)}
+                          onClick={() => removeProductFromCart(item?.p?.itemId)}
                         />
                       </div>
-                      <h3 className="font-medium text-[13px] hidden md:flex">{item?.product?.name}</h3>
+                      <h3 className="font-medium text-[13px] hidden md:flex">{item?.p?.name}</h3>
                       <div className="md:mt-2 font-normal text-[13px] md:text-[12px]">
-                        <p className='overflow-hidden truncate'>
+                        <p className="overflow-hidden truncate">
                           <span className="text-[#616161]">Lot Number:</span>
-                          <span>{" " + item?.product?.lotNumber}</span>
+                          <span>{' ' + item?.p?.lotNumber}</span>
                         </p>
-                        <p className='overflow-hidden truncate'>
+                        <p className="overflow-hidden truncate">
                           <span className="text-[#616161]">Warehouse:</span>
-                          <span>{" " + item?.product?.wareHouse}</span>
+                          <span>{' ' + item?.p?.wareHouse}</span>
                         </p>
                       </div>
                     </div>
@@ -52,14 +64,19 @@ export function ItemsTable({ cart, selectCartItem, updateProductQuantity, remove
                   <TableCell className="col-span-1 items-center -ml-5 hidden md:flex">
                     <Counter
                       quantity={item?.quantity}
-                      onValueChange={(newQuantity) => updateProductQuantity(item?.product?.itemId, newQuantity)}
+                      onValueChange={(newQuantity) =>
+                        updateProductQuantity(item?.p?.itemId, newQuantity)
+                      }
                     />
                   </TableCell>
                   <TableCell className="col-span-1 flex items-center justify-center font-semibold text-[13px]">
-                    <span className="hidden md:flex">${item?.product?.unitPrice * item?.quantity}</span>
+                    <span className="hidden md:flex">${item?.p?.unitPrice * item?.quantity}</span>
                   </TableCell>
                   <TableCell className="col-span-1 hidden md:flex items-center justify-end">
-                    <Trash2 className="w-4 h-4 text-[#8b8d98]" onClick={() => removeProductFromCart(item?.product?.itemId)}/>
+                    <Trash2
+                      className="w-4 h-4 text-[#8b8d98]"
+                      onClick={() => removeProductFromCart(item?.itemId)}
+                    />
                   </TableCell>
                 </TableRow>
               </div>

@@ -27,8 +27,8 @@ export function GraphComponent() {
   return (
     <ChartContainer config={chartConfig} className="md:h-[250px]   w-full">
       <BarChart accessibilityLayer data={chartData}>
-        <XAxis dataKey="month" tickLine={false} tickMargin={10} className='font-medium'/>
-        <YAxis  interval={0} ticks={[0, 10, 20, 30, 40, 50]} className='font-medium' />
+        <XAxis dataKey="month" tickLine={false} tickMargin={10} className="font-medium" />
+        <YAxis interval={0} ticks={[0, 10, 20, 30, 40, 50]} className="font-medium" />
         <ChartTooltip content={<ChartTooltipContent />} />
         <Bar dataKey="orders" fill="var(--color-orders)" radius={5} />
       </BarChart>

@@ -29,7 +29,7 @@ export function VerifyOtPForm({ resetTimer }: { resetTimer: boolean }) {
   const email = localStorage.getItem('email');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
-  
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -106,9 +106,9 @@ export function VerifyOtPForm({ resetTimer }: { resetTimer: boolean }) {
           }
         });
 
-        setValue('');  
-      form.setValue('pin', '');  
-      form.reset();
+        setValue('');
+        form.setValue('pin', '');
+        form.reset();
       }
     } catch (error) {
       toast.error('Try Again Later', {

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import EmptyCart from '@/components/user/other/EmptyCart';
 import Header from '@/components/user/other/Header';
 import Coupon from '@/components/user/other/cart/Coupon';
@@ -6,17 +6,24 @@ import OrderSummary from '@/components/user/other/cart/CartSummary';
 import Progress from '@/components/user/other/cart/Progress';
 import { IStatus } from '@/App';
 import { useLocation } from 'react-router-dom';
-import { useCart } from '@/utils/hooks/CartHook';
+import { CART_STORAGE_KEY, useCart } from '@/utils/hooks/CartHook';
 import ShoppingCart from '@/components/user/other/cart/ShoppingCart';
 
 function Cart({ status }: IStatus) {
-  const { cart, calculateSubtotal } = useCart();
+  const { calculateSubtotal } = useCart();
   const { pathname } = useLocation();
+
+  const [cart, setCart] = useState(() =>
+    JSON.parse(localStorage.getItem(CART_STORAGE_KEY) || '[]')
+  );
+
+  useEffect(() => {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+  }, [cart]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
-  console.log(cart);
   return (
     <>
       <Header status={status} />
@@ -33,7 +40,7 @@ function Cart({ status }: IStatus) {
               </div>
               <div className="flex flex-col md:flex-row">
                 <div className="md:w-[60vw]">
-                  <ShoppingCart />
+                  <ShoppingCart cart={cart} setCart={setCart} />
                 </div>
                 <div className="md:w-[30vw]">
                   <Coupon />

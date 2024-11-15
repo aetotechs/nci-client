@@ -22,7 +22,7 @@ function VerifyOtp() {
       });
 
       const message = await response.text();
-      
+
       if (response.ok) {
         toast.success(`OTP ${message} to ${email}`, {
           style: {
