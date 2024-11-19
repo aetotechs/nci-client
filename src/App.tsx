@@ -67,8 +67,8 @@ function App() {
             <Route path="/profile" element={<Profile status={loggedIn} />} />
             <Route path="/about" element={<About status={loggedIn} />} />
             <Route path="/contact-us" element={<ContactUs status={loggedIn} />} />
-            <Route path="/region/:originId" element={<OriginsPage status={loggedIn} />} />
-            <Route path="/category/:categoryId" element={<UserCategoriesPage status={loggedIn} />} />
+            <Route path="/region/:originId?" element={<OriginsPage status={loggedIn} />} />
+            <Route path="/category/:categoryId?" element={<UserCategoriesPage status={loggedIn} />} />
             <Route path="*" element={<NotFound />} />
 
             <Route path="/dashboard" element={<AdminRoute><Admin /></AdminRoute>} />

@@ -27,19 +27,19 @@ function Footer() {
           </div>
           <div className="flex flex-col w-[200px]  gap-2 ">
             <h3 className="font-semibold text-[15px]">Quick Links</h3>
-            <Link to="home" className="font-normal text-sm">
+            <Link to="/" className="font-normal text-sm">
               Home
             </Link>
-            <Link to="/about-us" className="font-normal text-sm">
+            <Link to="/about" className="font-normal text-sm">
               About Us
             </Link>
-            <Link to="/categories" className="font-normal text-sm">
+            <Link to="/category" className="font-normal text-sm">
               Categories
             </Link>
-            <Link to="/shop" className="font-normal text-sm">
+            <Link to="/coffee-shop" className="font-normal text-sm">
               Shop
             </Link>
-            <Link to="/origins" className="font-normal text-sm">
+            <Link to="/region" className="font-normal text-sm">
               Origins
             </Link>
             <Link to="/contact-us" className="font-normal text-sm">
