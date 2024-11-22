@@ -129,7 +129,7 @@ export function CategoryForm({ onClose }: { onClose: () => void }) {
           <Button
             type="submit"
             className="font-normal my-2 text-sm border border-primary text-white  h-[44px]"
-          >
+            disabled={submitting}>
             {submitting ? 'Submitting...' : 'Save'}
           </Button>
         </div>

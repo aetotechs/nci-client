@@ -8,11 +8,20 @@ import {
 
 import { EyeIcon } from 'lucide-react';
 import { ViewCategoryForm } from '../forms/ViewCategoryForm';
-import { IActions } from './Actions';
+import { useState } from 'react';
+import { ICategories } from '../tables/Categories';
+export interface IEditCategoryProps {
+  category: ICategories;
+}
+export function ViewCategory({ category }: IEditCategoryProps) {
 
-export function ViewCategory({ category }: IActions) {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const handleClose = () => {
+    setIsDialogOpen(false);
+  };
   return (
-    <Sheet>
+    <Sheet open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <SheetTrigger asChild>
         <div className="flex items-center justify-center -mt-1 gap-2 cursor-pointer">
           <EyeIcon className="h-[14px] w-[14px]" />
@@ -24,9 +33,10 @@ export function ViewCategory({ category }: IActions) {
           <SheetTitle className="mt-6 mb-2 font-semibold text-xl">View Category</SheetTitle>
         </SheetHeader>
         <div>
-          <ViewCategoryForm category={category} />
+          <ViewCategoryForm category={category}  onClose={handleClose} />
         </div>
       </SheetContent>
     </Sheet>
   );
 }
+

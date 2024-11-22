@@ -48,7 +48,7 @@ export function ActionsPopover({
       return (
         <>
           <ViewCategory category={category} />
-          <DeleteDialog />
+          <DeleteDialog category={category} />
         </>
       );
     }

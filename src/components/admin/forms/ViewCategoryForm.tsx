@@ -16,34 +16,84 @@ import { Input } from '@/components/common/ui/input';
 
 import { toast } from 'sonner';
 import { Textarea } from '../../common/ui/textarea';
-import { IActions } from '../other/Actions';
 import { Badge } from '../../common/ui/badge';
 import { Pen } from 'lucide-react';
 import { useState } from 'react';
+import { ICategories } from '../tables/Categories';
+import { EditCategory } from '@/utils/hooks/api-routes';
 
 const FormSchema = z.object({
   name: z.string().min(2, { message: 'Field is required' }),
   description: z.string().min(2, { message: 'Field is required' }),
-  subcategories: z.array(z.string())
+  subCategories: z.array(z.string())
 });
-
-export function ViewCategoryForm({ category }: IActions) {
+interface EditCategoryProps {
+  category: ICategories;
+  onClose: () => void;
+}
+export function ViewCategoryForm({ category, onClose }: EditCategoryProps) {
   const [isNameEditable, setIsNameEditable] = useState(false);
+  const [submitting, setIsSubmitting] = useState(false);
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
       name: category?.name,
       description: category?.description,
-      subcategories: category?.subcategories ?? []
+      subCategories: category?.subCategories ?? []
     }
   });
+ 
+  const onSubmit = async (values: z.infer<typeof FormSchema>) => {
 
-  function onSubmit(values: z.infer<typeof FormSchema>) {
-    toast('Category Added Successfulyy ...', {
-      className: 'border border-primary text-center text-base flex justify-center rounded-lg mb-2'
-    });
-    console.log('values submitted', values);
-  }
+
+    const payload = {
+      ...values,
+      subCategories: category?.subCategories,
+    };
+    
+   
+    setIsSubmitting(true);
+    try {
+      const response = await fetch(EditCategory(category?.name), {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const data= await response.json();
+      console.log(data);
+      if (response.status === 200) {
+        toast.success(
+          <div className="flex gap-1 items-center">Category editted Successfully.</div>,
+          {
+            style: {
+              background: '#007BFF1A',
+              color: '#007BFF',
+              border: '1px solid #007BFF80'
+            }
+          }
+        );
+
+        form.reset();
+        onClose();
+      } else {
+       const text= await response.text();
+        toast.error(text, {
+          style: {
+            backgroundColor: '#F443361A',
+            color: '#F44336',
+            border: '1px solid #F4433680'
+          }
+        });
+      }
+    } catch (error) {
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <Form {...form}>
@@ -81,8 +131,7 @@ export function ViewCategoryForm({ category }: IActions) {
                   <span className="font-medium text-sm">{category?.name}</span>
                   <span
                     onClick={() => setIsNameEditable(!isNameEditable)}
-                    className="cursor-pointer"
-                  >
+                    className="cursor-pointer">
                     <Pen className="h-4 w-4" />
                   </span>
                 </div>
@@ -111,7 +160,7 @@ export function ViewCategoryForm({ category }: IActions) {
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <Textarea placeholder={category?.description} />
+                <Textarea placeholder={category?.description} className='border' />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -119,13 +168,13 @@ export function ViewCategoryForm({ category }: IActions) {
         />
         <FormField
           control={form.control}
-          name="subcategories"
+          name="subCategories"
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-sm">
                 SubCategories{' '}
                 <Badge variant={'outline'} className="rounded-[5px] text-primary">
-                  {category?.subcategories.length}
+                  {category?.subCategories.length}
                 </Badge>
               </FormLabel>
               <FormControl>
@@ -136,12 +185,12 @@ export function ViewCategoryForm({ category }: IActions) {
             </FormItem>
           )}
         />
-        <div className="border-t mt-28 flex justify-end ">
+        <div className="border-t mt-10 flex justify-end ">
           <Button
             type="submit"
-            className=" font-normal my-2 text-sm border border-primary text-white md:w-[82px] h-[44px]"
-          >
-            Save
+            className=" font-normal my-2 text-sm border border-primary text-white px-2 h-[44px]"
+            disabled={submitting}>
+            {submitting ? 'Submitting...' : 'Save'}
           </Button>
         </div>
       </form>

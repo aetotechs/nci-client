@@ -51,3 +51,5 @@ export const FetchOrigins = `${import.meta.env.VITE_INVENTORY_API_URL}/origins`;
 export const AddCategory = `${import.meta.env.VITE_INVENTORY_API_URL}/categories`;
 
 export const FetchCategories = `${import.meta.env.VITE_INVENTORY_API_URL}/categories`;
+
+export const EditCategory = (name:string)=>`${import.meta.env.VITE_INVENTORY_API_URL}/categories?name=${name}`;
