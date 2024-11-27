@@ -3,17 +3,20 @@ import { Badge } from '@/components/common/ui/badge';
 import { Button } from '@/components/common/ui/button';
 import { useState } from 'react';
 import { ProductProps } from '@/utils/commons/TypeInterfaces';
-import { SuccessToast } from '@/components/common/ui/Toasts';
+import { ErrorToast, SuccessToast } from '@/components/common/ui/Toasts';
 import { getNavigationUrl } from '@/utils/redirects/NavigationUtils';
-import { getAuthUser, isAuthenticated } from '@/utils/cookies/UserCookieManager';
+import { getAuthUser, getUserToken, isAuthenticated } from '@/utils/cookies/UserCookieManager';
 import { Skeleton } from '@/components/common/ui/Skeleton';
 import { useCart } from '@/utils/hooks/CartHook';
+import { useLoading } from '@/utils/context/LoaderContext';
 
 const Product = ({ product, skeleton }: ProductProps) => {
   const navigate = useNavigate();
+  const { dispatchLoader } = useLoading();
   const { cart, addProductToCart, updateProductQuantity } = useCart();
   const [ addingToCart, setAddingToCart ] = useState(false);
   const user = getAuthUser();
+  const token = getUserToken();
   const location = useLocation();
   const isUserLoggedIn = isAuthenticated() && user.role === "USER";
 
@@ -21,6 +24,45 @@ const Product = ({ product, skeleton }: ProductProps) => {
     const redirectUrl = getNavigationUrl(location, "login");
     navigate(redirectUrl);
   }; 
+
+  const _handleAddToCart = async () => {
+    dispatchLoader(true)
+    const payload: any = {
+      cartItems : [
+        {
+          productId: product.itemId,
+          quantity : product.quantity,
+          confirmed: false
+        }
+      ]
+    }
+    
+    const response = await fetch("http://127.0.0.1:8080/carts",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(payload)
+
+      }
+    );
+
+    try {
+      if(response.ok){
+        SuccessToast(`${payload.cartItems.quantity} bag(s) of ${product.name} added to cart`);
+      } else {
+        const message = await response.text();
+        ErrorToast(message);
+      }
+    } catch (error: any){
+      ErrorToast("Error occured" + error.toString());
+    } finally {
+      dispatchLoader(false);
+    }
+
+  }
 
   const handleAddToCart = async () => {
     setAddingToCart(true);
@@ -119,7 +161,7 @@ const Product = ({ product, skeleton }: ProductProps) => {
               <Button
                 type="submit"
                 size="sm"
-                onClick={handleAddToCart}
+                onClick={_handleAddToCart}
                 className="w-full h-[45px] md:h-[25px] md:text-[10px] rounded-[6px] bg-primary text-xs text-white overflow-hidden whitespace-nowrap truncate"
                 disabled={!product.stockAvailable}
               >

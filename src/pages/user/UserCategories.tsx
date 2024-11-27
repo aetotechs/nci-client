@@ -1,5 +1,4 @@
 
-import { IStatus } from '@/App';
 import CoffeeListings from '@/components/user/other/CoffeeListings';
 import Footer from '@/components/user/other/Footer';
 import Header from '@/components/user/other/Header';
@@ -17,14 +16,17 @@ import Product from '@/components/user/other/Product';
 import { fetchItemsRoute } from '@/utils/hooks/api-routes';
 import { ErrorToast } from '@/components/common/ui/Toasts';
 import { IProduct } from '@/utils/commons/TypeInterfaces';
+import { useLoading } from '@/utils/context/LoaderContext';
 
-function UserCategoriesPage({ status }: IStatus) {
+function UserCategoriesPage() {
+  const { dispatchLoader } = useLoading();
   const [ products, setProducts ] = useState<IProduct[] | any>(Array(8).fill({}));
   const [ loading, setLoading ] = useState(false);
   const { pathname } = useLocation();
   const { categoryId } = useParams();
 
   useEffect(() => {
+    dispatchLoader(true);
     setLoading(true);
     const fetchProducts = async () => {
       try {
@@ -39,6 +41,7 @@ function UserCategoriesPage({ status }: IStatus) {
         ErrorToast(error);
       } finally {
         setLoading(false);
+        dispatchLoader(false);
       }
     };
 
@@ -51,7 +54,7 @@ function UserCategoriesPage({ status }: IStatus) {
 
   return (
     <>
-      <Header status={status} handleSearch={() => {}} />
+      <Header handleSearch={() => {}} />
       <div className="lg:px-[4vw] md:px-[2vw] w-[100vw] md:mb-10">
         <div className="px-4 md:pt-0 overflow-hidden">
           <div className="flex flex-col gap-5 my-5 md:mb-0 md:flex-row md:justify-between md:py-5">
@@ -86,7 +89,7 @@ function UserCategoriesPage({ status }: IStatus) {
               </div>
             </div>
 
-            <div className="grid gap-4 grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 w-full">
+            <div className="grid gap-4 grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 w-full h-max">
               { products?.map((product: IProduct | any, index: any) => (
                   <div key={index}>
                     <Product product={product} skeleton={loading}/>

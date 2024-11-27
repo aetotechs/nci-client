@@ -8,13 +8,14 @@ import { useEffect, useState } from 'react';
 import Search from './Search';
 import { getNavigationUrl } from '@/utils/redirects/NavigationUtils';
 import { useCart } from '@/utils/hooks/CartHook';
+import { isAuthenticated } from '@/utils/cookies/UserCookieManager';
 
 export interface HeaderProps {
-  status: boolean;
   handleSearch?: (searchTerm: string) => void;
 }
 
-function Header({ status, handleSearch }: HeaderProps) {
+function Header({ handleSearch }: HeaderProps) {
+  const _isAuthenticated = isAuthenticated();
   const [ isSearchActive, setIsSearchActive ] = useState(false);
   const [ scrollDirection, setScrollDirection ] = useState<'up' | 'down' | null>(null);
   const [ lastScrollY, setLastScrollY ] = useState(0);
@@ -104,7 +105,7 @@ function Header({ status, handleSearch }: HeaderProps) {
 
 
             <div className="hidden md:flex md:ml-4">
-              {status ? (
+              {_isAuthenticated ? (
                 <AccountPopover />
               ) : (
                 <div onClick={handleLoginNavigation}>
@@ -114,7 +115,7 @@ function Header({ status, handleSearch }: HeaderProps) {
             </div>
 
             <div className="md:hidden flex items-center">
-              <MobileNav status={status} />
+              <MobileNav status={_isAuthenticated} />
             </div>
           </div>
         </>

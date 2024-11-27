@@ -1,7 +1,7 @@
-import { IStatus } from '@/App';
 import Footer from '@/components/user/other/Footer';
 import Header from '@/components/user/other/Header';
 import CoffeeListings from '@/components/user/other/CoffeeListings';
+import Product from '@/components/user/other/Product';
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/common/ui/select';
@@ -9,15 +9,17 @@ import { FilterSheet, Listings } from '@/components/user/other/FilterMobile';
 import { IProduct } from '@/utils/commons/TypeInterfaces';
 import { ErrorToast } from '@/components/common/ui/Toasts';
 import { fetchItemsRoute } from '@/utils/hooks/api-routes';
-import Product from '@/components/user/other/Product';
+import { useLoading } from '@/utils/context/LoaderContext';
 
-function OriginsPage({ status }: IStatus) {
+function OriginsPage() {
+  const { dispatchLoader } = useLoading();
   const { pathname } = useLocation();
   const { originId } = useParams();
   const [ products, setProducts ] = useState<IProduct[] | any>(Array(8).fill({}));
   const [ loading, setLoading ] = useState(false);
 
   useEffect(() => {
+    dispatchLoader(true);
     setLoading(true);
     const fetchProducts = async () => {
       try {
@@ -32,6 +34,7 @@ function OriginsPage({ status }: IStatus) {
         ErrorToast(error);
       } finally {
         setLoading(false);
+        dispatchLoader(false);
       }
     };
 
@@ -44,16 +47,11 @@ function OriginsPage({ status }: IStatus) {
 
   return (
     <>
-      <Header status={status} />
+      <Header/>
       <div className="lg:px-[4vw] md:px-[2vw] w-full md:mb-10">
         <div className="px-4 w-full pt-4 md:pt-0 overflow-hidden ">
           <div className="flex mb-4 mflex-cold:mb-0 md:justify-between mt-4">
             <h3 className="text-2xl font-semibold md:mt-5 md:mb-0 pb-3">{originId}</h3>
-            {/* <p className="">
-              If coffee was born in Africa, growing wild in Ethiopia and harvested for a variety of
-              uses since "time immemorial" (as the history writers seem inclined to phrase it), then
-              coffee came of age on the Arabian Peninsula.
-              </p> */}
             <div className="flex md:justify-end   md:w-full items-center gap-3 my-2">
               <div className="font-medium text-base">Sort by:</div>
               <div>
@@ -86,7 +84,7 @@ function OriginsPage({ status }: IStatus) {
                 <CoffeeListings Listings={Listings} />
               </div>
             </div>
-            <div className="grid gap-4 grid-cols-1 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid gap-4 grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 h-max">
               { products?.map((product: IProduct | any, index: any) => (
                   <div key={index}>
                     <Product product={product} skeleton={loading}/>

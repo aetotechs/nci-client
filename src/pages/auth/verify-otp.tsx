@@ -1,15 +1,17 @@
 import { VerifyOtPForm } from '@/components/common/forms/VerifyChangePasswordRequest';
+import { ErrorToast, SuccessToast } from '@/components/common/ui/Toasts';
+import { useLoading } from '@/utils/context/LoaderContext';
 import { ForgotPassword } from '@/utils/hooks/api-routes';
 import { useState } from 'react';
 
-import { toast } from 'sonner';
-
 function VerifyOtp() {
-  const email = localStorage.getItem('email');
+  const { dispatchLoader } = useLoading();
+  const email = localStorage.getItem('password_reset_email');
   const [resetTimer] = useState(false);
   const [VerificationMethod] = useState('Email');
 
   const handleResendOtp = async () => {
+    dispatchLoader(true);
     try {
       const response = await fetch(ForgotPassword(email, 'r'), {
         method: 'POST',
@@ -24,20 +26,14 @@ function VerifyOtp() {
       const message = await response.text();
       
       if (response.ok) {
-        toast.success(`OTP ${message} to ${email}`, {
-          style: {
-            background: '#007BFF1A',
-
-            color: '#007BFF',
-            border: '1px solid #007BFF80'
-          }
-        });
-        window.location.reload();
+        SuccessToast(`OTP ${message} to ${email}`);
       } else {
-        toast.error(message);
+        ErrorToast(message);
       }
-    } catch (error) {
-      console.error('Error resending OTP:', error);
+    } catch (error: any) {
+      ErrorToast('Error resending OTP:' + error.message);
+    } finally {
+      dispatchLoader(false)
     }
   };
 

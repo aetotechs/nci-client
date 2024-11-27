@@ -4,6 +4,8 @@ import { Toaster } from '@/components/common/ui/sonner';
 import { isAuthenticated } from './utils/cookies/UserCookieManager';
 import AdminRoute from './components/admin/other/AdminRoute';
 import LoadingSpinner from './components/common/ui/LoadingSpinner';
+import { LoadingProvider } from './utils/context/LoaderContext';
+import SuspenseFallBack from './components/common/ui/SuspenseFallBack';
 
 const LoginPage = React.lazy(() => import('@/pages/auth/login'));
 const ForgotPasswordPage = React.lazy(() => import('@/pages/auth/forgot-password'));
@@ -48,41 +50,44 @@ function App() {
 
   return (
     <>
-      <Toaster />
-      <HashRouter>
-        <Suspense fallback={<LoadingSpinner />}>
-          <Routes>
-            <Route index element={<LandingPage status={loggedIn} />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/verify-email" element={<VerifyEmail />} />
-            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-            <Route path="/verify-otp" element={<VerifyOtp />} />
-            <Route path="/reset-password" element={<ResetPasswordPage />} />
-            <Route path="/cart" element={<Cart status={loggedIn} />} />
-            <Route path="/coffee-shop" element={<Listings status={loggedIn} />} />
-            <Route path="/shipping-address" element={<ShopAddress status={loggedIn} />} />
-            <Route path="/shop-payment" element={<ShopPayment status={loggedIn} />} />
-            <Route path="/checkout" element={<ClosedOrder status={loggedIn} />} />
-            <Route path="/product/:productId" element={<ProductPage status={loggedIn} />} />
-            <Route path="/profile" element={<Profile status={loggedIn} />} />
-            <Route path="/about" element={<About status={loggedIn} />} />
-            <Route path="/contact-us" element={<ContactUs status={loggedIn} />} />
-            <Route path="/region/:originId?" element={<OriginsPage status={loggedIn} />} />
-            <Route path="/category/:categoryId?" element={<UserCategoriesPage status={loggedIn} />} />
-            <Route path="*" element={<NotFound />} />
+      <LoadingProvider>
+        <Toaster />
+        <LoadingSpinner/>
+        <HashRouter>
+          <Suspense fallback={<SuspenseFallBack />}>
+            <Routes>
+              <Route index element={<LandingPage status={loggedIn} />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/verify-email" element={<VerifyEmail />} />
+              <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+              <Route path="/verify-otp" element={<VerifyOtp />} />
+              <Route path="/reset-password" element={<ResetPasswordPage />} />
+              <Route path="/cart" element={<Cart status={loggedIn} />} />
+              <Route path="/coffee-shop" element={<Listings/>} />
+              <Route path="/shipping-address" element={<ShopAddress status={loggedIn} />} />
+              <Route path="/shop-payment" element={<ShopPayment status={loggedIn} />} />
+              <Route path="/checkout" element={<ClosedOrder status={loggedIn} />} />
+              <Route path="/product/:productId" element={<ProductPage />} />
+              <Route path="/profile" element={<Profile status={loggedIn} />} />
+              <Route path="/about" element={<About status={loggedIn} />} />
+              <Route path="/contact-us" element={<ContactUs status={loggedIn} />} />
+              <Route path="/region/:originId?" element={<OriginsPage status={loggedIn} />} />
+              <Route path="/category/:categoryId?" element={<UserCategoriesPage />} />
+              <Route path="*" element={<NotFound />} />
 
-            <Route path="/dashboard" element={<AdminRoute><Admin /></AdminRoute>} />
-            <Route path="/categories" element={<AdminRoute><Categories /></AdminRoute>} />
-            <Route path="/admin-origins" element={<AdminRoute><AdminOrigins /></AdminRoute>} />
-            <Route path="/coffee-listings" element={<AdminRoute><CoffeeListings /></AdminRoute>} />
-            <Route path="/orders" element={<AdminRoute><Orders /></AdminRoute>} />
-            <Route path="/transactions" element={<AdminRoute><Transactions /></AdminRoute>} />
-            <Route path="/customers" element={<AdminRoute><Customers /></AdminRoute>} />
-            <Route path="/analytics" element={<AdminRoute><Analytics /></AdminRoute>} />
-            <Route path="/settings" element={<AdminRoute><Settings /></AdminRoute>} />
-          </Routes>
-        </Suspense>
-      </HashRouter>
+              <Route path="/dashboard" element={<AdminRoute><Admin /></AdminRoute>} />
+              <Route path="/categories" element={<AdminRoute><Categories /></AdminRoute>} />
+              <Route path="/admin-origins" element={<AdminRoute><AdminOrigins /></AdminRoute>} />
+              <Route path="/coffee-listings" element={<AdminRoute><CoffeeListings /></AdminRoute>} />
+              <Route path="/orders" element={<AdminRoute><Orders /></AdminRoute>} />
+              <Route path="/transactions" element={<AdminRoute><Transactions /></AdminRoute>} />
+              <Route path="/customers" element={<AdminRoute><Customers /></AdminRoute>} />
+              <Route path="/analytics" element={<AdminRoute><Analytics /></AdminRoute>} />
+              <Route path="/settings" element={<AdminRoute><Settings /></AdminRoute>} />
+            </Routes>
+          </Suspense>
+        </HashRouter>
+      </LoadingProvider>
     </>
   );
 }
