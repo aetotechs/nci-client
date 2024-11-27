@@ -1,14 +1,32 @@
+import { useLoading } from '@/utils/context/LoaderContext';
 import logo from '/logos/spin-logo.png';
 
 const LoadingSpinner = () => {
+  const { isLoading } = useLoading();
+
+  if (!isLoading) return null;
+
   return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh', backgroundColor: 'transparent' }}>
+    <div
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(120, 120,120, 0.5)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 1000,
+      }}
+    >
       <img
         src={logo}
         alt="Loading..."
         style={{
           width: '100px',
-          animation: 'spin 1s linear infinite'
+          animation: 'spin 1s linear infinite',
         }}
       />
       <style>{`

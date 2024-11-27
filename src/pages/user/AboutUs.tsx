@@ -1,13 +1,10 @@
 import { useEffect } from 'react';
-
 import Header from '@/components/user/other/Header';
-
 import Footer from '@/components/user/other/Footer';
-import { IStatus } from '@/App';
 import { useLocation } from 'react-router-dom';
 import { Button } from '@/components/common/ui/button';
 
-function About({ status }: IStatus) {
+function About() {
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -16,7 +13,7 @@ function About({ status }: IStatus) {
 
   return (
     <>
-      <Header status={status} />
+      <Header/>
       <div className="md:px-[5vw] md:max-w-[100vw] overflow-x-hidden    ">
         <div className="w-[100vw] px-5 py-2 md:pt-0 md:w-[1232px] overflow-hidden">
           <div className="md:mt-10 my-2 ">

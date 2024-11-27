@@ -1,7 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-
 import { Button } from '@/components/common/ui/button';
 import {
   Form,
@@ -13,9 +12,10 @@ import {
 } from '@/components/common/ui/form';
 import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/common/ui/input-otp';
 import { useEffect, useState } from 'react';
-import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
 import { VerifyOtp } from '@/utils/hooks/api-routes';
+import { useLoading } from '@/utils/context/LoaderContext';
+import { ErrorToast, SuccessToast } from '../ui/Toasts';
 
 const FormSchema = z.object({
   pin: z.string().min(5, {
@@ -24,9 +24,10 @@ const FormSchema = z.object({
 });
 
 export function VerifyOtPForm({ resetTimer }: { resetTimer: boolean }) {
+  const { dispatchLoader } = useLoading();
   const [value, setValue] = useState('');
   const [timeLeft, setTimeLeft] = useState(600);
-  const email = localStorage.getItem('email');
+  const email = localStorage.getItem('password_reset_email');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
   
@@ -64,8 +65,8 @@ export function VerifyOtPForm({ resetTimer }: { resetTimer: boolean }) {
     form.setValue('pin', value);
   }
 
-  const onSubmit = async (data: z.infer<typeof FormSchema>) => {
-    setIsSubmitting(true);
+  const _handleSubmit = async (data: z.infer<typeof FormSchema>) => {
+    dispatchLoader(true);
     try {
       const response = await fetch(VerifyOtp(email, value), {
         method: 'POST',
@@ -76,55 +77,30 @@ export function VerifyOtPForm({ resetTimer }: { resetTimer: boolean }) {
       });
 
       if (response.status === 200) {
-        setTimeout(() => {
-          toast.success(
-            <div className="flex gap-1 items-center">
-              <span>
-                <img src="/icons/signupemail.svg" alt="Email" />
-              </span>
-              <span>Request verified Successfully!</span> .
-            </div>,
-            {
-              style: {
-                background: '#007BFF1A',
-
-                color: '#007BFF',
-                border: '1px solid #007BFF80'
-              }
-            }
-          );
-          navigate('/reset-password');
-        }, 4000);
+        SuccessToast(
+          <div className="flex gap-1 items-center">
+            <span>
+              <img src="/icons/signupemail.svg" alt="Email" />
+            </span>
+            <span>Request verified Successfully!</span> .
+          </div>);
+        navigate('/reset-password');
       } else {
         const text = await response.text();
-
-        toast.error(text, {
-          style: {
-            backgroundColor: '#F443361A',
-            color: '#F44336',
-            border: '1px solid #F4433680'
-          }
-        });
-
+        ErrorToast(text);
         form.reset();
       }
     } catch (error) {
-      toast.error('Try Again Later', {
-        style: {
-          backgroundColor: '#F443361A',
-          color: '#FFE6E6',
-          border: '1px solid #F4433680'
-        }
-      });
+      ErrorToast('Try Again Later');
     } finally {
-      setIsSubmitting(false);
+      dispatchLoader(false);
     }
   };
 
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(onSubmit)}
+        onSubmit={form.handleSubmit(_handleSubmit)}
         className="w-full px-4 md:w-full flex flex-col justify-center items-center space-y-6 "
       >
         <FormField

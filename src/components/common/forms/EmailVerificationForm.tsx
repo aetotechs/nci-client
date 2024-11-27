@@ -16,6 +16,7 @@ import { useEffect, useState } from 'react';
 import { Verify } from '@/utils/hooks/api-routes';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
+import { ErrorToast } from '../ui/Toasts';
 
 const FormSchema = z.object({
   pin: z.string().min(5, {
@@ -26,7 +27,8 @@ const FormSchema = z.object({
 export function EmailOtpForm({ resetTimer }: { resetTimer: boolean }) {
   const [value, setValue] = useState('');
   const [timeLeft, setTimeLeft] = useState(600);
-  const email = localStorage.getItem('email');
+  const email = localStorage.getItem('acc_verification_email');
+  console.log(email);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -94,24 +96,10 @@ export function EmailOtpForm({ resetTimer }: { resetTimer: boolean }) {
         }, 2000);
       } else {
         const text = await response.text();
-        console.log(text);
-
-        toast.error('Email or PhoneNumber already registered.Please use different details', {
-          style: {
-            backgroundColor: '#F443361A',
-            color: '#F44336',
-            border: '1px solid #F4433680'
-          }
-        });
+        ErrorToast(text);
       }
     } catch (error) {
-      toast.error('Try Again Later', {
-        style: {
-          backgroundColor: '#F443361A',
-          color: '#FFE6E6',
-          border: '1px solid #F4433680'
-        }
-      });
+      ErrorToast("Error occured, try again");
     } finally {
       setIsSubmitting(false);
     }

@@ -26,6 +26,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Register } from '@/utils/hooks/api-routes';
+import { ErrorToast, SuccessToast } from '../ui/Toasts';
+import { useLoading } from '@/utils/context/LoaderContext';
 
 const FormSchema = z
   .object({
@@ -57,6 +59,7 @@ const FormSchema = z
   });
 
 export function SignupForm() {
+  const { dispatchLoader } = useLoading();
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -93,7 +96,7 @@ export function SignupForm() {
     }
   });
 
-  const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+  const _handleSubmit = async (values: z.infer<typeof FormSchema>) => {
     if (!termsAccepted) {
       toast.error('Please accept the terms and conditions before signing up.', {
         style: {
@@ -105,7 +108,8 @@ export function SignupForm() {
       return;
     }
     const { confirmPassword, ...formData } = values;
-    setIsSubmitting(true);
+
+    dispatchLoader(true);
     try {
       const response = await fetch(Register, {
         method: 'POST',
@@ -117,34 +121,20 @@ export function SignupForm() {
       console.log(response);
 
       if (response.status === 200) {
-        toast.success(
+        SuccessToast(
           <div className="flex gap-1 items-center">
             <span>
               <img src="/icons/signupemail.svg" alt="Email" />
             </span>
             <span>Success!</span> Check email to verify your account.
-          </div>,
-          {
-            style: {
-              background: '#007BFF1A',
-
-              color: '#007BFF',
-              border: '1px solid #007BFF80'
-            }
-          }
-        );
+          </div>);
 
         setTimeout(() => {
           navigate('/verify-email');
         }, 5000);
       } else {
-        toast.error('Email or PhoneNumber already registered.Please use different details', {
-          style: {
-            backgroundColor: '#F443361A',
-            color: '#F44336',
-            border: '1px solid #F4433680'
-          }
-        });
+        let res = await response.text();
+        ErrorToast(res);
       }
     } catch (error) {
       toast.error('Try Again Later', {
@@ -155,15 +145,14 @@ export function SignupForm() {
         }
       });
     } finally {
-      setIsSubmitting(false);
+      dispatchLoader(false);
     }
   };
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="w-full flex flex-col md:grid md:grid-cols-2 gap-3  "
+      <form onSubmit={form.handleSubmit(_handleSubmit)}
+          className="w-full flex flex-col md:grid md:grid-cols-2 gap-3  "
       >
         <FormField
           control={form.control}

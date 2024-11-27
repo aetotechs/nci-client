@@ -29,7 +29,6 @@ interface ProductProps {
 
 interface IProductDetails {
   product: IProduct;
-  status: boolean;
 }
 
 interface IAddress {

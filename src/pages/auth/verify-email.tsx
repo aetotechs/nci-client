@@ -1,11 +1,10 @@
 import { EmailOtpForm } from '@/components/common/forms/EmailVerificationForm';
+import { ErrorToast, SuccessToast } from '@/components/common/ui/Toasts';
 import { ResendOtp } from '@/utils/hooks/api-routes';
 import { useState } from 'react';
 
-import { toast } from 'sonner';
-
 function VerifyEmail() {
-  const email = localStorage.getItem('email');
+  const email = localStorage.getItem('acc_verification_email');
   const [resetTimer, setResetTimer] = useState(false);
   const [VerificationMethod, setVerificationMethod] = useState('Email');
 
@@ -14,7 +13,7 @@ function VerifyEmail() {
   };
   const handleResendOtp = async () => {
     try {
-      const response = await fetch(ResendOtp(email), {
+      const response = await fetch(ResendOtp(email) + "type=v", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -26,26 +25,13 @@ function VerifyEmail() {
 
       const message = await response.text();
       if (response.ok) {
-        toast.success(message, {
-          style: {
-            background: '#007BFF1A',
-
-            color: '#007BFF',
-            border: '1px solid #007BFF80'
-          }
-        });
+        SuccessToast(message);
         window.location.reload();
       } else {
-        toast.error(message, {
-          style: {
-            backgroundColor: '#F443361A',
-            color: '#F44336',
-            border: '1px solid #F4433680'
-          }
-        });
+        ErrorToast(message);
       }
     } catch (error) {
-      console.error('Error resending OTP:', error);
+      ErrorToast('Error resending OTP:' + error);
     }
   };
 
