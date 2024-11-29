@@ -124,6 +124,7 @@ function OrderSummary({ items, cart }: { items?: ShoppAdressProps } | any) {
       )}
 
       { pathname === '/checkout' && items && <OrderItems items={items.items} />}
+      <h3 className={` font-semibold text-[15px] my-2 md:px-5`}>Order Summary</h3>
         <div className="flex flex-col text-[12px] gap-3 md:px-4 ">
           <div className={`flex justify-between ${pathname === '/checkout' && 'px-1 mt-1'}`}>
             <p className="font-normal  text-textmuted">Cart Subtotal</p>

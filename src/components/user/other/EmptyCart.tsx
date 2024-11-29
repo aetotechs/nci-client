@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '../../common/ui/button';
-import { IStatus } from '@/App';
+import { isAuthenticated } from '@/utils/cookies/UserCookieManager';
 
-function EmptyCart({ status }: IStatus) {
+function EmptyCart() {
+  const _isAuthenticated = isAuthenticated();
   return (
     <div className="">
       <div className="flex justify-center  flex-col items-center">
@@ -14,7 +15,7 @@ function EmptyCart({ status }: IStatus) {
         <p className="font-normal text-sm md:text-base text-textmuted">
           Add items to your cart and order to enjoy great coffee at the best prices.
         </p>
-        {!status ? (
+        {!_isAuthenticated ? (
           <div className="flex gap-2 items-center py-5 justify-center">
             <Link to="/login">
               {' '}

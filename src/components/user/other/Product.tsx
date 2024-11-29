@@ -7,13 +7,12 @@ import { ErrorToast, SuccessToast } from '@/components/common/ui/Toasts';
 import { getNavigationUrl } from '@/utils/redirects/NavigationUtils';
 import { getAuthUser, getUserToken, isAuthenticated } from '@/utils/cookies/UserCookieManager';
 import { Skeleton } from '@/components/common/ui/Skeleton';
-import { useCart } from '@/utils/hooks/CartHook';
 import { useLoading } from '@/utils/context/LoaderContext';
+import { api_urls } from '@/utils/commons/api-urls';
 
 const Product = ({ product, skeleton }: ProductProps) => {
   const navigate = useNavigate();
   const { dispatchLoader } = useLoading();
-  const { cart, addProductToCart, updateProductQuantity } = useCart();
   const [ addingToCart, setAddingToCart ] = useState(false);
   const user = getAuthUser();
   const token = getUserToken();
@@ -31,13 +30,13 @@ const Product = ({ product, skeleton }: ProductProps) => {
       cartItems : [
         {
           productId: product.itemId,
-          quantity : product.quantity,
+          quantity : 1,
           confirmed: false
         }
       ]
     }
     
-    const response = await fetch("http://127.0.0.1:8080/carts",
+    const response = await fetch(api_urls.carts.post_cart,
       {
         method: "POST",
         headers: {
@@ -51,7 +50,7 @@ const Product = ({ product, skeleton }: ProductProps) => {
 
     try {
       if(response.ok){
-        SuccessToast(`${payload.cartItems.quantity} bag(s) of ${product.name} added to cart`);
+        SuccessToast(`${payload.cartItems[0].quantity} bag(s) of ${product.name} added to cart`);
       } else {
         const message = await response.text();
         ErrorToast(message);
@@ -63,43 +62,6 @@ const Product = ({ product, skeleton }: ProductProps) => {
     }
 
   }
-
-  const handleAddToCart = async () => {
-    setAddingToCart(true);
-    
-    const cartItem = {
-      product,
-      quantity: 1,
-      selected: false
-    };
-
-    const productAlreadyInCart = cart.filter((_cartItem) => _cartItem.product.itemId === product.itemId);
-
-    if(productAlreadyInCart.length > 0){
-      let newQuantity = productAlreadyInCart[0].quantity + 1;
-      setTimeout(() => {
-        updateProductQuantity(product.itemId, newQuantity);
-        SuccessToast(`${product.name} already exists in cart, quantity has been updated to ${newQuantity} bags`);
-        setAddingToCart(false);
-      }, 2000);
-      return;
-    } else {
-      setTimeout(() => {
-        addProductToCart(cartItem);
-        SuccessToast(`${1} bag(s) of ${product.name} added to cart`);
-        setAddingToCart(false);
-      }, 2000);
-    }
-
-    // SuccessToast(
-    //   <div className="flex gap-1 items-center">
-    //     <span>
-    //       <img src="/icons/cartsuccess.svg" alt="cart" />
-    //     </span>
-    //     <span className="font-bold">{product.name}</span> has been added to your cart.
-    //   </div>
-    // );
-  };
 
   const handleOrderSample = () => {
     console.log("Ordering sample");
