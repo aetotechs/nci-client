@@ -7,21 +7,25 @@ import { MobileNav } from '../../common/other/MobileNav';
 import { useEffect, useState } from 'react';
 import Search from './Search';
 import { getNavigationUrl } from '@/utils/redirects/NavigationUtils';
-import { useCart } from '@/utils/hooks/CartHook';
-import { isAuthenticated } from '@/utils/cookies/UserCookieManager';
+import { getUserToken, isAuthenticated } from '@/utils/cookies/UserCookieManager';
+import { useLoading } from '@/utils/context/LoaderContext';
+import { api_urls } from '@/utils/commons/api-urls';
 
 export interface HeaderProps {
   handleSearch?: (searchTerm: string) => void;
+  reloadCart?: any;
 }
 
-function Header({ handleSearch }: HeaderProps) {
+function Header({ handleSearch, reloadCart }: HeaderProps) {
+  const location = useLocation();
   const _isAuthenticated = isAuthenticated();
+  const token = getUserToken();
+  const navigate = useNavigate();
+  const { dispatchLoader } = useLoading();
   const [ isSearchActive, setIsSearchActive ] = useState(false);
+  const [ cartCount, setCartCount ] = useState<number | any>(0);
   const [ scrollDirection, setScrollDirection ] = useState<'up' | 'down' | null>(null);
   const [ lastScrollY, setLastScrollY ] = useState(0);
-  const location = useLocation();
-  const navigate = useNavigate();
-  const { cart } = useCart();
 
   const handleLoginNavigation = () => {
     const redirectUrl = getNavigationUrl(location, "login");
@@ -55,6 +59,41 @@ function Header({ handleSearch }: HeaderProps) {
       window.removeEventListener('scroll', handleScroll);
     }
   }, [lastScrollY]);
+
+  useEffect(() => {
+    
+    fetchCount();
+  },[])
+  
+  const fetchCount = async () => {
+    dispatchLoader(true);
+    try {
+      const response = await fetch(api_urls.carts.cart_items.count,
+        {
+          method: "GET",
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        }
+      )
+      if(response.ok){
+        const count = await response.json();
+        setCartCount(count);
+      }else{
+        const responseMessage = await response.text();
+        // ErrorToast(responseMessage);
+        setCartCount(0);
+      }
+    } catch( error: any ){
+      // ErrorToast("Error occured during cart items count fetch, " + error.toString());
+    } finally{
+      dispatchLoader(false);
+    }
+  }
+
+  useEffect(() => {
+    if (reloadCart) fetchCount();
+  }, [reloadCart]);
 
   return (
     <div className={`bg-white flex items-center ${isSearchActive ? 'justify-center' : 'justify-between'} md:mx-[4vw] p-5 md:p-5 lg:p-5 md:rounded-[30px] top-0 sticky md:h-[89px] md:top-2 shadow-md z-40`}>
@@ -99,7 +138,7 @@ function Header({ handleSearch }: HeaderProps) {
                 <ShoppingCart className="text-icon w-5 h-5" />
               </Link>
               <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-                {cart.length}
+                {cartCount}
               </span>
             </div>
 
