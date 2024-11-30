@@ -5,15 +5,17 @@ import { useState } from 'react';
 import { ProductProps } from '@/utils/commons/TypeInterfaces';
 import { ErrorToast, SuccessToast } from '@/components/common/ui/Toasts';
 import { getNavigationUrl } from '@/utils/redirects/NavigationUtils';
-import { getAuthUser, isAuthenticated } from '@/utils/cookies/UserCookieManager';
+import { getAuthUser, getUserToken, isAuthenticated } from '@/utils/cookies/UserCookieManager';
 import { Skeleton } from '@/components/common/ui/Skeleton';
-import { CART_STORAGE_KEY, useCart } from '@/utils/hooks/CartHook';
+import { useLoading } from '@/utils/context/LoaderContext';
+import { api_urls } from '@/utils/commons/api-urls';
 
 const Product = ({ product, skeleton }: ProductProps) => {
   const navigate = useNavigate();
-  // const { cart, addProductToCart } = useCart();
-  const [addingToCart, setAddingToCart] = useState(false);
+  const { dispatchLoader } = useLoading();
+  const [ addingToCart, setAddingToCart ] = useState(false);
   const user = getAuthUser();
+  const token = getUserToken();
   const location = useLocation();
   const isUserLoggedIn = isAuthenticated() && user.role === 'USER';
 
@@ -22,76 +24,44 @@ const Product = ({ product, skeleton }: ProductProps) => {
     navigate(redirectUrl);
   };
 
-  const handleAddToCart = async (p: any, pName: string) => {
-    setAddingToCart(true);
+  const _handleAddToCart = async () => {
+    dispatchLoader(true)
+    const payload: any = {
+      cartItems : [
+        {
+          productId: product.itemId,
+          quantity : 1,
+          confirmed: false
+        }
+      ]
+    }
+    
+    const response = await fetch(api_urls.carts.post_cart,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(payload)
+
+      }
+    );
 
     try {
-      let cartItems = JSON.parse(localStorage.getItem(CART_STORAGE_KEY) || '[]');
-
-      if (!Array.isArray(cartItems)) {
-        cartItems = [];
+      if(response.ok){
+        SuccessToast(`${payload.cartItems[0].quantity} bag(s) of ${product.name} added to cart`);
+      } else {
+        const message = await response.text();
+        ErrorToast(message);
       }
-
-      const existingItemIndex = cartItems.findIndex((item: any) => item.itemId === p.itemId);
-
-      if (existingItemIndex !== -1) {
-        SuccessToast(`${pName} already exists in your cart`, {});
-        return;
-      }
-      const cartItem = {
-        p,
-        quantity: 1,
-        selected: false
-      };
-      cartItems.push(cartItem);
-
-      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems));
-
-      SuccessToast(
-        <div className="flex gap-1 items-center">
-          <span>
-            <img src="/icons/cartsuccess.svg" alt="cart" />
-          </span>
-          <span className="font-bold">{pName}</span> has been added to your cart.
-        </div>
-      );
-    } catch (error) {
-      ErrorToast(error);
+    } catch (error: any){
+      ErrorToast("Error occured" + error.toString());
     } finally {
-      setAddingToCart(false);
+      dispatchLoader(false);
     }
-  };
 
-  // const handleAddToCart = async () => {
-  //   setAddingToCart(true);
-
-  //   const productAlreadyInCart = cart.filter(
-  //     (_cartItem) => _cartItem.product.itemId === product.itemId
-  //   );
-
-  //   if (productAlreadyInCart.length > 0) {
-  //     setTimeout(() => {
-  //       SuccessToast(`${product.name} already exists in cart`);
-  //       setAddingToCart(false);
-  //     }, 2000);
-  //     return;
-  //   } else {
-  //     setTimeout(() => {
-  //       addProductToCart(cartItem);
-  //       console.log(cartItem);
-  //       SuccessToast(`${1} bag(s) of ${product.name} added to cart`);
-  //       setAddingToCart(false);
-  //     }, 2000);
-  //   }
-
-  // SuccessToast(
-  //   <div className="flex gap-1 items-center">
-  //     <span>
-  //       <img src="/icons/cartsuccess.svg" alt="cart" />
-  //     </span>
-  //     <span className="font-bold">{product.name}</span> has been added to your cart.
-  //   </div>
-  // );
+  }
 
   const handleOrderSample = () => {
     console.log('Ordering sample');
@@ -155,7 +125,7 @@ const Product = ({ product, skeleton }: ProductProps) => {
               <Button
                 type="submit"
                 size="sm"
-                onClick={() => handleAddToCart(product, product.name)}
+                onClick={_handleAddToCart}
                 className="w-full h-[45px] md:h-[25px] md:text-[10px] rounded-[6px] bg-primary text-xs text-white overflow-hidden whitespace-nowrap truncate"
                 disabled={!product.stockAvailable}
               >

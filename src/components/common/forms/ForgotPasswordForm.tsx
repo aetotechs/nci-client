@@ -14,8 +14,9 @@ import {
 import { Input } from '@/components/common/ui/input';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { toast } from 'sonner';
 import { ForgotPassword } from '@/utils/hooks/api-routes';
+import { useLoading } from '@/utils/context/LoaderContext';
+import { ErrorToast, SuccessToast } from '../ui/Toasts';
 
 const FormSchema = z.object({
   email: z.string().min(2, {
@@ -24,6 +25,7 @@ const FormSchema = z.object({
 });
 
 export function ForgotPasswordForm() {
+  const { dispatchLoader } = useLoading();
   const [submitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -33,10 +35,8 @@ export function ForgotPasswordForm() {
     }
   });
 
-  const onSubmit = async (data: z.infer<typeof FormSchema>) => {
-    setIsSubmitting(true);
-
-    setIsSubmitting(true);
+  const _handleSubmit = async (data: z.infer<typeof FormSchema>) => {
+    dispatchLoader(true);
     try {
       const response = await fetch(ForgotPassword(data.email, 'r'), {
         method: 'POST',
@@ -47,54 +47,33 @@ export function ForgotPasswordForm() {
       });
 
       if (response.status === 200) {
-        toast.success(
+        SuccessToast(
           <div className="flex gap-1 items-center">
             <span>
               <img src="/icons/signupemail.svg" alt="Email" />
             </span>
             <span>Success!</span> Check email to verify your request.
           </div>,
-          {
-            style: {
-              background: '#007BFF1A',
-
-              color: '#007BFF',
-              border: '1px solid #007BFF80'
-            }
-          }
-        );
-        localStorage.setItem('email', data.email);
+          );
+        localStorage.setItem('password_reset_email', data.email);
 
         setTimeout(() => {
           navigate('/verify-otp');
-        }, 5000);
+        }, 1000);
       } else {
-        const errorData = await response.text();
-
-        toast.error(errorData, {
-          style: {
-            backgroundColor: '#F443361A',
-            color: '#F44336',
-            border: '1px solid #F4433680'
-          }
-        });
+        const responseMessage = await response.text();
+        ErrorToast(responseMessage);
       }
-    } catch (error) {
-      toast.error('Try Again Later', {
-        style: {
-          backgroundColor: '#F443361A',
-          color: '#FFE6E6',
-          border: '1px solid #F4433680'
-        }
-      });
+    } catch (error: any) {
+      ErrorToast("An error occured, try again later" + error.message);
     } finally {
-      setIsSubmitting(false);
+      dispatchLoader(false);    
     }
   };
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-1 md:space-y-6">
+      <form onSubmit={form.handleSubmit(_handleSubmit)} className="w-full space-y-1 md:space-y-6">
         <FormField
           control={form.control}
           name="email"

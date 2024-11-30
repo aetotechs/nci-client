@@ -6,18 +6,20 @@ import Footer from '@/components/user/other/Footer';
 import Header, { HeaderProps } from '@/components/user/other/Header';
 import ProductDetails from '@/components/user/other/ProductDetails';
 import { IProduct } from '@/utils/commons/TypeInterfaces';
+import { useLoading } from '@/utils/context/LoaderContext';
 import { fetchProductByIdRoute } from '@/utils/hooks/api-routes';
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
-function ProductPage({ status, handleSearch }: HeaderProps) {
-  const [product, setproduct] = useState<IProduct>();
+function ProductPage({ handleSearch }: HeaderProps) {
+  const { dispatchLoader } = useLoading();
+  const [ product, setproduct ] = useState<IProduct>();
   const { productId } = useParams();
   const { pathname } = useLocation();
-  console.log(productId);
 
   useEffect(() => {
     const FetchProduct = async () => {
+      dispatchLoader(true);
       try {
         const response = await fetch(fetchProductByIdRoute(productId!));
         const data = await response.json();
@@ -27,8 +29,8 @@ function ProductPage({ status, handleSearch }: HeaderProps) {
         setproduct(FetchedProduct);
       } catch (error) {}
     };
-
     FetchProduct();
+    dispatchLoader(false);
   }, []);
 
   useEffect(() => {
@@ -37,7 +39,7 @@ function ProductPage({ status, handleSearch }: HeaderProps) {
 
   return (
     <>
-      <Header status={status} />
+      <Header/>
       <div className="md:px-[5vw] md:max-w-[100vw]  ">
         <div className="px-4 ">
           <div className="flex flex-col md:px-0 my-5 md:my-10 md:mb-1">
@@ -59,7 +61,7 @@ function ProductPage({ status, handleSearch }: HeaderProps) {
             </div>
 
             <div className="mt-4 md:mt-0">
-              <ProductDetails product={product!} status={status} />
+              <ProductDetails product={product!}/>
             </div>
           </div>
 

@@ -7,20 +7,25 @@ import { MobileNav } from '../../common/other/MobileNav';
 import { useEffect, useState } from 'react';
 import Search from './Search';
 import { getNavigationUrl } from '@/utils/redirects/NavigationUtils';
-import { useCart } from '@/utils/hooks/CartHook';
+import { getUserToken, isAuthenticated } from '@/utils/cookies/UserCookieManager';
+import { useLoading } from '@/utils/context/LoaderContext';
+import { api_urls } from '@/utils/commons/api-urls';
 
 export interface HeaderProps {
-  status: boolean;
   handleSearch?: (searchTerm: string) => void;
+  reloadCart?: any;
 }
 
-function Header({ status, handleSearch }: HeaderProps) {
-  const [isSearchActive, setIsSearchActive] = useState(false);
-  const [scrollDirection, setScrollDirection] = useState<'up' | 'down' | null>(null);
-  const [lastScrollY, setLastScrollY] = useState(0);
+function Header({ handleSearch, reloadCart }: HeaderProps) {
   const location = useLocation();
+  const _isAuthenticated = isAuthenticated();
+  const token = getUserToken();
   const navigate = useNavigate();
-  const { cart } = useCart();
+  const { dispatchLoader } = useLoading();
+  const [ isSearchActive, setIsSearchActive ] = useState(false);
+  const [ cartCount, setCartCount ] = useState<number | any>(0);
+  const [ scrollDirection, setScrollDirection ] = useState<'up' | 'down' | null>(null);
+  const [ lastScrollY, setLastScrollY ] = useState(0);
 
   const handleLoginNavigation = () => {
     const redirectUrl = getNavigationUrl(location, 'login');
@@ -54,6 +59,41 @@ function Header({ status, handleSearch }: HeaderProps) {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [lastScrollY]);
+
+  useEffect(() => {
+    
+    fetchCount();
+  },[])
+  
+  const fetchCount = async () => {
+    dispatchLoader(true);
+    try {
+      const response = await fetch(api_urls.carts.cart_items.count,
+        {
+          method: "GET",
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        }
+      )
+      if(response.ok){
+        const count = await response.json();
+        setCartCount(count);
+      }else{
+        const responseMessage = await response.text();
+        // ErrorToast(responseMessage);
+        setCartCount(0);
+      }
+    } catch( error: any ){
+      // ErrorToast("Error occured during cart items count fetch, " + error.toString());
+    } finally{
+      dispatchLoader(false);
+    }
+  }
+
+  useEffect(() => {
+    if (reloadCart) fetchCount();
+  }, [reloadCart]);
 
   return (
     <div
@@ -100,12 +140,12 @@ function Header({ status, handleSearch }: HeaderProps) {
                 <ShoppingCart className="text-icon w-5 h-5" />
               </Link>
               <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-                {cart.length}
+                {cartCount}
               </span>
             </div>
 
             <div className="hidden md:flex md:ml-4">
-              {status ? (
+              {_isAuthenticated ? (
                 <AccountPopover />
               ) : (
                 <div onClick={handleLoginNavigation}>
@@ -115,7 +155,7 @@ function Header({ status, handleSearch }: HeaderProps) {
             </div>
 
             <div className="md:hidden flex items-center">
-              <MobileNav status={status} />
+              <MobileNav status={_isAuthenticated} />
             </div>
           </div>
         </>

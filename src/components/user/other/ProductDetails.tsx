@@ -5,12 +5,15 @@ import { Bookmark } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ErrorToast, SuccessToast } from '@/components/common/ui/Toasts';
-import { IProduct, IProductDetails } from '@/utils/commons/TypeInterfaces';
+import { IProductDetails } from '@/utils/commons/TypeInterfaces';
 import { useCart } from '@/utils/hooks/CartHook';
+import { isAuthenticated } from '@/utils/cookies/UserCookieManager';
 
-function ProductDetails({ product, status }: IProductDetails) {
-  const [isAdding, setIsAdding] = useState(false);
-  const [productQuantity, setProductQuantity] = useState<number | any>(1);
+
+function ProductDetails({ product }: IProductDetails) {
+  const [ isAdding, setIsAdding] = useState(false);
+  const _isAuthenticated = isAuthenticated();
+  const [ productQuantity, setProductQuantity ] = useState<number | any>(1);
   const { cart, addProductToCart, updateProductQuantity } = useCart();
 
   const handleAddToCart = async () => {
@@ -59,7 +62,7 @@ function ProductDetails({ product, status }: IProductDetails) {
   return (
     <div className=" rounded-[8px] bg-white  md:mx-0 md:w-full">
       <div className={` px-5 ${!status && 'pb-2'}`}>
-        {status ? (
+        {_isAuthenticated ? (
           <div className="flex items-center gap-2 md:pt-4 pt-2 ">
             <h3 className="font-semibold text-xl">${product?.sampleUnitPrice}/lb</h3>
             <div className="font-light text-[15px] mt-2">${product?.unitPrice}/bag</div>
@@ -116,7 +119,7 @@ function ProductDetails({ product, status }: IProductDetails) {
               </div>
             </div>
           </div>
-          {status ? (
+          {_isAuthenticated ? (
             <div>
               <div className="flex flex-col gap-3 md:flex-row my-3    md:justify-between ">
                 <Counter
@@ -145,7 +148,7 @@ function ProductDetails({ product, status }: IProductDetails) {
           )}
         </div>
       </div>
-      {status && (
+      {_isAuthenticated && (
         <>
           <div className="w-full my-4">
             <Separator />

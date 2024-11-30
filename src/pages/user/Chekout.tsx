@@ -3,11 +3,10 @@ import OrderSummary from '@/components/user/other/cart/CartSummary';
 import { Button } from '@/components/common/ui/button';
 import { Check } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { IStatus } from '@/App';
 import { useEffect } from 'react';
 import { Address } from '@/components/user/other/ShippingAddress';
 
-function ClosedOrder({ status }: IStatus) {
+function ClosedOrder() {
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -16,10 +15,11 @@ function ClosedOrder({ status }: IStatus) {
 
   return (
     <>
-      <Header status={status} />
+      <Header/>
       <div className="md:px-[5vw] md:max-w-[100vw]    ">
         <div className="overflow-hidden">
           <div className=" px-5  md:my-10 md:px-4 flex flex-col md:flex-row gap-9 md:gap-20  md:place-content-center my-5">
+            
             <div className="">
               <div className="md:w-[50vw]  ">
                 <div className="flex items-center gap-2 mb-4">
@@ -81,6 +81,7 @@ function ClosedOrder({ status }: IStatus) {
             <div className="md:w-[30vw] bg-white max-h-max   ">
               <OrderSummary />
             </div>
+
           </div>
         </div>
       </div>

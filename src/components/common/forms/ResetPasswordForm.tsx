@@ -16,6 +16,7 @@ import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { PasswordReset } from '@/utils/hooks/api-routes';
 import { ErrorToast, SuccessToast } from '../ui/Toasts';
+import { useLoading } from '@/utils/context/LoaderContext';
 
 const FormSchema = z
   .object({
@@ -28,12 +29,12 @@ const FormSchema = z
   });
 
 export function ResetPasswordForm() {
+  const { dispatchLoader } = useLoading();
   const [submitting, setIsSubmitting] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const navigate = useNavigate();
-
-  const email = localStorage.getItem('email');
+  const email = localStorage.getItem('password_reset_email');
 
   const togglePassword = () => {
     setPasswordVisible(!passwordVisible);
@@ -51,7 +52,7 @@ export function ResetPasswordForm() {
   });
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
-    setIsSubmitting(true);
+    dispatchLoader(true);
     try {
       const response = await fetch(PasswordReset(email, values.newPassword), {
         method: 'PATCH',
@@ -72,18 +73,16 @@ export function ResetPasswordForm() {
         );
 
         localStorage.removeItem('email');
+        navigate('/login');
 
-        setTimeout(() => {
-          navigate('/login');
-        }, 5000);
       } else {
         const errorData = await response.text();
         ErrorToast(errorData);
       }
-    } catch (error) {
-      ErrorToast('Error resseting password');
+    } catch (error: any) {
+      ErrorToast("Error resseting password" + error.toString());
     } finally {
-      setIsSubmitting(false);
+      dispatchLoader(false);
     }
   };
 

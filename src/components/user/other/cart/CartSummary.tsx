@@ -125,40 +125,41 @@ function OrderSummary({ items, cart }: { items?: ShoppAdressProps } | any) {
         </div>
       )}
 
-      {pathname === '/checkout' && items && <OrderItems items={items.items} />}
-      <div className="flex flex-col text-[12px] gap-3 md:px-4 ">
-        <div className={`flex justify-between ${pathname === '/checkout' && 'px-1 mt-1'}`}>
-          <p className="font-normal  text-textmuted">Cart Subtotal</p>
-          <h3 className="font-medium ">${cartSubTotal || 0} </h3>
-        </div>
-        <div className="flex justify-between">
-          <p className="font-normal  text-textmuted">Shipping</p>
-          <h3 className="font-medium ">{shippingFee}</h3>
-        </div>
-        <div className="flex justify-between">
-          <p className="font-normal  text-textmuted">Standard VAT</p>
-          <h3 className="font-medium ">${vat}</h3>
-        </div>
-        <div className="flex justify-between">
-          <p className="font-normal  text-textmuted">Order Subtotal</p>
-          <h3 className="font-semibold text-[14px]">${cartSubTotal || 0}</h3>
-        </div>
-        {pathname === '/shipping-address' && items && <OrderItems items={items.items} />}
-        {pathname === '/shop-payment' && items && <OrderItems items={items.items} />}
-        {pathname === '/cart' || pathname === '/shop-items' ? (
-          <div>
-            <Button
-              onClick={() => submitCart()}
-              className="tet-white w-full h-10 my-2 rounded-[6px] md:rounded-xl font-normal"
-            >
-              {submitting ? 'Adding...' : 'Proceed to Checkout'}
-            </Button>
+      { pathname === '/checkout' && items && <OrderItems items={items.items} />}
+      <h3 className={` font-semibold text-[15px] my-2 md:px-5`}>Order Summary</h3>
+        <div className="flex flex-col text-[12px] gap-3 md:px-4 ">
+          <div className={`flex justify-between ${pathname === '/checkout' && 'px-1 mt-1'}`}>
+            <p className="font-normal  text-textmuted">Cart Subtotal</p>
+            <h3 className="font-medium ">${cartSubTotal || 0} </h3>
           </div>
-        ) : (
-          ''
-        )}
+          <div className="flex justify-between">
+            <p className="font-normal  text-textmuted">Shipping</p>
+            <h3 className="font-medium ">{shippingFee}</h3>
+          </div>
+          <div className="flex justify-between">
+            <p className="font-normal  text-textmuted">Standard VAT</p>
+            <h3 className="font-medium ">${vat}</h3>
+          </div>
+          <div className="flex justify-between">
+            <p className="font-normal  text-textmuted">Order Subtotal</p>
+            <h3 className="font-semibold text-[14px]">${cartSubTotal || 0}</h3>
+          </div>
+          {pathname === '/shipping-address' && items && <OrderItems items={items.items} />}
+          {pathname === '/shop-payment' && items && <OrderItems items={items.items} />}
+          {pathname === '/cart' || pathname === '/shop-items' ? (
+            <div>
+              <Button
+                onClick={() => submitCart()}
+                className="tet-white w-full h-10 my-2 rounded-[6px] md:rounded-xl font-normal"
+              >
+                { submitting ? 'Adding...' : 'Proceed to Checkout'}
+              </Button>
+            </div>
+          ) : (
+            ''
+          )}
+        </div>
       </div>
-    </div>
   );
 }
 

@@ -1,37 +1,104 @@
 import { useEffect, useState } from 'react';
 import EmptyCart from '@/components/user/other/EmptyCart';
 import Header from '@/components/user/other/Header';
-import Coupon from '@/components/user/other/cart/Coupon';
-import OrderSummary from '@/components/user/other/cart/CartSummary';
 import Progress from '@/components/user/other/cart/Progress';
-import { IStatus } from '@/App';
-import { useLocation } from 'react-router-dom';
-import { CART_STORAGE_KEY, useCart } from '@/utils/hooks/CartHook';
+import { useLocation, useNavigate } from 'react-router-dom';
 import ShoppingCart from '@/components/user/other/cart/ShoppingCart';
+import { Button } from '@/components/common/ui/button';
+import { useLoading } from '@/utils/context/LoaderContext';
+import { api_urls } from '@/utils/commons/api-urls';
+import { getUserToken } from '@/utils/cookies/UserCookieManager';
+import { ErrorToast, SuccessToast } from '@/components/common/ui/Toasts';
 
-function Cart({ status }: IStatus) {
-  const { calculateSubtotal } = useCart();
+function Cart() {
+  const navigate = useNavigate();
+  const token = getUserToken();
+  const { dispatchLoader } = useLoading();
   const { pathname } = useLocation();
-
-  const [cart, setCart] = useState(() =>
-    JSON.parse(localStorage.getItem(CART_STORAGE_KEY) || '[]')
-  );
-
-  useEffect(() => {
-    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
-  }, [cart]);
+  const [ reloadCart, setReloadCart ] = useState(false);
+  const [cart, setCart] = useState<{ cartItems: any[]; cartId: string } | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
+  useEffect(() => {
+    fetchCart();
+  }, []);
+
+  const fetchCart = async () => {
+    dispatchLoader(true);
+    try {
+      const response = await fetch(api_urls.carts.get_open_cart, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response.ok) {
+        const res = await response.json();
+        setCart(res);
+        setReloadCart(true);
+      } else if (response.status === 404) {
+        setCart(null);
+      } else {
+        const responseMessage = await response.text();
+        ErrorToast(responseMessage);
+      }
+    } catch (error: any) {
+      ErrorToast("Error occurred during cart items fetch, " + error.toString());
+    } finally {
+      setReloadCart(false);
+      dispatchLoader(false);
+    }
+  };
+
+  const totalItems =
+    cart?.cartItems?.reduce(
+      (sum: number, item: any) => (item.confirmed ? sum + item.quantity : sum),
+      0
+    ) || 0;
+
+  const handleProceedToCheckout = async () => {
+    if (!cart) return;
+    dispatchLoader(true);
+
+    const payload = {
+      cartId: cart.cartId,
+      orderInstructions: "",
+    };
+
+    try {
+      const response = await fetch(api_urls.orders.create_order, {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const responseMessage = await response.text();
+      if (response.ok) {
+        SuccessToast(responseMessage);
+        window.location.href = "#/checkout";
+      } else {
+        ErrorToast(responseMessage);
+      }
+    } catch (error: any) {
+      ErrorToast("Error occurred during order creation, " + error.toString());
+    } finally {
+      dispatchLoader(false);
+    }
+  };
+
   return (
     <>
-      <Header status={status} />
+      <Header reloadCart={reloadCart}/>
       <div className="md:px-[5vw] lg:my-4 md:max-w-[100vw] overflow-x-hidden">
-        <div className={`px-5 ${cart.length === 0 && 'mt-10'} md:px-0`}>
-          {cart.length === 0 ? (
+        <div className="px-5 mt-10 md:px-0">
+          {!cart || cart.cartItems?.length === 0 ? (
             <div className="flex justify-center items-center">
-              <EmptyCart status={status} />
+              <EmptyCart />
             </div>
           ) : (
             <>
@@ -40,11 +107,36 @@ function Cart({ status }: IStatus) {
               </div>
               <div className="flex flex-col md:flex-row">
                 <div className="md:w-[60vw]">
-                  <ShoppingCart cart={cart} setCart={setCart} />
+                  <ShoppingCart cart={cart} reloadCart={fetchCart} />
                 </div>
                 <div className="md:w-[30vw]">
-                  <Coupon />
-                  <OrderSummary cart={cart} calculateSubtotal={calculateSubtotal} />
+                  <h3 className="font-semibold text-medium my-2 md:px-4">Cart Summary</h3>
+                  <div className="flex flex-col text-[12px] gap-3 md:px-4">
+                    <div className="flex justify-between">
+                      <p className="font-normal text-textmuted">Cart ID</p>
+                      <h3 className="font-medium">{cart.cartId}</h3>
+                    </div>
+                    <div className="flex justify-between">
+                      <p className="font-normal text-textmuted">Total Packages</p>
+                      <h3 className="font-medium">{totalItems} bags</h3>
+                    </div>
+                    <div className="flex justify-between">
+                      <p className="font-normal text-textmuted">Cart Subtotal</p>
+                      <h3 className="font-semibold text-[14px]">${0}</h3>
+                    </div>
+                    <div>
+                      <Button
+                        onClick={handleProceedToCheckout}
+                        className="text-white w-full h-10 my-2 rounded-[6px] md:rounded-xl font-normal cursor-pointer"
+                        disabled={totalItems < 1}
+                      >
+                        {totalItems < 1 ? "Select some items first" : "Checkout"}
+                      </Button>
+                    </div>
+                    <p className="text-red-900 text-center">
+                      ❕ Supply the coupon at checkout if you have one
+                    </p>
+                  </div>
                 </div>
               </div>
             </>
