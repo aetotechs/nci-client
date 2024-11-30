@@ -27,12 +27,13 @@ const FormSchema = z.object({
   workPhone: z.string().min(2, { message: 'Field is required' })
 });
 
-export function ChangeDetails() {
+export function ChangeDetails({ user }: any) {
+  console.log("hhhhhh",user);
   const defaultValues = {
-    firstName: '',
-    lastName: '',
-    workEmail: '',
-    workPhone: ''
+    firstName: user?.firstName,
+    lastName: user?.lastName,
+    workEmail: user?.email,
+    workPhone: user?.workPhone
   };
 
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -60,8 +61,7 @@ export function ChangeDetails() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="w-full flex flex-col md:grid md:grid-cols-2 gap-5"
-      >
+        className="w-full flex flex-col md:grid md:grid-cols-2 gap-5">
         <FormField
           control={form.control}
           name="firstName"
@@ -69,7 +69,7 @@ export function ChangeDetails() {
             <FormItem>
               <FormLabel className="font-medium text-base">First Name</FormLabel>
               <FormControl>
-                <Input type="text" placeholder="Enter your first name" {...field} />
+                <Input type="text" {...field} />
               </FormControl>
 
               <FormMessage />
@@ -83,7 +83,7 @@ export function ChangeDetails() {
             <FormItem>
               <FormLabel className="font-medium text-base">Last Name</FormLabel>
               <FormControl>
-                <Input type="text" placeholder="Enter your last name" {...field} />
+                <Input type="text"  {...field} />
               </FormControl>
 
               <FormMessage />
@@ -97,7 +97,7 @@ export function ChangeDetails() {
             <FormItem>
               <FormLabel className="font-medium text-base">Work Phone</FormLabel>
               <FormControl>
-                <Input type="text" placeholder="Enter your contact" {...field} />
+                <Input type="text"  {...field} />
               </FormControl>
 
               <FormMessage />
@@ -111,7 +111,7 @@ export function ChangeDetails() {
             <FormItem>
               <FormLabel className="font-medium text-base">Work Email</FormLabel>
               <FormControl>
-                <Input type="email" placeholder="Enter your email" {...field} />
+                <Input type="email"  {...field} />
               </FormControl>
 
               <FormMessage />
@@ -121,8 +121,7 @@ export function ChangeDetails() {
         <Button
           type="submit"
           className="justify-self-end col-span-2 h-8 text-[13px]"
-          disabled={!isChanged}
-        >
+          disabled={!isChanged}>
           Save Changes
         </Button>
       </form>

@@ -167,7 +167,9 @@ function CoffeeListings() {
               </span>
 
               <span>
-                <PaginationDemo />
+                <PaginationDemo currentPage={0} totalPages={0} onPageChange={function (page: number): void {
+                    throw new Error('Function not implemented.');
+                  } } />
               </span>
             </div>
           </div>

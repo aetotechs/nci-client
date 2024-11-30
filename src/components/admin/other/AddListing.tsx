@@ -17,6 +17,9 @@ function AddListing({ isCollapsed, toggleCollapse }: AdminSideBarDesktopProps) {
     setShowAddListing(!showAddListing);
   };
 
+  const handleClose = () => {
+    setShowAddListing(false);
+  };
   return (
     <>
       <div>
@@ -29,19 +32,17 @@ function AddListing({ isCollapsed, toggleCollapse }: AdminSideBarDesktopProps) {
               <h3 className="font-semibold text-xl">Add Coffee Listing</h3>
             </div>
             <div className=" ">
-              <ListingsForm />
+              <ListingsForm onClose={handleClose} />
             </div>
           </div>
         ) : (
           <div
-            className={`p-5 md:pr-10 w-[100vw] ${isCollapsed ? 'md:w-[94vw] ' : 'md:w-[84vw]'} mt-20 md:mt-0 `}
-          >
+            className={`p-5 md:pr-10 w-[100vw] ${isCollapsed ? 'md:w-[94vw] ' : 'md:w-[84vw]'} mt-20 md:mt-0 `}>
             <div className="flex gap-3 items-center">
               <h3 className="font-semibold text-2xl ">CoffeeListings</h3>
               <Badge
                 variant="outline"
-                className="h-6 w-8 rounded-[5px] border-primary/30 bg-white justify-center text-primary"
-              >
+                className="h-6 w-8 rounded-[5px] border-primary/30 bg-white justify-center text-primary">
                 {Listings.length}
               </Badge>
             </div>

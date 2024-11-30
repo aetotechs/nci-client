@@ -14,7 +14,7 @@ export interface IOrigins {
   id: string;
   name: string;
   numberOfRegions?: number;
-  coffeeRegion: string[];
+  coffeeRegion?: string[];
   description?: string;
 }
 
@@ -45,7 +45,7 @@ export function OriginsTable({ origins, origin }: IOriginsTable) {
             <TableCell className="flex justify-center">0</TableCell>
             <TableCell>
               <div className="flex gap-2 flex-wrap justify-center">
-                {origin.coffeeRegion.map((subregion, subIndex) => (
+                {origin?.coffeeRegion?.map((subregion, subIndex) => (
                   <Badge
                     variant="outline"
                     key={subIndex}

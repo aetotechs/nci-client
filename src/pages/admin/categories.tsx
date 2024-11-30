@@ -24,7 +24,6 @@ function Categories() {
 
   const toggleCollapse = () => setIsCollapsed(!isCollapsed);
 
-  // Pagination calculations
   const totalPages = Math.ceil(categories.length / categoriesPerPage);
   const currentCategories = categories.slice(
     (currentPage - 1) * categoriesPerPage,

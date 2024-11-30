@@ -40,7 +40,7 @@ function AdminSideBarDesktop({ isCollapsed }: AdminSideBarDesktopProps) {
       </div>
 
       <div className={`flex flex-col gap-6 px-5   ${isCollapsed && 'w-[5vw] '}`}>
-        <Link to="/admin">
+        <Link to="/dashboard">
           <div
             className={`flex items-center gap-2 cursor-pointer ${isActive('/admin') ? 'text-texthighlight font-semibold' : ''}`}
           >

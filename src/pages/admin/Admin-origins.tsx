@@ -9,41 +9,15 @@ import { AddRegion } from '@/components/admin/other/AddRegion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import AdminMobileNav from '@/components/admin/other/AdminMobileNav';
 import { GetOrigins } from '@/utils/services/FetchAdminOrigins';
+import { GetRegions } from '@/utils/services/FetchAdminRegions';
 
-// const origins = [
-//   {
-//     id: '1',
-//     name: 'Uganda',
-//     numberOfRegions: 4,
-//     regions: ['Mount Elgon', 'Rwenzori', 'Buduuda']
-//   }
-// ];
 
-const regions = [
-  {
-    id: '1',
-    name: 'Mount Elgon',
-    origin: 'Uganda',
-    numberOfCoffeeListings: 20
-  },
-  {
-    id: '2',
-    name: 'Rwenzori Mountains',
-    origin: 'Uganda',
-    numberOfCoffeeListings: 10
-  },
-  {
-    id: '3',
-    name: 'West Nile',
-    origin: 'Uganda',
-    numberOfCoffeeListings: 3
-  }
-];
 
 function AdminOrigins() {
   const origins = GetOrigins();
-  console.log(origins);
+  const regions= GetRegions();
   const [activeTab, setActiveTab] = useState<'origins' | 'regions'>('origins');
+  const [loading, setLoading] = useState(true);
 
   const [isCollapsed, setIsCollapsed] = useState(false);
 

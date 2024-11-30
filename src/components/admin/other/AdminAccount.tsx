@@ -2,8 +2,12 @@ import { ChangeDetails } from '../forms/ChangeDetailsForm';
 import { ChangePasswordForm } from '../../common/forms/ChangePasswordForm';
 import { Badge } from '../../common/ui/badge';
 import { Button } from '../../common/ui/button';
+import { GetUser } from '@/utils/services/FetchUser';
+import { IUser } from '@/utils/commons/TypeInterfaces';
 
 function AdminAccount() {
+  const user = GetUser();
+  console.log(user);
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-col md:flex-row gap-10">
@@ -23,7 +27,7 @@ function AdminAccount() {
                   </Badge>
                 </span>
               </h3>
-              <h5 className="font-normal text-sm">admin@nilecoffeeimports.com</h5>
+              <h5 className="font-normal text-sm">{user?.email}</h5>
             </div>
           </div>
           <div className="my-6">
@@ -48,7 +52,7 @@ function AdminAccount() {
               </div>
             </div>
           </div>
-          <ChangeDetails />
+          <ChangeDetails  user={user}/>
         </div>
       </div>
 

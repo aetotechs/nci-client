@@ -52,4 +52,15 @@ export const AddCategory = `${import.meta.env.VITE_INVENTORY_API_URL}/categories
 
 export const FetchCategories = `${import.meta.env.VITE_INVENTORY_API_URL}/categories`;
 
-export const EditCategory = (name:string)=>`${import.meta.env.VITE_INVENTORY_API_URL}/categories?name=${name}`;
+export const EditCategory = (name: string) =>
+  `${import.meta.env.VITE_INVENTORY_API_URL}/categories?name=${name}`;
+
+export const FetchRegions = `${import.meta.env.VITE_INVENTORY_API_URL}/regions`;
+
+export const GetAllOrders = `${import.meta.env.VITE_ORDER_API_URL}/orders`;
+
+export const GetUserOrders=(userId:string)=> `${import.meta.env.VITE_ORDER_API_URL}/orders/user?userId=${userId}`;
+
+export const AddItem = `${import.meta.env.VITE_INVENTORY_API_URL}/items`;
+
+export const GetAllUsers=`${import.meta.env.VITE_USER_API_URL}/users`

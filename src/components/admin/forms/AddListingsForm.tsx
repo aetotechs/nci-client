@@ -14,7 +14,6 @@ import {
 } from '@/components/common/ui/form';
 import { Input } from '@/components/common/ui/input';
 
-import { toast } from 'sonner';
 import {
   Select,
   SelectContent,
@@ -25,6 +24,11 @@ import {
 
 import { RichTextEditor } from '../../common/other/RichTextEditor';
 import { PendingPopover } from '../../user/other/PendingPopover';
+import { AddItem } from '@/utils/hooks/api-routes';
+import { useState } from 'react';
+import { ErrorToast, SuccessToast } from '@/components/common/ui/Toasts';
+import { GetOrigins } from '@/utils/services/FetchAdminOrigins';
+import { GetRegions } from '@/utils/services/FetchAdminRegions';
 
 const FormSchema = z.object({
   brand: z.string().min(2, { message: 'Field is required' }),
@@ -43,7 +47,7 @@ const FormSchema = z.object({
   certifications: z.string().min(2, { message: 'Field is required ' }),
   warehouse: z.string().min(2, { message: 'Field is required ' }),
   status: z.string().min(2, { message: 'Field is required ' }),
-  processing: z.string().min(2, { message: 'Field is required ' }),
+  processingMode: z.string().min(2, { message: 'Field is required ' }),
   processingDescription: z.string().min(2, { message: 'Field is required ' }),
   bagType: z.string().min(2, { message: 'Field is required ' }),
   plantSpecies: z.string().min(2, { message: 'Field is required ' }),
@@ -54,7 +58,12 @@ const FormSchema = z.object({
   variety: z.string().min(2, { message: 'Field is required ' })
 });
 
-export function ListingsForm() {
+export function ListingsForm({ onClose }: { onClose: () => void }) {
+  const [submitting, setIsSubmitting] = useState(false);
+
+  const origins = GetOrigins();
+  const regions = GetRegions();
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -74,7 +83,7 @@ export function ListingsForm() {
       status: '',
       bagPrice: '',
       samplePrice: '',
-      processing: '',
+      processingMode: '',
       processingDescription: '',
       bagType: '',
       plantSpecies: '',
@@ -84,19 +93,40 @@ export function ListingsForm() {
     }
   });
 
-  function onSubmit(values: z.infer<typeof FormSchema>) {
-    toast('Listing Added Successfuly ...', {
-      className: 'border border-primary text-center text-base flex justify-center rounded-lg mb-2'
-    });
-    console.log('values submitted', values);
-  }
+  const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch(AddItem, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+      });
+      const data = await response.json();
+      console.log(data);
+
+      if (response.ok) {
+        SuccessToast('Item Added Successfully,..');
+        form.reset();
+        onClose();
+      } else {
+        const data = await response.text();
+        ErrorToast(data);
+      }
+    } catch (error) {
+      ErrorToast('Error , try again');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className=" flex flex-col w-[85vw]  md:flex-row gap-5 "
-      >
+        className=" flex flex-col w-[85vw]  md:flex-row gap-5 ">
         <div className="bg-white border border-primary/30 rounded-[8px] p-5 w-full md:w-[45vw] max-h-min">
           <h3 className="text-base font-semibold">General</h3>
 
@@ -204,14 +234,23 @@ export function ListingsForm() {
                 <FormItem>
                   <FormLabel>Origin *</FormLabel>
                   <FormControl>
-                    <Select>
+                    <Select
+                      onValueChange={(value) => {
+                        field.onChange(value);
+                      }}
+                      value={field.value}>
+                      {' '}
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="light">Light</SelectItem>
-                        <SelectItem value="dark">Dark</SelectItem>
-                        <SelectItem value="system">System</SelectItem>
+                        {origins.map((origin, index) => {
+                          return (
+                            <SelectItem key={index} value={`${origin.id}`}>
+                              {origin?.name}
+                            </SelectItem>
+                          );
+                        })}
                       </SelectContent>
                     </Select>
                   </FormControl>
@@ -226,14 +265,22 @@ export function ListingsForm() {
                 <FormItem>
                   <FormLabel>Region</FormLabel>
                   <FormControl>
-                    <Select>
+                    <Select
+                      onValueChange={(value) => {
+                        field.onChange(value);
+                      }}
+                      value={field.value}>
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="light">Light</SelectItem>
-                        <SelectItem value="dark">Dark</SelectItem>
-                        <SelectItem value="system">System</SelectItem>
+                        {regions.map((region, index) => {
+                          return (
+                            <SelectItem key={index} value={`${region.id}`}>
+                              {region?.name}
+                            </SelectItem>
+                          );
+                        })}
                       </SelectContent>
                     </Select>
                   </FormControl>
@@ -374,7 +421,7 @@ export function ListingsForm() {
               />
               <FormField
                 control={form.control}
-                name="processing"
+                name="processingMode"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Processing *</FormLabel>
@@ -533,9 +580,9 @@ export function ListingsForm() {
             </Button>
             <Button
               type="submit"
-              className=" font-normal  text-sm border border-primary text-white  h-[44px]"
-            >
-              Save Listing
+              disabled={submitting}
+              className=" font-normal  text-sm border border-primary text-white  h-[44px]">
+              {submitting ? 'Submitting...' : 'Save  Listing'}
             </Button>
           </div>
         </div>
