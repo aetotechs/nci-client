@@ -62,16 +62,16 @@ function App() {
               <Route path="/forgot-password" element={<ForgotPasswordPage />} />
               <Route path="/verify-otp" element={<VerifyOtp />} />
               <Route path="/reset-password" element={<ResetPasswordPage />} />
-              <Route path="/cart" element={<Cart status={loggedIn} />} />
+              <Route path="/cart" element={<Cart />} />
               <Route path="/coffee-shop" element={<Listings/>} />
               <Route path="/shipping-address" element={<ShopAddress status={loggedIn} />} />
               <Route path="/shop-payment" element={<ShopPayment status={loggedIn} />} />
-              <Route path="/checkout" element={<ClosedOrder status={loggedIn} />} />
+              <Route path="/checkout" element={<ClosedOrder />} />
               <Route path="/product/:productId" element={<ProductPage />} />
               <Route path="/profile" element={<Profile status={loggedIn} />} />
-              <Route path="/about" element={<About status={loggedIn} />} />
+              <Route path="/about" element={<About />} />
               <Route path="/contact-us" element={<ContactUs status={loggedIn} />} />
-              <Route path="/region/:originId?" element={<OriginsPage status={loggedIn} />} />
+              <Route path="/region/:originId?" element={<OriginsPage  />} />
               <Route path="/category/:categoryId?" element={<UserCategoriesPage />} />
               <Route path="*" element={<NotFound />} />
 
