@@ -74,13 +74,12 @@ export function ResetPasswordForm() {
 
         localStorage.removeItem('email');
         navigate('/login');
-
       } else {
         const errorData = await response.text();
         ErrorToast(errorData);
       }
     } catch (error: any) {
-      ErrorToast("Error resseting password" + error.toString());
+      ErrorToast('Error resseting password' + error.toString());
     } finally {
       dispatchLoader(false);
     }

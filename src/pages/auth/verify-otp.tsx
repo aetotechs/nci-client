@@ -33,7 +33,7 @@ function VerifyOtp() {
     } catch (error: any) {
       ErrorToast('Error resending OTP:' + error.message);
     } finally {
-      dispatchLoader(false)
+      dispatchLoader(false);
     }
   };
 

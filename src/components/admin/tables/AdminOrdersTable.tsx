@@ -11,6 +11,7 @@ import { ActionsPopover } from '../other/Actions';
 import { useLocation } from 'react-router-dom';
 
 import { Eye } from 'lucide-react';
+import { extractDateOnly } from './CustomersTable';
 
 export interface IOrders {
   orderId: string;
@@ -21,6 +22,15 @@ export interface IOrders {
   totalPrice?: number;
   customer?: string;
   totalAmount: number;
+  userDetails?: {
+    firstName: string;
+    lastName: string;
+  };
+  orderDetails?: {
+    product: {
+      name: string;
+    };
+  }[];
 }
 
 interface IOrdersTable {
@@ -36,7 +46,7 @@ function getStatusBadge(orderStatus: IOrders['orderStatus']) {
     case 'CANCELLED':
       return <span className="bg-red-100 text-red-800 py-1 px-2 rounded">Cancelled</span>;
     default:
-      return <span className="bg-red-100 text-red-800 py-1 px-2 rounded">Pending</span>;;
+      return <span className="bg-red-100 text-red-800 py-1 px-2 rounded">Pending</span>;
   }
 }
 
@@ -71,9 +81,18 @@ export function AdminOrdersTable({ orders }: IOrdersTable) {
         {orders.map((order, index) => (
           <TableRow key={index} className="border-b h-10">
             <TableCell className="font-medium">{order?.orderId}</TableCell>
-            <TableCell className="font-normal text-[15px]">{order.createdAt}</TableCell>
+            <TableCell className="font-normal text-[15px]">
+              {extractDateOnly(order.createdAt)}
+            </TableCell>
             <TableCell>{getStatusBadge(order.orderStatus)}</TableCell>
-            {pathname == '/orders' && <TableCell>{order?.orderItems?.join(', ')}</TableCell>}
+            {pathname == '/orders' && (
+              <TableCell className="max-w-[160px]">
+                {order.orderDetails
+                  ?.map((detail) => detail.product?.name)
+                  .filter(Boolean)
+                  .join(', ') || 'No products'}{' '}
+              </TableCell>
+            )}
             {pathname == '/analytics ' && <TableCell>{order?.item}</TableCell>}
             {pathname === '/analytics' && (
               <TableCell>
@@ -90,8 +109,12 @@ export function AdminOrdersTable({ orders }: IOrdersTable) {
 
             {pathname === '/orders' && (
               <>
-                <TableCell>{order.customer}</TableCell>
-                <TableCell className='text-center'>{order.totalAmount}</TableCell>
+                <TableCell className="flex gap-1">
+                  <span>{order.userDetails?.firstName}</span>
+
+                  {order.userDetails?.lastName}
+                </TableCell>
+                <TableCell className="text-center">{order.totalAmount}</TableCell>
                 <TableCell>
                   <ActionsPopover order={order} />
                 </TableCell>

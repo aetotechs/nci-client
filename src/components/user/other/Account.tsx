@@ -9,14 +9,14 @@ export function AccountPopover() {
   const { dispatchLoader } = useLoading();
 
   const handleLogout = () => {
-    if (confirm("Are you sure you want to logout?")) {
+    if (confirm('Are you sure you want to logout?')) {
       dispatchLoader(true);
-      
+
       logout();
       setTimeout(() => {
         dispatchLoader(false);
         navigate(-1);
-      }, 500); 
+      }, 500);
     }
   };
 

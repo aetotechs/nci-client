@@ -14,6 +14,7 @@ import {
 import { Input } from '@/components/common/ui/input';
 
 import { toast } from 'sonner';
+import { useEffect } from 'react';
 
 const FormSchema = z.object({
   firstName: z.string().min(2, {
@@ -28,26 +29,43 @@ const FormSchema = z.object({
 });
 
 export function ChangeDetails({ user }: any) {
-  console.log("hhhhhh",user);
-  const defaultValues = {
-    firstName: user?.firstName,
-    lastName: user?.lastName,
-    workEmail: user?.email,
-    workPhone: user?.workPhone
-  };
-
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     mode: 'onChange',
-    defaultValues
+    defaultValues: user
+      ? {
+          firstName: user.firstName || '',
+          lastName: user.lastName || '',
+          workEmail: user.email || '',
+          workPhone: user.workPhone || ''
+        }
+      : {
+          firstName: '',
+          lastName: '',
+          workEmail: '',
+          workPhone: ''
+        }
   });
 
-  const watchedValues = form.watch();
+  useEffect(() => {
+    if (user) {
+      form.reset({
+        firstName: user.firstName || '',
+        lastName: user.lastName || '',
+        workEmail: user.email || '',
+        workPhone: user.workPhone || ''
+      });
+    }
+  }, [user, form]);
 
-  const isChanged = Object.keys(defaultValues).some(
+  const isChanged = (
+    Object.keys(form.formState.defaultValues || {}) as Array<
+      keyof typeof form.formState.defaultValues
+    >
+  ).some(
     (key) =>
-      defaultValues[key as keyof typeof defaultValues] !==
-      watchedValues[key as keyof typeof watchedValues]
+      form.formState.defaultValues?.[key] !==
+      form.getValues(key as keyof typeof form.formState.defaultValues)
   );
 
   function onSubmit(values: z.infer<typeof FormSchema>) {
@@ -61,7 +79,8 @@ export function ChangeDetails({ user }: any) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="w-full flex flex-col md:grid md:grid-cols-2 gap-5">
+        className="w-full flex flex-col md:grid md:grid-cols-2 gap-5"
+      >
         <FormField
           control={form.control}
           name="firstName"
@@ -71,7 +90,6 @@ export function ChangeDetails({ user }: any) {
               <FormControl>
                 <Input type="text" {...field} />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
@@ -83,9 +101,8 @@ export function ChangeDetails({ user }: any) {
             <FormItem>
               <FormLabel className="font-medium text-base">Last Name</FormLabel>
               <FormControl>
-                <Input type="text"  {...field} />
+                <Input type="text" {...field} />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
@@ -97,9 +114,8 @@ export function ChangeDetails({ user }: any) {
             <FormItem>
               <FormLabel className="font-medium text-base">Work Phone</FormLabel>
               <FormControl>
-                <Input type="text"  {...field} />
+                <Input type="text" {...field} />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
@@ -111,9 +127,8 @@ export function ChangeDetails({ user }: any) {
             <FormItem>
               <FormLabel className="font-medium text-base">Work Email</FormLabel>
               <FormControl>
-                <Input type="email"  {...field} />
+                <Input type="email" {...field} />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
@@ -121,7 +136,8 @@ export function ChangeDetails({ user }: any) {
         <Button
           type="submit"
           className="justify-self-end col-span-2 h-8 text-[13px]"
-          disabled={!isChanged}>
+          disabled={!isChanged}
+        >
           Save Changes
         </Button>
       </form>

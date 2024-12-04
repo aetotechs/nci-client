@@ -22,10 +22,10 @@ function Header({ handleSearch, reloadCart }: HeaderProps) {
   const token = getUserToken();
   const navigate = useNavigate();
   const { dispatchLoader } = useLoading();
-  const [ isSearchActive, setIsSearchActive ] = useState(false);
-  const [ cartCount, setCartCount ] = useState<number | any>(0);
-  const [ scrollDirection, setScrollDirection ] = useState<'up' | 'down' | null>(null);
-  const [ lastScrollY, setLastScrollY ] = useState(0);
+  const [isSearchActive, setIsSearchActive] = useState(false);
+  const [cartCount, setCartCount] = useState<number | any>(0);
+  const [scrollDirection, setScrollDirection] = useState<'up' | 'down' | null>(null);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const handleLoginNavigation = () => {
     const redirectUrl = getNavigationUrl(location, 'login');
@@ -61,35 +61,32 @@ function Header({ handleSearch, reloadCart }: HeaderProps) {
   }, [lastScrollY]);
 
   useEffect(() => {
-    
     fetchCount();
-  },[])
-  
+  }, []);
+
   const fetchCount = async () => {
     dispatchLoader(true);
     try {
-      const response = await fetch(api_urls.carts.cart_items.count,
-        {
-          method: "GET",
-          headers: {
-            "Authorization": `Bearer ${token}`
-          }
+      const response = await fetch(api_urls.carts.cart_items.count, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`
         }
-      )
-      if(response.ok){
+      });
+      if (response.ok) {
         const count = await response.json();
         setCartCount(count);
-      }else{
+      } else {
         const responseMessage = await response.text();
         // ErrorToast(responseMessage);
         setCartCount(0);
       }
-    } catch( error: any ){
+    } catch (error: any) {
       // ErrorToast("Error occured during cart items count fetch, " + error.toString());
-    } finally{
+    } finally {
       dispatchLoader(false);
     }
-  }
+  };
 
   useEffect(() => {
     if (reloadCart) fetchCount();

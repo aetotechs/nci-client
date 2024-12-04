@@ -13,8 +13,11 @@ import { IEditCategoryProps } from './ViewCategory';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { EditCategory } from '@/utils/hooks/api-routes';
+import { getUserToken } from '@/utils/cookies/UserCookieManager';
 
 export function DeleteDialog({ category }: IEditCategoryProps) {
+  const token: string | null = getUserToken();
+
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -23,11 +26,13 @@ export function DeleteDialog({ category }: IEditCategoryProps) {
     try {
       const response = await fetch(EditCategory(category?.name), {
         method: 'DELETE',
+
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
         }
       });
-console.log(response);
+      console.log(response);
       if (response.ok) {
         toast.success('Category deleted successfully.', {
           style: {
@@ -37,7 +42,6 @@ console.log(response);
           }
         });
         setIsDialogOpen(false);
-      
       } else {
         const data = await response.json();
         toast.error(data.message || 'Failed to delete category.', {
@@ -98,7 +102,8 @@ console.log(response);
             variant="outline"
             className="text-white bg-red-400"
             onClick={handleDelete}
-            disabled={isDeleting}>
+            disabled={isDeleting}
+          >
             {isDeleting ? 'Deleting...' : 'Delete'}
           </Button>
           <Button variant="ghost" onClick={handleClose}>

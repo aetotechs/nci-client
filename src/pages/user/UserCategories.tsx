@@ -1,4 +1,3 @@
-
 import CoffeeListings from '@/components/user/other/CoffeeListings';
 import Footer from '@/components/user/other/Footer';
 import Header from '@/components/user/other/Header';
@@ -20,8 +19,8 @@ import { useLoading } from '@/utils/context/LoaderContext';
 
 function UserCategoriesPage() {
   const { dispatchLoader } = useLoading();
-  const [ products, setProducts ] = useState<IProduct[] | any>(Array(8).fill({}));
-  const [ loading, setLoading ] = useState(false);
+  const [products, setProducts] = useState<IProduct[] | any>(Array(8).fill({}));
+  const [loading, setLoading] = useState(false);
   const { pathname } = useLocation();
   const { categoryId } = useParams();
 
@@ -90,10 +89,10 @@ function UserCategoriesPage() {
             </div>
 
             <div className="grid gap-4 grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 w-full h-max">
-              { products?.map((product: IProduct | any, index: any) => (
-                  <div key={index}>
-                    <Product product={product} skeleton={loading}/>
-                  </div>
+              {products?.map((product: IProduct | any, index: any) => (
+                <div key={index}>
+                  <Product product={product} skeleton={loading} />
+                </div>
               ))}
             </div>
           </div>

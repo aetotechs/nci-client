@@ -114,7 +114,6 @@ export function RegionForm({ onClose }: { onClose: () => void }) {
       if (values.coffeegrowth) formData.append('coffeegrowth', values.coffeegrowth);
       if (values.mapImage) formData.append('mapImage', values.mapImage);
 
-
       const response = await fetch(AddRegion, {
         method: 'POST',
         body: formData
@@ -165,7 +164,8 @@ export function RegionForm({ onClose }: { onClose: () => void }) {
                       onValueChange={(value) => {
                         field.onChange(value);
                       }}
-                      value={field.value}>
+                      value={field.value}
+                    >
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
@@ -291,7 +291,8 @@ export function RegionForm({ onClose }: { onClose: () => void }) {
             <Button
               type="submit"
               className=" font-normal my-2 text-sm border border-primary text-white  h-[44px]"
-              disabled={submitting}>
+              disabled={submitting}
+            >
               {submitting ? 'Submitting' : 'Save'}
             </Button>
           </div>

@@ -1,46 +1,12 @@
 import { useState } from 'react';
 import AdminHeader from '@/components/admin/other/AdminHeader';
 import AdminSideBarDesktop from '@/components/admin/other/AdminSideBarDesktop';
-import Search from '@/components/user/other/Search';
-import { OriginsTable } from '@/components/admin/tables/OriginsTable';
-import { RegionsTable } from '@/components/admin/tables/RegionsTable';
-import { AddOrigin } from '@/components/admin/other/AddOrigin';
-import { AddRegion } from '@/components/admin/other/AddRegion';
+
 import AdminAccount from '@/components/admin/other/AdminAccount';
 import Preferences from '@/components/user/other/Preferences';
 import Users from '@/components/admin/other/Users';
 import AdminMobileNav from '@/components/admin/other/AdminMobileNav';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
-
-const origins = [
-  {
-    id: '1',
-    name: 'Uganda',
-    numberOfRegions: 4,
-    regions: ['Mount Elgon', 'Rwenzori', 'Buduuda']
-  }
-];
-
-const regions = [
-  {
-    id: '1',
-    name: 'Mount Elgon',
-    origin: 'Uganda',
-    numberOfCoffeeListings: 20
-  },
-  {
-    id: '2',
-    name: 'Rwenzori Mountains',
-    origin: 'Uganda',
-    numberOfCoffeeListings: 10
-  },
-  {
-    id: '3',
-    name: 'West Nile',
-    origin: 'Uganda',
-    numberOfCoffeeListings: 3
-  }
-];
 
 function Settings() {
   const [isCollapsed, setIsCollapsed] = useState(false);

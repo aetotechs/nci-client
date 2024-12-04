@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import {  FetchRegions } from '../hooks/api-routes';
+import { FetchRegions } from '../hooks/api-routes';
 import { IRegions } from '@/components/admin/tables/RegionsTable';
 
 export function GetRegions() {

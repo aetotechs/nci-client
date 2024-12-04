@@ -14,7 +14,6 @@ export interface IEditCategoryProps {
   category: ICategories;
 }
 export function ViewCategory({ category }: IEditCategoryProps) {
-
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const handleClose = () => {
@@ -33,10 +32,9 @@ export function ViewCategory({ category }: IEditCategoryProps) {
           <SheetTitle className="mt-6 mb-2 font-semibold text-xl">View Category</SheetTitle>
         </SheetHeader>
         <div>
-          <ViewCategoryForm category={category}  onClose={handleClose} />
+          <ViewCategoryForm category={category} onClose={handleClose} />
         </div>
       </SheetContent>
     </Sheet>
   );
 }
-

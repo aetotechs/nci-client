@@ -22,8 +22,8 @@ import { isAuthenticated } from '@/utils/cookies/UserCookieManager';
 function Listings() {
   const { dispatchLoader } = useLoading();
   const _isAuthenticated = isAuthenticated();
-  const [ products, setProducts ] = useState<IProduct[] | any>(Array(8).fill({}));
-  const [ loading, setLoading ] = useState(false);
+  const [products, setProducts] = useState<IProduct[] | any>(Array(8).fill({}));
+  const [loading, setLoading] = useState(false);
   const { pathname } = useLocation();
 
   // const handleSearch = (searchQuery: string) => {
@@ -113,10 +113,10 @@ function Listings() {
             </div>
 
             <div className="grid gap-4 grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 w-full h-max">
-              { products?.map((product: IProduct | any, index: any) => (
-                  <div key={index}>
-                    <Product product={product} skeleton={loading}/>
-                  </div>
+              {products?.map((product: IProduct | any, index: any) => (
+                <div key={index}>
+                  <Product product={product} skeleton={loading} />
+                </div>
               ))}
             </div>
           </div>

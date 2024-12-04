@@ -83,7 +83,8 @@ export function VerifyOtPForm({ resetTimer }: { resetTimer: boolean }) {
               <img src="/icons/signupemail.svg" alt="Email" />
             </span>
             <span>Request verified Successfully!</span> .
-          </div>);
+          </div>
+        );
         navigate('/reset-password');
       } else {
         const text = await response.text();

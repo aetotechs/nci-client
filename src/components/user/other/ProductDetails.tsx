@@ -9,11 +9,10 @@ import { IProductDetails } from '@/utils/commons/TypeInterfaces';
 import { useCart } from '@/utils/hooks/CartHook';
 import { isAuthenticated } from '@/utils/cookies/UserCookieManager';
 
-
 function ProductDetails({ product }: IProductDetails) {
-  const [ isAdding, setIsAdding] = useState(false);
+  const [isAdding, setIsAdding] = useState(false);
   const _isAuthenticated = isAuthenticated();
-  const [ productQuantity, setProductQuantity ] = useState<number | any>(1);
+  const [productQuantity, setProductQuantity] = useState<number | any>(1);
   const { cart, addProductToCart, updateProductQuantity } = useCart();
 
   const handleAddToCart = async () => {

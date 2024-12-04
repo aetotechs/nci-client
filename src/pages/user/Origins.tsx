@@ -53,7 +53,7 @@ function OriginsPage() {
 
   return (
     <>
-      <Header/>
+      <Header />
       <div className="lg:px-[4vw] md:px-[2vw] w-full md:mb-10">
         <div className="px-4 w-full pt-4 md:pt-0 overflow-hidden ">
           <div className="flex mb-4 mflex-cold:mb-0 md:justify-between mt-4">
@@ -90,10 +90,10 @@ function OriginsPage() {
               </div>
             </div>
             <div className="grid gap-4 grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 h-max">
-              { products?.map((product: IProduct | any, index: any) => (
-                  <div key={index}>
-                    <Product product={product} skeleton={loading}/>
-                  </div>
+              {products?.map((product: IProduct | any, index: any) => (
+                <div key={index}>
+                  <Product product={product} skeleton={loading} />
+                </div>
               ))}
             </div>
           </div>

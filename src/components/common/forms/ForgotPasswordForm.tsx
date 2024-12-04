@@ -53,8 +53,8 @@ export function ForgotPasswordForm() {
               <img src="/icons/signupemail.svg" alt="Email" />
             </span>
             <span>Success!</span> Check email to verify your request.
-          </div>,
-          );
+          </div>
+        );
         localStorage.setItem('password_reset_email', data.email);
 
         setTimeout(() => {
@@ -65,9 +65,9 @@ export function ForgotPasswordForm() {
         ErrorToast(responseMessage);
       }
     } catch (error: any) {
-      ErrorToast("An error occured, try again later" + error.message);
+      ErrorToast('An error occured, try again later' + error.message);
     } finally {
-      dispatchLoader(false);    
+      dispatchLoader(false);
     }
   };
 

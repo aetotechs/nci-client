@@ -26,11 +26,11 @@ export interface ICustomerTableProps {
   setShowViewCustomer: (show: boolean) => void;
 }
 
-function extractDateOnly(dateString: string | undefined): string {
+export function extractDateOnly(dateString: string | undefined): string {
   if (!dateString) {
-    return "N/A";
+    return 'N/A';
   }
-  return dateString.split("T")[0];
+  return dateString.split('T')[0];
 }
 export function CustomersTable({
   customers,
@@ -55,7 +55,7 @@ export function CustomersTable({
 
       <TableBody className="bg-white border border-primary/30 p-3 rounded-3xl ">
         {customers.map((customer, index) => (
-          <TableRow key={index} className="h-[70px] bcustomer-b last:bcustomer-b-0">
+          <TableRow key={index} className="h-[50px] border-b last:bcustomer-b-0">
             <TableCell className="font-medium">
               {customer.firstName}
               {customer.lastName}

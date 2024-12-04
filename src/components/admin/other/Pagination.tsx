@@ -41,10 +41,10 @@ export function PaginationDemo({ currentPage, totalPages, onPageChange }: Pagina
           return (
             <PaginationItem key={page}>
               <PaginationLink
-                
                 onClick={() => onPageChange(page)}
                 isActive={page === currentPage}
-                className={page === currentPage ? 'bg-primary text-white text-sm' : 'border '}>
+                className={page === currentPage ? 'bg-primary text-white text-sm' : 'border '}
+              >
                 {page}
               </PaginationLink>
             </PaginationItem>

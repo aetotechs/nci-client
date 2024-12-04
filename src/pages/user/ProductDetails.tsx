@@ -13,7 +13,7 @@ import { useLocation, useParams } from 'react-router-dom';
 
 function ProductPage({ handleSearch }: HeaderProps) {
   const { dispatchLoader } = useLoading();
-  const [ product, setproduct ] = useState<IProduct>();
+  const [product, setproduct] = useState<IProduct>();
   const { productId } = useParams();
   const { pathname } = useLocation();
 
@@ -39,7 +39,7 @@ function ProductPage({ handleSearch }: HeaderProps) {
 
   return (
     <>
-      <Header/>
+      <Header />
       <div className="md:px-[5vw] md:max-w-[100vw]  ">
         <div className="px-4 ">
           <div className="flex flex-col md:px-0 my-5 md:my-10 md:mb-1">
@@ -61,7 +61,7 @@ function ProductPage({ handleSearch }: HeaderProps) {
             </div>
 
             <div className="mt-4 md:mt-0">
-              <ProductDetails product={product!}/>
+              <ProductDetails product={product!} />
             </div>
           </div>
 

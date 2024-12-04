@@ -13,7 +13,7 @@ import { api_urls } from '@/utils/commons/api-urls';
 const Product = ({ product, skeleton }: ProductProps) => {
   const navigate = useNavigate();
   const { dispatchLoader } = useLoading();
-  const [ addingToCart, setAddingToCart ] = useState(false);
+  const [addingToCart, setAddingToCart] = useState(false);
   const user = getAuthUser();
   const token = getUserToken();
   const location = useLocation();
@@ -25,43 +25,39 @@ const Product = ({ product, skeleton }: ProductProps) => {
   };
 
   const _handleAddToCart = async () => {
-    dispatchLoader(true)
+    dispatchLoader(true);
     const payload: any = {
-      cartItems : [
+      cartItems: [
         {
           productId: product.itemId,
-          quantity : 1,
+          quantity: 1,
           confirmed: false
         }
       ]
-    }
-    
-    const response = await fetch(api_urls.carts.post_cart,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
-        },
-        body: JSON.stringify(payload)
+    };
 
-      }
-    );
+    const response = await fetch(api_urls.carts.post_cart, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify(payload)
+    });
 
     try {
-      if(response.ok){
+      if (response.ok) {
         SuccessToast(`${payload.cartItems[0].quantity} bag(s) of ${product.name} added to cart`);
       } else {
         const message = await response.text();
         ErrorToast(message);
       }
-    } catch (error: any){
-      ErrorToast("Error occured" + error.toString());
+    } catch (error: any) {
+      ErrorToast('Error occured' + error.toString());
     } finally {
       dispatchLoader(false);
     }
-
-  }
+  };
 
   const handleOrderSample = () => {
     console.log('Ordering sample');

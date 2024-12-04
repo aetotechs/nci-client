@@ -3,11 +3,9 @@ import { ChangePasswordForm } from '../../common/forms/ChangePasswordForm';
 import { Badge } from '../../common/ui/badge';
 import { Button } from '../../common/ui/button';
 import { GetUser } from '@/utils/services/FetchUser';
-import { IUser } from '@/utils/commons/TypeInterfaces';
 
 function AdminAccount() {
   const user = GetUser();
-  console.log(user);
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-col md:flex-row gap-10">
@@ -19,11 +17,13 @@ function AdminAccount() {
 
             <div>
               <h3 className="font-semibold text-[15px] flex items-center gap-2 mb-1">
-                <span>Nile Admin</span>
+                <span>
+                  {user?.firstName} {user?.lastName}
+                </span>
 
                 <span>
                   <Badge variant={'outline'} className="text-red-400 bg-red-200 border-red-300 ">
-                    Admin
+                    {user?.role}{' '}
                   </Badge>
                 </span>
               </h3>
@@ -52,7 +52,7 @@ function AdminAccount() {
               </div>
             </div>
           </div>
-          <ChangeDetails  user={user}/>
+          <ChangeDetails user={user} />
         </div>
       </div>
 

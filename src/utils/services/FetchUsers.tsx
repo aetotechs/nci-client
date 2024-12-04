@@ -12,7 +12,7 @@ export type User = {
 
 export type UserWithOrders = User & {
   orders: {
-    totalAmount: number
+    totalAmount: number;
   }[];
 };
 
@@ -57,7 +57,6 @@ export function FetchUsers() {
               const orders = await ordersResponse.json();
               return { ...user, orders };
             } catch (orderError) {
-
               console.error(`Error fetching orders for user ${user.userId}:`, orderError);
               return { ...user, orders: [] };
             }

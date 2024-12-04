@@ -126,7 +126,8 @@ export function ListingsForm({ onClose }: { onClose: () => void }) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className=" flex flex-col w-[85vw]  md:flex-row gap-5 ">
+        className=" flex flex-col w-[85vw]  md:flex-row gap-5 "
+      >
         <div className="bg-white border border-primary/30 rounded-[8px] p-5 w-full md:w-[45vw] max-h-min">
           <h3 className="text-base font-semibold">General</h3>
 
@@ -238,7 +239,8 @@ export function ListingsForm({ onClose }: { onClose: () => void }) {
                       onValueChange={(value) => {
                         field.onChange(value);
                       }}
-                      value={field.value}>
+                      value={field.value}
+                    >
                       {' '}
                       <SelectTrigger>
                         <SelectValue />
@@ -269,7 +271,8 @@ export function ListingsForm({ onClose }: { onClose: () => void }) {
                       onValueChange={(value) => {
                         field.onChange(value);
                       }}
-                      value={field.value}>
+                      value={field.value}
+                    >
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
@@ -581,7 +584,8 @@ export function ListingsForm({ onClose }: { onClose: () => void }) {
             <Button
               type="submit"
               disabled={submitting}
-              className=" font-normal  text-sm border border-primary text-white  h-[44px]">
+              className=" font-normal  text-sm border border-primary text-white  h-[44px]"
+            >
               {submitting ? 'Submitting...' : 'Save  Listing'}
             </Button>
           </div>

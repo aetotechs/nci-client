@@ -13,7 +13,7 @@ function VerifyEmail() {
   };
   const handleResendOtp = async () => {
     try {
-      const response = await fetch(ResendOtp(email) + "type=v", {
+      const response = await fetch(ResendOtp(email) + 'type=v', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

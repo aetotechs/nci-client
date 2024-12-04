@@ -43,16 +43,13 @@ export function ViewCategoryForm({ category, onClose }: EditCategoryProps) {
       subCategories: category?.subCategories ?? []
     }
   });
- 
+
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
-
-
     const payload = {
       ...values,
-      subCategories: category?.subCategories,
+      subCategories: category?.subCategories
     };
-    
-   
+
     setIsSubmitting(true);
     try {
       const response = await fetch(EditCategory(category?.name), {
@@ -63,7 +60,7 @@ export function ViewCategoryForm({ category, onClose }: EditCategoryProps) {
         body: JSON.stringify(payload)
       });
 
-      const data= await response.json();
+      const data = await response.json();
       console.log(data);
       if (response.status === 200) {
         toast.success(
@@ -80,7 +77,7 @@ export function ViewCategoryForm({ category, onClose }: EditCategoryProps) {
         form.reset();
         onClose();
       } else {
-       const text= await response.text();
+        const text = await response.text();
         toast.error(text, {
           style: {
             backgroundColor: '#F443361A',
@@ -131,7 +128,8 @@ export function ViewCategoryForm({ category, onClose }: EditCategoryProps) {
                   <span className="font-medium text-sm">{category?.name}</span>
                   <span
                     onClick={() => setIsNameEditable(!isNameEditable)}
-                    className="cursor-pointer">
+                    className="cursor-pointer"
+                  >
                     <Pen className="h-4 w-4" />
                   </span>
                 </div>
@@ -160,7 +158,7 @@ export function ViewCategoryForm({ category, onClose }: EditCategoryProps) {
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <Textarea placeholder={category?.description} className='border' />
+                <Textarea placeholder={category?.description} className="border" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -189,7 +187,8 @@ export function ViewCategoryForm({ category, onClose }: EditCategoryProps) {
           <Button
             type="submit"
             className=" font-normal my-2 text-sm border border-primary text-white px-2 h-[44px]"
-            disabled={submitting}>
+            disabled={submitting}
+          >
             {submitting ? 'Submitting...' : 'Save'}
           </Button>
         </div>
