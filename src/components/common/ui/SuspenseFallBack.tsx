@@ -20,7 +20,7 @@ const SuspenseFallBack = () => {
         src={logo}
         alt="Loading..."
         style={{
-          width: '100px',
+          width: '50px',
           animation: 'spin 1s linear infinite'
         }}
       />

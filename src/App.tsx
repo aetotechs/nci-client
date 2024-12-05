@@ -6,6 +6,9 @@ import AdminRoute from './components/admin/other/AdminRoute';
 import LoadingSpinner from './components/common/ui/LoadingSpinner';
 import { LoadingProvider } from './utils/context/LoaderContext';
 import SuspenseFallBack from './components/common/ui/SuspenseFallBack';
+import PrivacyPolicy from './pages/user/PrivacyPolicy';
+import TermsAndConditions from './pages/user/TermsAndConditions';
+import CookiePolicy from './pages/user/CookiePolicy';
 
 const LoginPage = React.lazy(() => import('@/pages/auth/login'));
 const ForgotPasswordPage = React.lazy(() => import('@/pages/auth/forgot-password'));
@@ -73,6 +76,9 @@ function App() {
               <Route path="/contact-us" element={<ContactUs status={loggedIn} />} />
               <Route path="/region/:originId?" element={<OriginsPage />} />
               <Route path="/category/:categoryId?" element={<UserCategoriesPage />} />
+              <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/cookie-policy" element={<CookiePolicy />} />
               <Route path="*" element={<NotFound />} />
 
               <Route

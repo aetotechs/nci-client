@@ -45,7 +45,7 @@ function LandingPage({ status }: IStatus) {
 
   return (
     <>
-      <Header status={status} handleSearch={() => {}} />
+      <Header handleSearch={() => {}} />
       <div className="lg:px-[4vw] md:px-[2vw] md:max-w-[100vw]">
         <main className="px-[5vw] lg:px-0 ">
           <Hero />

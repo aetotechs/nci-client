@@ -25,8 +25,8 @@ const LoadingSpinner = () => {
         src={logo}
         alt="Loading..."
         style={{
-          width: '100px',
-          animation: 'spin 1s linear infinite'
+          width: '50px',
+          animation: 'spin 1s linear infinite',
         }}
       />
       <style>{`
