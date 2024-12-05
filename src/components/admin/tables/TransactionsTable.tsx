@@ -8,6 +8,7 @@ import {
 } from '@/components/common/ui/table';
 import { ActionsPopover } from '../other/Actions';
 import { truncate } from '@/utils/commons/Truncate';
+import { extractDateOnly } from './CustomersTable';
 
 export interface ITransactions {
   transactionId: string;
@@ -15,6 +16,7 @@ export interface ITransactions {
   paymentStatus: string;
   amount: number;
   orderId: string;
+  createdAt:string;
   userDetails?: {
     firstName: string;
     lastName: string;
@@ -31,7 +33,7 @@ interface ITransactionTableProps {
   transaction?: ITransactions;
 }
 
-export function checkStatus(status: string) {
+export function checkStatus(status: string| undefined) {
   switch (status) {
     case 'COMPLETED':
       return 'bg-yellow-100 text-primary';
@@ -50,7 +52,7 @@ export function TransactionsTable({ transactions, transaction }: ITransactionTab
       <TableHeader className="h-9 bg-primary/10 text-textdark">
         <TableRow>
           <TableHead className="text-dark font-medium">OrderId</TableHead>
-          <TableHead className="text-dark font-medium">Order Date</TableHead>
+          <TableHead className="text-dark font-medium">Transaction Date</TableHead>
           <TableHead className="text-dark font-medium text-center">Status</TableHead>
           <TableHead className="text-dark font-medium">Ordered Items</TableHead>
           <TableHead className="text-dark font-medium text-center">Customer</TableHead>
@@ -64,7 +66,7 @@ export function TransactionsTable({ transactions, transaction }: ITransactionTab
           <TableRow key={index} className="h-[50px] border-b last:border-b-0">
             <TableCell className="">{truncate(transaction.orderId)}</TableCell>
 
-            <TableCell className="text-center">{transaction.date}</TableCell>
+            <TableCell className="">{extractDateOnly(transaction.createdAt)}</TableCell>
 
             <TableCell className="flex justify-center items-center">
               <div
