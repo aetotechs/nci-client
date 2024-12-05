@@ -90,9 +90,9 @@ function ShopAddress({ status }: IStatus) {
         );
         setCartItems(detailedCartItems);
       } catch (error) {
-          console.error('Error fetching cart items:', error);
+        console.error('Error fetching cart items:', error);
       } finally {
-          setIsLoading(false);
+        setIsLoading(false);
       }
     };
 

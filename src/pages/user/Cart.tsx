@@ -15,7 +15,7 @@ function Cart() {
   const token = getUserToken();
   const { dispatchLoader } = useLoading();
   const { pathname } = useLocation();
-  const [ reloadCart, setReloadCart ] = useState(false);
+  const [reloadCart, setReloadCart] = useState(false);
   const [cart, setCart] = useState<{ cartItems: any[]; cartId: string } | null>(null);
 
   useEffect(() => {
@@ -30,10 +30,10 @@ function Cart() {
     dispatchLoader(true);
     try {
       const response = await fetch(api_urls.carts.get_open_cart, {
-        method: "GET",
+        method: 'GET',
         headers: {
-          Authorization: `Bearer ${token}`,
-        },
+          Authorization: `Bearer ${token}`
+        }
       });
       if (response.ok) {
         const res = await response.json();
@@ -46,7 +46,7 @@ function Cart() {
         ErrorToast(responseMessage);
       }
     } catch (error: any) {
-      ErrorToast("Error occurred during cart items fetch, " + error.toString());
+      ErrorToast('Error occurred during cart items fetch, ' + error.toString());
     } finally {
       setReloadCart(false);
       dispatchLoader(false);
@@ -65,27 +65,27 @@ function Cart() {
 
     const payload = {
       cartId: cart.cartId,
-      orderInstructions: "",
+      orderInstructions: ''
     };
 
     try {
       const response = await fetch(api_urls.orders.create_order, {
-        method: "POST",
+        method: 'POST',
         body: JSON.stringify(payload),
         headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
       });
       const responseMessage = await response.text();
       if (response.ok) {
         SuccessToast(responseMessage);
-        window.location.href = "#/checkout";
+        window.location.href = '#/checkout';
       } else {
         ErrorToast(responseMessage);
       }
     } catch (error: any) {
-      ErrorToast("Error occurred during order creation, " + error.toString());
+      ErrorToast('Error occurred during order creation, ' + error.toString());
     } finally {
       dispatchLoader(false);
     }
@@ -93,7 +93,7 @@ function Cart() {
 
   return (
     <>
-      <Header reloadCart={reloadCart}/>
+      <Header reloadCart={reloadCart} />
       <div className="md:px-[5vw] lg:my-4 md:max-w-[100vw] overflow-x-hidden">
         <div className="px-5 mt-10 md:px-0">
           {!cart || cart.cartItems?.length === 0 ? (
@@ -130,7 +130,7 @@ function Cart() {
                         className="text-white w-full h-10 my-2 rounded-[6px] md:rounded-xl font-normal cursor-pointer"
                         disabled={totalItems < 1}
                       >
-                        {totalItems < 1 ? "Select some items first" : "Checkout"}
+                        {totalItems < 1 ? 'Select some items first' : 'Checkout'}
                       </Button>
                     </div>
                     <p className="text-red-900 text-center">

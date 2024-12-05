@@ -9,74 +9,100 @@ import Search from '@/components/user/other/Search';
 import { AdminOrdersTable } from '@/components/admin/tables/AdminOrdersTable';
 import { Badge } from '@/components/common/ui/badge';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { GetOrders } from '@/utils/services/FetchAdminOrders';
+import { PaginationDemo } from '@/components/admin/other/Pagination';
+import { Skeleton } from '@/components/common/ui/Skeleton';
 
-export const orders = [
-  {
-    id: '1',
-    orderDate: '2024-01-01',
-    status: 'Shipped',
-    orderItems: ['item1', 'item2'],
-    customer: 'John Doe',
-    revenue: 100
-  },
-  {
-    id: '2',
-    orderDate: '2024-01-01',
-    status: 'Cancelled',
-    orderItems: ['item1', 'item2'],
-    customer: 'John Doe',
-    revenue: 100
-  },
-  {
-    id: '3',
-    orderDate: '2024-01-01',
-    status: 'Processing',
-    orderItems: ['item1', 'item2'],
-    customer: 'John Doe',
-    revenue: 100
-  },
-  {
-    id: '4',
-    orderDate: '2024-01-01',
-    status: 'Shipped',
-    orderItems: ['item1', 'item2'],
-    customer: 'John Doe',
-    revenue: 100
-  },
-  {
-    id: '5',
-    orderDate: '2024-01-01',
-    status: 'Cancelled',
-    orderItems: ['item1', 'item2'],
-    customer: 'John Doe',
-    revenue: 100
-  },
-  {
-    id: '6',
-    orderDate: '2024-01-01',
-    status: 'Processing',
-    orderItems: ['item1', 'item2'],
-    customer: 'John Doe',
-    revenue: 100
-  },
-  {
-    id: '7',
-    orderDate: '2024-01-01',
-    status: 'Shipped',
-    orderItems: ['item1', 'item2'],
-    customer: 'John Doe',
-    revenue: 100
-  }
-];
+// export const orders = [
+//   {
+//     id: '1',
+//     orderDate: '2024-01-01',
+//     status: 'Shipped',
+//     orderItems: ['item1', 'item2'],
+//     customer: 'John Doe',
+//     revenue: 100
+//   },
+//   {
+//     id: '2',
+//     orderDate: '2024-01-01',
+//     status: 'Cancelled',
+//     orderItems: ['item1', 'item2'],
+//     customer: 'John Doe',
+//     revenue: 100
+//   },
+//   {
+//     id: '3',
+//     orderDate: '2024-01-01',
+//     status: 'Processing',
+//     orderItems: ['item1', 'item2'],
+//     customer: 'John Doe',
+//     revenue: 100
+//   },
+//   {
+//     id: '4',
+//     orderDate: '2024-01-01',
+//     status: 'Shipped',
+//     orderItems: ['item1', 'item2'],
+//     customer: 'John Doe',
+//     revenue: 100
+//   },
+//   {
+//     id: '5',
+//     orderDate: '2024-01-01',
+//     status: 'Cancelled',
+//     orderItems: ['item1', 'item2'],
+//     customer: 'John Doe',
+//     revenue: 100
+//   },
+//   {
+//     id: '6',
+//     orderDate: '2024-01-01',
+//     status: 'Processing',
+//     orderItems: ['item1', 'item2'],
+//     customer: 'John Doe',
+//     revenue: 100
+//   },
+//   {
+//     id: '7',
+//     orderDate: '2024-01-01',
+//     status: 'Shipped',
+//     orderItems: ['item1', 'item2'],
+//     customer: 'John Doe',
+//     revenue: 100
+//   }
+// ];
 function Orders() {
   const [showAddListing, setShowAddListing] = useState(false);
 
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
 
+  const ordersPerPage = 8;
+
+  const orders = GetOrders();
+
+  useEffect(() => {
+    if (orders.length > 0) {
+      setLoading(false);
+    }
+  }, [orders]);
   const toggleCollapse = () => setIsCollapsed(!isCollapsed);
   const HandleClick = () => {
     setShowAddListing((prev) => !prev);
+  };
+
+  const totalPages = Math.ceil(orders.length / ordersPerPage);
+  const currentorders = orders.slice(
+    (currentPage - 1) * ordersPerPage,
+    currentPage * ordersPerPage
+  );
+
+  const handlePageChange = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
   };
   return (
     <div className={`flex w-[100vw]  relative `}>
@@ -126,15 +152,30 @@ function Orders() {
               </div>
             </div>
 
-            <div
-              className={`border my-8 rounded-t-[8px] overflow-hidden w-[90vw] ${isCollapsed ? 'md:w-[90vw] ' : 'md:w-[80vw]'}`}
-            >
-              <AdminOrdersTable orders={orders} />
-            </div>
-            <div>
-              <span className="font-normal text-[12px]">
-                Showing: {orders.length} of {orders.length}
+            {loading ? (
+              <div className="my-8 border rounded-t-[8px] p-4 space-y-4">
+                {Array.from({ length: ordersPerPage }).map((_, index) => (
+                  <Skeleton key={index} className="h-12 w-full" />
+                ))}
+              </div>
+            ) : currentorders.length > 0 ? (
+              <div
+                className={`border my-8 rounded-t-[8px] overflow-hidden w-[90vw] ${isCollapsed ? 'md:w-[90vw] ' : 'md:w-[80vw]'}`}
+              >
+                <AdminOrdersTable orders={currentorders} />
+              </div>
+            ) : (
+              <h3 className="text-center font-semibold">No orders found, Add One</h3>
+            )}
+            <div className="flex justify-between items-center">
+              <span className="font-normal text-[14px]">
+                Showing {currentorders.length} of {orders.length}
               </span>
+              <PaginationDemo
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+              />
             </div>
           </div>
         )}

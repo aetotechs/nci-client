@@ -22,15 +22,15 @@ function Header({ handleSearch, reloadCart }: HeaderProps) {
   const token = getUserToken();
   const navigate = useNavigate();
   const { dispatchLoader } = useLoading();
-  const [ isSearchActive, setIsSearchActive ] = useState(false);
-  const [ cartCount, setCartCount ] = useState<number | any>(0);
-  const [ scrollDirection, setScrollDirection ] = useState<'up' | 'down' | null>(null);
-  const [ lastScrollY, setLastScrollY ] = useState(0);
+  const [isSearchActive, setIsSearchActive] = useState(false);
+  const [cartCount, setCartCount] = useState<number | any>(0);
+  const [scrollDirection, setScrollDirection] = useState<'up' | 'down' | null>(null);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const handleLoginNavigation = () => {
-    const redirectUrl = getNavigationUrl(location, "login");
+    const redirectUrl = getNavigationUrl(location, 'login');
     navigate(redirectUrl);
-  }; 
+  };
 
   const handleSearchClick = () => {
     setIsSearchActive(true);
@@ -43,67 +43,66 @@ function Header({ handleSearch, reloadCart }: HeaderProps) {
   const handleScroll = () => {
     const currentScrollY = window.screenY;
 
-    if(currentScrollY > lastScrollY){
+    if (currentScrollY > lastScrollY) {
       setScrollDirection('down');
     } else {
       setScrollDirection('up');
     }
 
     setLastScrollY(currentScrollY);
-  }
+  };
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-    }
+    };
   }, [lastScrollY]);
 
   useEffect(() => {
-    
     fetchCount();
-  },[])
-  
+  }, []);
+
   const fetchCount = async () => {
     dispatchLoader(true);
     try {
-      const response = await fetch(api_urls.carts.cart_items.count,
-        {
-          method: "GET",
-          headers: {
-            "Authorization": `Bearer ${token}`
-          }
+      const response = await fetch(api_urls.carts.cart_items.count, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`
         }
-      )
-      if(response.ok){
+      });
+      if (response.ok) {
         const count = await response.json();
         setCartCount(count);
-      }else{
+      } else {
         const responseMessage = await response.text();
         // ErrorToast(responseMessage);
         setCartCount(0);
       }
-    } catch( error: any ){
+    } catch (error: any) {
       // ErrorToast("Error occured during cart items count fetch, " + error.toString());
-    } finally{
+    } finally {
       dispatchLoader(false);
     }
-  }
+  };
 
   useEffect(() => {
     if (reloadCart) fetchCount();
   }, [reloadCart]);
 
   return (
-    <div className={`bg-white flex items-center ${isSearchActive ? 'justify-center' : 'justify-between'} md:mx-[4vw] p-5 md:p-5 lg:p-5 md:rounded-[30px] top-0 sticky md:h-[89px] md:top-2 shadow-md z-40`}>
+    <div
+      className={`bg-white flex items-center ${isSearchActive ? 'justify-center' : 'justify-between'} md:mx-[4vw] p-5 md:p-5 lg:p-5 md:rounded-[30px] top-0 sticky md:h-[89px] md:top-2 shadow-md z-40`}
+    >
       {isSearchActive ? (
-      <div className={`flex items-center gap-2 cursor-pointer`}>
-        <Search handleSearch={handleSearch} />
-        <span className="text-sm text-primary" onClick={handleCloseSearch}>
-          Close Search
-        </span>
-      </div>
+        <div className={`flex items-center gap-2 cursor-pointer`}>
+          <Search handleSearch={handleSearch} />
+          <span className="text-sm text-primary" onClick={handleCloseSearch}>
+            Close Search
+          </span>
+        </div>
       ) : (
         <>
           <Link to="/">
@@ -141,7 +140,6 @@ function Header({ handleSearch, reloadCart }: HeaderProps) {
                 {cartCount}
               </span>
             </div>
-
 
             <div className="hidden md:flex md:ml-4">
               {_isAuthenticated ? (

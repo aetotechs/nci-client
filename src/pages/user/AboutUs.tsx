@@ -14,7 +14,7 @@ function About() {
 
   return (
     <>
-      <Header/>
+      <Header />
       <div className="md:px-[5vw] md:max-w-[100vw] overflow-x-hidden    ">
         <div className="w-[100vw] px-5 py-2 md:pt-0 md:w-[1232px] overflow-hidden">
           <div className="md:mt-10 my-2 ">

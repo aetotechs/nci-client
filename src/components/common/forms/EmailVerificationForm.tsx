@@ -99,7 +99,7 @@ export function EmailOtpForm({ resetTimer }: { resetTimer: boolean }) {
         ErrorToast(text);
       }
     } catch (error) {
-      ErrorToast("Error occured, try again");
+      ErrorToast('Error occured, try again');
     } finally {
       setIsSubmitting(false);
     }

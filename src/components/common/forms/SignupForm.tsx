@@ -127,7 +127,8 @@ export function SignupForm() {
               <img src="/icons/signupemail.svg" alt="Email" />
             </span>
             <span>Success!</span> Check email to verify your account.
-          </div>);
+          </div>
+        );
 
         setTimeout(() => {
           navigate('/verify-email');
@@ -151,8 +152,9 @@ export function SignupForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(_handleSubmit)}
-          className="w-full flex flex-col md:grid md:grid-cols-2 gap-3  "
+      <form
+        onSubmit={form.handleSubmit(_handleSubmit)}
+        className="w-full flex flex-col md:grid md:grid-cols-2 gap-3  "
       >
         <FormField
           control={form.control}

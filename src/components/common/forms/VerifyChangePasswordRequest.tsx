@@ -30,7 +30,7 @@ export function VerifyOtPForm({ resetTimer }: { resetTimer: boolean }) {
   const email = localStorage.getItem('password_reset_email');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
-  
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -83,7 +83,8 @@ export function VerifyOtPForm({ resetTimer }: { resetTimer: boolean }) {
               <img src="/icons/signupemail.svg" alt="Email" />
             </span>
             <span>Request verified Successfully!</span> .
-          </div>);
+          </div>
+        );
         navigate('/reset-password');
       } else {
         const text = await response.text();

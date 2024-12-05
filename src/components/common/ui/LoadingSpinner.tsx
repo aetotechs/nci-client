@@ -18,7 +18,7 @@ const LoadingSpinner = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        zIndex: 1000,
+        zIndex: 1000
       }}
     >
       <img

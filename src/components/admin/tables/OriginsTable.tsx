@@ -13,8 +13,8 @@ import { ActionsPopover } from '../other/Actions';
 export interface IOrigins {
   id: string;
   name: string;
-  numberOfRegions: number;
-  regions: string[];
+  numberOfRegions?: number;
+  coffeeRegion?: string[];
   description?: string;
 }
 
@@ -42,10 +42,10 @@ export function OriginsTable({ origins, origin }: IOriginsTable) {
           <TableRow key={index} className="border-b h-10 ">
             <TableCell className="font-medium ">#{index + 1}</TableCell>
             <TableCell className="font-medium">{origin.name}</TableCell>
-            <TableCell className="flex justify-center">{origin.numberOfRegions}</TableCell>
+            <TableCell className="flex justify-center">0</TableCell>
             <TableCell>
               <div className="flex gap-2 flex-wrap justify-center">
-                {origin.regions.map((subregion, subIndex) => (
+                {origin?.coffeeRegion?.map((subregion, subIndex) => (
                   <Badge
                     variant="outline"
                     key={subIndex}

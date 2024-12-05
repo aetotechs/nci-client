@@ -19,7 +19,6 @@ import {
 import { Input } from '../../common/ui/input';
 import CoffeeListings from '../../user/other/CoffeeListings';
 
-
 const Listings = [
   {
     title: 'Order Status',

@@ -14,6 +14,7 @@ import {
 import { Input } from '@/components/common/ui/input';
 
 import { toast } from 'sonner';
+import { useEffect } from 'react';
 
 const FormSchema = z.object({
   firstName: z.string().min(2, {
@@ -27,26 +28,44 @@ const FormSchema = z.object({
   workPhone: z.string().min(2, { message: 'Field is required' })
 });
 
-export function ChangeDetails() {
-  const defaultValues = {
-    firstName: '',
-    lastName: '',
-    workEmail: '',
-    workPhone: ''
-  };
-
+export function ChangeDetails({ user }: any) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     mode: 'onChange',
-    defaultValues
+    defaultValues: user
+      ? {
+          firstName: user.firstName || '',
+          lastName: user.lastName || '',
+          workEmail: user.email || '',
+          workPhone: user.workPhone || ''
+        }
+      : {
+          firstName: '',
+          lastName: '',
+          workEmail: '',
+          workPhone: ''
+        }
   });
 
-  const watchedValues = form.watch();
+  useEffect(() => {
+    if (user) {
+      form.reset({
+        firstName: user.firstName || '',
+        lastName: user.lastName || '',
+        workEmail: user.email || '',
+        workPhone: user.workPhone || ''
+      });
+    }
+  }, [user, form]);
 
-  const isChanged = Object.keys(defaultValues).some(
+  const isChanged = (
+    Object.keys(form.formState.defaultValues || {}) as Array<
+      keyof typeof form.formState.defaultValues
+    >
+  ).some(
     (key) =>
-      defaultValues[key as keyof typeof defaultValues] !==
-      watchedValues[key as keyof typeof watchedValues]
+      form.formState.defaultValues?.[key] !==
+      form.getValues(key as keyof typeof form.formState.defaultValues)
   );
 
   function onSubmit(values: z.infer<typeof FormSchema>) {
@@ -69,9 +88,8 @@ export function ChangeDetails() {
             <FormItem>
               <FormLabel className="font-medium text-base">First Name</FormLabel>
               <FormControl>
-                <Input type="text" placeholder="Enter your first name" {...field} />
+                <Input type="text" {...field} />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
@@ -83,9 +101,8 @@ export function ChangeDetails() {
             <FormItem>
               <FormLabel className="font-medium text-base">Last Name</FormLabel>
               <FormControl>
-                <Input type="text" placeholder="Enter your last name" {...field} />
+                <Input type="text" {...field} />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
@@ -97,9 +114,8 @@ export function ChangeDetails() {
             <FormItem>
               <FormLabel className="font-medium text-base">Work Phone</FormLabel>
               <FormControl>
-                <Input type="text" placeholder="Enter your contact" {...field} />
+                <Input type="text" {...field} />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
@@ -111,9 +127,8 @@ export function ChangeDetails() {
             <FormItem>
               <FormLabel className="font-medium text-base">Work Email</FormLabel>
               <FormControl>
-                <Input type="email" placeholder="Enter your email" {...field} />
+                <Input type="email" {...field} />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}

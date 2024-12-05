@@ -11,32 +11,42 @@ import { ActionsPopover } from '../other/Actions';
 import { useLocation } from 'react-router-dom';
 
 import { Eye } from 'lucide-react';
+import { extractDateOnly } from './CustomersTable';
 
 export interface IOrders {
-  id: string;
-  orderDate: string;
-  status: string;
+  orderId: string;
+  createdAt: string;
+  orderStatus: string;
   orderItems?: string[];
   item?: string;
   totalPrice?: number;
   customer?: string;
-  revenue: number;
+  totalAmount: number;
+  userDetails?: {
+    firstName: string;
+    lastName: string;
+  };
+  orderDetails?: {
+    product: {
+      name: string;
+    };
+  }[];
 }
 
 interface IOrdersTable {
   orders: IOrders[];
 }
 
-function getStatusBadge(status: IOrders['status']) {
-  switch (status) {
-    case 'Shipped':
+function getStatusBadge(orderStatus: IOrders['orderStatus']) {
+  switch (orderStatus) {
+    case 'SHIPPED':
       return <span className="bg-blue-300 text-blue-400  py-1 px-2 rounded">Shipped</span>;
-    case 'Processing':
+    case 'PROCESSING':
       return <span className="bg-yellow-100 text-yellow-800 py-1 px-2 rounded">Processing</span>;
-    case 'Cancelled':
+    case 'CANCELLED':
       return <span className="bg-red-100 text-red-800 py-1 px-2 rounded">Cancelled</span>;
     default:
-      return null;
+      return <span className="bg-red-100 text-red-800 py-1 px-2 rounded">Pending</span>;
   }
 }
 
@@ -70,10 +80,19 @@ export function AdminOrdersTable({ orders }: IOrdersTable) {
       <TableBody>
         {orders.map((order, index) => (
           <TableRow key={index} className="border-b h-10">
-            <TableCell className="font-medium">#{order.id}</TableCell>
-            <TableCell className="font-normal text-[15px]">{order.orderDate}</TableCell>
-            <TableCell>{getStatusBadge(order.status)}</TableCell>
-            {pathname == '/orders' && <TableCell>{order?.orderItems?.join(', ')}</TableCell>}
+            <TableCell className="font-medium">{order?.orderId}</TableCell>
+            <TableCell className="font-normal text-[15px]">
+              {extractDateOnly(order.createdAt)}
+            </TableCell>
+            <TableCell>{getStatusBadge(order.orderStatus)}</TableCell>
+            {pathname == '/orders' && (
+              <TableCell className="max-w-[160px]">
+                {order.orderDetails
+                  ?.map((detail) => detail.product?.name)
+                  .filter(Boolean)
+                  .join(', ') || 'No products'}{' '}
+              </TableCell>
+            )}
             {pathname == '/analytics ' && <TableCell>{order?.item}</TableCell>}
             {pathname === '/analytics' && (
               <TableCell>
@@ -90,8 +109,12 @@ export function AdminOrdersTable({ orders }: IOrdersTable) {
 
             {pathname === '/orders' && (
               <>
-                <TableCell>{order.customer}</TableCell>
-                <TableCell>{order.revenue}</TableCell>
+                <TableCell className="flex gap-1">
+                  <span>{order.userDetails?.firstName}</span>
+
+                  {order.userDetails?.lastName}
+                </TableCell>
+                <TableCell className="text-center">{order.totalAmount}</TableCell>
                 <TableCell>
                   <ActionsPopover order={order} />
                 </TableCell>

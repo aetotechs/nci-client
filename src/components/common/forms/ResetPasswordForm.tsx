@@ -63,7 +63,6 @@ export function ResetPasswordForm() {
       });
 
       if (response.status === 200) {
-        
         SuccessToast(
           <div className="flex gap-1 items-center">
             <span>
@@ -72,16 +71,15 @@ export function ResetPasswordForm() {
             <span>Success!</span> Password Changed Successfully.
           </div>
         );
-        
+
         localStorage.removeItem('email');
         navigate('/login');
-
       } else {
         const errorData = await response.text();
-        ErrorToast(errorData)
+        ErrorToast(errorData);
       }
     } catch (error: any) {
-      ErrorToast("Error resseting password" + error.toString());
+      ErrorToast('Error resseting password' + error.toString());
     } finally {
       dispatchLoader(false);
     }

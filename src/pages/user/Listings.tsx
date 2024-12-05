@@ -3,7 +3,13 @@ import Footer from '@/components/user/other/Footer';
 import Header from '@/components/user/other/Header';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/common/ui/select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@/components/common/ui/select';
 import { FilterSheet } from '@/components/user/other/FilterMobile';
 import Product from '@/components/user/other/Product';
 import { fetchItemsRoute } from '@/utils/hooks/api-routes';
@@ -16,8 +22,8 @@ import { isAuthenticated } from '@/utils/cookies/UserCookieManager';
 function Listings() {
   const { dispatchLoader } = useLoading();
   const _isAuthenticated = isAuthenticated();
-  const [ products, setProducts ] = useState<IProduct[] | any>(Array(8).fill({}));
-  const [ loading, setLoading ] = useState(false);
+  const [products, setProducts] = useState<IProduct[] | any>(Array(8).fill({}));
+  const [loading, setLoading] = useState(false);
   const { pathname } = useLocation();
 
   // const handleSearch = (searchQuery: string) => {
@@ -52,7 +58,7 @@ function Listings() {
           const data = await response.json();
           setProducts(data);
         } else {
-          ErrorToast(response.text())
+          ErrorToast(response.text());
         }
       } catch (error) {
         ErrorToast(error);
@@ -107,13 +113,12 @@ function Listings() {
             </div>
 
             <div className="grid gap-4 grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 w-full h-max">
-              { products?.map((product: IProduct | any, index: any) => (
-                  <div key={index}>
-                    <Product product={product} skeleton={loading}/>
-                  </div>
+              {products?.map((product: IProduct | any, index: any) => (
+                <div key={index}>
+                  <Product product={product} skeleton={loading} />
+                </div>
               ))}
             </div>
-
           </div>
         </div>
       </div>

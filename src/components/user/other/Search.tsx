@@ -4,12 +4,12 @@ interface SearchProps {
   className?: string;
 }
 
-function Search({ handleSearch,className }: SearchProps) {
+function Search({ handleSearch, className }: SearchProps) {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const searchQuery = event.target.value.toLowerCase();
 
     if (handleSearch) {
-      handleSearch(searchQuery); 
+      handleSearch(searchQuery);
     }
   };
   return (

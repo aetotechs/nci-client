@@ -24,7 +24,7 @@ function VerifyOtp() {
       });
 
       const message = await response.text();
-      
+
       if (response.ok) {
         SuccessToast(`OTP ${message} to ${email}`);
       } else {
@@ -33,7 +33,7 @@ function VerifyOtp() {
     } catch (error: any) {
       ErrorToast('Error resending OTP:' + error.message);
     } finally {
-      dispatchLoader(false)
+      dispatchLoader(false);
     }
   };
 

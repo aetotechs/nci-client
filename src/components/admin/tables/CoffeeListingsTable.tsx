@@ -41,7 +41,7 @@ export function CoffeeListingsTable({ listings, listing }: ICoffeeListingsTable)
           </TableHead>
         </TableRow>
       </TableHeader>
-      <TableBody className='bg-white'>
+      <TableBody className="bg-white">
         {listings.map((listing, index) => (
           <TableRow key={index} className="border-b border-[#5859624D] h-[30px] ">
             <TableCell className="font-medium ">{listing.brand}</TableCell>
@@ -62,7 +62,7 @@ export function CoffeeListingsTable({ listings, listing }: ICoffeeListingsTable)
                 {listing.bagStock} bags
               </span>
             </TableCell>
-            <TableCell className=''>
+            <TableCell className="">
               <ActionsPopover listing={listing} />
             </TableCell>
           </TableRow>

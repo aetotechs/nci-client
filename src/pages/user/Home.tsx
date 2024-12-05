@@ -15,9 +15,9 @@ import { IProduct } from '@/utils/commons/TypeInterfaces';
 
 function LandingPage({ status }: IStatus) {
   const { pathname } = useLocation();
-  const [ products, setProducts ] = useState<IProduct[] | any>(Array(10).fill({}));
-  const [ loading, setLoading ] = useState<boolean>(false);
-  
+  const [products, setProducts] = useState<IProduct[] | any>(Array(10).fill({}));
+  const [loading, setLoading] = useState<boolean>(false);
+
   useEffect(() => {
     setLoading(true);
     const fetchProducts = async () => {
@@ -27,7 +27,7 @@ function LandingPage({ status }: IStatus) {
           const data = await response.json();
           setProducts(data);
         } else {
-          ErrorToast(response.text())
+          ErrorToast(response.text());
         }
       } catch (error) {
         ErrorToast(error);
@@ -52,7 +52,7 @@ function LandingPage({ status }: IStatus) {
           <AboutUs />
           <Categories />
           <CoffeeJourney />
-          
+
           <>
             <div className="flex flex-col md:justify-center md:items-center my-5 mb-4">
               <h3 className="font-semibold text-xl md:text-[26px] mt-4 md:mt-0 justify-self-start">
@@ -63,10 +63,10 @@ function LandingPage({ status }: IStatus) {
               </p>
             </div>
             <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-              { products?.map((product: IProduct, index: any) => (
-                  <div key={index}>
-                    <Product product={product} skeleton={loading}/>
-                  </div>
+              {products?.map((product: IProduct, index: any) => (
+                <div key={index}>
+                  <Product product={product} skeleton={loading} />
+                </div>
               ))}
             </div>
           </>

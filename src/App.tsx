@@ -49,13 +49,13 @@ function App() {
   useEffect(() => {
     const UserLoggedIn = isAuthenticated();
     setLoggedIn(UserLoggedIn);
-  }, []);
+  }, [loggedIn]);
 
   return (
     <>
       <LoadingProvider>
         <Toaster />
-        <LoadingSpinner/>
+        <LoadingSpinner />
         <HashRouter>
           <Suspense fallback={<SuspenseFallBack />}>
             <Routes>
@@ -65,31 +65,94 @@ function App() {
               <Route path="/forgot-password" element={<ForgotPasswordPage />} />
               <Route path="/verify-otp" element={<VerifyOtp />} />
               <Route path="/reset-password" element={<ResetPasswordPage />} />
-              <Route path="/cart" element={<Cart status={loggedIn} />} />
-              <Route path="/coffee-shop" element={<Listings/>} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/coffee-shop" element={<Listings />} />
               <Route path="/shipping-address" element={<ShopAddress status={loggedIn} />} />
               <Route path="/shop-payment" element={<ShopPayment status={loggedIn} />} />
-              <Route path="/checkout" element={<ClosedOrder status={loggedIn} />} />
+              <Route path="/checkout" element={<ClosedOrder />} />
               <Route path="/product/:productId" element={<ProductPage />} />
               <Route path="/profile" element={<Profile status={loggedIn} />} />
-              <Route path="/about" element={<About status={loggedIn} />} />
+              <Route path="/about" element={<About />} />
               <Route path="/contact-us" element={<ContactUs status={loggedIn} />} />
-              <Route path="/region/:originId?" element={<OriginsPage status={loggedIn} />} />
+              <Route path="/region/:originId?" element={<OriginsPage />} />
               <Route path="/category/:categoryId?" element={<UserCategoriesPage />} />
               <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/cookie-policy" element={<CookiePolicy />} />
               <Route path="*" element={<NotFound />} />
 
-              <Route path="/dashboard" element={<AdminRoute><Admin /></AdminRoute>} />
-              <Route path="/categories" element={<AdminRoute><Categories /></AdminRoute>} />
-              <Route path="/admin-origins" element={<AdminRoute><AdminOrigins /></AdminRoute>} />
-              <Route path="/coffee-listings" element={<AdminRoute><CoffeeListings /></AdminRoute>} />
-              <Route path="/orders" element={<AdminRoute><Orders /></AdminRoute>} />
-              <Route path="/transactions" element={<AdminRoute><Transactions /></AdminRoute>} />
-              <Route path="/customers" element={<AdminRoute><Customers /></AdminRoute>} />
-              <Route path="/analytics" element={<AdminRoute><Analytics /></AdminRoute>} />
-              <Route path="/settings" element={<AdminRoute><Settings /></AdminRoute>} />
+              <Route
+                path="/dashboard"
+                element={
+                  <AdminRoute>
+                    <Admin />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path="/categories"
+                element={
+                  <AdminRoute>
+                    <Categories />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path="/admin-origins"
+                element={
+                  <AdminRoute>
+                    <AdminOrigins />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path="/coffee-listings"
+                element={
+                  <AdminRoute>
+                    <CoffeeListings />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path="/orders"
+                element={
+                  <AdminRoute>
+                    <Orders />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path="/transactions"
+                element={
+                  <AdminRoute>
+                    <Transactions />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path="/customers"
+                element={
+                  <AdminRoute>
+                    <Customers />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path="/analytics"
+                element={
+                  <AdminRoute>
+                    <Analytics />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path="/settings"
+                element={
+                  <AdminRoute>
+                    <Settings />
+                  </AdminRoute>
+                }
+              />
             </Routes>
           </Suspense>
         </HashRouter>

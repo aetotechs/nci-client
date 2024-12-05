@@ -12,7 +12,7 @@ import {
   FormMessage
 } from '@/components/common/ui/form';
 import { Input } from '@/components/common/ui/input';
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { ForgotPassword } from '@/utils/hooks/api-routes';
 import { useLoading } from '@/utils/context/LoaderContext';
@@ -53,8 +53,8 @@ export function ForgotPasswordForm() {
               <img src="/icons/signupemail.svg" alt="Email" />
             </span>
             <span>Success!</span> Check email to verify your request.
-          </div>,
-          );
+          </div>
+        );
         localStorage.setItem('password_reset_email', data.email);
 
         setTimeout(() => {
@@ -65,9 +65,9 @@ export function ForgotPasswordForm() {
         ErrorToast(responseMessage);
       }
     } catch (error: any) {
-      ErrorToast("An error occured, try again later" + error.message);
+      ErrorToast('An error occured, try again later' + error.message);
     } finally {
-      dispatchLoader(false);    
+      dispatchLoader(false);
     }
   };
 

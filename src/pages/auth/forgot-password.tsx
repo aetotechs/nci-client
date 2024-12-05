@@ -16,7 +16,7 @@ function ForgotPasswordPage() {
           <div className="w-full px-5 ">
             <ForgotPasswordForm />
           </div>
-          <div className="text-[13px] md:text-sm">
+          <div className="text-[13px] md:text-sm mt-4">
             <h4>
               Remember password?
               <span className="text-primary mx-2">

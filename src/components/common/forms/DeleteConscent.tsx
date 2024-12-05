@@ -4,7 +4,13 @@ import { z } from 'zod';
 
 import { Button } from '@/components/common/ui/button';
 import { Checkbox } from '@/components/common/ui/checkbox';
-import { Form, FormControl, FormDescription, FormField, FormItem } from '@/components/common/ui/form';
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem
+} from '@/components/common/ui/form';
 
 const FormSchema = z.object({
   delete: z.boolean().default(false).optional()

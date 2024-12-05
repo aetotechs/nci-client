@@ -1,39 +1,63 @@
 import {
-    Pagination,
-    PaginationContent,
-    PaginationEllipsis,
-    PaginationItem,
-    PaginationLink,
-    PaginationNext,
-    PaginationPrevious,
-  } from "@/components/common/ui/pagination"
-  
-  export function PaginationDemo() {
-    return (
-      <Pagination>
-        <PaginationContent>
-          <PaginationItem>
-            <PaginationPrevious href="#" />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#">1</PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#" isActive>
-              2
-            </PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#">3</PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationEllipsis />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationNext href="#" />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
-    )
-  }
-  
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious
+} from '@/components/common/ui/pagination';
+
+interface PaginationDemoProps {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+}
+
+export function PaginationDemo({ currentPage, totalPages, onPageChange }: PaginationDemoProps) {
+  const handleNext = () => {
+    if (currentPage < totalPages) {
+      onPageChange(currentPage + 1);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentPage > 1) {
+      onPageChange(currentPage - 1);
+    }
+  };
+
+  return (
+    <Pagination>
+      <PaginationContent className=" justify-self-end">
+        <PaginationItem>
+          <PaginationPrevious
+            onClick={currentPage === 1 ? undefined : handlePrevious}
+            className={currentPage === 1 ? 'cursor-not-allowed text-gray-400' : ''}
+          />
+        </PaginationItem>
+
+        {[...Array(totalPages)].map((_, index) => {
+          const page = index + 1;
+          return (
+            <PaginationItem key={page}>
+              <PaginationLink
+                onClick={() => onPageChange(page)}
+                isActive={page === currentPage}
+                className={page === currentPage ? 'bg-primary text-white text-sm' : 'border '}
+              >
+                {page}
+              </PaginationLink>
+            </PaginationItem>
+          );
+        })}
+
+        <PaginationItem>
+          <PaginationNext
+            onClick={currentPage === totalPages ? undefined : handleNext}
+            className={currentPage === totalPages ? 'cursor-not-allowed text-gray-400' : ''}
+          />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  );
+}

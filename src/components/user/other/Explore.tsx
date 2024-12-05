@@ -12,12 +12,10 @@ export interface ExploreProps {
 }
 
 function Explore({ status, product }: ExploreProps) {
-  
   const location = useLocation();
   const { pathname } = location;
 
   const addCart = async (p: IItems, pName: string) => {
-
     try {
       let cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
 
@@ -37,9 +35,10 @@ function Explore({ status, product }: ExploreProps) {
             <img src="/icons/cartsuccess.svg" alt="cart" />
           </span>
           <span className="font-bold">{pName}</span> has been added to your wishlist.
-        </div>);
+        </div>
+      );
     } catch (error) {
-        ErrorToast(error);
+      ErrorToast(error);
     } finally {
     }
   };
@@ -57,19 +56,21 @@ function Explore({ status, product }: ExploreProps) {
         </div>
       )}
       <div className={`${pathname === '/listing' ? 'py-0 md:w-[62vw]' : ' md:py-0 '}`}>
-        <div className={`grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5`}>
+        <div
+          className={`grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5`}
+        >
           {product.map((product, index) => {
             return (
               <>
                 <div key={index}>
-                  <Product product={product} skeleton={true}/>
+                  <Product product={product} skeleton={true} />
                 </div>
               </>
             );
           })}
         </div>
       </div>
-      { pathname === '/' && (
+      {pathname === '/' && (
         <div className="flex justify-center my-5 md:my-8">
           <Link
             className="flex justify-between items-center p-3 max-h-[40px]  gap-2 border border-primary rounded-[10px] text-primary font-semibold text-sm leading-5"

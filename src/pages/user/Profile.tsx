@@ -13,16 +13,15 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { IUser } from '@/utils/commons/TypeInterfaces';
 
-
 export interface ProfileProps {
   user?: IUser | any;
 }
 
 function Profile({ status }: IStatus) {
-  const [ activeLink, setActiveLink ] = useState('My Account');
-  const [ user, setUser ] = useState<IUser | null>();
-  const [ loading, setLoading ] = useState(true);
-  const [ error, setError ] = useState<string | null>(null);
+  const [activeLink, setActiveLink] = useState('My Account');
+  const [user, setUser] = useState<IUser | null>();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const { pathname } = useLocation();
   const email = getAuthUser().email;
 

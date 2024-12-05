@@ -22,10 +22,10 @@ export function StockTable({ coffeebrands }: IStockTableProps) {
   return (
     <Table>
       <TableHeader className="bg-[#f2f2f2] h-9 rounded-md">
-        <TableRow className='text-sm font-medium '>
-          <TableHead className='text-[#585962]'>Coffee Brand</TableHead>
-          <TableHead className='text-[#585962]'>Samples</TableHead>
-          <TableHead className='text-[#585962]'>Bags</TableHead>
+        <TableRow className="text-sm font-medium ">
+          <TableHead className="text-[#585962]">Coffee Brand</TableHead>
+          <TableHead className="text-[#585962]">Samples</TableHead>
+          <TableHead className="text-[#585962]">Bags</TableHead>
 
           <TableHead>
             <span className="flex md:hidden">Actions</span>
@@ -36,7 +36,7 @@ export function StockTable({ coffeebrands }: IStockTableProps) {
         {coffeebrands.map((brand, index) => (
           <TableRow key={index} className="border-b border-primary/15 max-h-[20px]">
             <TableCell className="font-normal text-sm py-2">{brand.name}</TableCell>
-            <TableCell className='py-3'>
+            <TableCell className="py-3">
               {brand.samples}
               <Badge
                 variant="outline"
@@ -53,7 +53,7 @@ export function StockTable({ coffeebrands }: IStockTableProps) {
                 )}
               </Badge>
             </TableCell>
-            <TableCell className='py-3'>
+            <TableCell className="py-3">
               {brand.bags}
               <Badge
                 variant="outline"
