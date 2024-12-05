@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
 import Header from '@/components/user/other/Header';
 import Footer from '@/components/user/other/Footer';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/common/ui/button';
 
 function About() {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -35,6 +36,7 @@ function About() {
                 coffee, from source to cup.
               </p>
               <Button
+                onClick={() => navigate('#/contact-us')}
                 variant="outline"
                 className="border border-primary my-4 bg-white text-primary"
               >

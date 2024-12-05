@@ -23,7 +23,7 @@ import { CheckboxDemo } from '@/components/user/other/TermsCheckBox';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { toast } from 'sonner';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { Register } from '@/utils/hooks/api-routes';
 import { ErrorToast, SuccessToast } from '../ui/Toasts';
@@ -390,7 +390,15 @@ export function SignupForm() {
         />
 
         <div className="col-span-2 my-3">
-          <CheckboxDemo checked={termsAccepted} onCheckedChange={setTermsAccepted} />
+          <CheckboxDemo 
+            checked={termsAccepted} 
+            onCheckedChange={setTermsAccepted} 
+            label={
+              <div>
+                I have read and agree to the <span className="text-primary "><Link to={'/privacy-policy'} >Privacy Policy</Link></span> and{' '}
+                <span className="text-primary"><Link to={'/terms-and-conditions'} >Terms of Use</Link></span>
+              </div>
+          }/>
         </div>
         <Button type="submit" className="col-span-2" disabled={isSubmitting}>
           {isSubmitting ? 'Submitting...' : 'Sign Up'}
