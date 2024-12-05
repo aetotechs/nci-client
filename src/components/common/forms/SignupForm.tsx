@@ -392,15 +392,22 @@ export function SignupForm() {
         />
 
         <div className="col-span-2 my-3">
-          <CheckboxDemo 
-            checked={termsAccepted} 
-            onCheckedChange={setTermsAccepted} 
+          <CheckboxDemo
+            checked={termsAccepted}
+            onCheckedChange={setTermsAccepted}
             label={
               <div>
-                I have read and agree to the <span className="text-primary "><Link to={'/privacy-policy'} >Privacy Policy</Link></span> and{' '}
-                <span className="text-primary"><Link to={'/terms-and-conditions'} >Terms of Use</Link></span>
+                I have read and agree to the{' '}
+                <span className="text-primary ">
+                  <Link to={'/privacy-policy'}>Privacy Policy</Link>
+                </span>{' '}
+                and{' '}
+                <span className="text-primary">
+                  <Link to={'/terms-and-conditions'}>Terms of Use</Link>
+                </span>
               </div>
-          }/>
+            }
+          />
         </div>
         <Button type="submit" className="col-span-2" disabled={isSubmitting}>
           {isSubmitting ? 'Submitting...' : 'Sign Up'}

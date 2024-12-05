@@ -10,7 +10,8 @@ import { IActions } from '../../admin/other/Actions';
 import { ArrowDown, EyeIcon } from 'lucide-react';
 import { checkStatus } from '../../admin/tables/TransactionsTable';
 
-export function ViewTransaction({ transactionId }: IActions) {
+export function ViewTransaction({ transaction }: IActions) {
+  console.log(transaction);
   return (
     <Sheet>
       <SheetTrigger asChild>

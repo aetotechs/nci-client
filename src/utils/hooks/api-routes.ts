@@ -74,3 +74,5 @@ export const GetOrderItems = (orderId: string) =>
 
 export const GetCartById = (cartId: string) =>
   `${import.meta.env.VITE_ORDER_API_URL}/carts?cartId=${cartId}`;
+
+export const GetTransactions = `${import.meta.env.VITE_PAYMENT_API_URL}/payments`;

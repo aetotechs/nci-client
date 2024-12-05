@@ -21,7 +21,7 @@ export interface IActions {
   region?: IRegions;
   listing?: IListings;
   order?: IOrders;
-  transactionId?: ITransactions;
+  transaction?: ITransactions;
   customerId?: ICustomers;
   setShowViewCustomer?: (show: boolean) => void;
 }
@@ -32,7 +32,7 @@ export function ActionsPopover({
   region,
   listing,
   order,
-  transactionId,
+  transaction,
   setShowViewCustomer
 }: IActions) {
   const location = useLocation();
@@ -86,7 +86,7 @@ export function ActionsPopover({
     if (pathname === '/transactions') {
       return (
         <>
-          <ViewTransaction transactionId={transactionId} />
+          <ViewTransaction transaction={transaction} />
         </>
       );
     }
