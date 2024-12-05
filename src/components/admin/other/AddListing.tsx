@@ -17,6 +17,9 @@ function AddListing({ isCollapsed, toggleCollapse }: AdminSideBarDesktopProps) {
     setShowAddListing(!showAddListing);
   };
 
+  const handleClose = () => {
+    setShowAddListing(false);
+  };
   return (
     <>
       <div>
@@ -29,7 +32,7 @@ function AddListing({ isCollapsed, toggleCollapse }: AdminSideBarDesktopProps) {
               <h3 className="font-semibold text-xl">Add Coffee Listing</h3>
             </div>
             <div className=" ">
-              <ListingsForm />
+              <ListingsForm onClose={handleClose} />
             </div>
           </div>
         ) : (

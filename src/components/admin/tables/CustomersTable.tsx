@@ -8,6 +8,7 @@ import {
 } from '@/components/common/ui/table';
 
 import { ActionsPopover } from '../other/Actions';
+import { User, UserWithOrders } from '@/utils/services/FetchUsers';
 
 export interface ICustomers {
   customerId?: string;
@@ -20,11 +21,17 @@ export interface ICustomers {
 }
 
 export interface ICustomerTableProps {
-  customers: ICustomers[];
+  customers: UserWithOrders[];
   customerId?: ICustomers;
   setShowViewCustomer: (show: boolean) => void;
 }
 
+export function extractDateOnly(dateString: string | undefined): string {
+  if (!dateString) {
+    return 'N/A';
+  }
+  return dateString.split('T')[0];
+}
 export function CustomersTable({
   customers,
   customerId,
@@ -48,14 +55,18 @@ export function CustomersTable({
 
       <TableBody className="bg-white border border-primary/30 p-3 rounded-3xl ">
         {customers.map((customer, index) => (
-          <TableRow key={index} className="h-[70px] bcustomer-b last:bcustomer-b-0">
-            <TableCell className="font-medium">{customer.name}</TableCell>
-            <TableCell className="text-center">{customer.contact}</TableCell>
-            <TableCell className="text-center">{customer.orders}</TableCell>
-            <TableCell className="text-center">{customer.date}</TableCell>
+          <TableRow key={index} className="h-[50px] border-b last:bcustomer-b-0">
+            <TableCell className="font-medium">
+              {customer.firstName}
+              {customer.lastName}
+            </TableCell>
+            <TableCell className="text-center">{customer.workPhone}</TableCell>
+            <TableCell className="text-center">{customer.orders?.length}</TableCell>
+            <TableCell className="text-center">{extractDateOnly(customer.createdAt)}</TableCell>
 
-            <TableCell className="text-center">{customer.revenue}</TableCell>
-
+            <TableCell className="text-center">
+              {customer.orders?.reduce((total, order) => total + order.totalAmount, 0)}
+            </TableCell>
             <TableCell className="relative">
               <ActionsPopover customerId={customerId} setShowViewCustomer={setShowViewCustomer} />
             </TableCell>

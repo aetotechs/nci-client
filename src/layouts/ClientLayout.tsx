@@ -1,4 +1,3 @@
-
 import { Routes, Route } from 'react-router-dom';
 import LandingPage from '@/pages/user/Home';
 import LoginPage from '@/pages/auth/login';
@@ -20,7 +19,7 @@ import VerifyOtp from '@/pages/auth/verify-otp';
 import NotAuthorized from '@/pages/admin/NotAuthorized';
 import NotFound from '@/pages/auth/NotFound';
 
-const ClientLayout = ( loggedIn: any ) => (
+const ClientLayout = (loggedIn: any) => (
   <Routes>
     <Route index element={<LandingPage status={loggedIn} />} />
     <Route path="login" element={<LoginPage />} />

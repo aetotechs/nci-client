@@ -2,7 +2,12 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/common/ui/
 import { HomeIcon, Menu, Settings } from 'lucide-react';
 
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../../common/ui/accordion';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger
+} from '../../common/ui/accordion';
 
 export function MobileSideBar() {
   const location = useLocation();

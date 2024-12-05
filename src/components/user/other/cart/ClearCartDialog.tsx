@@ -5,13 +5,13 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
+  DialogTrigger
 } from '@/components/common/ui/dialog';
 import { Trash2 } from 'lucide-react';
 import { useState } from 'react';
 
-export function DeleteDialog({ clearCartItems }: { clearCartItems: any}) {
-  const [ isOpen, setIsOpen ] = useState(false);
+export function DeleteDialog({ clearCartItems }: { clearCartItems: any }) {
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleClearCart = () => {
     clearCartItems();

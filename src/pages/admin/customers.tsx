@@ -13,60 +13,33 @@ import ViewCustomer from '@/components/admin/other/ViewCustomer';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 import { useState } from 'react';
+import { FetchUsers } from '@/utils/services/FetchUsers';
+import { PaginationDemo } from '@/components/admin/other/Pagination';
+import { Skeleton } from '@/components/common/ui/Skeleton';
 
-export const customers = [
-  {
-    name: 'John Doe',
-    contact: '(234) 708346578',
-    email: 'john@example.com',
-    orders: 12,
-
-    date: '24 Sep 2014',
-    revenue: 100
-  },
-  {
-    name: 'John Doe',
-    contact: '(234) 708346578',
-    email: 'john@example.com',
-    orders: 12,
-
-    date: '24 Sep 2014',
-    revenue: 100
-  },
-  {
-    name: 'John Doe',
-    contact: '(234) 708346578',
-    email: 'john@example.com',
-    orders: 12,
-
-    date: '24 Sep 2014',
-    revenue: 100
-  },
-  {
-    name: 'John Doe',
-    contact: '(234) 708346578',
-    email: 'john@example.com',
-    orders: 12,
-
-    date: '24 Sep 2014',
-    revenue: 100
-  },
-  {
-    name: 'John Doe',
-    contact: '(234) 708346578',
-    email: 'john@example.com',
-    orders: 12,
-
-    date: '24 Sep 2014',
-    revenue: 100
-  }
-];
 function Customers() {
+  const { usersWithOrders: users, loading } = FetchUsers();
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const customersPerPage = 8;
+  console.log(users);
   const [showViewCustomer, setShowViewCustomer] = useState(false);
 
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const toggleCollapse = () => setIsCollapsed(!isCollapsed);
+
+  const totalPages = Math.ceil(users.length / customersPerPage);
+  const currentCustomers = users.slice(
+    (currentPage - 1) * customersPerPage,
+    currentPage * customersPerPage
+  );
+
+  const handlePageChange = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
 
   return (
     <div className={`flex w-[100vw]  relative `}>
@@ -92,7 +65,7 @@ function Customers() {
           <ViewCustomer isCollapsed={isCollapsed} toggleCollapse={toggleCollapse} />
         ) : (
           <div
-            className={`p-5 md:pr-10 w-[100vw] ${isCollapsed ? 'md:w-[94vw] ' : 'md:w-[84vw]'} mt-20 md:mt-0 `}
+            className={`p-5 md:pr-10 w-[100vw] ${isCollapsed ? 'md:w-[95vw] ' : 'md:w-[85vw]'} mt-20 md:mt-0 `}
           >
             <div className="flex gap-3 items-center">
               <h3 className="font-semibold text-2xl">Customers</h3>
@@ -100,7 +73,7 @@ function Customers() {
                 variant="outline"
                 className="h-6 w-8 rounded-[5px] border-primary/30 bg-white justify-center text-primary"
               >
-                {customers.length}
+                {users.length}
               </Badge>
             </div>
             <div className="flex justify-between my-5">
@@ -115,8 +88,33 @@ function Customers() {
                 <AddCustomer />
               </div>
             </div>
-            <div className="my-10 md:my-0">
-              <CustomersTable customers={customers} setShowViewCustomer={setShowViewCustomer} />
+
+            {loading ? (
+              <div className="my-8 border rounded-t-[8px] p-4 space-y-4">
+                {Array.from({ length: customersPerPage }).map((_, index) => (
+                  <Skeleton key={index} className="h-12 w-full" />
+                ))}
+              </div>
+            ) : currentCustomers.length > 0 ? (
+              <div className="my-10 md:my-0">
+                <CustomersTable
+                  customers={currentCustomers}
+                  setShowViewCustomer={setShowViewCustomer}
+                />
+              </div>
+            ) : (
+              <h3 className="text-center font-semibold">No Customers found, Add One</h3>
+            )}
+
+            <div className="flex justify-between items-center my-4">
+              <span className="font-normal text-[14px]">
+                Showing {currentCustomers.length} of {users.length}
+              </span>
+              <PaginationDemo
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+              />
             </div>
           </div>
         )}

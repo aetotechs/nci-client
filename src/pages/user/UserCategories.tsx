@@ -1,4 +1,3 @@
-
 import CoffeeListings from '@/components/user/other/CoffeeListings';
 import Footer from '@/components/user/other/Footer';
 import Header from '@/components/user/other/Header';
@@ -20,8 +19,8 @@ import { useLoading } from '@/utils/context/LoaderContext';
 
 function UserCategoriesPage() {
   const { dispatchLoader } = useLoading();
-  const [ products, setProducts ] = useState<IProduct[] | any>(Array(8).fill({}));
-  const [ loading, setLoading ] = useState(false);
+  const [products, setProducts] = useState<IProduct[] | any>(Array(8).fill({}));
+  const [loading, setLoading] = useState(false);
   const { pathname } = useLocation();
   const { categoryId } = useParams();
 
@@ -35,7 +34,7 @@ function UserCategoriesPage() {
           const data = await response.json();
           setProducts(data);
         } else {
-          ErrorToast(response.text())
+          ErrorToast(response.text());
         }
       } catch (error) {
         ErrorToast(error);
@@ -58,7 +57,7 @@ function UserCategoriesPage() {
       <div className="lg:px-[4vw] md:px-[2vw] w-[100vw] md:mb-10">
         <div className="px-4 md:pt-0 overflow-hidden">
           <div className="flex flex-col gap-5 my-5 md:mb-0 md:flex-row md:justify-between md:py-5">
-            <h3 className="text-[26px] font-semibold mb-4 md:mb-0">{ categoryId }</h3>
+            <h3 className="text-[26px] font-semibold mb-4 md:mb-0">{categoryId}</h3>
             <div className="flex justify-between ">
               <div className="md:hidden ">
                 <FilterSheet />
@@ -90,13 +89,12 @@ function UserCategoriesPage() {
             </div>
 
             <div className="grid gap-4 grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 w-full h-max">
-              { products?.map((product: IProduct | any, index: any) => (
-                  <div key={index}>
-                    <Product product={product} skeleton={loading}/>
-                  </div>
+              {products?.map((product: IProduct | any, index: any) => (
+                <div key={index}>
+                  <Product product={product} skeleton={loading} />
+                </div>
               ))}
             </div>
-
           </div>
         </div>
       </div>

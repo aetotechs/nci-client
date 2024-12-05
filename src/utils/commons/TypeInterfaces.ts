@@ -1,30 +1,29 @@
-
 type IProduct = {
-    flavor: string;
-    name: string;
-    lotNumber: string;
-    stockAvailable: boolean;
-    description: string;
-    stockCount: number;
-    unitPrice: number;
-    wareHouse: string;
-    status: string;
-    sampleCount: number;
-    sampleUnitPrice: number;
-    processingMode: string;
-    sampleAvailable: boolean;
-    quantity: number;
-    specie: string;
-    bagType: string;
-    variety: string;
-    farmName: string;
-    producerType: string;
-    itemId: string;
-  }
+  flavor: string;
+  name: string;
+  lotNumber: string;
+  stockAvailable: boolean;
+  description: string;
+  stockCount: number;
+  unitPrice: number;
+  wareHouse: string;
+  status: string;
+  sampleCount: number;
+  sampleUnitPrice: number;
+  processingMode: string;
+  sampleAvailable: boolean;
+  quantity: number;
+  specie: string;
+  bagType: string;
+  variety: string;
+  farmName: string;
+  producerType: string;
+  itemId: string;
+};
 
 interface ProductProps {
-  product: IProduct,
-  skeleton?: boolean
+  product: IProduct;
+  skeleton?: boolean;
 }
 
 interface IProductDetails {
@@ -65,11 +64,4 @@ interface ICartItem {
   selected: boolean;
 }
 
-export type{
-    IProduct,
-    ProductProps,
-    IProductDetails,
-    IAddress,
-    IUser,
-    ICartItem
-}
+export type { IProduct, ProductProps, IProductDetails, IAddress, IUser, ICartItem };

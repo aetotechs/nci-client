@@ -18,7 +18,7 @@ const LoadingSpinner = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        zIndex: 1000,
+        zIndex: 1000
       }}
     >
       <img
@@ -26,7 +26,7 @@ const LoadingSpinner = () => {
         alt="Loading..."
         style={{
           width: '100px',
-          animation: 'spin 1s linear infinite',
+          animation: 'spin 1s linear infinite'
         }}
       />
       <style>{`

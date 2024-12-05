@@ -9,7 +9,6 @@ import { ListingFilter } from '../../user/other/ListingFilter';
 import { AdminOrdersTable } from '../tables/AdminOrdersTable';
 
 import { CustomersTable } from '../tables/CustomersTable';
-import { customers } from '@/pages/admin/customers';
 import { AddCustomer } from './AddCustomer';
 import { Button } from '../../common/ui/button';
 import { Separator } from '@/components/common/ui/separator';
@@ -23,6 +22,7 @@ import {
 import { DeleteCustomer } from './DeleteCustomer';
 import { FilterSheet } from '../../user/other/CoffeeListingMobile';
 import { AdminSideBarDesktopProps } from './AdminSideBarDesktop';
+import { FetchUsers } from '@/utils/services/FetchUsers';
 
 const orders = [
   {
@@ -69,6 +69,7 @@ const orders = [
 
 function ViewCustomer({ isCollapsed, toggleCollapse }: AdminSideBarDesktopProps) {
   const [showViewCustomer, setShowViewCustomer] = useState(true);
+  const { usersWithOrders: users, loading } = FetchUsers();
 
   const handleToggle = () => {
     setShowViewCustomer(!showViewCustomer);
@@ -218,7 +219,7 @@ function ViewCustomer({ isCollapsed, toggleCollapse }: AdminSideBarDesktopProps)
                 variant="outline"
                 className="h-6 w-8 rounded-[5px] border-primary/30 bg-white justify-center text-primary"
               >
-                {customers.length}
+                {users.length}
               </Badge>
             </div>
             <div className="flex justify-between my-5">
@@ -234,12 +235,12 @@ function ViewCustomer({ isCollapsed, toggleCollapse }: AdminSideBarDesktopProps)
               </div>
             </div>
             <div className="my-10 md:my-0">
-              <CustomersTable customers={customers} setShowViewCustomer={setShowViewCustomer} />
+              <CustomersTable customers={users} setShowViewCustomer={setShowViewCustomer} />
             </div>
 
             <div>
               <span className="font-normal text-[12px]">
-                Showing: {customers.length} of {customers.length}
+                Showing: {users.length} of {users.length}
               </span>
             </div>
           </div>

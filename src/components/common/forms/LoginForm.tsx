@@ -20,7 +20,6 @@ import { ErrorToast, SuccessToast } from '../ui/Toasts';
 import LoadingSpinner from '../ui/LoadingSpinner';
 import { useLoading } from '@/utils/context/LoaderContext';
 
-
 const FormSchema = z.object({
   username: z.string().min(2, {
     message: 'username must be at least 2 characters.'
@@ -31,7 +30,8 @@ const FormSchema = z.object({
 export function LoginForm() {
   const { dispatchLoader } = useLoading();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [visible, setVisible] = useState(false);''
+  const [visible, setVisible] = useState(false);
+  ('');
   const [searchParams] = useSearchParams();
   const redirectUrl = searchParams.get('redirect_url') || '#/';
 
@@ -51,16 +51,16 @@ export function LoginForm() {
     dispatchLoader(true);
     try {
       const response = await fetch(Login, {
-        method: "POST",
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(values)
-      })
+      });
 
       let responseMessage;
 
-      if(response.status === 200){
+      if (response.status === 200) {
         const res = await response.json();
         setUserToken(res.token);
         setAuthUser(res.user);
@@ -71,27 +71,25 @@ export function LoginForm() {
 
         const destination = role === 'ADMIN' ? '#/dashboard' : redirectUrl;
         window.location.href = destination;
-
-      } else if( await response.text() === "User account unverified" ){
-        
-        ErrorToast("Account not verified. Redirecting to verification page...");
-        localStorage.setItem("acc_verification_email", values.username);
+      } else if ((await response.text()) === 'User account unverified') {
+        ErrorToast('Account not verified. Redirecting to verification page...');
+        localStorage.setItem('acc_verification_email', values.username);
         setTimeout(() => {
-            window.location.href = `#/verify-email`;
+          window.location.href = `#/verify-email`;
         }, 2000);
       } else {
         responseMessage = await response.text();
         ErrorToast(responseMessage);
       }
-    } catch( error: any) {
-      ErrorToast("An Error occured, try again" + error.toString())
+    } catch (error: any) {
+      ErrorToast('An Error occured, try again' + error.toString());
     } finally {
       dispatchLoader(false);
     }
-  }
+  };
 
   return (
-    <Suspense fallback={<LoadingSpinner/>}>
+    <Suspense fallback={<LoadingSpinner />}>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(_handleSubmit)} className="w-full space-y-2 md:space-y-4">
           <FormField

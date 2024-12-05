@@ -86,7 +86,8 @@ function Dashboard() {
                 className={cn(
                   'md:w-[220px] text-left font-normal  p-0 px-2 text-[13px] border-primary/30 flex items-center justify-between',
                   !date && 'text-muted-foreground'
-                )}>
+                )}
+              >
                 {date?.from ? (
                   date.to ? (
                     <>
@@ -99,7 +100,7 @@ function Dashboard() {
                   <span>Pick a date</span>
                 )}
 
-                <ChevronDown className='h-4 w-4 justify-self-end ' />
+                <ChevronDown className="h-4 w-4 justify-self-end " />
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0" align="start">
@@ -119,7 +120,8 @@ function Dashboard() {
         {items.map((item, index) => (
           <div
             key={index}
-            className="flex flex-col gap-2 bg-white border border-primary/30 rounded-[10px] md:h-[117px] py-4 px-3">
+            className="flex flex-col gap-2 bg-white border border-primary/30 rounded-[10px] md:h-[117px] py-4 px-3"
+          >
             <div className="font-medium text-[11px] md:text-[12px] text-[#585962] leading-4 uppercase">
               {item.title}
             </div>
@@ -132,7 +134,8 @@ function Dashboard() {
                     item.percentage < 0
                       ? 'text-[#f44336] bg-[#f443361f]'
                       : 'text-[#009a68] bg-[#009a681f]'
-                  }`}>
+                  }`}
+                >
                   {item.percentage > 0 ? `+${item.percentage}%` : `${item.percentage}%`}
                 </Badge>
               </div>
@@ -149,8 +152,8 @@ function Dashboard() {
             </div>
             <div>
               <Select>
-              <SelectTrigger className="  border border-[#b9bbc6] outline-none rounded-[5px] text-[13px] w-[100px] h-[28px] ">
-              <SelectValue placeholder="7 days" className="p-5 text-base font-bold " />
+                <SelectTrigger className="  border border-[#b9bbc6] outline-none rounded-[5px] text-[13px] w-[100px] h-[28px] ">
+                  <SelectValue placeholder="7 days" className="p-5 text-base font-bold " />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="7 days">7 days </SelectItem>

@@ -9,31 +9,34 @@ import { IProductDetails } from '@/utils/commons/TypeInterfaces';
 import { useCart } from '@/utils/hooks/CartHook';
 import { isAuthenticated } from '@/utils/cookies/UserCookieManager';
 
-
 function ProductDetails({ product }: IProductDetails) {
-  const [ isAdding, setIsAdding] = useState(false);
+  const [isAdding, setIsAdding] = useState(false);
   const _isAuthenticated = isAuthenticated();
-  const [ productQuantity, setProductQuantity ] = useState<number | any>(1);
+  const [productQuantity, setProductQuantity] = useState<number | any>(1);
   const { cart, addProductToCart, updateProductQuantity } = useCart();
-  
+
   const handleAddToCart = async () => {
     setIsAdding(true);
-    
+
     let cartItem = {
       product: product,
       quantity: productQuantity,
       selected: false
-    }
+    };
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       // const existingItemIndex = cart.findIndex((item: IProduct) => item.itemId === product.itemId);
-      const productAlreadyExists = cart.some((_cartItem) => _cartItem.product.itemId === product.itemId);
+      const productAlreadyExists = cart.some(
+        (_cartItem) => _cartItem.product.itemId === product.itemId
+      );
 
-      if(productAlreadyExists){
+      if (productAlreadyExists) {
         updateProductQuantity(product.itemId, productQuantity);
-        SuccessToast(`${product.name} already exists in cart, quantity has been updated with the new one`);
+        SuccessToast(
+          `${product.name} already exists in cart, quantity has been updated with the new one`
+        );
         setIsAdding(false);
         return;
       }
@@ -46,11 +49,12 @@ function ProductDetails({ product }: IProductDetails) {
             <img src="/icons/cartsuccess.svg" alt="cart" />
           </span>
           <span className="font-bold">{product.name}</span> has been added to your cart.
-        </div>);
+        </div>
+      );
     } catch (error) {
-        ErrorToast(error);
+      ErrorToast(error);
     } finally {
-        setIsAdding(false);
+      setIsAdding(false);
     }
   };
 
@@ -74,7 +78,9 @@ function ProductDetails({ product }: IProductDetails) {
             <div className="font-medium text-[13px] md:text-sm">60kg Bag</div>
           </div>
           <div className="flex justify-between">
-            <div className="font-normal text-[13px] md:text-[15px] text-[#585962]">Harvest Season</div>
+            <div className="font-normal text-[13px] md:text-[15px] text-[#585962]">
+              Harvest Season
+            </div>
             <div className="font-medium text-[13px] md:text-sm">2023/24</div>
           </div>
           <div className="flex justify-between">
@@ -90,7 +96,9 @@ function ProductDetails({ product }: IProductDetails) {
             <div className="font-medium text-[13px] md:text-sm">{product?.wareHouse}</div>
           </div>
           <div className="flex justify-between">
-            <div className="font-normal text-[13px] md:text-[15px] text-[#585962]">Availability</div>
+            <div className="font-normal text-[13px] md:text-[15px] text-[#585962]">
+              Availability
+            </div>
             <div>
               <div className="flex justify-end gap-2">
                 <h5 className="font-medium text-[13px] md:text-[15px]">Bags</h5>{' '}

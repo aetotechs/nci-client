@@ -17,6 +17,9 @@ import { Input } from '@/components/common/ui/input';
 
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
+import { ErrorToast, SuccessToast } from '../ui/Toasts';
+import { toast } from 'sonner';
+import { useLoading } from '@/utils/context/LoaderContext';
 
 const FormSchema = z
   .object({
@@ -30,6 +33,8 @@ const FormSchema = z
   });
 
 export function ChangePasswordForm() {
+  const { dispatchLoader } = useLoading();
+
   const location = useLocation();
   const { pathname } = location;
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -55,9 +60,45 @@ export function ChangePasswordForm() {
     }
   });
 
-  function onSubmit(values: z.infer<typeof FormSchema>) {
-    console.log(values);
-  }
+  const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+    try {
+      const response = await fetch(
+        'localhost:8080/users/password?emailOrWorkPhone=mcaplexya@gmail.com&newPassword=Aplexy@1',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(values)
+        }
+      );
+      console.log(response);
+
+      if (response.status === 200) {
+        SuccessToast(
+          <div className="flex gap-1 items-center">
+            <span>
+              <img src="/icons/signupemail.svg" alt="Email" />
+            </span>
+            <span>Success!</span> Check email to verify your account.
+          </div>
+        );
+      } else {
+        let res = await response.text();
+        ErrorToast(res);
+      }
+    } catch (error) {
+      toast.error('Try Again Later', {
+        style: {
+          backgroundColor: '#F443361A',
+          color: '#FFE6E6',
+          border: '1px solid #F4433680'
+        }
+      });
+    } finally {
+      dispatchLoader(false);
+    }
+  };
 
   return (
     <Form {...form}>

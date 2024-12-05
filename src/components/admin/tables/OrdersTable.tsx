@@ -7,6 +7,7 @@ import {
   TableRow
 } from '@/components/common/ui/table';
 import { ActionsPopover } from '../other/Actions';
+import { extractDateOnly } from './CustomersTable';
 
 export interface IOrder {
   orderId: string;
@@ -57,7 +58,9 @@ export function OrdersTable({ orders }: IOrderTableProps) {
               ${index === 0 ? 'rounded-e-full  overflow-hidden' : ''} ${index === orders.length - 1 ? 'rounded-b-lg  overflow-hidden' : ''}`}
           >
             <TableCell className="font-medium py-2">#{order.orderId}</TableCell>
-            <TableCell className="text-center p-2  min-w-[100px] ">{order.date}</TableCell>
+            <TableCell className="text-center p-2  min-w-[100px] ">
+              {extractDateOnly(order.date)}
+            </TableCell>
             <TableCell className="flex justify-center items-center  p-2  h-[56px] md:h-9">
               <div
                 className={`flex  w-max px-2  text-[13px] rounded-[5px]  items-center gap-1 ${checkStatus(order.status)}`}
