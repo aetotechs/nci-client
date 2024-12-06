@@ -1,6 +1,6 @@
-import Footer from "@/components/user/other/Footer";
-import Header from "@/components/user/other/Header";
-import React from "react";
+import Footer from '@/components/user/other/Footer';
+import Header from '@/components/user/other/Header';
+import React from 'react';
 
 const CookiePolicy: React.FC = () => {
   return (
