@@ -77,7 +77,7 @@ export function AdminOrdersTable({ orders }: IOrdersTable) {
           )}
         </TableRow>
       </TableHeader>
-      <TableBody>
+      <TableBody className='bg-white '>
         {orders.map((order, index) => (
           <TableRow key={index} className="border-b h-10">
             <TableCell className="font-medium">{order?.orderId}</TableCell>
