@@ -26,7 +26,7 @@ function ContactUs({ status }: IStatus) {
 
   return (
     <>
-      <Header status={status} />
+      <Header />
       <div className="md:px-[5vw] md:max-w-[100vw]   ">
         <div className=" px-5 md:py-7  md:pt-0  overflow-hidden">
           <div className="md:mt-10 mt-3 ">

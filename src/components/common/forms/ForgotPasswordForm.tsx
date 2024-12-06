@@ -17,6 +17,7 @@ import { useState } from 'react';
 import { ForgotPassword } from '@/utils/hooks/api-routes';
 import { useLoading } from '@/utils/context/LoaderContext';
 import { ErrorToast, SuccessToast } from '../ui/Toasts';
+import { api_urls } from '@/utils/commons/api-urls';
 
 const FormSchema = z.object({
   email: z.string().min(2, {
@@ -38,7 +39,7 @@ export function ForgotPasswordForm() {
   const _handleSubmit = async (data: z.infer<typeof FormSchema>) => {
     dispatchLoader(true);
     try {
-      const response = await fetch(ForgotPassword(data.email, 'r'), {
+      const response = await fetch(api_urls.users.account.reset_password_otp(data.email), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

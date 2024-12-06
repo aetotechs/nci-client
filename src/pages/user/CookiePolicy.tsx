@@ -7,7 +7,7 @@ const CookiePolicy: React.FC = () => {
     <>
         <Header/>
         <div className="mt-16 text-gray-800 lg:px-[4vw] md:px-[2vw] md:max-w-[100vw]">
-            <div className="max-w-4xl mx-auto shadow-md rounded-md p-8">
+            <div className="mx-auto shadow-md rounded-md p-8">
                 <h1 className="text-2xl font-bold mb-6">Cookie Policy</h1>
                 <p className="mb-4">
                 Our website uses cookies to enhance your experience. This policy

@@ -65,6 +65,10 @@ function Header({ handleSearch, reloadCart }: HeaderProps) {
   }, []);
 
   const fetchCount = async () => {
+    if(_isAuthenticated){
+      console.log("You're not authenticated");
+      return;
+    }
     dispatchLoader(true);
     try {
       const response = await fetch(api_urls.carts.cart_items.count, {
@@ -132,14 +136,14 @@ function Header({ handleSearch, reloadCart }: HeaderProps) {
               <SearchIcon className="text-icon w-5 h-5" onClick={handleSearchClick} />
             </div>
 
-            <div className="border border-[#f4f4e6] flex items-center justify-center h-10 w-10 px-2 rounded-sm relative">
+            { _isAuthenticated && <div className="border border-[#f4f4e6] flex items-center justify-center h-10 w-10 px-2 rounded-sm relative">
               <Link to="/cart">
                 <ShoppingCart className="text-icon w-5 h-5" />
               </Link>
               <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
                 {cartCount}
               </span>
-            </div>
+            </div>}
 
             <div className="hidden md:flex md:ml-4">
               {_isAuthenticated ? (

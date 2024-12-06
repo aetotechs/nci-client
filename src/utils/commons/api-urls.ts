@@ -4,6 +4,22 @@ const inventoryApiBaseUrl = import.meta.env.VITE_INVENTORY_API_URL;
 const paymentApiBaseUrl = import.meta.env.VITE_PAYMENT_API_URL;
 
 export const api_urls = {
+  users: {
+    account: {
+      verify_account: (email: string | null) =>
+        `${userApiBaseUrl}/users/otp?emailOrWorkPhone=${email}&type=v`,
+      resend_verification_otp: (email: string | null) =>
+        `${userApiBaseUrl}/users/otp?emailOrWorkPhone=${email}&type=v`,
+      reset_password_otp: (email: string | null) =>
+        `${userApiBaseUrl}/users/otp?emailOrWorkPhone=${email}&type=r`,
+      resend_reset_password_otp: (email: string | null) =>
+        `${userApiBaseUrl}/users/otp?emailOrWorkPhone=${email}&type=r`
+    },
+    guest: {
+      contact_us: `${userApiBaseUrl}/news-letter/enquiry`,
+      news_letter: `${userApiBaseUrl}/news-letter`,
+    }
+  },
   carts: {
     cart_items: {
       count: `${orderApiBaseUrl}/carts/cart-items/user/count`,
