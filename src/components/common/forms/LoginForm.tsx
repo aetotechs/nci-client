@@ -53,40 +53,39 @@ export function LoginForm() {
       const response = await fetch(Login, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(values)
+        body: JSON.stringify(values),
       });
-
-      let responseMessage;
-
-      if (response.status === 200) {
-        const res = await response.json();
+  
+      const responseBody = await response.text();
+  
+      if (response.ok) {
+        const res = JSON.parse(responseBody);
         setUserToken(res.token);
         setAuthUser(res.user);
         const userRole = getAuthUser();
         const role = userRole.role;
-
+  
         SuccessToast('Login Successful, Redirecting you...');
-
         const destination = role === 'ADMIN' ? '#/dashboard' : redirectUrl;
         window.location.href = destination;
-      } else if ((await response.text()) === 'User account unverified') {
+      } else if (responseBody === 'User account unverified') {
         ErrorToast('Account not verified. Redirecting to verification page...');
         localStorage.setItem('acc_verification_email', values.username);
         setTimeout(() => {
           window.location.href = `#/verify-email`;
         }, 2000);
       } else {
-        responseMessage = await response.text();
-        ErrorToast(responseMessage);
+        ErrorToast(responseBody);
       }
     } catch (error: any) {
-      ErrorToast('An Error occured, try again' + error.toString());
+      ErrorToast('An Error occurred, try again: ' + error.toString());
     } finally {
       dispatchLoader(false);
     }
   };
+  
 
   return (
     <Suspense fallback={<LoadingSpinner />}>
@@ -127,9 +126,9 @@ export function LoginForm() {
                     />
                     <p onClick={togglePassword}>
                       {visible ? (
-                        <EyeIcon className="w-4   " color="rgba(88, 89, 98, 1)" />
+                        <EyeIcon className="w-4 cursor-pointer" color="rgba(88, 89, 98, 1)" />
                       ) : (
-                        <EyeOffIcon className="w-4" color="rgba(88, 89, 98, 1)" />
+                        <EyeOffIcon className="w-4 cursor-pointer" color="rgba(88, 89, 98, 1)" />
                       )}
                     </p>
                   </div>

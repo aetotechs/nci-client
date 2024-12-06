@@ -1,9 +1,11 @@
 import { EmailOtpForm } from '@/components/common/forms/EmailVerificationForm';
 import { ErrorToast, SuccessToast } from '@/components/common/ui/Toasts';
-import { ResendOtp } from '@/utils/hooks/api-routes';
+import { api_urls } from '@/utils/commons/api-urls';
+import { useLoading } from '@/utils/context/LoaderContext';
 import { useState } from 'react';
 
 function VerifyEmail() {
+  const { dispatchLoader } = useLoading();
   const email = localStorage.getItem('acc_verification_email');
   const [resetTimer, setResetTimer] = useState(false);
   const [VerificationMethod, setVerificationMethod] = useState('Email');
@@ -12,8 +14,9 @@ function VerifyEmail() {
     setVerificationMethod('Phone');
   };
   const handleResendOtp = async () => {
+    dispatchLoader(true);
     try {
-      const response = await fetch(ResendOtp(email) + 'type=v', {
+      const response = await fetch(api_urls.users.account.verify_account(email), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -26,12 +29,13 @@ function VerifyEmail() {
       const message = await response.text();
       if (response.ok) {
         SuccessToast(message);
-        window.location.reload();
       } else {
         ErrorToast(message);
       }
     } catch (error) {
       ErrorToast('Error resending OTP:' + error);
+    } finally {
+      dispatchLoader(false);
     }
   };
 

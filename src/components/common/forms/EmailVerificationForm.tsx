@@ -16,7 +16,7 @@ import { useEffect, useState } from 'react';
 import { Verify } from '@/utils/hooks/api-routes';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
-import { ErrorToast } from '../ui/Toasts';
+import { ErrorToast, SuccessToast } from '../ui/Toasts';
 
 const FormSchema = z.object({
   pin: z.string().min(5, {
@@ -75,25 +75,8 @@ export function EmailOtpForm({ resetTimer }: { resetTimer: boolean }) {
       console.log(response);
 
       if (response.status === 200) {
-        setTimeout(() => {
-          toast.success(
-            <div className="flex gap-1 items-center">
-              <span>
-                <img src="/icons/signupemail.svg" alt="Email" />
-              </span>
-              <span>Success!</span> Redirecting to Login...
-            </div>,
-            {
-              style: {
-                background: '#007BFF1A',
-
-                color: '#007BFF',
-                border: '1px solid #007BFF80'
-              }
-            }
-          );
-          navigate('/login');
-        }, 2000);
+        SuccessToast( "Success! Redirecting you to Login...");
+        navigate('/login');
       } else {
         const text = await response.text();
         ErrorToast(text);

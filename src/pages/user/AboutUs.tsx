@@ -36,7 +36,7 @@ function About() {
                 coffee, from source to cup.
               </p>
               <Button
-                onClick={() => navigate('#/contact-us')}
+                onClick={() => navigate('/contact-us')}
                 variant="outline"
                 className="border border-primary my-4 bg-white text-primary"
               >
