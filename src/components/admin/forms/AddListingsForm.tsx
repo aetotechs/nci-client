@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { z } from 'zod';
+import JoditEditor from 'jodit-react';
 
 import { Button } from '@/components/common/ui/button';
 import {
@@ -22,20 +23,27 @@ import {
   SelectValue
 } from '@/components/common/ui/select';
 
-import { RichTextEditor } from '../../common/other/RichTextEditor';
 import { PendingPopover } from '../../user/other/PendingPopover';
 import { AddItem } from '@/utils/hooks/api-routes';
-import { useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { ErrorToast, SuccessToast } from '@/components/common/ui/Toasts';
 import { GetOrigins } from '@/utils/services/FetchAdminOrigins';
 import { GetRegions } from '@/utils/services/FetchAdminRegions';
+import { FetchWareHouses } from '@/utils/services/FetchWareHouses';
+import { GetCategories } from '@/utils/services/FetchAdminCategories';
+import { FetchBagWeights } from '@/utils/services/FetchBagWeights';
+import { FetchFlavors } from '@/utils/services/FetchFlavors';
+import { FetchBagTypes } from '@/utils/services/FetchBagTypes';
+import { FetchProcessingModes } from '@/utils/services/FetchProcessingModes';
+import { FetchStatuses } from '@/utils/services/FetchStatuses';
+import { FetchSpecies } from '@/utils/services/FetchSpecies';
+import { options } from './AddRegionForm';
 
 const FormSchema = z.object({
-  brand: z.string().min(2, { message: 'Field is required' }),
+  name: z.string().min(2, { message: 'Field is required' }),
   description: z.string().min(2, { message: 'Field is required' }),
-  country: z.string().min(2, { message: 'Field is required' }),
-  origin: z.string().min(2, { message: 'Field is required' }),
-  region: z.string().min(2, { message: 'Field is required' }),
+  origin: z.string().optional(),
+  region: z.string().optional(),
   bagWeight: z.string().min(2, { message: 'Field is required' }),
   farmName: z.string().min(2, { message: 'Field is required ' }),
   lotNumber: z.string().min(2, { message: 'Field is required ' }),
@@ -59,16 +67,25 @@ const FormSchema = z.object({
 });
 
 export function ListingsForm({ onClose }: { onClose: () => void }) {
+  const editor2 = useRef(null);
+
   const [submitting, setIsSubmitting] = useState(false);
 
   const origins = GetOrigins();
   const regions = GetRegions();
+  const warehouses = FetchWareHouses();
+  const categories = GetCategories();
+  const bagtypes = FetchBagTypes();
+  const bagweights = FetchBagWeights();
+  const flavors = FetchFlavors();
+  const modes = FetchProcessingModes();
+  const statuses = FetchStatuses();
 
+  const species = FetchSpecies();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      brand: '',
-      country: '',
+      name: '',
       origin: '',
       region: '',
       lotNumber: '',
@@ -92,8 +109,23 @@ export function ListingsForm({ onClose }: { onClose: () => void }) {
       description: ''
     }
   });
-
+  const config = useMemo(
+    () => ({
+      readonly: false,
+      buttons: options,
+      buttonsMD: options,
+      buttonsSM: options,
+      buttonsXS: options,
+      statusbar: false,
+      toolbarAdaptive: false,
+      toolbarSticky: true,
+      allowEmptyTags: false
+    }),
+    []
+  );
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+    console.log(values);
+    console.log('hi');
     setIsSubmitting(true);
 
     try {
@@ -126,18 +158,17 @@ export function ListingsForm({ onClose }: { onClose: () => void }) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className=" flex flex-col w-[85vw]  md:flex-row gap-5 "
-      >
+        className=" flex flex-col w-[85vw]  md:flex-row gap-5 ">
         <div className="bg-white border border-primary/30 rounded-[8px] p-5 w-full md:w-[45vw] max-h-min">
           <h3 className="text-base font-semibold">General</h3>
 
           <div className="grid grid-cols-2 gap-5">
             <FormField
               control={form.control}
-              name="brand"
+              name="name"
               render={({ field }) => (
                 <FormItem className="col-span-2">
-                  <FormLabel>Coffee Brand *</FormLabel>
+                  <FormLabel>Coffee name *</FormLabel>
                   <FormControl>
                     <Input type="text" placeholder="" className="h-9 " {...field} />
                   </FormControl>
@@ -152,14 +183,23 @@ export function ListingsForm({ onClose }: { onClose: () => void }) {
                 <FormItem className="col-span-2">
                   <FormLabel>Category *</FormLabel>
                   <FormControl>
-                    <Select>
+                    <Select
+                      onValueChange={(value) => {
+                        field.onChange(value);
+                      }}
+                      value={field.value}>
+                      {' '}
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="light">Light</SelectItem>
-                        <SelectItem value="dark">Dark</SelectItem>
-                        <SelectItem value="system">System</SelectItem>
+                        {categories.map((category, index) => {
+                          return (
+                            <SelectItem key={index} value={`${category.name}`}>
+                              {category.name}
+                            </SelectItem>
+                          );
+                        })}
                       </SelectContent>
                     </Select>
                   </FormControl>
@@ -195,7 +235,7 @@ export function ListingsForm({ onClose }: { onClose: () => void }) {
             />
             <FormField
               control={form.control}
-              name="brand"
+              name="lotNumber"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Lot Number</FormLabel>
@@ -213,14 +253,23 @@ export function ListingsForm({ onClose }: { onClose: () => void }) {
                 <FormItem>
                   <FormLabel>Bag Weight (kg) *</FormLabel>
                   <FormControl>
-                    <Select>
+                    <Select
+                      onValueChange={(value) => {
+                        field.onChange(value);
+                      }}
+                      value={field.value}>
+                      {' '}
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="light">Light</SelectItem>
-                        <SelectItem value="dark">Dark</SelectItem>
-                        <SelectItem value="system">System</SelectItem>
+                        {bagweights.map((bagWeight, index) => {
+                          return (
+                            <SelectItem key={index} value={`${bagWeight}`}>
+                              {bagWeight}
+                            </SelectItem>
+                          );
+                        })}
                       </SelectContent>
                     </Select>
                   </FormControl>
@@ -236,10 +285,8 @@ export function ListingsForm({ onClose }: { onClose: () => void }) {
                   <FormLabel>Origin *</FormLabel>
                   <FormControl>
                     <Select
-                      onValueChange={(value) => {
-                        field.onChange(value);
-                      }}
-                      value={field.value}
+                      onValueChange={(value) => field.onChange(value)} // Update form state
+                      value={field.value || ''} // Bind the field's value
                     >
                       {' '}
                       <SelectTrigger>
@@ -271,8 +318,7 @@ export function ListingsForm({ onClose }: { onClose: () => void }) {
                       onValueChange={(value) => {
                         field.onChange(value);
                       }}
-                      value={field.value}
-                    >
+                      value={field.value}>
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
@@ -340,7 +386,20 @@ export function ListingsForm({ onClose }: { onClose: () => void }) {
                     Briefly describe the coffee and upload a related image.
                   </FormDescription>
                   <FormControl>
-                    <RichTextEditor />
+                    <Controller
+                      name={field.name}
+                      control={form.control}
+                      render={({ field: controllerField }) => (
+                        <JoditEditor
+                          ref={editor2}
+                          value={controllerField.value || ''}
+                          config={config}
+                          onBlur={(newContent) => controllerField.onChange(newContent)}
+                          onChange={(htmlString) => controllerField.onChange(htmlString)}
+                          className="w-full h-[70%] mt-1 bg-white"
+                        />
+                      )}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -363,14 +422,17 @@ export function ListingsForm({ onClose }: { onClose: () => void }) {
                   <FormItem className="col-span-2">
                     <FormLabel>Harvest Season *</FormLabel>
                     <FormControl>
-                      <Select>
+                      <Select
+                        onValueChange={(value) => {
+                          field.onChange(value);
+                        }}
+                        value={field.value}>
+                        {' '}
                         <SelectTrigger>
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="light">Light</SelectItem>
-                          <SelectItem value="dark">Dark</SelectItem>
-                          <SelectItem value="system">System</SelectItem>
+                          <SelectItem value="dry">Dry</SelectItem>
                         </SelectContent>
                       </Select>
                     </FormControl>
@@ -385,14 +447,23 @@ export function ListingsForm({ onClose }: { onClose: () => void }) {
                   <FormItem className="col-span-2">
                     <FormLabel>Warehouse *</FormLabel>
                     <FormControl>
-                      <Select>
+                      <Select
+                        onValueChange={(value) => {
+                          field.onChange(value);
+                        }}
+                        value={field.value}>
+                        {' '}
                         <SelectTrigger>
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="light">Light</SelectItem>
-                          <SelectItem value="dark">Dark</SelectItem>
-                          <SelectItem value="system">System</SelectItem>
+                          {warehouses.map((warehouse, index) => {
+                            return (
+                              <SelectItem key={index} value={`${warehouse}`}>
+                                {warehouse}
+                              </SelectItem>
+                            );
+                          })}
                         </SelectContent>
                       </Select>
                     </FormControl>
@@ -407,14 +478,23 @@ export function ListingsForm({ onClose }: { onClose: () => void }) {
                   <FormItem>
                     <FormLabel>Status *</FormLabel>
                     <FormControl>
-                      <Select>
+                      <Select
+                        onValueChange={(value) => {
+                          field.onChange(value);
+                        }}
+                        value={field.value}>
+                        {' '}
                         <SelectTrigger>
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="light">Light</SelectItem>
-                          <SelectItem value="dark">Dark</SelectItem>
-                          <SelectItem value="system">System</SelectItem>
+                          {statuses.map((status, index) => {
+                            return (
+                              <SelectItem key={index} value={`${status}`}>
+                                {status}
+                              </SelectItem>
+                            );
+                          })}
                         </SelectContent>
                       </Select>
                     </FormControl>
@@ -429,14 +509,23 @@ export function ListingsForm({ onClose }: { onClose: () => void }) {
                   <FormItem>
                     <FormLabel>Processing *</FormLabel>
                     <FormControl>
-                      <Select>
+                      <Select
+                        onValueChange={(value) => {
+                          field.onChange(value);
+                        }}
+                        value={field.value}>
+                        {' '}
                         <SelectTrigger>
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="light">Light</SelectItem>
-                          <SelectItem value="dark">Dark</SelectItem>
-                          <SelectItem value="system">System</SelectItem>
+                          {modes.map((mode, index) => {
+                            return (
+                              <SelectItem key={index} value={`${mode}`}>
+                                {mode}
+                              </SelectItem>
+                            );
+                          })}
                         </SelectContent>
                       </Select>
                     </FormControl>
@@ -464,14 +553,23 @@ export function ListingsForm({ onClose }: { onClose: () => void }) {
                   <FormItem>
                     <FormLabel>Bag Type *</FormLabel>
                     <FormControl>
-                      <Select>
+                      <Select
+                        onValueChange={(value) => {
+                          field.onChange(value);
+                        }}
+                        value={field.value}>
+                        {' '}
                         <SelectTrigger>
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="light">Light</SelectItem>
-                          <SelectItem value="dark">Dark</SelectItem>
-                          <SelectItem value="system">System</SelectItem>
+                          {bagtypes.map((bagtype, index) => {
+                            return (
+                              <SelectItem key={index} value={`${bagtype}`}>
+                                {bagtype}
+                              </SelectItem>
+                            );
+                          })}
                         </SelectContent>
                       </Select>
                     </FormControl>
@@ -486,14 +584,23 @@ export function ListingsForm({ onClose }: { onClose: () => void }) {
                   <FormItem>
                     <FormLabel>Plant Species *</FormLabel>
                     <FormControl>
-                      <Select>
+                      <Select
+                        onValueChange={(value) => {
+                          field.onChange(value);
+                        }}
+                        value={field.value}>
+                        {' '}
                         <SelectTrigger>
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="light">Light</SelectItem>
-                          <SelectItem value="dark">Dark</SelectItem>
-                          <SelectItem value="system">System</SelectItem>
+                          {species.map((specie, index) => {
+                            return (
+                              <SelectItem key={index} value={`${specie}`}>
+                                {specie}
+                              </SelectItem>
+                            );
+                          })}
                         </SelectContent>
                       </Select>
                     </FormControl>
@@ -521,7 +628,12 @@ export function ListingsForm({ onClose }: { onClose: () => void }) {
                   <FormItem className="col-span-2">
                     <FormLabel>Certifications *</FormLabel>
                     <FormControl>
-                      <Select>
+                      <Select
+                        onValueChange={(value) => {
+                          field.onChange(value);
+                        }}
+                        value={field.value}>
+                        {' '}
                         <SelectTrigger>
                           <SelectValue />
                         </SelectTrigger>
@@ -584,8 +696,7 @@ export function ListingsForm({ onClose }: { onClose: () => void }) {
             <Button
               type="submit"
               disabled={submitting}
-              className=" font-normal  text-sm border border-primary text-white  h-[44px]"
-            >
+              className=" font-normal  text-sm border border-primary text-white  h-[44px]">
               {submitting ? 'Submitting...' : 'Save  Listing'}
             </Button>
           </div>
