@@ -125,7 +125,6 @@ export function ListingsForm({ onClose }: { onClose: () => void }) {
   );
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
     console.log(values);
-    console.log('hi');
     setIsSubmitting(true);
 
     try {
