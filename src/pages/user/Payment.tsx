@@ -9,7 +9,7 @@ import { api_urls } from '@/utils/commons/api-urls';
 import { getUserToken } from '@/utils/cookies/UserCookieManager';
 import { ErrorToast } from '@/components/common/ui/Toasts';
 
-const orderId = localStorage.getItem('orderId');
+export const orderId = localStorage.getItem('orderId');
 const token = getUserToken();
 
 function Payment() {

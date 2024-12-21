@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { AddToCart } from '@/utils/hooks/api-routes';
 import { getAuthUser, getUserToken } from '@/utils/cookies/UserCookieManager';
 import { toast } from 'sonner';
-import { OrderId } from '@/pages/user/Payment';
+import { orderId } from '@/pages/user/Payment';
 import { truncate } from '@/utils/commons/Truncate';
 import { ErrorToast, SuccessToast } from '@/components/common/ui/Toasts';
 import { fetchCalculatedTotalCartCost } from '@/utils/services/fetchCalculatedTotalCartCost';
@@ -101,7 +101,7 @@ function OrderSummary({ items, cart } : any) {
           <div className="flex flex-col gap-1 md:px-5 text-[12px] ">
             <div className="flex justify-between">
               <p className="font-normal  text-textmuted">Order Number</p>
-              <h3 className="font-medium  text-texthighlight">{truncate(OrderId || '')}</h3>
+              <h3 className="font-medium  text-texthighlight">{truncate(orderId || '')}</h3>
             </div>
             <div className="flex justify-between">
               <p className="font-normal  text-textmuted">Date</p>
