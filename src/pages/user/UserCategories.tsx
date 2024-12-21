@@ -1,4 +1,4 @@
-import CoffeeListings from '@/components/user/other/CoffeeListings';
+import CoffeeListings from '@/components/user/other/CoffeeListingsFilters';
 import Footer from '@/components/user/other/Footer';
 import Header from '@/components/user/other/Header';
 import { useEffect, useState } from 'react';

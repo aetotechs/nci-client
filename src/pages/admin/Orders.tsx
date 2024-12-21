@@ -3,7 +3,7 @@ import { OrderSheet } from '@/components/admin/other/AddOrder';
 import AdminHeader from '@/components/admin/other/AdminHeader';
 import AdminMobileNav from '@/components/admin/other/AdminMobileNav';
 import AdminSideBarDesktop from '@/components/admin/other/AdminSideBarDesktop';
-import { FilterSheet } from '@/components/user/other/CoffeeListingMobile';
+import { FilterSheet } from '@/components/user/other/CoffeeListingFiltersMobile';
 import { ListingFilter } from '@/components/user/other/ListingFilter';
 import Search from '@/components/user/other/Search';
 import { AdminOrdersTable } from '@/components/admin/tables/AdminOrdersTable';

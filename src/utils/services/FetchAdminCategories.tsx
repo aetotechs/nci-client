@@ -24,7 +24,7 @@ export function GetCategories() {
     };
 
     fetchCategories();
-  }, [categories]);
+  }, []);
 
   return categories;
 }

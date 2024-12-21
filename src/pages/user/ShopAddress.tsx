@@ -1,55 +1,31 @@
 import Header from '@/components/user/other/Header';
 
-import OrderSummary from '@/components/user/other/cart/CartSummary';
+import OrderSummary from '@/components/user/other/cart/OrderSummary';
 import ShippingAddress from '@/components/user/other/ShippingAddress';
 import Progress from '@/components/user/other/cart/Progress';
-
-import { IStatus } from '@/App';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getUserToken } from '@/utils/cookies/UserCookieManager';
-import { FetchCartItems, fetchProductByIdRoute } from '@/utils/hooks/api-routes';
 import { ErrorToast } from '@/components/common/ui/Toasts';
+import { api_urls } from '@/utils/commons/api-urls';
+const token = getUserToken();
 
-interface ProductDetails {
-  flavor: string;
-  name: string;
-  lotNumber: string;
-  stockAvailable: boolean;
-  stockCount: number;
-  unitPrice: number;
-  wareHouse: string;
-  sampleCount: number;
-  sampleUnitPrice: number;
-  sampleAvailable: boolean;
-  quantity: number;
-  itemId: string;
-}
-export interface CartItems {
-  productDetails: ProductDetails;
-  productId: string;
-  quantity: number;
-}
-
-export interface ShoppAdressProps {
-  items: CartItems[];
-}
-function ShopAddress({ status }: IStatus) {
-  const [cartItems, setCartItems] = useState<CartItems[]>([]);
+function ShopAddress() {
+  const [cartItems, setCartItems] = useState<any[]>([]);
   const [loading, setIsLoading] = useState(false);
+  const [cart, setCart] = useState();
   const { pathname } = useLocation();
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
   useEffect(() => {
     setIsLoading(true);
     const fetchCart = async () => {
-      const cartId = localStorage.getItem('cartId');
-
-      const token = getUserToken();
 
       try {
-        const response = await fetch(FetchCartItems(cartId), {
+        const response = await fetch(api_urls.carts.get_open_cart, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -63,12 +39,13 @@ function ShopAddress({ status }: IStatus) {
         }
 
         const data = await response.json();
-
+        setCart(data);
+        localStorage.setItem('cartId', data.cartId);
         const cartItemIds = data.cartItems;
 
         const detailedCartItems = await Promise.all(
           cartItemIds.map(async (item: any) => {
-            const productResponse = await fetch(fetchProductByIdRoute(item.productId), {
+            const productResponse = await fetch(api_urls.items.get_product_by_id(item.productId), {
               method: 'GET',
               headers: {
                 'Content-Type': 'application/json',
@@ -79,9 +56,7 @@ function ShopAddress({ status }: IStatus) {
             if (!productResponse.ok) {
               throw new Error(`Failed to fetch product details for ${item.productId}`);
             }
-
             const productData = await productResponse.json();
-
             return {
               ...item,
               productDetails: productData
@@ -97,11 +72,11 @@ function ShopAddress({ status }: IStatus) {
     };
 
     fetchCart();
-  }, [cartItems]);
+  }, []);
   return (
     <>
       <div className="md:px-[5vw] md:max-w-[100vw]     ">
-        <Header status={status} />
+        <Header/>
 
         <div className="px-5 md:px-0">
           <div className=" md:flex md:justify-center my-5   md:my-10 ">
@@ -112,7 +87,7 @@ function ShopAddress({ status }: IStatus) {
               <ShippingAddress />
             </div>
             <div className="md:w-[30vw]  max-h-max   ">
-              <OrderSummary items={{ items: cartItems }} />
+              <OrderSummary items={{ items: cartItems }} cart={cart}/>
             </div>
           </div>
         </div>

@@ -1,9 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { ScrollArea } from '@/components/common/ui/scroll-area';
-
-import { Button } from '@/components/common/ui/button';
 import {
   Form,
   FormControl,
@@ -13,17 +10,13 @@ import {
   FormMessage
 } from '@/components/common/ui/form';
 import { Input } from '@/components/common/ui/input';
+import { getAuthUser, setAuthUser } from '@/utils/cookies/UserCookieManager';
+import { api_urls } from '@/utils/commons/api-urls';
+import { ScrollArea } from '@radix-ui/react-scroll-area';
+import { Button } from '@/components/ui/button';
+import { SuccessToast } from '@/components/common/ui/Toasts';
 
 const FormSchema = z.object({
-  firstName: z.string().min(2, {
-    message: 'Field is required.'
-  }),
-  lastName: z.string().min(2, { message: 'Field is required' }),
-  workEmail: z.string().min(2, { message: 'Field is required.' }),
-  workPhone: z.string().min(2, { message: 'Field is required' }),
-
-  companyName: z.string().min(2, { message: 'Field is required' }),
-
   country: z.string().min(2, {
     message: 'Field is required.'
   }),
@@ -33,15 +26,10 @@ const FormSchema = z.object({
   city: z.string().min(2, { message: 'Field is required' })
 });
 
-export function ShippingAddressForm() {
+export function ShippingAddressForm({ onSuccess }: { onSuccess: () => void }) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      firstName: '',
-      lastName: '',
-      workEmail: '',
-      workPhone: '',
-      companyName: '',
       country: '',
       city: '',
       state: '',
@@ -52,6 +40,27 @@ export function ShippingAddressForm() {
 
   function onSubmit(values: z.infer<typeof FormSchema>) {
     console.log('values submitted', values);
+      fetch(api_urls.users.account.updateAccount(getAuthUser().email), {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({...values}),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Failed to update address');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          SuccessToast('Address updated successfully')
+          setAuthUser(data);
+          onSuccess();
+        })
+        .catch((error) => {
+          console.error('Error updating address:', error);
+        });
   }
 
   return (
@@ -61,103 +70,6 @@ export function ShippingAddressForm() {
           onSubmit={form.handleSubmit(onSubmit)}
           className="w-full flex flex-col gap-3 md:grid md:grid-cols-2 md:gap-5  "
         >
-          <FormField
-            control={form.control}
-            name="firstName"
-            render={({ field }) => (
-              <FormItem className="space-y-1 md:space-y-2">
-                <FormLabel className="font-normal text-[15px] md:text-base ">First Name</FormLabel>
-                <FormControl>
-                  <Input
-                    type="text"
-                    placeholder="Enter your first name"
-                    className="placeholder:text-[13px] h-[38px] md:h-10"
-                    {...field}
-                  />
-                </FormControl>
-
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="lastName"
-            render={({ field }) => (
-              <FormItem className="space-y-1 md:space-y-2">
-                <FormLabel className="font-normal text-[15px] md:text-base ">Last Name</FormLabel>
-                <FormControl>
-                  <Input
-                    type="text"
-                    placeholder="Enter your last name"
-                    className="placeholder:text-[13px] h-[38px] md:h-10"
-                    {...field}
-                  />
-                </FormControl>
-
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="workPhone"
-            render={({ field }) => (
-              <FormItem className="space-y-1 md:space-y-2">
-                <FormLabel className="font-normal text-[15px] md:text-base ">Work Phone</FormLabel>
-                <FormControl>
-                  <Input
-                    type="text"
-                    placeholder="Enter your contact"
-                    className="placeholder:text-[13px] h-[38px] md:h-10"
-                    {...field}
-                  />
-                </FormControl>
-
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="workEmail"
-            render={({ field }) => (
-              <FormItem className="space-y-1 md:space-y-2">
-                <FormLabel className="font-normal text-[15px] md:text-base ">Work Email</FormLabel>
-                <FormControl>
-                  <Input
-                    type="text"
-                    placeholder="Enter your email"
-                    className="placeholder:text-[13px] h-[38px] md:h-10"
-                    {...field}
-                  />
-                </FormControl>
-
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="companyName"
-            render={({ field }) => (
-              <FormItem className="col-span-2 space-y-1 md:space-y-2 ">
-                <FormLabel className="font-normal text-[15px] md:text-base ">Company</FormLabel>
-                <FormControl>
-                  <Input
-                    type="text"
-                    placeholder="Enter company name"
-                    className="placeholder:text-[13px] h-[38px] md:h-10"
-                    {...field}
-                  />
-                </FormControl>
-
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
           <FormField
             control={form.control}
             name="country"

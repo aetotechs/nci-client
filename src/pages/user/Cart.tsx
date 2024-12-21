@@ -9,14 +9,16 @@ import { useLoading } from '@/utils/context/LoaderContext';
 import { api_urls } from '@/utils/commons/api-urls';
 import { getUserToken } from '@/utils/cookies/UserCookieManager';
 import { ErrorToast, SuccessToast } from '@/components/common/ui/Toasts';
+import { fetchCalculatedTotalCartCost } from '@/utils/services/fetchCalculatedTotalCartCost';
+
+const token = getUserToken();
 
 function Cart() {
-  const navigate = useNavigate();
-  const token = getUserToken();
   const { dispatchLoader } = useLoading();
   const { pathname } = useLocation();
   const [reloadCart, setReloadCart] = useState(false);
   const [cart, setCart] = useState<{ cartItems: any[]; cartId: string } | null>(null);
+  const [totalCartCost, setTotalCartCost] = useState(0);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -26,14 +28,20 @@ function Cart() {
     fetchCart();
   }, []);
 
+  useEffect(() => {
+    if (cart?.cartId) {
+      fetchCalculatedTotalCartCost(cart.cartId).then((cost) => setTotalCartCost(cost));
+    }
+  }, [cart]);
+
   const fetchCart = async () => {
     dispatchLoader(true);
     try {
       const response = await fetch(api_urls.carts.get_open_cart, {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
       if (response.ok) {
         const res = await response.json();
@@ -46,7 +54,7 @@ function Cart() {
         ErrorToast(responseMessage);
       }
     } catch (error: any) {
-      ErrorToast('Error occurred during cart items fetch, ' + error.toString());
+      ErrorToast('Error occurred during cart fetch, ' + error.toString());
     } finally {
       setReloadCart(false);
       dispatchLoader(false);
@@ -59,13 +67,13 @@ function Cart() {
       0
     ) || 0;
 
-  const handleProceedToCheckout = async () => {
+  const handleProceedToShippingAddress = async () => {
     if (!cart) return;
     dispatchLoader(true);
 
     const payload = {
       cartId: cart.cartId,
-      orderInstructions: ''
+      orderInstructions: '',
     };
 
     try {
@@ -74,13 +82,13 @@ function Cart() {
         body: JSON.stringify(payload),
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
       const responseMessage = await response.text();
       if (response.ok) {
         SuccessToast(responseMessage);
-        window.location.href = '#/checkout';
+        window.location.href = '#/shipping-address';
       } else {
         ErrorToast(responseMessage);
       }
@@ -109,7 +117,7 @@ function Cart() {
                 <div className="md:w-[60vw]">
                   <ShoppingCart cart={cart} reloadCart={fetchCart} />
                 </div>
-                <div className="md:w-[30vw]">
+                <div className="md:w-[30vw] bg-white pt-5">
                   <h3 className="font-semibold text-medium my-2 md:px-4">Cart Summary</h3>
                   <div className="flex flex-col text-[12px] gap-3 md:px-4">
                     <div className="flex justify-between">
@@ -122,11 +130,11 @@ function Cart() {
                     </div>
                     <div className="flex justify-between">
                       <p className="font-normal text-textmuted">Cart Subtotal</p>
-                      <h3 className="font-semibold text-[14px]">${0}</h3>
+                      <h3 className="font-semibold text-[14px]">${totalCartCost}</h3>
                     </div>
                     <div>
                       <Button
-                        onClick={handleProceedToCheckout}
+                        onClick={handleProceedToShippingAddress}
                         className="text-white w-full h-10 my-2 rounded-[6px] md:rounded-xl font-normal cursor-pointer"
                         disabled={totalItems < 1}
                       >

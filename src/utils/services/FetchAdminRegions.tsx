@@ -24,7 +24,7 @@ export function GetRegions() {
     };
 
     fetchregions();
-  }, [regions]);
+  }, []);
 
   return regions;
 }

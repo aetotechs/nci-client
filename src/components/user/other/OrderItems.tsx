@@ -8,25 +8,18 @@ import {
   ReactElement,
   ReactNode,
   ReactPortal,
-  useEffect,
   useState
 } from 'react';
 import { Address } from './ShippingAddress';
-import { ShoppAdressProps } from '@/pages/user/ShopAddress';
 
-function OrderItems({ items }: ShoppAdressProps) {
-  const [myitems, setMyItems] = useState<any[]>([]);
-  useEffect(() => {
-    const storedItems = localStorage.getItem('preferredItems');
-    setMyItems(JSON.parse(storedItems || '[]') as any[]);
-  }, []);
+function OrderItems({ items }: any) {
 
   const location = useLocation();
   const { pathname } = location;
   return (
     <div>
       {pathname === '/checkout' || pathname === '/profile' ? null : (
-        <h3 className="font-medium text-[14px]">Order Items({myitems.length})</h3>
+         items && <h3 className="font-medium text-[14px]">Order Items({items.length})</h3> 
       )}
       {pathname === '/shop-payment' ? (
         <div className="md:mt-7 mt-2 rounded-[8px] border md:my-4  p-3 flex justify-between ">
@@ -117,7 +110,7 @@ function OrderItems({ items }: ShoppAdressProps) {
                   <div
                     className={`font-semibold text-[12px] ${pathname === '/profile' && 'text-sm'}`}
                   >
-                    ${item?.productDetails?.unitPrice}
+                    ${item?.productDetails?.unitPrice} @
                   </div>
                 </div>
               )

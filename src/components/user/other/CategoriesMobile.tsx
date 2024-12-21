@@ -2,58 +2,74 @@ import {
   Accordion,
   AccordionContent,
   AccordionItem,
-  AccordionTrigger
+  AccordionTrigger,
 } from '@/components/common/ui/accordion';
+import { useCategories } from '@/utils/hooks/useCategories';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-const categories = [
-  { id: 1, name: 'Top Lots', type: 'Curated Categories' },
-  { id: 2, name: 'Espresso Options', type: 'Curated Categories' },
-  { id: 3, name: 'Great for Cold Brew', type: 'Curated Categories' },
-  { id: 4, name: 'Staff Picks', type: 'Curated Categories' },
-  { id: 5, name: 'Naturals', type: 'Curated Categories' },
-  { id: 6, name: 'Cafe Delas', type: 'Nile Coffee Brands' },
-  { id: 7, name: 'Brazil Eagle Mogiana', type: 'Nile Coffee Brands' },
-  { id: 8, name: 'Brazil Eagle Espresso', type: 'Nile Coffee Brands' },
-  { id: 9, name: 'Colombia Dulima', type: 'Nile Coffee Brands' },
-  { id: 10, name: 'Peru Kovachii', type: 'Nile Coffee Brands' },
-  { id: 11, name: 'New Spot', type: 'New Arrivals' },
-  { id: 12, name: 'New Forward', type: 'New Arrivals' }
-];
 
 export function CategoriesMobile() {
   const navigate = useNavigate();
+  const [pages, setPages] = useState<{ page: number; size: number }>({ page: 0, size: 4 });
+  const { categories, loading, hasMore } = useCategories(pages.page, pages.size);
+  const [openAccordion, setOpenAccordion] = useState<string | null>('item-1'); // Manage accordion open state
 
-  const HandleClick = (name: string) => {
-    navigate(`/region/${name}`);
+  const handleLoadMoreCategories = (e: any) => {
+    e.preventDefault();
+    setPages((prev: any) => ({
+      ...prev,
+      page: prev.page + 1,
+    }));
   };
-  const categorizedData = categories.reduce(
-    (acc: { [key: string]: { id: number; name: string }[] }, category) => {
-      if (!acc[category.type]) {
-        acc[category.type] = [];
-      }
-      acc[category.type].push({ id: category.id, name: category.name });
-      return acc;
-    },
-    {}
-  );
+
+  const handleCategoryClick = (name: string) => {
+    navigate(`/category/${name}`);
+    setOpenAccordion(null); // Close the accordion after clicking a category
+  };
+
   return (
-    <Accordion type="single" collapsible className="w-full">
+    <Accordion
+      type="single"
+      collapsible
+      className="w-full"
+      value={openAccordion}
+      onValueChange={setOpenAccordion}
+    >
       <AccordionItem value="item-1">
         <AccordionTrigger>
           <p>Categories</p>
         </AccordionTrigger>
         <AccordionContent>
-          {Object.keys(categorizedData).map((categoryType) => (
-            <div key={categoryType} className="text-textcolor flex flex-col gap-1 ">
-              <h3 className="font-semibold text-[15px] mt-2">{categoryType}</h3>
-              {categorizedData[categoryType].map((item) => (
-                <p key={item.id} className="cursor-pointer" onClick={() => HandleClick(item.name)}>
-                  {item.name}
-                </p>
-              ))}
+          {categories.map((category, index) => (
+            <div key={index} className="text-textcolor flex flex-col gap-1">
+              <h3 className="font-semibold text-[15px] mt-4 text-center border-b">
+                {category.name}
+              </h3>
+              {Array.isArray(category.subCategories) ? (
+                category.subCategories.map((item: any, subIndex: any) => (
+                  <p
+                    key={subIndex}
+                    className="cursor-pointer text-center"
+                    onClick={() => handleCategoryClick(item)}
+                  >
+                    {item}
+                  </p>
+                ))
+              ) : (
+                <p className="italic text-muted">No subcategories available</p>
+              )}
             </div>
           ))}
+          <div className="flex justify-center">
+            <button
+              onClick={handleLoadMoreCategories}
+              className="mt-5 px-5 text-primary"
+              disabled={loading || !hasMore}
+              aria-label="Load more categories"
+            >
+              {loading ? 'Loading...' : hasMore ? 'Load More >>' : 'That is all we have'}
+            </button>
+          </div>
         </AccordionContent>
       </AccordionItem>
     </Accordion>

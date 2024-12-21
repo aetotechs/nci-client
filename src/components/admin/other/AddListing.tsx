@@ -7,7 +7,7 @@ import Search from '../../user/other/Search';
 import { ListingFilter } from '../../user/other/ListingFilter';
 import { Button } from '../../common/ui/button';
 import { CoffeeListingsTable } from '../tables/CoffeeListingsTable';
-import { FilterSheet } from '../../user/other/CoffeeListingMobile';
+import { FilterSheet } from '../../user/other/CoffeeListingFiltersMobile';
 import { AdminSideBarDesktopProps } from './AdminSideBarDesktop';
 
 function AddListing({ isCollapsed, toggleCollapse }: AdminSideBarDesktopProps) {

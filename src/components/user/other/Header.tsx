@@ -65,7 +65,7 @@ function Header({ handleSearch, reloadCart }: HeaderProps) {
   }, []);
 
   const fetchCount = async () => {
-    if(_isAuthenticated){
+    if(!_isAuthenticated){
       console.log("You're not authenticated");
       return;
     }

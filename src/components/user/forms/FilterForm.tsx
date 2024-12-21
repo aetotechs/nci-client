@@ -17,9 +17,8 @@ import {
   AccordionTrigger
 } from '@/components/common/ui/accordion';
 import { Input } from '../../common/ui/input';
-import CoffeeListings from '../other/CoffeeListings';
 import { Checkbox } from '../../common/ui/checkbox';
-import { filterItems } from '@/utils/commons/constants';
+import Listingsfilters from '../other/CoffeeListingsFilters';
 
 const Listings = [
   {
@@ -102,7 +101,7 @@ export function FilterForm() {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <CoffeeListings Listings={filterItems} />
+                  <Listingsfilters/>
                 </FormControl>
 
                 <FormMessage />

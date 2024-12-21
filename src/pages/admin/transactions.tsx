@@ -1,7 +1,7 @@
 import AdminHeader from '@/components/admin/other/AdminHeader';
 import AdminMobileNav from '@/components/admin/other/AdminMobileNav';
 import AdminSideBarDesktop from '@/components/admin/other/AdminSideBarDesktop';
-import { FilterSheet } from '@/components/user/other/CoffeeListingMobile';
+import { FilterSheet } from '@/components/user/other/CoffeeListingFiltersMobile';
 
 import { TransactionsTable } from '@/components/admin/tables/TransactionsTable';
 import { TransactionFilter } from '@/components/user/other/TransactionFilter';

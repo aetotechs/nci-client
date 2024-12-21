@@ -76,3 +76,17 @@ export const GetCartById = (cartId: string) =>
   `${import.meta.env.VITE_ORDER_API_URL}/carts?cartId=${cartId}`;
 
 export const GetTransactions = `${import.meta.env.VITE_PAYMENT_API_URL}/payments`;
+
+export const GetWareHouses=`${import.meta.env.VITE_INVENTORY_API_URL}/constants/warehouses`
+
+export const GetStatuses=`${import.meta.env.VITE_INVENTORY_API_URL}/constants/statuses`
+
+export const GetSpecies=`${import.meta.env.VITE_INVENTORY_API_URL}/constants/species`
+
+export const GetProcessingModes=`${import.meta.env.VITE_INVENTORY_API_URL}/constants/processing-modes`
+
+export const GetFlavors=`${import.meta.env.VITE_INVENTORY_API_URL}/constants/flavors`
+
+export const GetBagWeights=`${import.meta.env.VITE_INVENTORY_API_URL}/constants/bag-weights`
+
+export const GetBagTypes=`${import.meta.env.VITE_INVENTORY_API_URL}/constants/bag-types`

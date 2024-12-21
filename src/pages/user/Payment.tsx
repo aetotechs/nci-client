@@ -1,88 +1,58 @@
 import Header from '@/components/user/other/Header';
-import OrderSummary from '@/components/user/other/cart/CartSummary';
 import Progress from '@/components/user/other/cart/Progress';
-import { IStatus } from '@/App';
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { CartItems } from './ShopAddress';
-import { FetchCartItems, fetchProductByIdRoute } from '@/utils/hooks/api-routes';
-import { getUserToken } from '@/utils/cookies/UserCookieManager';
 import PaymentComponent from '@/components/user/other/PaymentComponent';
+import OrderItems from '@/components/user/other/OrderItems';
+import { useLoading } from '@/utils/context/LoaderContext';
+import { api_urls } from '@/utils/commons/api-urls';
+import { getUserToken } from '@/utils/cookies/UserCookieManager';
+import { ErrorToast } from '@/components/common/ui/Toasts';
 
-export const OrderId = localStorage.getItem('orderId');
+const orderId = localStorage.getItem('orderId');
+const token = getUserToken();
 
-function Payment({ status }: IStatus) {
-  const [cartItems, setCartItems] = useState<CartItems[]>([]);
+function Payment() {
   const { pathname } = useLocation();
+  const { dispatchLoader } = useLoading();
+  const [order, setOrder] = useState({});
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
   useEffect(() => {
-    const fetchCart = async () => {
-      const cartId = localStorage.getItem('cartId');
+    fetchOrder();
+  },[]);
 
-      const token = getUserToken();
-
-      try {
-        const response = await fetch(FetchCartItems(cartId), {
-          method: 'GET',
-
-          headers: {
-            'Content-Type': 'application/json',
-
-            Authorization: `Bearer ${token}`
-          }
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch cart items');
-        }
-
-        const data = await response.json();
-
-        const cartItemIds = data.cartItems;
-
-        const detailedCartItems = await Promise.all(
-          cartItemIds.map(async (item: any) => {
-            const productResponse = await fetch(fetchProductByIdRoute(item.productId), {
-              method: 'GET',
-
-              headers: {
-                'Content-Type': 'application/json',
-
-                Authorization: `Bearer ${token}`
-              }
-            });
-
-            if (!productResponse.ok) {
-              throw new Error(`Failed to fetch product details for ${item.productId}`);
-            }
-
-            const productData = await productResponse.json();
-
-            return {
-              ...item,
-
-              productDetails: productData
-            };
-          })
-        );
-        setCartItems(detailedCartItems);
-      } catch (error) {
-        console.error('Error fetching cart items:', error);
-      } finally {
+  const fetchOrder = async () => {
+    dispatchLoader(true);
+    try {
+      const response = await fetch(api_urls.orders.get_order_by_id(orderId), {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response.ok) {
+        const res = await response.json();
+        console.log(res);
+        setOrder(res);
+      } else {
+        const responseMessage = await response.text();
+        ErrorToast(responseMessage);
       }
-    };
-
-    fetchCart();
-  }, [cartItems]);
+    } catch (error: any) {
+      ErrorToast('Error occurred during order fetch, ' + error.toString());
+    } finally {
+      dispatchLoader(false);
+    }
+  };
 
   return (
     <>
       <div className="md:px-[5vw] md:max-w-[100vw]     ">
-        <Header status={status} />
+        <Header/>
 
         <div className="px-5 md:px-0">
           <div className=" md:flex md:justify-center my-5   md:my-10 ">
@@ -90,10 +60,33 @@ function Payment({ status }: IStatus) {
           </div>
           <div className=" flex flex-col gap-5 md:flex-row ">
             <div className="md:w-[60vw]">
-              <PaymentComponent orderId={OrderId || ''} />
+              <PaymentComponent orderId={orderId || ''} />
             </div>
             <div className="md:w-[30vw]">
-              <OrderSummary items={{ items: cartItems }} />
+              <h3 className={` font-semibold text-[15px] my-2 md:px-5`}>Order Summary</h3>
+              <div className="flex flex-col text-[12px] gap-3 md:px-4 ">
+                <div className={`flex justify-between mt-1 `}>
+                  <p className="font-normal  text-textmuted">OrderID</p>
+                  <h3 className="font-medium ">{order.orderId || ''} </h3>
+                </div>
+                <div className="flex justify-between">
+                  <p className="font-normal  text-textmuted">Order sub total</p>
+                  <h3 className="font-semibold text-[14px]">${order.totalAmount || 0}</h3>
+                </div>
+                <div className="flex justify-between">
+                  <p className="font-normal  text-textmuted">Shipping</p>
+                  <h3 className="font-medium ">{order.shippingFee || 'unknown'}</h3>
+                </div>
+                <div className="flex justify-between">
+                  <p className="font-normal  text-textmuted">Standard VAT</p>
+                  <h3 className="font-medium ">${0}</h3>
+                </div>
+                <div className="flex justify-between">
+                  <p className="font-normal  text-textmuted">Order total</p>
+                  <h3 className="font-semibold text-[14px]">${order.totalAmount + order.shippingFee || 0}</h3>
+                </div>
+                <OrderItems items={""} />
+              </div>
             </div>
           </div>
         </div>

@@ -1,8 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
 import { CategoriesSheet } from '../../user/other/CategoriesSheet';
-import { RegionsMobile } from '../../user/other/RegionsMobile';
 import { CategoriesMobile } from '../../user/other/CategoriesMobile';
-import { RegionsSheet } from '@/components/user/other/OriginsSheet';
+import { OriginsSheet } from '@/components/user/other/OriginsSheet';
+import { OriginsMobile } from '@/components/user/other/OriginsMobile';
 
 function NavItems() {
   const location = useLocation();
@@ -17,10 +17,10 @@ function NavItems() {
         </Link>
       </li>
       <li className="cursor-pointer text-textcolor  active:text-primary hidden md:flex ">
-        <RegionsSheet />
+        <OriginsSheet />
       </li>
       <li className="cursor-pointer text-textcolor border-none  active:text-primary flex md:hidden ">
-        <RegionsMobile />
+        <OriginsMobile />
       </li>
       <li className="cursor-pointer text-textcolor  active:text-primary hidden md:flex ">
         <CategoriesSheet />
