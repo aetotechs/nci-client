@@ -17,7 +17,7 @@ export function FetchFlavors() {
     };
 
     fetchflavors();
-  }, [flavors]);
+  }, []);
 
   return flavors;
 }

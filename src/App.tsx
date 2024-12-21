@@ -10,9 +10,10 @@ import PrivacyPolicy from './pages/user/PrivacyPolicy';
 import TermsAndConditions from './pages/user/TermsAndConditions';
 import CookiePolicy from './pages/user/CookiePolicy';
 
+import LandingPage from './pages/user/Home';
+import { FiltersProvider } from './utils/context/FiltersContext';
 const LoginPage = React.lazy(() => import('@/pages/auth/login'));
 const ForgotPasswordPage = React.lazy(() => import('@/pages/auth/forgot-password'));
-const LandingPage = React.lazy(() => import('@/pages/user/Home'));
 const Cart = React.lazy(() => import('@/pages/user/Cart'));
 const ShopAddress = React.lazy(() => import('@/pages/user/ShopAddress'));
 const ShopPayment = React.lazy(() => import('@/pages/user/Payment'));
@@ -54,108 +55,111 @@ function App() {
   return (
     <>
       <LoadingProvider>
-        <Toaster />
-        <LoadingSpinner />
-        <HashRouter>
-          <Suspense fallback={<SuspenseFallBack />}>
-            <Routes>
-              <Route index element={<LandingPage status={loggedIn} />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/verify-email" element={<VerifyEmail />} />
-              <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-              <Route path="/verify-otp" element={<VerifyOtp />} />
-              <Route path="/reset-password" element={<ResetPasswordPage />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/coffee-shop" element={<Listings />} />
-              <Route path="/shipping-address" element={<ShopAddress status={loggedIn} />} />
-              <Route path="/shop-payment" element={<ShopPayment status={loggedIn} />} />
-              <Route path="/checkout" element={<ClosedOrder />} />
-              <Route path="/product/:productId" element={<ProductPage />} />
-              <Route path="/profile" element={<Profile status={loggedIn} />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact-us" element={<ContactUs status={loggedIn} />} />
-              <Route path="/region/:originId?" element={<OriginsPage />} />
-              <Route path="/category/:categoryId?" element={<UserCategoriesPage />} />
-              <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-              <Route path="/cookie-policy" element={<CookiePolicy />} />
-              <Route path="*" element={<NotFound />} />
+        <FiltersProvider>
 
-              <Route
-                path="/dashboard"
-                element={
-                  <AdminRoute>
-                    <Admin />
-                  </AdminRoute>
-                }
-              />
-              <Route
-                path="/categories"
-                element={
-                  <AdminRoute>
-                    <Categories />
-                  </AdminRoute>
-                }
-              />
-              <Route
-                path="/admin-origins"
-                element={
-                  <AdminRoute>
-                    <AdminOrigins />
-                  </AdminRoute>
-                }
-              />
-              <Route
-                path="/coffee-listings"
-                element={
-                  <AdminRoute>
-                    <CoffeeListings />
-                  </AdminRoute>
-                }
-              />
-              <Route
-                path="/orders"
-                element={
-                  <AdminRoute>
-                    <Orders />
-                  </AdminRoute>
-                }
-              />
-              <Route
-                path="/transactions"
-                element={
-                  <AdminRoute>
-                    <Transactions />
-                  </AdminRoute>
-                }
-              />
-              <Route
-                path="/customers"
-                element={
-                  <AdminRoute>
-                    <Customers />
-                  </AdminRoute>
-                }
-              />
-              <Route
-                path="/analytics"
-                element={
-                  <AdminRoute>
-                    <Analytics />
-                  </AdminRoute>
-                }
-              />
-              <Route
-                path="/settings"
-                element={
-                  <AdminRoute>
-                    <Settings />
-                  </AdminRoute>
-                }
-              />
-            </Routes>
-          </Suspense>
-        </HashRouter>
+          <Toaster />
+          <LoadingSpinner />
+          <HashRouter>
+            <Suspense fallback={<SuspenseFallBack />}>
+              <Routes>
+                <Route index element={<LandingPage status={loggedIn} />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/verify-email" element={<VerifyEmail />} />
+                <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+                <Route path="/verify-otp" element={<VerifyOtp />} />
+                <Route path="/reset-password" element={<ResetPasswordPage />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/coffee-shop" element={<Listings />} />
+                <Route path="/shipping-address" element={<ShopAddress status={loggedIn} />} />
+                <Route path="/shop-payment" element={<ShopPayment status={loggedIn} />} />
+                <Route path="/checkout" element={<ClosedOrder />} />
+                <Route path="/product/:productId" element={<ProductPage />} />
+                <Route path="/profile" element={<Profile status={loggedIn} />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact-us" element={<ContactUs status={loggedIn} />} />
+                <Route path="/origin/:originId?" element={<OriginsPage />} />
+                <Route path="/category/:categoryId?" element={<UserCategoriesPage />} />
+                <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/cookie-policy" element={<CookiePolicy />} />
+                <Route path="*" element={<NotFound />} />
+
+                <Route
+                  path="/dashboard"
+                  element={
+                    <AdminRoute>
+                      <Admin />
+                    </AdminRoute>
+                  }
+                />
+                <Route
+                  path="/categories"
+                  element={
+                    <AdminRoute>
+                      <Categories />
+                    </AdminRoute>
+                  }
+                />
+                <Route
+                  path="/admin-origins"
+                  element={
+                    <AdminRoute>
+                      <AdminOrigins />
+                    </AdminRoute>
+                  }
+                />
+                <Route
+                  path="/coffee-listings"
+                  element={
+                    <AdminRoute>
+                      <CoffeeListings />
+                    </AdminRoute>
+                  }
+                />
+                <Route
+                  path="/orders"
+                  element={
+                    <AdminRoute>
+                      <Orders />
+                    </AdminRoute>
+                  }
+                />
+                <Route
+                  path="/transactions"
+                  element={
+                    <AdminRoute>
+                      <Transactions />
+                    </AdminRoute>
+                  }
+                />
+                <Route
+                  path="/customers"
+                  element={
+                    <AdminRoute>
+                      <Customers />
+                    </AdminRoute>
+                  }
+                />
+                <Route
+                  path="/analytics"
+                  element={
+                    <AdminRoute>
+                      <Analytics />
+                    </AdminRoute>
+                  }
+                />
+                <Route
+                  path="/settings"
+                  element={
+                    <AdminRoute>
+                      <Settings />
+                    </AdminRoute>
+                  }
+                />
+              </Routes>
+            </Suspense>
+          </HashRouter>
+        </FiltersProvider>
       </LoadingProvider>
     </>
   );

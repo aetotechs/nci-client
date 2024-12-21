@@ -5,33 +5,26 @@ import { useEffect, useState } from 'react';
 import { AddToCart } from '@/utils/hooks/api-routes';
 import { getAuthUser, getUserToken } from '@/utils/cookies/UserCookieManager';
 import { toast } from 'sonner';
-import { ShoppAdressProps } from '@/pages/user/ShopAddress';
 import { OrderId } from '@/pages/user/Payment';
 import { truncate } from '@/utils/commons/Truncate';
 import { ErrorToast, SuccessToast } from '@/components/common/ui/Toasts';
-import { useCart } from '@/utils/hooks/CartHook';
+import { fetchCalculatedTotalCartCost } from '@/utils/services/fetchCalculatedTotalCartCost';
 
 const vat = 0.0;
-const shippingFee = 0.0;
+const shippingFee = 'unknown' || 0.0;
 
-let orderSubTotal;
-
-function OrderSummary({ items, cart }: { items?: ShoppAdressProps } | any) {
+function OrderSummary({ items, cart } : any) {
   const navigate = useNavigate();
   const location = useLocation();
-  const [cartSubTotal, setcartSubTotal] = useState<number>();
   const [submitting, setSubmitting] = useState(false);
   const { pathname } = location;
-  const { calculateSubtotal, clearCartItems } = useCart();
+  const [totalOrderCost, setTotalOrderCost] = useState(0);
 
   useEffect(() => {
-    const cartSubtotal = parseFloat(calculateSubtotal().toFixed(2)!);
-    setcartSubTotal(cartSubtotal);
+    if (cart) {
+      fetchCalculatedTotalCartCost(cart.cartId).then((cost) => setTotalOrderCost(cost));
+    }
   }, [cart]);
-
-  useEffect(() => {
-    orderSubTotal = vat + shippingFee! + parseFloat(calculateSubtotal().toFixed(2)!);
-  }, []);
 
   const submitCart = async () => {
     const preferredItems = cart.filter((item: any) => item.selected);
@@ -84,9 +77,6 @@ function OrderSummary({ items, cart }: { items?: ShoppAdressProps } | any) {
           </div>
         );
 
-        clearCartItems();
-        // insert all the unselected cart items to wishlist from here
-
         setTimeout(() => {
           navigate('/shipping-address');
         }, 1000);
@@ -130,7 +120,7 @@ function OrderSummary({ items, cart }: { items?: ShoppAdressProps } | any) {
       <div className="flex flex-col text-[12px] gap-3 md:px-4 ">
         <div className={`flex justify-between ${pathname === '/checkout' && 'px-1 mt-1'}`}>
           <p className="font-normal  text-textmuted">Cart Subtotal</p>
-          <h3 className="font-medium ">${cartSubTotal || 0} </h3>
+          <h3 className="font-medium ">${totalOrderCost || 0} </h3>
         </div>
         <div className="flex justify-between">
           <p className="font-normal  text-textmuted">Shipping</p>
@@ -142,7 +132,7 @@ function OrderSummary({ items, cart }: { items?: ShoppAdressProps } | any) {
         </div>
         <div className="flex justify-between">
           <p className="font-normal  text-textmuted">Order Subtotal</p>
-          <h3 className="font-semibold text-[14px]">${cartSubTotal || 0}</h3>
+          <h3 className="font-semibold text-[14px]">${totalOrderCost || 0}</h3>
         </div>
         {pathname === '/shipping-address' && items && <OrderItems items={items.items} />}
         {pathname === '/shop-payment' && items && <OrderItems items={items.items} />}

@@ -57,7 +57,7 @@ const CheckoutForm = ({ orderId, userEmail, fullNames }: CheckoutProps) => {
         const { error, paymentIntent } = paymentIntentResult;
 
         if (error) {
-          setErrorMessage(error.message || 'An unknown error occurred.');
+          setErrorMessage(error.toString() || 'An unknown error occurred.');
         } else {
           setPaymentComplete(true);
           try {
@@ -77,12 +77,12 @@ const CheckoutForm = ({ orderId, userEmail, fullNames }: CheckoutProps) => {
               'Successfully confirmed client payment with status ' + JSON.stringify(cstatus)
             );
           } catch (err: AxiosError | any) {
-            setErrorMessage(err.response.data || 'An error occurred while confirming the payment.');
+            setErrorMessage(err.toString() || 'An error occurred while confirming the payment.');
           }
         }
       }
     } catch (error: AxiosError | any) {
-      setErrorMessage(error.response.data || 'An error occurred while procesing the payment.');
+      setErrorMessage(error.message.toString() || 'An error occurred while procesing the payment.');
     } finally {
       setPaymentProcessing(false);
     }

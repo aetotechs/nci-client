@@ -24,7 +24,7 @@ export function GetOrigins() {
     };
 
     fetchOrigins();
-  }, [origins]);
+  }, []);
 
   return origins;
 }

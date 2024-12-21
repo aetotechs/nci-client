@@ -17,7 +17,7 @@ import {
   AccordionTrigger
 } from '@/components/common/ui/accordion';
 import { Input } from '../../common/ui/input';
-import CoffeeListings from '../../user/other/CoffeeListings';
+import CoffeeListings from '../../user/other/CoffeeListingsFilters';
 
 const Listings = [
   {

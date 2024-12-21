@@ -8,28 +8,23 @@ import { getAuthUser, getUserToken } from '@/utils/cookies/UserCookieManager';
 import { CreateOrder } from '@/utils/hooks/api-routes';
 import { toast } from 'sonner';
 import { useRef, useState } from 'react';
-
+import { ErrorToast, SuccessToast } from '@/components/common/ui/Toasts';
+const token = getUserToken();
 const user = getAuthUser();
+
 export const Address = user;
 
 function ShippingAddress() {
   const orderInstructionsRef = useRef<HTMLTextAreaElement>(null);
-
   const [isOrdering, setIsOrdering] = useState(false);
   const navigate = useNavigate();
 
-  const MakeOrder = async () => {
+  const handlePlaceOrder = async () => {
     setIsOrdering(true);
-
-    const user = getAuthUser();
-    const token = getUserToken();
     const cartId = localStorage.getItem('cartId');
 
     const orderData = {
       cartId: cartId,
-      customerId: user.userId,
-      shippingFee: 0,
-      totalAmount: 0,
       orderInstructions: orderInstructionsRef.current?.value || ''
     };
 
@@ -49,18 +44,17 @@ function ShippingAddress() {
         const getOrderId = data.orderId;
         localStorage.setItem('orderId', getOrderId);
 
-        toast.success('Order placed successfully!');
+        SuccessToast('Order placed successfully!');
         setTimeout(() => {
           navigate('/shop-payment');
         }, 1000);
       } else {
-        const errorData = await response.text();
-
-        toast.error(errorData);
+        ErrorToast(await response.text());
       }
     } catch (error) {
       toast.error('Failed to create order. Please try again.');
     } finally {
+      localStorage.setItem('cartId', '');
       setIsOrdering(false);
     }
   };
@@ -125,7 +119,7 @@ function ShippingAddress() {
             </Link>
 
             <Button
-              onClick={MakeOrder}
+              onClick={handlePlaceOrder}
               className="flex gap-2 bg-primary rounded-[6px] h-8 md:rounded-[10px] md:min-w-[109px] md:h-10 text-white px-3"
               variant="outline"
               disabled={isOrdering}

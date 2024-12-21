@@ -1,5 +1,5 @@
 import Header from '@/components/user/other/Header';
-import OrderSummary from '@/components/user/other/cart/CartSummary';
+import OrderSummary from '@/components/user/other/cart/OrderSummary';
 import { Button } from '@/components/common/ui/button';
 import { Check } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';

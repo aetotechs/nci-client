@@ -77,16 +77,16 @@ export const GetCartById = (cartId: string) =>
 
 export const GetTransactions = `${import.meta.env.VITE_PAYMENT_API_URL}/payments`;
 
-export const GetWareHouses=`${import.meta.env.VITE_INVENTORY_API_URL}/enums/warehouses`
+export const GetWareHouses=`${import.meta.env.VITE_INVENTORY_API_URL}/constants/warehouses`
 
-export const GetStatuses=`${import.meta.env.VITE_INVENTORY_API_URL}/enums/statuses`
+export const GetStatuses=`${import.meta.env.VITE_INVENTORY_API_URL}/constants/statuses`
 
-export const GetSpecies=`${import.meta.env.VITE_INVENTORY_API_URL}/enums/species`
+export const GetSpecies=`${import.meta.env.VITE_INVENTORY_API_URL}/constants/species`
 
-export const GetProcessingModes=`${import.meta.env.VITE_INVENTORY_API_URL}/enums/processing-modes`
+export const GetProcessingModes=`${import.meta.env.VITE_INVENTORY_API_URL}/constants/processing-modes`
 
-export const GetFlavors=`${import.meta.env.VITE_INVENTORY_API_URL}/enums/flavors`
+export const GetFlavors=`${import.meta.env.VITE_INVENTORY_API_URL}/constants/flavors`
 
-export const GetBagWeights=`${import.meta.env.VITE_INVENTORY_API_URL}/enums/bag-weights`
+export const GetBagWeights=`${import.meta.env.VITE_INVENTORY_API_URL}/constants/bag-weights`
 
-export const GetBagTypes=`${import.meta.env.VITE_INVENTORY_API_URL}/enums/bag-types`
+export const GetBagTypes=`${import.meta.env.VITE_INVENTORY_API_URL}/constants/bag-types`

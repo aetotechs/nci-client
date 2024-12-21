@@ -1,17 +1,23 @@
+import React, { useState } from 'react';
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
 } from '@/components/common/ui/dialog';
-
 import { ShippingAddressForm } from '@/components/user/forms/AddShippingAddressForm';
 
 export function DialogDemo() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleDialogClose = () => {
+    setIsOpen(false);
+  };
+
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <p className="text-texthighlight underline cursor-pointer text-sm md:text-[13px] font-medium">
           Change Shipping Address
@@ -24,7 +30,7 @@ export function DialogDemo() {
             Ensure accurate and timely delivery by providing a complete address.
           </DialogDescription>
         </DialogHeader>
-        <ShippingAddressForm />
+        <ShippingAddressForm onSuccess={handleDialogClose} />
       </DialogContent>
     </Dialog>
   );

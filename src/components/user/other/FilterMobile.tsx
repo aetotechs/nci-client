@@ -7,7 +7,7 @@ import {
   SheetTitle,
   SheetTrigger
 } from '@/components/common/ui/sheet';
-import CoffeeListings from './CoffeeListings';
+import CoffeeListings from './CoffeeListingsFilters';
 export const Listings = [
   {
     title: 'Category',

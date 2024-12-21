@@ -20,7 +20,7 @@ import {
   AccordionTrigger
 } from '@/components/common/ui/accordion';
 import { DeleteCustomer } from './DeleteCustomer';
-import { FilterSheet } from '../../user/other/CoffeeListingMobile';
+import { FilterSheet } from '../../user/other/CoffeeListingFiltersMobile';
 import { AdminSideBarDesktopProps } from './AdminSideBarDesktop';
 import { FetchUsers } from '@/utils/services/FetchUsers';
 
