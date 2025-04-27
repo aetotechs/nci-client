@@ -53,7 +53,7 @@ function Footer() {
               <span>
                 <img src="/icons/call.svg" className="w-4 h-4" alt="Callicon" />
               </span>
-              <span className="text-sm">+256 708 210 793</span>{' '}
+              <span className="text-sm">+256 706 454 876</span>{' '}
             </div>
             <div className="flex items-center gap-2">
               {' '}
